@@ -1,0 +1,8 @@
+.main-container {
+  max-width: calc(1440px - 15rem);
+  width: 100%;
+  margin-left: 15rem;
+  @media (max-width: 786px) {
+    margin: 0;
+  }
+}
