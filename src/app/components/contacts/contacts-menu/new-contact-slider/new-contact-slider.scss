@@ -1,0 +1,99 @@
+@use '../../../../styles/variables.scss' as vars;
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.left-column {
+  background-color: vars.$primary-color;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 120px 40px;
+  gap: 1rem;
+}
+
+.logo {
+  width: 55px;
+}
+
+.container-with-line {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.line {
+  height: 2px;
+  width: 50px;
+  border-radius: 5px;
+  background-color: vars.$secondary-color;
+}
+
+.default-img {
+  height: 120px;
+  width: 120px;
+  background-color: vars.$font-lightcolor;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.person-img {
+  width: 40px;
+  filter: grayscale(100%) brightness(0) invert(100%);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.cancel-btn {
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: 1px solid vars.$tertiary-color;
+  color: vars.$tertiary-color;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.create-btn {
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: vars.$tertiary-color;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.btn-img {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-img-check {
+  width: 15px;
+  height: 10px;
+}
