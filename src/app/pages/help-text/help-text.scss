@@ -1,6 +1,9 @@
+@use '../../styles/variables.scss' as *;
+
 .help-page {
     width: 100%;
     min-height: calc(100vh - 64px);
+    background: $content-bg;
 }
 
 .help-container {
