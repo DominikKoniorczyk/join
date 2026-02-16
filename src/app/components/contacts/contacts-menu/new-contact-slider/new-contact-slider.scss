@@ -4,6 +4,9 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  overflow: hidden;
 }
 
 .left-column {
@@ -63,10 +66,11 @@ form {
 .button-container {
   display: flex;
   gap: 1rem;
+  padding-top: 1rem;
 }
 
 .cancel-btn {
-  padding: 5px 20px;
+  padding: 10px 20px;
   border-radius: 5px;
   border: 1px solid vars.$tertiary-color;
   color: vars.$tertiary-color;
@@ -77,7 +81,7 @@ form {
 }
 
 .create-btn {
-  padding: 5px 20px;
+  padding: 10px 20px;
   border-radius: 5px;
   border: none;
   color: white;
@@ -96,4 +100,27 @@ form {
 .btn-img-check {
   width: 15px;
   height: 10px;
+}
+
+.input-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid vars.$font-lightcolor;
+  padding: 12px 12px;
+  border-radius: 10px;
+
+  input {
+    width: 100%;
+    padding: 0;
+    border: none;
+    font-size: 16px;
+    &::placeholder {
+      color: vars.$font-lightcolor;
+    }
+  }
+
+  img {
+    margin-left: 10px;
+  }
 }
