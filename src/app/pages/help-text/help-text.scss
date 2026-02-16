@@ -1,11 +1,9 @@
 .help-page {
-  max-width: calc(1440px - 10rem);
-//   max-width: 1440px;
+  max-width: calc(1440px - 15rem);
   width: 100%;
   min-height: calc(100vh - 64px);
   background: #f6f7f8;
   position: relative;
-  margin-left: 10rem;
   outline: solid red;
 }
 
