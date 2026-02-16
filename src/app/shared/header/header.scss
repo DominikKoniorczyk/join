@@ -10,4 +10,22 @@
     0 2px 4px 0 rgba(0, 0, 0, 0.12);
   font-size: 1rem;
   padding-left: 12rem;
+  @media (max-width: 786px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+img {
+  display: none;
+  @media (max-width: 786px) {
+    display: block;
+    width: 50px;
+  }
+}
+
+h2 {
+  @media (max-width: 786px) {
+    display: none;
+  }
 }

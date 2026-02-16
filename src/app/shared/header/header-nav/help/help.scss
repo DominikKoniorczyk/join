@@ -1,5 +1,10 @@
-.content:hover {
-  cursor: pointer;
+.content {
+  @media (max-width: 768px) {
+    display: none;
+  }
+  & :hover {
+    cursor: pointer;
+  }
 }
 
 img:hover {
