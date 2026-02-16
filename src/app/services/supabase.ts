@@ -48,35 +48,72 @@ export class Supabase {
   }
 
   /**
- * Uploads JSON data to a specified Supabase table.
- *
- * This method inserts the provided JSON object or array of objects
- * into the given table using the Supabase client.
- *
- * @async
- * @param {string} tableName - The name of the database table where the data should be inserted.
- * @param {any} jsonData - The JSON object or array of objects to insert into the table.
- * @returns {Promise<any>} A promise that resolves with the inserted data returned by Supabase.
- *
- * @throws {Error} Throws an error if the insert operation fails.
- *
- * @example
- * await uploadJSONToTable('users', {
- *   name: 'John Doe',
- *   email: 'john@example.com'
- * });
- *
- * @example
- * await uploadJSONToTable('users', [
- *   { name: 'John Doe', email: 'john@example.com' },
- *   { name: 'Jane Doe', email: 'jane@example.com' }
- * ]);
- */
+   * Uploads JSON data to a specified Supabase table.
+   *
+   * This method inserts the provided JSON object or array of objects
+   * into the given table using the Supabase client.
+   *
+   * @async
+   * @param {string} tableName - The name of the database table where the data should be inserted.
+   * @param {any} jsonData - The JSON object or array of objects to insert into the table.
+   * @returns {Promise<any>} A promise that resolves with the inserted data returned by Supabase.
+   *
+   * @throws {Error} Throws an error if the insert operation fails.
+   *
+   * @example
+   * await uploadJSONToTable('users', {
+   *   name: 'John Doe',
+   *   email: 'john@example.com'
+   * });
+   *
+   * @example
+   * await uploadJSONToTable('users', [
+   *   { name: 'John Doe', email: 'john@example.com' },
+   *   { name: 'Jane Doe', email: 'jane@example.com' }
+   * ]);
+   */
   async uploadJSONToTable(tableName: string, jsonData: any) {
     const { data, error } = await this.supabaseClient
       .from(tableName)
       .insert(jsonData)
     if (error) throw error;
     return data;
+  }
+
+  /**
+   * Deletes a row from the specified database table by its ID.
+   *
+   * @param {string} tableName - The name of the table from which the row should be deleted.
+   * @param {number} id - The unique identifier of the row to delete.
+   * @returns {Promise<void>} A promise that resolves when the delete operation has completed.
+   *
+   * @throws Will throw an error if the delete operation fails.
+   */
+  async deleteRow(tableName: string, id: number) {
+    const { data, error } = await this.supabaseClient
+      .from(tableName)
+      .delete()
+      .eq('id', id)
+    if (error) throw error;
+  }
+
+  /**
+   * Updates a row in the specified table by its ID.
+   *
+   * @async
+   * @param {string} tableName - The name of the table where the row should be updated.
+   * @param {any} newData - An object containing the updated field values.
+   * @param {number} id - The unique identifier of the row to update.
+   *
+   * @throws Will throw an error if the update operation fails.
+   *
+   * @returns {Promise<void>} Resolves when the update operation completes successfully.
+   */
+  async updateRow(tableName: string, newData: any, id: number) {
+    const { error } = await this.supabaseClient
+      .from(tableName)
+      .update({ newData })
+      .eq('id', id)
+    if (error) throw error;
   }
 }
