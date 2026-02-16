@@ -6,7 +6,7 @@ import { KeyValuePipe } from '@angular/common';
 
 @Component({
   selector: 'app-contacts',
-  imports: [KeyValuePipe],
+  imports: [],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })

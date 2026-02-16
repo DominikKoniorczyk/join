@@ -5,7 +5,10 @@ import { Summary } from './components/summary/summary';
 export const routes: Routes = [
     { path: 'legal-notice', component: LegalNotice },
      { path: 'summary', component: Summary },
+      { path: '', component: Contacts },  
      { path: 'contacts', component: Contacts }, 
+     
+     
     {
         path: 'help',
         loadComponent: () =>
