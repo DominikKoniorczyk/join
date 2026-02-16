@@ -9,7 +9,7 @@
     @for (group of groupedUsers(); track group.key) {
 
     <h2>{{ group.key }}:</h2>
-
+    <div class="line_under_letter"></div>
     <ul>
       @for (person of group.value; track person.id) {
       <li>
