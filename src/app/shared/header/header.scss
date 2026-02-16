@@ -4,12 +4,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 48px;
   box-shadow:
     0 0 4px 0 rgba(0, 0, 0, 0.08),
     0 2px 4px 0 rgba(0, 0, 0, 0.12);
   font-size: 1rem;
-  padding-left: 12rem;
+  margin-left: 10rem;
+  padding-left: 64px;
+  padding-right: 64px;
   @media (max-width: 786px) {
     padding-left: 2rem;
     padding-right: 2rem;
