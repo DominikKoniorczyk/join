@@ -1,7 +1,6 @@
 .help-page {
     width: 100%;
     min-height: calc(100vh - 64px);
-    background: #f6f7f8;
 }
 
 .help-container {
@@ -114,4 +113,61 @@
     font-weight: 700;
     line-height: 1.2;
     color: #000;
+}
+
+@media (min-width: 428px) and (max-width: 768px) {
+
+    .help-container {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 128px 16px 100px;
+    }
+
+    .help-header-row h1 {
+        font-size: 47px;
+        line-height: 1.2;
+    }
+
+    .back-arrow {
+        position: fixed;
+        top: 240px;
+        right: 80px;
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .help-content h2 {
+        font-size: 27px;
+        line-height: 1.2;
+    }
+
+    .help-content p {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .steps li::before {
+        font-size: 27px;
+        line-height: 1.2;
+    }
+
+    .steps .step-title {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .steps .step-text {
+        margin-left: 32px;
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .enjoy {
+        font-size: 27px;
+        line-height: 1.2;
+    }
 }
