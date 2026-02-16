@@ -47,8 +47,17 @@ export class Contacts {
 
   async getDataInitial() {
     const data = await this.supabaseClientService.getDataFromTable('users') as SupaseContactsInterface[];
-    this.dataUsers.set( data ?? []);
+    this.dataUsers.set(data ?? []);
     this.isLoading.set(false);
+  }
+
+  getInitials(fullName: string): string {
+    return fullName
+      .trim()
+      .split(' ')
+      .map(name => name[0])
+      .join('')
+      .toUpperCase();
   }
 
   ngOnDestroy() {

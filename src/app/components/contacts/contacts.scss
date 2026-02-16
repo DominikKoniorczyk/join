@@ -1,22 +1,59 @@
 @use '../../styles/variables.scss' as vars;
 
-.contacts_scroll_container{
-  height: 100%;
-  max-height: 100dvh;
-  width: 300px;
-  overflow-y: visible;
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 600px;
+
+  h2 {
+    margin-block: 2rem;
+  }
 }
 
-.add_btn{
+.contacts_outer{
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contacts_scroll_container {
+  height: calc(100vh - 96px - 4rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 80%;
+  max-width: 456px;
+  display: flex;
+  flex-direction: column;
+}
+
+.add_btn {
   max-width: 456px;
   height: 2.5rem;
   border: 1px solid black;
   border-radius: 0.6rem;
-  width: 100%;
+  width: 80%;
 }
 
-.line_under_letter{
+.line_under_letter {
   height: 1px;
   width: 80%;
-  background-color: vars.$primary-color;
+  background-color: #D1D1D1;
+}
+
+.contact_initials {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact_inner_card {
+  max-width: 456px;
+  width: 100%;
 }
