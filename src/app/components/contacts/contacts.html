@@ -10,19 +10,17 @@
 
     <h2>{{ group.key }}</h2>
     <div class="line_under_letter"></div>
-    <ul>
       @for (person of group.value; track person.id) {
       <div class="contact_inner_card">
-        <div class="contact_initials">
+        <div class="contact_initials" [style.background-color]="getRandomeColor()">
           <p>{{ getInitials(person.name) }}</p>
         </div>
-        <div>
+        <div class="details">
           <h3>{{ person.name}}</h3>
           <a href="mailto:{{person.email}}">{{person.email}}</a>
         </div>
       </div>
       }
-    </ul>
 
     }
 

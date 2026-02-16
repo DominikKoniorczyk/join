@@ -15,6 +15,22 @@ export class Contacts {
   supabaseChannel: RealtimeChannel;
   dataUsers = signal<SupaseContactsInterface[]>([]);
   isLoading = signal(true);
+  colors: string[] = [
+    '#ff7a00',
+    '#ff5eb3',
+    '#6e52ff',
+    '#9327ff',
+    '#00bee8',
+    '#1fd7c1',
+    '#ffa35e',
+    '#fc71ff',
+    '#ffc701',
+    '#0038ff',
+    '#c3ff2b',
+    '#ffe62b',
+    '#ff4646',
+    '#ffbb2b'
+  ];
   groupedUsers = computed(() => {
     const groups: Record<string, SupaseContactsInterface[]> = {};
     for (const person of this.dataUsers()) {
@@ -55,6 +71,11 @@ export class Contacts {
       .map(name => name[0])
       .join('')
       .toUpperCase();
+  }
+
+  getRandomeColor(): string {
+    const randomIndex = Math.floor(Math.random() * this.colors.length);
+    return this.colors[randomIndex];
   }
 
   ngOnDestroy() {

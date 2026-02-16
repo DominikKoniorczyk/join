@@ -7,12 +7,22 @@
   width: 600px;
 
   h2 {
-    margin-block: 2rem;
+    margin-block: 1rem;
+    padding-left: 1.8rem;
+    width: 80%;
+  }
+
+  a{
+    font-size: 1rem;
+  }
+
+  h3{
+    font-size: 20px;
+    font-weight: 400;
   }
 }
 
 .contacts_outer{
-  width: 20rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,37 +33,72 @@
   height: calc(100vh - 96px - 4rem);
   overflow-y: auto;
   overflow-x: hidden;
-  width: 80%;
-  max-width: 456px;
+  width: 100%;
+  max-width: 395px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .add_btn {
-  max-width: 456px;
-  height: 2.5rem;
-  border: 1px solid black;
+  width: 395px;
+  height: 3rem;
+  border: none;
   border-radius: 0.6rem;
-  width: 80%;
+  background-color: vars.$primary-color;
+  max-width: 80%;
+  margin: 2rem 0;
+  font-size: 1rem;
+  color: white;
+  font-weight: 800;
+
+  &:hover{
+    background-color: vars.$secondary-color;
+  }
 }
 
 .line_under_letter {
-  height: 1px;
+  font-size: 1rem;
+  padding: 0 1rem;
+  min-height: 1px;
   width: 80%;
   background-color: #D1D1D1;
 }
 
 .contact_initials {
-  height: 3rem;
-  width: 3rem;
+  height: 2.6rem;
+  width: 2.6rem;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 3px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-area: initials;
 }
 
 .contact_inner_card {
-  max-width: 456px;
-  width: 100%;
+  padding: 1rem 1rem;
+  width: 80%;
+  display: grid;
+  grid-template-areas: "initials content";
+  grid-template-columns: 1fr 3fr;
+  border-radius: 0.8rem;
+  transition: all 125ms;
+
+  &:hover{
+    background-color: #D1D1D1;
+  }
+}
+
+.active_btn{
+  background-color: vars.$primary-color;
+  color: white;
+}
+
+.details{
+  display: flex;
+  flex-direction: column;
+  grid-area: content;
+  max-width: 3fr;
 }
