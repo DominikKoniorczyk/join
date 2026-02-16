@@ -25,14 +25,12 @@
   display: none;
   position: absolute;
   background-color: #2a3647;
-  min-width: 140px;
+  min-width: 120px;
   top: 80px;
-  border-radius: 12px 0 12px 12px;
+  right: 0px;
+  border-radius: 20px 0 20px 20px;
   overflow: hidden;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-left: 10px;
-
+  padding: 16px 10px;
   &.show {
     display: block;
   }
@@ -40,9 +38,10 @@
 
 a {
   color: #cdcdcd;
-  padding: 12px 0px;
+  padding: 12px 10px;
   text-decoration: none;
   display: block;
+  width: 100px;
 
   &:hover {
     background-color: #2a3d59;
