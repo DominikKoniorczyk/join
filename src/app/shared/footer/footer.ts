@@ -5,6 +5,7 @@ import { FooterPolicies } from './footer-policies/footer-policies';
 
 @Component({
   selector: 'app-footer',
+  standalone: true,
   imports: [FooterLogo, FooterNav, FooterPolicies],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
