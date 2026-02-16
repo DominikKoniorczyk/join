@@ -48,31 +48,34 @@ export class Supabase {
   }
 
   /**
-   * Uploads a JSON object to the specified table using an upsert operation.
-   *
-   * This method inserts a new row into the given table or updates an existing row
-   * if a conflict occurs. The JSON payload is stored in the `data` column.
-   *
-   * @async
-   * @param {string} tableName - The name of the target database table.
-   * @param {any} jsonData - The JSON object to be inserted or updated.
-   * @returns {Promise<any>} A promise that resolves with the inserted or updated row.
-   *
-   * @throws {Error} Throws an error if the database operation fails.
-   *
-   * @example
-   * const result = await uploadJSONToTable('users', { id: 1, name: 'John' });
-   * console.log(result);
-   */
+ * Uploads JSON data to a specified Supabase table.
+ *
+ * This method inserts the provided JSON object or array of objects
+ * into the given table using the Supabase client.
+ *
+ * @async
+ * @param {string} tableName - The name of the database table where the data should be inserted.
+ * @param {any} jsonData - The JSON object or array of objects to insert into the table.
+ * @returns {Promise<any>} A promise that resolves with the inserted data returned by Supabase.
+ *
+ * @throws {Error} Throws an error if the insert operation fails.
+ *
+ * @example
+ * await uploadJSONToTable('users', {
+ *   name: 'John Doe',
+ *   email: 'john@example.com'
+ * });
+ *
+ * @example
+ * await uploadJSONToTable('users', [
+ *   { name: 'John Doe', email: 'john@example.com' },
+ *   { name: 'Jane Doe', email: 'jane@example.com' }
+ * ]);
+ */
   async uploadJSONToTable(tableName: string, jsonData: any) {
     const { data, error } = await this.supabaseClient
       .from(tableName)
-      .upsert(
-        [{ data: jsonData }],
-        { onConflict: jsonData }
-      )
-      .select()
-      .single();
+      .insert(jsonData)
     if (error) throw error;
     return data;
   }
