@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-contacts',
@@ -6,6 +6,14 @@ import { Component } from '@angular/core';
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })
-export class Contacts {
+export class Contacts{
+  @Input() idToShow: number = 0;
 
+  number!: number;
+  name!: string;
+  mail!: string;
+
+  ngAfterViewInit(){
+
+  }
 }
