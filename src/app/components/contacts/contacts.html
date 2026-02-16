@@ -6,20 +6,15 @@
     } @else if (groupedUsers().length === 0) {
       <p>No persons found.</p>
     } @else {
-    @for (group of groupedUsers(); track group.key) {
-
-    <h2>{{ group.key }}:</h2>
-    <div class="line_under_letter"></div>
-    <ul>
-      @for (person of group.value; track person.id) {
-      <li>
-        {{ person.name}} : {{ person.phone_number }} / {{person.email}}
-      </li>
+      @for (group of groupedUsers(); track group.key) {
+        <h2>{{ group.key }}:</h2>
+        <div class="line_under_letter"></div>
+        <ul>
+          @for (person of group.value; track person.id) {
+            <li>{{ person.name }} : {{ person.phone_number }} / {{ person.email }}</li>
+          }
+        </ul>
       }
-    </ul>
-
-    }
-
     }
   </div>
 </section>
