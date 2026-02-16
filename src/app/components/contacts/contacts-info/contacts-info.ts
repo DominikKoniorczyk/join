@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SupaseContactsInterface } from '../../../interfaces/supabase.interfaces';
 
 @Component({
   selector: 'app-contacts-info',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './contacts-info.scss',
 })
 export class ContactsInfo {
+  currentContact!: SupaseContactsInterface;
 
+  ngAfterViewInit() {
+
+  }
 }

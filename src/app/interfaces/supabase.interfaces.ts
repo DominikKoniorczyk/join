@@ -1,5 +1,7 @@
 export interface SupaseContactsInterface {
+  id: number;
+  createdAt: string;
   name: string;
-  phoneNumber: number;
-  mail: string;
+  phone_number: number;
+  email: string;
 }
