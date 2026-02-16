@@ -1,0 +1,70 @@
+@use '../../styles/variables.scss' as *;
+
+.legal-page {
+    width: 100%;
+    min-height: calc(100vh - 64px);
+    background: $content-bg;
+}
+
+.legal-container {
+    max-width: 980px;
+    width: 100%;
+    margin-left: 96px; // <- Abstand zur Sidebar
+    margin-right: auto;
+    padding: 120px 24px 80px;
+    box-sizing: border-box;
+}
+
+.legal-container h1 {
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 18px 0;
+}
+
+.legal-container h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 28px 0 12px 0;
+}
+
+.legal-container p,
+.legal-container li {
+    font-size: 16px;
+    line-height: 1.2;
+    margin: 10px 0;
+}
+
+.legal-container ul {
+    padding-left: 18px;
+    margin: 10px 0 16px 0;
+}
+
+.legal-container li {
+    margin: 4px 0;
+}
+
+.brand {
+    color: #00bee8;
+}
+
+@media (min-width: 428px) and (max-width: 768px) {
+    .legal-container {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: auto;
+        padding: 128px 16px 100px;
+        box-sizing: border-box;
+    }
+
+    .legal-container h1 {
+        font-size: 47px;
+        line-height: 1.2;
+    }
+
+    .legal-container h2 {
+        font-size: 27px;
+        line-height: 1.2;
+    }
+}
