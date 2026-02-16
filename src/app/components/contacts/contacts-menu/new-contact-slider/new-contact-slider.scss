@@ -1,0 +1,32 @@
+@use '../../../../styles/variables.scss' as vars;
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.left-column {
+  background-color: vars.$primary-color;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 120px 40px;
+  gap: 1rem;
+}
+
+.logo {
+  width: 55px;
+}
+
+.container-with-line {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.line {
+  height: 2px;
+  width: 50px;
+  border-radius: 5px;
+  background-color: vars.$secondary-color;
+}
