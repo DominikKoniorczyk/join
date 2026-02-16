@@ -26,23 +26,20 @@ export class Contacts {
     }
     return Object.keys(groups)
       .sort()
-      .map(key => ({
+      .map((key) => ({
         key,
-        value: groups[key].sort((a, b) => a.name.localeCompare(b.name))
+        value: groups[key].sort((a, b) => a.name.localeCompare(b.name)),
       }));
-  })
+  });
 
   constructor() {
     this.getDataInitial();
-    this.supabaseChannel = this.supabaseClientService.supabaseClient.channel('join')
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'users' },
-        (payload) => {
-          this.getDataInitial();
-        }
-      )
-      .subscribe()
+    this.supabaseChannel = this.supabaseClientService.supabaseClient
+      .channel('join')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'users' }, (payload) => {
+        this.getDataInitial();
+      })
+      .subscribe();
   }
 
   async getDataInitial() {
