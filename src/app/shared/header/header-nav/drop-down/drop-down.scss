@@ -25,7 +25,7 @@
   display: none;
   position: absolute;
   background-color: #2a3647;
-  min-width: 120px;
+  min-width: 140px;
   top: 80px;
   right: 0px;
   border-radius: 20px 0 20px 20px;
@@ -37,11 +37,11 @@
 }
 
 a {
-  color: #cdcdcd;
+  color: vars.$font-lightcolor;
   padding: 12px 10px;
   text-decoration: none;
   display: block;
-  width: 100px;
+  width: 85%;
 
   &:hover {
     background-color: #2a3d59;

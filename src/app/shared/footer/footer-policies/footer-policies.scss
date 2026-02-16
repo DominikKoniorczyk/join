@@ -1,0 +1,21 @@
+@use '../../../styles/variables.scss' as vars;
+
+.content {
+  padding-bottom: 3rem;
+}
+
+button {
+  padding: 10px 10px;
+  background-color: transparent;
+  border: none;
+  color: vars.$font-lightcolor;
+  font-size: 1rem;
+  display: flex;
+  gap: 1rem;
+
+  &:hover {
+    cursor: pointer;
+    color: vars.$secondary-color;
+    font-weight: bold;
+  }
+}
