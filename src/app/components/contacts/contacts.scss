@@ -12,17 +12,21 @@
     width: 80%;
   }
 
-  a{
+  a {
     font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%
   }
 
-  h3{
+  h3 {
     font-size: 20px;
     font-weight: 400;
   }
 }
 
-.contacts_outer{
+.contacts_outer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,7 +57,7 @@
   color: white;
   font-weight: 800;
 
-  &:hover{
+  &:hover {
     background-color: vars.$secondary-color;
   }
 }
@@ -71,6 +75,7 @@
   width: 2.6rem;
   border-radius: 50%;
   border: 3px solid white;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,19 +91,21 @@
   border-radius: 0.8rem;
   transition: all 125ms;
 
-  &:hover{
+  &:hover {
     background-color: #D1D1D1;
   }
 }
 
-.active_btn{
+.active_btn {
   background-color: vars.$primary-color;
   color: white;
 }
 
-.details{
+.details {
   display: flex;
   flex-direction: column;
   grid-area: content;
-  max-width: 3fr;
+  overflow: hidden;
+  white-space: nowrap;
+
 }
