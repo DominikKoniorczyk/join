@@ -1,14 +1,13 @@
 .content {
-  max-width: 1440px;
+  max-width: calc(1440px - 10rem);
   height: 120px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 64px;
   padding-right: 48px;
   box-shadow:
     0 0 4px 0 rgba(0, 0, 0, 0.08),
     0 2px 4px 0 rgba(0, 0, 0, 0.12);
   font-size: 1rem;
+  padding-left: 12rem;
 }
-
