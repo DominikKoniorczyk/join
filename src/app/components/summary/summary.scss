@@ -1,0 +1,30 @@
+section {
+  height: calc(100svh - 96px);
+  background-color: #f6f7f8;
+  padding: 0;
+  margin: 96px 0 0 232px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  max-width: none;
+}
+
+.summary-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 85px;
+  white-space: nowrap;
+  height: 73px;
+  padding-left: 4%;
+  margin-bottom: 48px;
+
+  h2 {
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0%;
+  }
+}
