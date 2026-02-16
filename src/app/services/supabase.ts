@@ -112,8 +112,8 @@ export class Supabase {
   async updateRow(tableName: string, newData: any, id: number) {
     const { error } = await this.supabaseClient
       .from(tableName)
-      .update({ newData })
-      .eq('id', id)
+      .upsert(newData)
+      .eq('id', 0)
     if (error) throw error;
   }
 }
