@@ -1,4 +1,7 @@
-<div class="circle">
+<div class="circle" (click)="toggleDropdown()">
   <p class="initial-firstname">S</p>
   <p class="initial-lastname">M</p>
+  <div class="dropdown" [class.show]="isDropDownOpen">
+    <a href="#">Legal Notice</a><a href="#">Privacy Policy</a><a href="#">Log Out</a>
+  </div>
 </div>

@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './drop-down.html',
   styleUrl: './drop-down.scss',
 })
-export class DropDown {}
+export class DropDown {
+  isDropDownOpen = false;
+
+  toggleDropdown() {
+    this.isDropDownOpen = !this.isDropDownOpen;
+  }
+}
