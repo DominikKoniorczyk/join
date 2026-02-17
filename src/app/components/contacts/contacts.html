@@ -17,7 +17,7 @@
                  (click)="openContact(person, person.id)">
               <div class="contact_initials"
                    [style.background-color]="person.color" [attr.aria-label]="person.name">
-                <p>{{ getInitials(person.name) }}</p>
+                <p>{{ person.name | initials }}</p>
               </div>
               <div class="details">
                 <h3>{{ person.name }}</h3>

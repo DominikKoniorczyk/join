@@ -5,12 +5,13 @@ import { RealtimeChannel } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
 import { ContactsMenu } from './contacts-menu/contacts-menu';
 import defaultContacts from '../../../../public/assets/JSON/defaultContacts.json';
+import { Initials } from '../../services/contacts.services';
 
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [CommonModule, ContactsMenu],
+  imports: [CommonModule, ContactsMenu, Initials],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })

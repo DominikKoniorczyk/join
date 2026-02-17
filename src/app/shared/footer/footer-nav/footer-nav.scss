@@ -7,16 +7,32 @@
   padding-bottom: 20rem;
 
   @media (max-width: 768px) {
+    display: grid;
+    grid-template-areas: "left left_center right_center right";
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     padding-bottom: 1em;
-    flex-direction: row;
-    justify-content: space-around;
-    padding-bottom: 0;
+    gap: unset;
+
+    .left{
+      grid-area: left;
+    }
+
+    .left_center{
+      grid-area: left_center;
+    }
+
+    .right_center{
+      grid-area: right_center;
+    }
+
+    .right{
+      grid-area: right;
+    }
   }
 }
 
 .button-container {
   @media (max-width: 786px) {
-    width: 100px;
     border-radius: 15px;
   }
   &:hover {
@@ -28,7 +44,7 @@
 }
 
 button {
-  padding: 10px 10px;
+  padding: 10px 0;
   background-color: transparent;
   border: none;
   color: vars.$font-lightcolor;
@@ -37,7 +53,7 @@ button {
   gap: 1rem;
   width: 100%;
 
-   transition: 
+   transition:
     transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.2s ease;
 
