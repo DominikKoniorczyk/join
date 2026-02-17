@@ -9,14 +9,14 @@
     0 0 4px 0 rgba(0, 0, 0, 0.08),
     0 2px 4px 0 rgba(0, 0, 0, 0.12);
   font-size: 1rem;
-  @media (max-width: 786px) {
+  @media (max-width: 768px) {
     margin: 0;
   }
 }
 
 img {
   display: none;
-  @media (max-width: 786px) {
+  @media (max-width: 768px) {
     display: block;
     width: 50px;
     padding-left: 2rem;
@@ -25,7 +25,7 @@ img {
 
 h2 {
   padding-left: 64px;
-  @media (max-width: 786px) {
+  @media (max-width: 768px) {
     display: none;
   }
 }
