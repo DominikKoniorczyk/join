@@ -79,6 +79,21 @@
   }
 }
 
+.info-content{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-label{
+  font-weight: 600;
+}
+
+.info-title{
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
 .detail-info-section {
   display: flex;
   flex-direction: column;
