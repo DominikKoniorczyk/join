@@ -15,5 +15,5 @@
   <p>Email</p>
   <a href="mailto:{{currentContact.email}}">{{currentContact.email}}</a>
   <p>Phone</p>
-  <a href="tel:{{currentContact.phone_number}}">{{currentContact.phone_number}}</a>
+  <a href="tel:{{currentContact.phone_number}}">{{ currentContact.phone_number | phoneFormat }}</a>
 </section>

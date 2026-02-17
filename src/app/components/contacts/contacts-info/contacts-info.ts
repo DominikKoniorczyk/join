@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { SupabaseContactsInterface } from '../../../interfaces/supabase.interfaces';
+import { PhonePipe } from '../../../pipes/phonepipe-pipe';
 
 @Component({
   selector: 'app-contacts-info',
-  imports: [],
+  imports: [PhonePipe],
   templateUrl: './contacts-info.html',
   styleUrl: './contacts-info.scss',
 })

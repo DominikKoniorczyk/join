@@ -2,11 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SupabaseContactsInterface } from '../../../interfaces/supabase.interfaces';
+import { PhonePipe } from '../../../pipes/phonepipe-pipe';
 
 @Component({
   selector: 'app-contacts-menu',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PhonePipe],
   templateUrl: './contacts-menu.html',
   styleUrls: ['./contacts-menu.scss']
 })

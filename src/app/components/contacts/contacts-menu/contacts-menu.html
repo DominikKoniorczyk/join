@@ -69,9 +69,7 @@
       </div>
       <div class="info-group">
         <p class="info-label">Phone</p>
-        <span class="info-value">
-          {{ person.phone_number }}
-        </span>
+        <a class="info-value email-link" href="tel:{{person.phone_number}}">{{ person.phone_number | phoneFormat }}</a>
       </div>
     </div>
   </div>
