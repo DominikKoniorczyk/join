@@ -2,9 +2,9 @@
 
 <div class="contact-detail" role="region" aria-labelledby="contact-detail-name">
 
- 
+
   <div class="detail-header">
-    
+
     <div class="detail-avatar-container">
       <div
         class="detail-avatar"
@@ -12,13 +12,13 @@
         role="img"
         [attr.aria-label]="person.name"
       >
-        {{ person.name.charAt(0).toUpperCase() }}
+        {{ getInitials(person.name) }}
       </div>
     </div>
 
     <div class="detail-name-section">
 
-      
+
       @if (!isEditing) {
 
         <h1 class="detail-name" id="contact-detail-name">
@@ -27,8 +27,8 @@
 
         <div class="detail-actions contact_actions">
 
-          <button 
-            class="action_btn edit_btn" 
+          <button
+            class="action_btn edit_btn"
             type="button"
             (click)="onEdit()"
           >
@@ -36,8 +36,8 @@
             <span>Edit</span>
           </button>
 
-          <button 
-            class="action_btn delete_btn" 
+          <button
+            class="action_btn delete_btn"
             type="button"
             (click)="onDelete()"
           >
@@ -49,7 +49,7 @@
 
       }
 
-      
+
       @if (isEditing && editableContact) {
 
         <div class="edit-box">
@@ -81,7 +81,7 @@
     </div>
   </div>
 
-  
+
   @if (!isEditing) {
 
   <div class="detail-info-section">

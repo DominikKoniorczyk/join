@@ -11,26 +11,21 @@ import { SupabaseContactsInterface } from '../../../interfaces/supabase.interfac
   styleUrls: ['./contacts-menu.scss']
 })
 export class ContactsMenu {
-
   @Input() person: SupabaseContactsInterface | null = null;
-
   @Output() deleteContact = new EventEmitter<number>();
   @Output() editContact = new EventEmitter<SupabaseContactsInterface>();
 
-  
   isEditing = false;
   editableContact: SupabaseContactsInterface | null = null;
-
 
   onEdit() {
     if (!this.person) return;
 
     this.isEditing = true;
 
-    
+
     this.editableContact = { ...this.person };
   }
-
 
   onSave() {
     if (!this.editableContact) return;
@@ -39,17 +34,24 @@ export class ContactsMenu {
     this.isEditing = false;
   }
 
-
   onCancel() {
     this.isEditing = false;
     this.editableContact = null;
   }
 
+  getInitials(fullName: string): string {
+    return fullName
+      .trim()
+      .split(' ')
+      .map(name => name[0])
+      .join('')
+      .toUpperCase();
+  }
 
   onDelete() {
     if (!this.person) return;
 
-    const confirmDelete = confirm('Willt du diesen Kontakt wirklich löscen?');
+    const confirmDelete = confirm('Do you want to delete this user?');
 
     if (confirmDelete) {
       this.deleteContact.emit(this.person.id);

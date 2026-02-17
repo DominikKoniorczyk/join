@@ -13,10 +13,10 @@
           <h2>{{ group.key }}</h2>
           <div class="line_under_letter"></div>
           @for (person of group.value; track person.id) {
-            <div class="contact_inner_card"
-                 (click)="openContact(person)">
+            <div id="{{person.id}}" class="contact_inner_card"
+                 (click)="openContact(person, person.id)">
               <div class="contact_initials"
-                   [style.background-color]="getRandomeColor()">
+                   [style.background-color]="person.color" [attr.aria-label]="person.name">
                 <p>{{ getInitials(person.name) }}</p>
               </div>
               <div class="details">

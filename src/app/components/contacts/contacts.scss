@@ -89,6 +89,7 @@
   grid-template-columns: 1fr 3fr;
   border-radius: 0.8rem;
   transition: all 125ms;
+  cursor: pointer;
 
   &:hover {
     background-color: #D1D1D1;
@@ -118,14 +119,4 @@
   flex: 1;
   padding: 60px 80px;
   background-color: #f6f7f8;
-}
-.contact_inner_card {
-  cursor: pointer;
-
-  transition: background-color 0.2s ease, transform 0.15s ease;
-
-  &:hover {
-    background-color: #f2f4f7;
-    transform: translateX(4px);
-  }
 }

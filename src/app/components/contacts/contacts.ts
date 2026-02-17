@@ -4,7 +4,7 @@ import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
 import { ContactsMenu } from './contacts-menu/contacts-menu';
-
+import defaultContacts from '../../../../public/assets/JSON/defaultContacts.json';
 
 
 @Component({
@@ -20,31 +20,10 @@ export class Contacts {
   dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
   selectedContact = signal<SupabaseContactsInterface | null>(null);
-  colors: string[] = [
-    '#ff7a00',
-    '#ff5eb3',
-    '#6e52ff',
-    '#9327ff',
-    '#00bee8',
-    '#1fd7c1',
-    '#ffa35e',
-    '#fc71ff',
-    '#ffc701',
-    '#0038ff',
-    '#c3ff2b',
-    '#ffe62b',
-    '#ff4646',
-    '#ffbb2b'
-  ];
+  defaultContacts = defaultContacts;
+  restoreDefaultContacts: boolean = false;
   groupedUsers = computed(() => {
-    const groups: Record<string, SupabaseContactsInterface[]> = {};
-    for (const person of this.dataUsers()) {
-      const letter = person.name[0].toUpperCase();
-      if (!groups[letter]) {
-        groups[letter] = [];
-      }
-      groups[letter].push(person);
-    }
+    const groups = this.formGroups();
     return Object.keys(groups)
       .sort()
       .map((key) => ({
@@ -61,6 +40,14 @@ export class Contacts {
         this.getDataInitial();
       })
       .subscribe();
+    if (this.restoreDefaultContacts) setTimeout(() => this.restoreContactsToDefault(), 1000);
+  }
+
+  async restoreContactsToDefault() {
+    for (let i = 0; this.dataUsers().length; i++) {
+      this.supabaseClientService.deleteRow('users', this.dataUsers()[i].id);
+    };
+    this.supabaseClientService.uploadJSONToTable('users', this.defaultContacts);
   }
 
   async getDataInitial() {
@@ -68,6 +55,18 @@ export class Contacts {
     this.dataUsers.set(data ?? []);
     this.isLoading.set(false);
   }
+
+  formGroups(){
+    const groups: Record<string, SupabaseContactsInterface[]> = {};
+    for (const person of this.dataUsers()) {
+      const letter = person.name[0].toUpperCase();
+      if (!groups[letter]) {
+        groups[letter] = [];
+      }
+      groups[letter].push(person);
+    }
+    return groups;
+  };
 
   getInitials(fullName: string): string {
     return fullName
@@ -78,13 +77,10 @@ export class Contacts {
       .toUpperCase();
   }
 
-  getRandomeColor(): string {
-    const randomIndex = Math.floor(Math.random() * this.colors.length);
-    return this.colors[randomIndex];
-  }
-
-  openContact(person: SupabaseContactsInterface) {
+  openContact(person: SupabaseContactsInterface, id: number) {
     this.selectedContact.set(person);
+    const element = document.getElementById(id.toString());
+    element?.classList.add('active_btn');
   }
 
   ngOnDestroy() {
