@@ -6,3 +6,10 @@ export interface SupabaseContactsInterface {
   email: string;
   color: string;
 }
+
+export interface NewContactsInterface {
+  name: string;
+  phone_number: number;
+  email: string;
+  color: string;
+}
