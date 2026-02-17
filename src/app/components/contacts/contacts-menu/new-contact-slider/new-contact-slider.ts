@@ -10,6 +10,7 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { Supabase } from '../../../../services/supabase';
+import { InitialsPipe } from '../../../../services/contacts.services';
 
 /**
  * Validates that the input contains at least two words (e.g., first and last name),
@@ -64,7 +65,7 @@ export function contactPhoneValidator(): ValidatorFn {
 
 @Component({
   selector: 'app-new-contact-slider',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, InitialsPipe],
   templateUrl: './new-contact-slider.html',
   styleUrl: './new-contact-slider.scss',
 })

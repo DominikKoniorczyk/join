@@ -9,7 +9,11 @@
   </div>
   <div class="right-column">
     <div class="default-img">
-      <img class="person-img" src="./assets/img/person-icon.png" alt="" />
+      @if (contactData.name != '') {
+        <p>{{ contactData.name | initials }}</p>
+      } @else {
+        <img class="person-img" src="./assets/img/person-icon.png" alt="" />
+      }
     </div>
     <div class="form-container">
       <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
