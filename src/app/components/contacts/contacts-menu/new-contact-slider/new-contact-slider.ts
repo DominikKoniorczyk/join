@@ -1,5 +1,5 @@
 import { SupabaseContactsInterface } from './../../../../interfaces/supabase.interfaces';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -77,14 +77,7 @@ export class NewContactSlider {
 
   supabaseClient = inject(Supabase);
 
-  contactData: SupabaseContactsInterface = {
-    id: 0,
-    createdAt: '',
-    name: '',
-    phone_number: 0,
-    email: '',
-    color: '',
-  };
+  contactData = signal<SupabaseContactsInterface | null>(null);
 
   /**
    * Initializes the contact form group with validators.
@@ -100,6 +93,7 @@ export class NewContactSlider {
       email: new FormControl('', [Validators.required, Validators.email, contactEmailValidator()]),
       phone: new FormControl('', [Validators.required, contactPhoneValidator()]),
     });
+    this.subscripeAllInputFields();
   }
 
   /**
@@ -121,26 +115,26 @@ export class NewContactSlider {
     }
   }
 
-  getInitials(fullName: string): string {
-    return fullName
-      .trim()
-      .split(' ')
-      .map((name) => name[0])
-      .join('')
-      .toUpperCase();
-  }
-
   /**Subscripe the change on input fields. Set the values of the corresponding data in contactData.*
 @returns {void}*/
   subscripeAllInputFields() {
     this.contactForm.get('name')?.valueChanges.subscribe((value) => {
-      this.contactData.name = value!;
+      this.contactData.update((current) => {
+        if (!current) return current;
+        return { ...current, name: value! };
+      });
     });
     this.contactForm.get('mail')?.valueChanges.subscribe((value) => {
-      this.contactData.email = value!;
+      this.contactData.update((current) => {
+        if (!current) return current;
+        return { ...current, email: value! };
+      });
     });
     this.contactForm.get('phone')?.valueChanges.subscribe((value) => {
-      this.contactData.phone_number = value!;
+      this.contactData.update((current) => {
+        if (!current) return current;
+        return { ...current, phone_number: value! };
+      });
     });
   }
 

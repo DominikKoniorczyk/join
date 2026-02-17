@@ -9,8 +9,8 @@
   </div>
   <div class="right-column">
     <div class="default-img">
-      @if (contactData.name != '') {
-        <p>{{ contactData.name | initials }}</p>
+      @if (contactData()?.name) {
+        <p>{{ contactData()!.name | initials }}</p>
       } @else {
         <img class="person-img" src="./assets/img/person-icon.png" alt="" />
       }
