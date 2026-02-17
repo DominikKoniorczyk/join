@@ -1,6 +1,6 @@
 <div class="contacts-wrapper">
 
-  <!-- LINKER BEREICH (dein originaler Code bleibt hier drin) -->
+ 
   <section class="contacts_outer">
 
     <button class="add_btn">Add new contact</button>
@@ -26,11 +26,11 @@
                  (click)="openContact(person)">
 
               <div class="contact_initials"
-                   [style.background-color]="getRandomeColor()">
+                   [style.background-color]="person.color">
                 <p>{{ getInitials(person.name) }}</p>
               </div>
 
-              <div class="details">
+              <div class="details">3
                 <h3>{{ person.name }}</h3>
                 <a href="mailto:{{person.email}}">
                   {{ person.email }}
@@ -50,7 +50,7 @@
   </section>
 
 
-  <!-- RECHTER BEREICH (NEU – beeinflusst nichts anderes) -->
+ 
   <section class="contacts_detail_area">
 
     @if (selectedContact()) {

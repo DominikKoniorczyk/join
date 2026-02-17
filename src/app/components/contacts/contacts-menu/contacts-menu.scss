@@ -132,3 +132,39 @@
 .delete_btn:hover {
   color: #ff3d3d;
 }
+.edit-box {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 16px;
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.edit-field input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.save-btn {
+  margin-right: 10px;
+  background-color: #29abe2;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}

@@ -2,6 +2,7 @@
 
 <div class="contact-detail" role="region" aria-labelledby="contact-detail-name">
 
+ 
   <div class="detail-header">
     
     <div class="detail-avatar-container">
@@ -16,34 +17,72 @@
     </div>
 
     <div class="detail-name-section">
-      <h1 class="detail-name" id="contact-detail-name">
-        {{ person.name }}
-      </h1>
 
-     <div class="detail-actions contact_actions">
+      
+      @if (!isEditing) {
 
-  <button 
-    class="action_btn edit_btn" 
-    type="button"
-    (click)="onEdit()"
-  >
-    <img src="assets/img/edit-icon.png" alt="Edit icon">
-    <span>Edit</span>
-  </button>
+        <h1 class="detail-name" id="contact-detail-name">
+          {{ person.name }}
+        </h1>
 
-  <button 
-    class="action_btn delete_btn" 
-    type="button"
-    (click)="onDelete()"
-  >
-    <img src="assets/img/delete-icon.png" alt="Delete icon">
-    <span>Delete</span>
-  </button>
+        <div class="detail-actions contact_actions">
 
-</div>
+          <button 
+            class="action_btn edit_btn" 
+            type="button"
+            (click)="onEdit()"
+          >
+            <img src="assets/img/edit-icon.png" alt="Edit icon">
+            <span>Edit</span>
+          </button>
+
+          <button 
+            class="action_btn delete_btn" 
+            type="button"
+            (click)="onDelete()"
+          >
+            <img src="assets/img/delete-icon.png" alt="Delete icon">
+            <span>Delete</span>
+          </button>
+
+        </div>
+
+      }
+
+      
+      @if (isEditing && editableContact) {
+
+        <div class="edit-box">
+
+          <div class="edit-field">
+            <label>Name</label>
+            <input type="text" [(ngModel)]="editableContact.name">
+          </div>
+
+          <div class="edit-field">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="editableContact.email">
+          </div>
+
+          <div class="edit-field">
+            <label>Phone</label>
+            <input type="text" [(ngModel)]="editableContact.phone_number">
+          </div>
+
+          <div class="edit-buttons">
+            <button class="save-btn" (click)="onSave()">Save</button>
+            <button class="cancel-btn" (click)="onCancel()">Cancel</button>
+          </div>
+
+        </div>
+
+      }
 
     </div>
   </div>
+
+  
+  @if (!isEditing) {
 
   <div class="detail-info-section">
     <h3 class="info-title">Contact Information</h3>
@@ -60,12 +99,14 @@
       <div class="info-group">
         <label class="info-label">Phone</label>
         <span class="info-value">
-          {{ person.phone_number}}
+          {{ person.phone_number }}
         </span>
       </div>
 
     </div>
   </div>
+
+  }
 
 </div>
 
