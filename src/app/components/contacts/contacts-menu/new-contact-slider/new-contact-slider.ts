@@ -77,7 +77,14 @@ export class NewContactSlider {
 
   supabaseClient = inject(Supabase);
 
-  contactData = signal<SupabaseContactsInterface>({id: 0,createdAt: '', name: '', phone_number: 0, email: '', color: ''});
+  contactData = signal<SupabaseContactsInterface>({
+    id: 0,
+    created_at: '',
+    name: '',
+    phone_number: 0,
+    email: '',
+    color: '',
+  });
 
   /**
    * Initializes the contact form group with validators.
@@ -103,11 +110,7 @@ export class NewContactSlider {
    */
   onSubmit() {
     if (this.contactForm.valid) {
-      this.supabaseClient.uploadJSONToTable('users', {
-        name: this.contactForm.get('name')?.value,
-        email: this.contactForm.get('email')?.value,
-        phone_number: this.contactForm.get('phone')?.value,
-      });
+      this.supabaseClient.uploadJSONToTable('users', this.contactData());
       console.log('Form Data:', this.contactForm.value);
     } else {
       console.log('Form is invalid');
