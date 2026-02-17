@@ -6,7 +6,7 @@ import { CommonModule, DatePipe } from '@angular/common';
   standalone: true,
   imports: [CommonModule, DatePipe],
   templateUrl: './summary.html',
-  styleUrls: ['./summary.scss']
+  styleUrls: ['./summary.scss', './summary-responsive.scss']
 })
 export class Summary {
 
