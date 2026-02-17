@@ -10,7 +10,7 @@
     display: grid;
     grid-template-areas: 'left left_center right_center right';
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding-bottom: 1em;
+    padding-bottom: 0em;
     gap: unset;
 
     .left {
