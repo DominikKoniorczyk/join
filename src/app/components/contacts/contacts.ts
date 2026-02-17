@@ -145,7 +145,6 @@ export class Contacts {
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.close();
     }
-    console.log('test2');
   }
 
   /**

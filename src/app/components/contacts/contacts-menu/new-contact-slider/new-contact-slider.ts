@@ -70,9 +70,11 @@ export function contactPhoneValidator(): ValidatorFn {
   styleUrl: './new-contact-slider.scss',
 })
 export class NewContactSlider {
-  closeDialog = output<void>();
+  // closeDialog = output<void>();
 
   @Output('closeDialog') close = new EventEmitter<void>();
+
+
   /** * The reactive form group for adding a new contact.
    * @type {FormGroup}
    */
@@ -176,7 +178,6 @@ export class NewContactSlider {
   }
 
   emitCloseDialog() {
-    this.closeDialog.emit();
-    console.log('test');
+    this.close.emit();
   }
 }
