@@ -1,5 +1,5 @@
 import { NewContactsInterface } from './../../../../interfaces/supabase.interfaces';
-import { Component, inject, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Output, output, signal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -70,6 +70,9 @@ export function contactPhoneValidator(): ValidatorFn {
   styleUrl: './new-contact-slider.scss',
 })
 export class NewContactSlider {
+  closeDialog = output<void>();
+
+  @Output('closeDialog') close = new EventEmitter<void>();
   /** * The reactive form group for adding a new contact.
    * @type {FormGroup}
    */
@@ -170,5 +173,10 @@ export class NewContactSlider {
   getRandomeColor(): string {
     const randomIndex = Math.floor(Math.random() * this.colors.length);
     return this.colors[randomIndex];
+  }
+
+  emitCloseDialog() {
+    this.closeDialog.emit();
+    console.log('test');
   }
 }

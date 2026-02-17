@@ -1,17 +1,25 @@
 import { SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
-import { Component, computed, ElementRef, inject, QueryList, signal, ViewChildren } from '@angular/core';
+import {
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  QueryList,
+  signal,
+  ViewChildren,
+} from '@angular/core';
 import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
 import { ContactsMenu } from './contacts-menu/contacts-menu';
 import defaultContacts from '../../../../public/assets/JSON/defaultContacts.json';
 import { InitialsPipe } from '../../services/contacts.services';
-
+import { NewContactSlider } from './contacts-menu/new-contact-slider/new-contact-slider';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [CommonModule, ContactsMenu, InitialsPipe],
+  imports: [CommonModule, ContactsMenu, InitialsPipe, NewContactSlider],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })
@@ -49,7 +57,7 @@ export class Contacts {
       .on('postgres_changes', { event: '*', schema: 'public', table: 'users' }, (payload) => {
         this.getDataInitial();
       })
-      .subscribe()
+      .subscribe();
     if (this.restoreDefaultContacts) setTimeout(() => this.restoreContactsToDefault(), 1000);
   }
 
@@ -60,7 +68,7 @@ export class Contacts {
   async restoreContactsToDefault() {
     for (let i = 0; this.dataUsers().length; i++) {
       this.supabaseClientService.deleteRow('users', this.dataUsers()[i].id);
-    };
+    }
     this.supabaseClientService.uploadJSONToTable('users', this.defaultContacts);
   }
 
@@ -68,7 +76,9 @@ export class Contacts {
    * Fetches the initial user data from the 'users' table and updates the local state.
    */
   async getDataInitial() {
-    const data = await this.supabaseClientService.getDataFromTable('users') as SupabaseContactsInterface[];
+    const data = (await this.supabaseClientService.getDataFromTable(
+      'users',
+    )) as SupabaseContactsInterface[];
     this.dataUsers.set(data ?? []);
     this.isLoading.set(false);
   }
@@ -95,8 +105,9 @@ export class Contacts {
    * @param value The new value for the specified field.
    */
   updateField(key: string, value: any) {
-    this.selectedContact.update(current => {
-      if (!current) return current; return { ...current, name: value };
+    this.selectedContact.update((current) => {
+      if (!current) return current;
+      return { ...current, name: value };
     });
   }
 
@@ -117,12 +128,24 @@ export class Contacts {
    * Removes the active CSS class from all buttons.
    */
   removeActiveClass() {
-    this.allBtn.forEach(el => {
+    this.allBtn.forEach((el) => {
       el.nativeElement.classList.remove('active_btn');
-    })
+    });
   }
 
-  openNewContact(){
+  openNewContact() {
+    const dialogRef = document.getElementById('addContactModal');
+    if (dialogRef instanceof HTMLDialogElement) {
+      dialogRef.showModal();
+    }
+  }
+
+  closeDialog() {
+    const dialogRef = document.getElementById('addContactModal');
+    if (dialogRef instanceof HTMLDialogElement) {
+      dialogRef.close();
+    }
+    console.log('test2');
   }
 
   /**
