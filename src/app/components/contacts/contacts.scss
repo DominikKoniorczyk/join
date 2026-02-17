@@ -99,6 +99,10 @@
 .active_btn {
   background-color: vars.$primary-color;
   color: white;
+
+  &:hover {
+    background-color: vars.$primary-color;
+  }
 }
 
 .details {
