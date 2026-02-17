@@ -9,7 +9,9 @@
   </div>
   <div class="right-column">
     <div class="close-btn-container">
-      <button class="close-dialog-btn"><img src="./assets/img/close-cross.png" alt="" /></button>
+      <button class="close-dialog-btn" (click)="closeDialog.emit()">
+        <img src="./assets/img/close-cross.png" alt="" />
+      </button>
     </div>
     <div class="bottom-container">
       <div class="default-img">

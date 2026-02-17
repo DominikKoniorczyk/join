@@ -140,6 +140,14 @@ export class Contacts {
     }
   }
 
+  closeDialog() {
+    const dialogRef = document.getElementById('addContactModal');
+    if (dialogRef instanceof HTMLDialogElement) {
+      dialogRef.close();
+    }
+    console.log('test2');
+  }
+
   /**
    * Cleans up resources when the component is destroyed,
    * specifically unsubscribing from the Supabase realtime channel.
