@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 600px;
 
   h2 {
     margin-block: 1rem;
@@ -34,7 +33,7 @@
 }
 
 .contacts_scroll_container {
-  height: calc(100vh - 96px - 4rem);
+  height: calc(100vh - 96px - 7rem);
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
@@ -112,20 +111,21 @@
 .contacts-wrapper {
   display: flex;
   height: 100%;
+  width: 100%;
 }
 
 .contacts_detail_area {
   flex: 1;
   padding: 60px 80px;
-  background-color: #f6f7f8; 
+  background-color: #f6f7f8;
 }
 .contact_inner_card {
-  cursor: pointer;   
+  cursor: pointer;
 
   transition: background-color 0.2s ease, transform 0.15s ease;
 
   &:hover {
-    background-color: #f2f4f7;   
-    transform: translateX(4px);  
+    background-color: #f2f4f7;
+    transform: translateX(4px);
   }
 }
