@@ -1,6 +1,6 @@
 export interface SupabaseContactsInterface {
   id: number;
-  createdAt: string;
+  created_at: string;
   name: string;
   phone_number: number;
   email: string;
