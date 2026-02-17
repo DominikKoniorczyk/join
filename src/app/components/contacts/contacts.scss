@@ -135,8 +135,11 @@
   }
 
   .contacts_outer{
+    height: calc(100vh - 96px - 96px);
+  }
+
+  .contacts_scroll_container {
     height: 100%;
-    max-height: calc(100vh - 96px - 96px);;
   }
 
   .add_btn{

@@ -11,8 +11,6 @@
   font-size: 1rem;
   @media (max-width: 786px) {
     margin: 0;
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
 }
 
@@ -21,6 +19,7 @@ img {
   @media (max-width: 786px) {
     display: block;
     width: 50px;
+    padding-left: 2rem;
   }
 }
 
