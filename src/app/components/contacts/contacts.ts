@@ -133,6 +133,9 @@ export class Contacts {
     });
   }
 
+  /**
+   * Opens the "Add Contact" dialog if it exists and is a valid HTMLDialogElement.
+   */
   openNewContact() {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
@@ -140,6 +143,9 @@ export class Contacts {
     }
   }
 
+  /**
+   * Closes the "Add Contact" dialog if it exists and is a valid HTMLDialogElement.
+   */
   closeDialog() {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
