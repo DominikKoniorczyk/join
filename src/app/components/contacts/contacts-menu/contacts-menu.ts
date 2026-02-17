@@ -18,6 +18,10 @@ export class ContactsMenu {
   isEditing = false;
   editableContact: SupabaseContactsInterface | null = null;
 
+  /**
+  * Enables edit mode for the currently selected person
+  * and creates a copy of their data for editing.
+  */
   onEdit() {
     if (!this.person) return;
 
@@ -27,6 +31,11 @@ export class ContactsMenu {
     this.editableContact = { ...this.person };
   }
 
+  /**
+   * Saves the changes made to the editable contact.
+   * Emits the `editContact` event with the updated contact data
+   * and exits edit mode.
+   */
   onSave() {
     if (!this.editableContact) return;
 
@@ -34,11 +43,22 @@ export class ContactsMenu {
     this.isEditing = false;
   }
 
+  /**
+   * Cancels the editing process, discards changes,
+   * and exits edit mode.
+   */
   onCancel() {
     this.isEditing = false;
     this.editableContact = null;
   }
 
+  /**
+   * Generates uppercase initials from a full name string.
+   *
+   * Example: 'John Doe' => 'JD'
+   * @param fullName The full name of the person.
+   * @returns A string containing the uppercase initials.
+   */
   getInitials(fullName: string): string {
     return fullName
       .trim()
@@ -48,6 +68,10 @@ export class ContactsMenu {
       .toUpperCase();
   }
 
+  /**
+   * Deletes the currently selected person after user confirmation.
+   * Emits the `deleteContact` event with the person's ID if confirmed.
+   */
   onDelete() {
     if (!this.person) return;
 
