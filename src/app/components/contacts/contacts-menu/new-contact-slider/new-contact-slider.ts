@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { SupabaseContactsInterface } from './../../../../interfaces/supabase.interfaces';
+import { Component, inject } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -8,6 +9,7 @@ import {
   Validators,
   FormGroup,
 } from '@angular/forms';
+import { Supabase } from '../../../../services/supabase';
 
 /**
  * Validates that the input contains at least two words (e.g., first and last name),
@@ -72,6 +74,10 @@ export class NewContactSlider {
    */
   contactForm!: FormGroup;
 
+  supabaseClient = inject(Supabase);
+
+  contactData!: SupabaseContactsInterface;
+
   /**
    * Initializes the contact form group with validators.
    * * Validations include:
@@ -95,11 +101,39 @@ export class NewContactSlider {
    */
   onSubmit() {
     if (this.contactForm.valid) {
+      this.supabaseClient.uploadJSONToTable('users', {
+        name: this.contactForm.get('name')?.value,
+        email: this.contactForm.get('email')?.value,
+        phone_number: this.contactForm.get('phone')?.value,
+      });
       console.log('Form Data:', this.contactForm.value);
     } else {
       console.log('Form is invalid');
       this.contactForm.markAllAsTouched();
     }
+  }
+
+  getInitials(fullName: string): string {
+    return fullName
+      .trim()
+      .split(' ')
+      .map((name) => name[0])
+      .join('')
+      .toUpperCase();
+  }
+
+  /**Subscripe the change on input fields. Set the values of the corresponding data in contactData.*
+@returns {void}*/
+  subscripeAllInputFields() {
+    this.contactForm.get('name')?.valueChanges.subscribe((value) => {
+      this.contactData.name = value!;
+    });
+    this.contactForm.get('mail')?.valueChanges.subscribe((value) => {
+      this.contactData.email = value!;
+    });
+    this.contactForm.get('phone')?.valueChanges.subscribe((value) => {
+      this.contactData.phone_number = value!;
+    });
   }
 
   /**
