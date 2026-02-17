@@ -73,7 +73,7 @@ export class Contacts {
   getInitials(fullName: string): string {
     return fullName
       .trim()
-      .split('')
+      .split(' ')
       .map(name => name[0])
       .join('')
       .toUpperCase();
