@@ -1,5 +1,5 @@
 import { SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, QueryList, signal, ViewChildren } from '@angular/core';
 import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
@@ -15,6 +15,8 @@ import defaultContacts from '../../../../public/assets/JSON/defaultContacts.json
   styleUrl: './contacts.scss',
 })
 export class Contacts {
+  @ViewChildren('contactBtn') allBtn!: QueryList<ElementRef<HTMLDivElement>>;
+
   supabaseClientService = inject(Supabase);
   supabaseChannel: RealtimeChannel;
   dataUsers = signal<SupabaseContactsInterface[]>([]);
@@ -71,7 +73,7 @@ export class Contacts {
   getInitials(fullName: string): string {
     return fullName
       .trim()
-      .split(' ')
+      .split('')
       .map(name => name[0])
       .join('')
       .toUpperCase();
@@ -79,8 +81,15 @@ export class Contacts {
 
   openContact(person: SupabaseContactsInterface, id: number) {
     this.selectedContact.set(person);
+    this.removeActiveClass();
     const element = document.getElementById(id.toString());
     element?.classList.add('active_btn');
+  }
+
+  removeActiveClass(){
+    this.allBtn.forEach(el => {
+      el.nativeElement.classList.remove('active_btn');
+    })
   }
 
   ngOnDestroy() {
