@@ -1,64 +1,41 @@
 <div class="contacts-wrapper">
-
- 
   <section class="contacts_outer">
-
     <button class="add_btn">Add new contact</button>
-
     <div class="contacts_scroll_container">
-
       @if (isLoading()) {
         <p>Loading contacts...</p>
-      } 
+      }
       @else if (groupedUsers().length === 0) {
         <p>No persons found.</p>
-      } 
+      }
       @else {
-
         @for (group of groupedUsers(); track group.key) {
-
           <h2>{{ group.key }}</h2>
           <div class="line_under_letter"></div>
-
           @for (person of group.value; track person.id) {
-
             <div class="contact_inner_card"
                  (click)="openContact(person)">
-
               <div class="contact_initials"
-                   [style.background-color]="person.color">
+                   [style.background-color]="getRandomeColor()">
                 <p>{{ getInitials(person.name) }}</p>
               </div>
-
-              <div class="details">3
+              <div class="details">
                 <h3>{{ person.name }}</h3>
                 <a href="mailto:{{person.email}}">
                   {{ person.email }}
                 </a>
               </div>
-
             </div>
-
           }
-
         }
-
       }
-
     </div>
-
   </section>
-
-
- 
   <section class="contacts_detail_area">
-
     @if (selectedContact()) {
       <app-contacts-menu
         [person]="selectedContact()">
       </app-contacts-menu>
     }
-
   </section>
-
 </div>

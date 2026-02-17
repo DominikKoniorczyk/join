@@ -2,7 +2,7 @@ import { SupabaseContactsInterface } from './../../interfaces/supabase.interface
 import { Component, computed, inject, signal } from '@angular/core';
 import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ContactsMenu } from './contacts-menu/contacts-menu';
 
 
@@ -20,10 +20,6 @@ export class Contacts {
   dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
   selectedContact = signal<SupabaseContactsInterface | null>(null);
-
-openContact(person: SupabaseContactsInterface) {
-  this.selectedContact.set(person);
-}
   colors: string[] = [
     '#ff7a00',
     '#ff5eb3',
@@ -85,6 +81,10 @@ openContact(person: SupabaseContactsInterface) {
   getRandomeColor(): string {
     const randomIndex = Math.floor(Math.random() * this.colors.length);
     return this.colors[randomIndex];
+  }
+
+  openContact(person: SupabaseContactsInterface) {
+    this.selectedContact.set(person);
   }
 
   ngOnDestroy() {
