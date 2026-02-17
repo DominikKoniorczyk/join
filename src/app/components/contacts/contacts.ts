@@ -37,15 +37,26 @@ export class Contacts {
 
   constructor() {
     this.getDataInitial();
-    this.supabaseChannel = this.supabaseClientService.supabaseClient
-      .channel('join')
+    this.supabaseChannel = this.supabaseClientService.supabaseClient.channel('custom-all-channel');
+  }
+
+  /**
+   * Initializes the component, sets up a Supabase realtime listener for user changes,
+   * and optionally restores default contacts after a short delay.
+   */
+  ngOnInit() {
+    this.supabaseChannel
       .on('postgres_changes', { event: '*', schema: 'public', table: 'users' }, (payload) => {
         this.getDataInitial();
       })
-      .subscribe();
+      .subscribe()
     if (this.restoreDefaultContacts) setTimeout(() => this.restoreContactsToDefault(), 1000);
   }
 
+  /**
+   * Restores the user contacts table to the default contacts.
+   * Deletes all current user rows and uploads the default contacts.
+   */
   async restoreContactsToDefault() {
     for (let i = 0; this.dataUsers().length; i++) {
       this.supabaseClientService.deleteRow('users', this.dataUsers()[i].id);
@@ -53,12 +64,19 @@ export class Contacts {
     this.supabaseClientService.uploadJSONToTable('users', this.defaultContacts);
   }
 
+  /**
+   * Fetches the initial user data from the 'users' table and updates the local state.
+   */
   async getDataInitial() {
     const data = await this.supabaseClientService.getDataFromTable('users') as SupabaseContactsInterface[];
     this.dataUsers.set(data ?? []);
     this.isLoading.set(false);
   }
 
+  /**
+   * Groups user contacts by the first letter of their name.
+   * @returns A record where each key is an uppercase letter and the value is an array of contacts starting with that letter.
+   */
   formGroups() {
     const groups: Record<string, SupabaseContactsInterface[]> = {};
     for (const person of this.dataUsers()) {
@@ -69,23 +87,25 @@ export class Contacts {
       groups[letter].push(person);
     }
     return groups;
-  };
-
-  getInitials(fullName: string): string {
-    return fullName
-      .trim()
-      .split(' ')
-      .map(name => name[0])
-      .join('')
-      .toUpperCase();
   }
 
+  /**
+   * Updates a specific field of the currently selected contact.
+   * @param key The field key to update.
+   * @param value The new value for the specified field.
+   */
   updateField(key: string, value: any) {
     this.selectedContact.update(current => {
-      if (!current) return current; return {...current, name: value};
+      if (!current) return current; return { ...current, name: value };
     });
   }
 
+  /**
+   * Opens a contact by setting it as the selected contact
+   * and applying an active CSS class to its corresponding element.
+   * @param person The contact to open.
+   * @param id The DOM element ID associated with this contact.
+   */
   openContact(person: SupabaseContactsInterface, id: number) {
     this.selectedContact.set(person);
     this.removeActiveClass();
@@ -93,12 +113,19 @@ export class Contacts {
     element?.classList.add('active_btn');
   }
 
+  /**
+   * Removes the active CSS class from all buttons.
+   */
   removeActiveClass() {
     this.allBtn.forEach(el => {
       el.nativeElement.classList.remove('active_btn');
     })
   }
 
+  /**
+   * Cleans up resources when the component is destroyed,
+   * specifically unsubscribing from the Supabase realtime channel.
+   */
   ngOnDestroy() {
     this.supabaseChannel.unsubscribe();
   }

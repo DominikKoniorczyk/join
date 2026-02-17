@@ -1,4 +1,4 @@
-import { SupabaseContactsInterface } from './../../../../interfaces/supabase.interfaces';
+import { NewContactsInterface } from './../../../../interfaces/supabase.interfaces';
 import { Component, inject, signal } from '@angular/core';
 import {
   AbstractControl,
@@ -77,9 +77,7 @@ export class NewContactSlider {
 
   supabaseClient = inject(Supabase);
 
-  contactData = signal<SupabaseContactsInterface>({
-    id: 0,
-    created_at: '',
+  contactData = signal<NewContactsInterface>({
     name: '',
     phone_number: 0,
     email: '',
@@ -111,7 +109,6 @@ export class NewContactSlider {
   onSubmit() {
     if (this.contactForm.valid) {
       this.supabaseClient.uploadJSONToTable('users', this.contactData());
-      console.log('Form Data:', this.contactForm.value);
     } else {
       console.log('Form is invalid');
       this.contactForm.markAllAsTouched();
@@ -127,7 +124,7 @@ export class NewContactSlider {
         return { ...current, name: value! };
       });
     });
-    this.contactForm.get('mail')?.valueChanges.subscribe((value) => {
+    this.contactForm.get('email')?.valueChanges.subscribe((value) => {
       this.contactData.update((current) => {
         if (!current) return current;
         return { ...current, email: value! };
