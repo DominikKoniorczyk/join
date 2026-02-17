@@ -122,6 +122,9 @@ export class Contacts {
     })
   }
 
+  openNewContact(){
+  }
+
   /**
    * Cleans up resources when the component is destroyed,
    * specifically unsubscribing from the Supabase realtime channel.
