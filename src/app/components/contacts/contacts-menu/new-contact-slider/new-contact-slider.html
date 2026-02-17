@@ -12,21 +12,36 @@
       <img class="person-img" src="./assets/img/person-icon.png" alt="" />
     </div>
     <div class="form-container">
-      <form action="">
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
         <div class="input-group">
-          <input type="text" placeholder="Name" /><img src="./assets/img/person-icon.png" alt="" />
+          <input type="text" placeholder="Name" formControlName="name" />
+          <img src="./assets/img/person-icon.png" alt="" />
         </div>
+        @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+          <div class="error-message">Please fill out your first and last name.</div>
+        }
+
         <div class="input-group">
-          <input type="email" placeholder="Email" /><img src="./assets/img/mail-icon.png" alt="" />
+          <input type="email" placeholder="Email" formControlName="email" />
+          <img src="./assets/img/mail-icon.png" alt="" />
         </div>
+        @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+          <div class="error-message">Please add a valid email.</div>
+        }
+
         <div class="input-group">
-          <input type="tel" placeholder="Phone" /><img src="./assets/img/phone-icon.png" alt="" />
+          <input type="tel" placeholder="Phone" formControlName="phone" />
+          <img src="./assets/img/phone-icon.png" alt="" />
         </div>
+        @if (contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched) {
+          <div class="error-message">Please add a valid phone number.</div>
+        }
 
         <div class="button-container">
-          <button class="cancel-btn">
-            Cancel <img class="btn-img" src="./assets/img/close-cross.png" alt="" /></button
-          ><button class="create-btn">
+          <button type="button" class="cancel-btn" (click)="onCancel()">
+            Cancel <img class="btn-img" src="./assets/img/close-cross.png" alt="" />
+          </button>
+          <button type="submit" class="create-btn" [disabled]="contactForm.invalid">
             Create contact <img class="btn-img-check" src="./assets/img/check-small.png" alt="" />
           </button>
         </div>
