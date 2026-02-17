@@ -16,7 +16,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%
+    max-width: 100%;
   }
 
   h3 {
@@ -70,7 +70,7 @@
   padding: 0 1rem;
   min-height: 1px;
   width: 80%;
-  background-color: #D1D1D1;
+  background-color: #d1d1d1;
 }
 
 .contact_initials {
@@ -89,14 +89,14 @@
   padding: 1rem 1rem;
   width: 80%;
   display: grid;
-  grid-template-areas: "initials content";
+  grid-template-areas: 'initials content';
   grid-template-columns: 1fr 3fr;
   border-radius: 0.8rem;
   transition: all 125ms;
   cursor: pointer;
 
   &:hover {
-    background-color: #D1D1D1;
+    background-color: #d1d1d1;
   }
 }
 
@@ -115,7 +115,6 @@
   grid-area: content;
   overflow: hidden;
   white-space: nowrap;
-
 }
 .contacts-wrapper {
   display: flex;
@@ -129,12 +128,12 @@
   background-color: #f6f7f8;
 }
 
-@media (max-width: 760px){
-  .contacts_detail_area{
+@media (max-width: 760px) {
+  .contacts_detail_area {
     display: none;
   }
 
-  .contacts_outer{
+  .contacts_outer {
     height: calc(100vh - 96px - 96px);
   }
 
@@ -142,7 +141,13 @@
     height: 100%;
   }
 
-  .add_btn{
+  .add_btn {
     width: 80%;
   }
+}
+
+dialog {
+  border: none;
+  border-radius: 25px;
+  width: 1000px;
 }
