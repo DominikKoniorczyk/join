@@ -1,0 +1,72 @@
+@if (person) {
+
+<div class="contact-detail" role="region" aria-labelledby="contact-detail-name">
+
+  <div class="detail-header">
+    
+    <div class="detail-avatar-container">
+      <div
+        class="detail-avatar"
+        [style.background-color]="person.color"
+        role="img"
+        [attr.aria-label]="person.name"
+      >
+        {{ person.name.charAt(0).toUpperCase() }}
+      </div>
+    </div>
+
+    <div class="detail-name-section">
+      <h1 class="detail-name" id="contact-detail-name">
+        {{ person.name }}
+      </h1>
+
+     <div class="detail-actions contact_actions">
+
+  <button 
+    class="action_btn edit_btn" 
+    type="button"
+    (click)="onEdit()"
+  >
+    <img src="assets/img/edit-icon.png" alt="Edit icon">
+    <span>Edit</span>
+  </button>
+
+  <button 
+    class="action_btn delete_btn" 
+    type="button"
+    (click)="onDelete()"
+  >
+    <img src="assets/img/delete-icon.png" alt="Delete icon">
+    <span>Delete</span>
+  </button>
+
+</div>
+
+    </div>
+  </div>
+
+  <div class="detail-info-section">
+    <h3 class="info-title">Contact Information</h3>
+
+    <div class="info-content">
+
+      <div class="info-group">
+        <label class="info-label">Email</label>
+        <a [href]="'mailto:' + person.email" class="info-value email-link">
+          {{ person.email }}
+        </a>
+      </div>
+
+      <div class="info-group">
+        <label class="info-label">Phone</label>
+        <span class="info-value">
+          {{ person.phone_number}}
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+}

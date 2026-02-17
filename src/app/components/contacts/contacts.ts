@@ -1,20 +1,29 @@
-import { SupaseContactsInterface } from './../../interfaces/supabase.interfaces';
+import { SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
 import { Component, computed, inject, signal } from '@angular/core';
 import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
-import { KeyValuePipe } from '@angular/common';
+import { CommonModule} from '@angular/common';
+import { ContactsMenu } from './contacts-menu/contacts-menu';
+
+
 
 @Component({
   selector: 'app-contacts',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, ContactsMenu],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
 })
 export class Contacts {
   supabaseClientService = inject(Supabase);
   supabaseChannel: RealtimeChannel;
-  dataUsers = signal<SupaseContactsInterface[]>([]);
+  dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
+  selectedContact = signal<SupabaseContactsInterface | null>(null);
+
+openContact(person: SupabaseContactsInterface) {
+  this.selectedContact.set(person);
+}
   colors: string[] = [
     '#ff7a00',
     '#ff5eb3',
@@ -32,7 +41,7 @@ export class Contacts {
     '#ffbb2b'
   ];
   groupedUsers = computed(() => {
-    const groups: Record<string, SupaseContactsInterface[]> = {};
+    const groups: Record<string, SupabaseContactsInterface[]> = {};
     for (const person of this.dataUsers()) {
       const letter = person.name[0].toUpperCase();
       if (!groups[letter]) {
@@ -59,7 +68,7 @@ export class Contacts {
   }
 
   async getDataInitial() {
-    const data = await this.supabaseClientService.getDataFromTable('users') as SupaseContactsInterface[];
+    const data = await this.supabaseClientService.getDataFromTable('users') as SupabaseContactsInterface[];
     this.dataUsers.set(data ?? []);
     this.isLoading.set(false);
   }

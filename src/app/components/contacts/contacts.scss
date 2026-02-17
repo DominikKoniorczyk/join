@@ -109,3 +109,23 @@
   white-space: nowrap;
 
 }
+.contacts-wrapper {
+  display: flex;
+  height: 100%;
+}
+
+.contacts_detail_area {
+  flex: 1;
+  padding: 60px 80px;
+  background-color: #f6f7f8; 
+}
+.contact_inner_card {
+  cursor: pointer;   
+
+  transition: background-color 0.2s ease, transform 0.15s ease;
+
+  &:hover {
+    background-color: #f2f4f7;   
+    transform: translateX(4px);  
+  }
+}
