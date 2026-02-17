@@ -55,6 +55,10 @@
   font-size: 1rem;
   color: white;
   font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 
   &:hover {
     background-color: vars.$secondary-color;
@@ -123,4 +127,19 @@
   flex: 1;
   padding: 60px 80px;
   background-color: #f6f7f8;
+}
+
+@media (max-width: 760px){
+  .contacts_detail_area{
+    display: none;
+  }
+
+  .contacts_outer{
+    height: 100%;
+    max-height: calc(100vh - 96px - 96px);;
+  }
+
+  .add_btn{
+    width: 80%;
+  }
 }
