@@ -77,7 +77,14 @@ export class NewContactSlider {
 
   supabaseClient = inject(Supabase);
 
-  contactData!: SupabaseContactsInterface;
+  contactData: SupabaseContactsInterface = {
+    id: 0,
+    createdAt: '',
+    name: '',
+    phone_number: 0,
+    email: '',
+    color: '',
+  };
 
   /**
    * Initializes the contact form group with validators.
