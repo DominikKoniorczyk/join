@@ -4,5 +4,5 @@ export interface SupabaseContactsInterface {
   name: string;
   phone_number: number;
   email: string;
-  color: string; 
+  color: string;
 }

@@ -59,7 +59,7 @@ export class Contacts {
     this.isLoading.set(false);
   }
 
-  formGroups(){
+  formGroups() {
     const groups: Record<string, SupabaseContactsInterface[]> = {};
     for (const person of this.dataUsers()) {
       const letter = person.name[0].toUpperCase();
@@ -80,6 +80,12 @@ export class Contacts {
       .toUpperCase();
   }
 
+  updateField(key: string, value: any) {
+    this.selectedContact.update(current => {
+      if (!current) return current; return {...current, name: value};
+    });
+  }
+
   openContact(person: SupabaseContactsInterface, id: number) {
     this.selectedContact.set(person);
     this.removeActiveClass();
@@ -87,7 +93,7 @@ export class Contacts {
     element?.classList.add('active_btn');
   }
 
-  removeActiveClass(){
+  removeActiveClass() {
     this.allBtn.forEach(el => {
       el.nativeElement.classList.remove('active_btn');
     })
