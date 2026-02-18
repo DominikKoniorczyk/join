@@ -1,13 +1,5 @@
 import { SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
-import {
-  Component,
-  computed,
-  ElementRef,
-  inject,
-  QueryList,
-  signal,
-  ViewChildren,
-} from '@angular/core';
+import { Component, computed, ElementRef, inject, QueryList, signal, ViewChildren} from '@angular/core';
 import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
