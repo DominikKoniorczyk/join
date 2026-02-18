@@ -185,10 +185,10 @@ export class Contacts {
       notificationRef.showModal();
       notificationRef.classList.add('active');
 
-      setTimeout(() => {
-        notificationRef.classList.remove('active');
-        notificationRef.close();
-      }, 2500);
+      // setTimeout(() => {
+      //   notificationRef.classList.remove('active');
+      //   notificationRef.close();
+      // }, 2500);
     }
   }
 }

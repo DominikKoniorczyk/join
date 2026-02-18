@@ -316,11 +316,21 @@ h3 {
 }
 
 .feedback-notification {
+  border-radius: 1rem;
+  top: 80%;
+  left: 30%;
+  width: 326px;
+  height: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 400;
   border: none;
-  border-radius: 25px;
+
   background: vars.$tertiary-color;
   color: white;
-  padding: 12px 12px;
+
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 
   transform: translateX(150%);
@@ -341,6 +351,6 @@ h3 {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(150%);
+    transform: translateX(0);
   }
 }
