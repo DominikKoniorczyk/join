@@ -64,9 +64,23 @@ button {
   display: flex;
   gap: 1rem;
   width: 100%;
+  align-items: center;
+
+  svg{
+    width: 24px;
+    height: 24px;
+  }
+
+  #path1{
+    fill: vars.$font-lightcolor;
+  }
 
   &:hover {
     cursor: pointer;
+
+    #path1{
+      fill: red;
+    }
   }
 
   @media (max-width: 768px) {
