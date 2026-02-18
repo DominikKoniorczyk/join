@@ -5,6 +5,11 @@
   align-items: center;
   justify-content: flex-start;
 
+  h1{
+    font-size: 3.8rem;
+    font-weight: 700;
+  }
+
   h2 {
     margin-block: 1rem;
     padding-left: 1.8rem;
@@ -32,6 +37,25 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.contacts_detail_headline{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.blue_vertical_line{
+  width: 3px;
+  background-color: #29ABE2;
+  height: 3.7rem;
+  border-radius: 1.5px;
+}
+
+.subheadline{
+  font-size: 1.7rem;
+  font-weight: 400;
 }
 
 .contacts_scroll_container {
