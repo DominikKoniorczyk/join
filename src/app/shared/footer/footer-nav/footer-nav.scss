@@ -1,6 +1,6 @@
 @use '../../../styles/variables.scss' as vars;
 
-:host{
+:host {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -12,10 +12,11 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 70%;
+  width: 100%;
   height: 60%;
 
   @media (max-width: 768px) {
+    width: 100%;
     display: grid;
     grid-template-areas: 'left left_center right_center right';
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -41,19 +42,21 @@
 }
 
 .button-container {
-  @media (max-width: 768px) {
-    border-radius: 15px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
     background-color: #2a3d59;
     @media (max-width: 768px) {
+      width: 100%;
       background-color: vars.$tertiary-color;
     }
   }
 }
 
 button {
-  padding: 10px 10px;
+  width: 60%;
+  padding: 10px 40px;
   background-color: transparent;
   border: none;
   color: vars.$font-lightcolor;
@@ -61,21 +64,44 @@ button {
   display: flex;
   gap: 1rem;
   width: 100%;
+  align-items: center;
 
-  transition:
-    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.2s ease;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  #path1,
+  #path2 {
+    fill: vars.$font-lightcolor;
+  }
 
   &:hover {
     cursor: pointer;
-    transform: scale(1) translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    color: white;
+
+    #path1,
+    #path2 {
+      fill: white;
+    }
   }
 
   @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+    padding: 10px 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 15px;
+    gap: 0.5rem;
+  }
+
+  &:hover {
+    background-color: #2a3d59;
+    @media (max-width: 768px) {
+      background-color: vars.$tertiary-color;
+    }
   }
 }
 
