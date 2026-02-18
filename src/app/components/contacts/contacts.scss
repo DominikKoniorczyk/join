@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: flex-start;
 
-  h1{
+  h1 {
     font-size: 3.8rem;
     font-weight: 700;
   }
@@ -39,21 +39,21 @@
   align-items: center;
 }
 
-.contacts_detail_headline{
+.contacts_detail_headline {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 2rem;
 }
 
-.blue_vertical_line{
+.blue_vertical_line {
   width: 3px;
-  background-color: #29ABE2;
+  background-color: #29abe2;
   height: 3.7rem;
   border-radius: 1.5px;
 }
 
-.subheadline{
+.subheadline {
   font-size: 1.7rem;
   font-weight: 400;
 }
@@ -191,6 +191,11 @@ dialog {
 
   @media (max-width: 768px) {
     max-width: 400px;
+    width: 90%;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
     &[open] {
       animation: slideUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
@@ -224,18 +229,18 @@ dialog {
 
 @keyframes slideUp {
   from {
-    transform: translate(-20%, 100%);
+    transform: translate(-50%, 100%);
   }
   to {
-    transform: translate(-20%, -20%);
+    transform: translate(-50%, -50%);
   }
 }
 
 @keyframes slideDown {
   from {
-    transform: translate(-20%, -20%);
+    transform: translate(-50%, -50%);
   }
   to {
-    transform: translate(-20%, 100%);
+    transform: translate(-50%, 100%);
   }
 }
