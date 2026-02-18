@@ -36,7 +36,7 @@
       <p class="subheadline">Better with a team</p>
     </div>
     @if (selectedContact()) {
-    <app-contacts-menu [person]="selectedContact()"> </app-contacts-menu>
+    <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)"> </app-contacts-menu>
     }
   </section>
 </div>
