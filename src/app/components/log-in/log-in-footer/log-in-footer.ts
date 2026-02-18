@@ -3,7 +3,6 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-log-in-footer',
-  standalone: true,
   imports: [RouterLink],
   templateUrl: './log-in-footer.html',
   styleUrls: ['./log-in-footer.scss'],

@@ -10,9 +10,11 @@
 .sign-card {
     position: relative;
     width: 598px;
-    height: 630px;
-    background: #fff;
+    min-height: 630px;
+
+    background: #ffffff;
     border-radius: 30px;
+
     padding: 48px 88px;
     box-sizing: border-box;
 
@@ -28,19 +30,31 @@
     position: absolute;
     top: 56px;
     left: 56px;
+
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
 
     img {
         width: 21px;
         height: 21px;
+        object-fit: contain;
     }
 }
 
 .title {
+    font-family: Inter, sans-serif;
     font-weight: 700;
     font-size: 61px;
-    text-align: center;
+    line-height: 1.2;
     margin: 0;
+    text-align: center;
+    color: #000;
 }
 
 .title-underline {
@@ -68,15 +82,23 @@
     width: 100%;
     height: 100%;
     padding: 12px 56px 12px 21px;
+
     border-radius: 10px;
     border: 1px solid #d1d1d1;
+    background: #ffffff;
     box-sizing: border-box;
+
     font-size: 16px;
+    line-height: 1.2;
     outline: none;
 }
 
 .input-group input::placeholder {
     color: $font-lightcolor;
+}
+
+.input-group input:focus {
+    border-color: $brand-color;
 }
 
 .icon-slot {
@@ -95,6 +117,8 @@
     background: transparent;
     border: 0;
     padding: 0;
+
+    z-index: 2;
 }
 
 button.icon-slot {
@@ -104,7 +128,9 @@ button.icon-slot {
 .icon-slot img {
     width: 20px;
     height: 20px;
+    object-fit: contain;
     opacity: 0.7;
+    display: block;
 }
 
 button.icon-slot:hover img {
@@ -117,45 +143,116 @@ button.icon-slot:hover img {
     align-items: center;
     gap: 10px;
     cursor: pointer;
+    user-select: none;
 }
 
 .policy-box {
     width: 24px;
     height: 24px;
+    object-fit: contain;
 }
 
 .policy-text {
     font-size: 16px;
+    line-height: 1.2;
     color: $font-lightcolor;
+}
 
-    a {
+.policy-link {
+    color: $brand-color;
+    text-decoration: none;
+
+    &:visited {
         color: $brand-color;
-        text-decoration: none;
-        font-weight: 500;
+    }
 
-        &:hover {
-            text-decoration: underline;
-        }
-
-        &:visited {
-            color: $brand-color;
-        }
+    &:hover {
+        text-decoration: underline;
     }
 }
 
 .submit-btn {
     margin-top: 18px;
+
     width: 110px;
     height: 48px;
     border-radius: 8px;
+
     border: 1px solid $primary-color;
     background: $primary-color;
     color: #fff;
+
+    font-size: 16px;
     font-weight: 700;
+    line-height: 1.2;
+
     cursor: pointer;
+    transition: background-color 120ms ease, border-color 120ms ease, opacity 120ms ease;
 }
 
 .submit-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+}
+
+.input-group.input-error input {
+    border-color: $error-color-red;
+}
+
+.input-group.input-error input:focus {
+    border-color: $error-color-red;
+}
+
+.error-text {
+    width: 422px;
+    margin: -8px 0 0;
+    font-size: 16px;
+    line-height: 1.2;
+    color: $error-color-red;
+    text-align: left;
+}
+
+/* Feedback */
+.toast {
+    position: fixed;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 312px;
+    height: 74px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-left: 25px;
+    padding-right: 25px;
+
+    border-radius: 20px;
+    background: #2a3647;
+    color: #ffffff;
+
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    text-align: center;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+
+    animation: slideInCenter 300ms ease-out;
+}
+
+@keyframes slideInCenter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, calc(-50% + 40px));
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
 }
