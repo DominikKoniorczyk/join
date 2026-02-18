@@ -1,6 +1,6 @@
 @use '../../../styles/variables.scss' as vars;
 
-:host{
+:host {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -16,6 +16,7 @@
   height: 60%;
 
   @media (max-width: 768px) {
+    width: unset;
     display: grid;
     grid-template-areas: 'left left_center right_center right';
     grid-template-columns: 1fr 1fr 1fr 1fr;
