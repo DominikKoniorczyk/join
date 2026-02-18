@@ -157,10 +157,6 @@ dialog {
   left: 20%;
   transform: translate(-20%, 0);
 
-  @media (max-width: 768px) {
-    max-width: 400px;
-  }
-
   &[open] {
     animation: slideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
@@ -169,6 +165,16 @@ dialog {
     animation: slideOut 0.3s ease-in forwards;
   }
 
+  @media (max-width: 768px) {
+    max-width: 400px;
+    &[open] {
+      animation: slideUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    &.closed {
+      animation: slideDown 0.3s ease-in forwards;
+    }
+  }
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.4);
   }
@@ -176,18 +182,36 @@ dialog {
 
 @keyframes slideIn {
   from {
-    transform: translateX(100%);
+    transform: translate(100%, 0);
   }
   to {
-    transform: translateX(-20%);
+    transform: translate(-20%, 0);
   }
 }
 
 @keyframes slideOut {
   from {
-    transform: translateX(0);
+    transform: translate(-20%, 0);
   }
   to {
-    transform: translateX(100%);
+    transform: translate(100%, 0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-20%, 100%);
+  }
+  to {
+    transform: translate(-20%, -20%);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translate(-20%, -20%);
+  }
+  to {
+    transform: translate(-20%, 100%);
   }
 }
