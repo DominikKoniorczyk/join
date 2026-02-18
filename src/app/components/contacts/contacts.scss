@@ -239,13 +239,13 @@ h3 {
   }
 }
 
-dialog {
+.slider-modal {
   border: none;
   border-radius: 25px;
   max-width: 900px;
-  width: 100%;
+  width: calc(100% - 40px);
   top: 30%;
-  left: 20%;
+  left: 21%;
   transform: translate(-20%, 0);
 
   &[open] {
@@ -257,7 +257,10 @@ dialog {
   }
 
   @media (max-width: 768px) {
+    margin: 0;
     max-width: 400px;
+    top: 50%;
+    left: 50%;
     &[open] {
       animation: slideUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
