@@ -1,5 +1,5 @@
 import { SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
-import { Component, computed, ElementRef, inject, QueryList, signal, ViewChildren} from '@angular/core';
+import { Component, computed, ElementRef, HostListener, inject, QueryList, signal, ViewChildren } from '@angular/core';
 import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
@@ -25,6 +25,8 @@ export class Contacts {
   selectedContact = signal<SupabaseContactsInterface | null>(null);
   defaultContacts = defaultContacts;
   restoreDefaultContacts: boolean = false;
+  contactsDetailOpen = signal(false);
+  responsiveDetailsOpen = signal(false);
   groupedUsers = computed(() => {
     const groups = this.formGroups();
     return Object.keys(groups)
@@ -51,6 +53,7 @@ export class Contacts {
       })
       .subscribe();
     if (this.restoreDefaultContacts) setTimeout(() => this.restoreContactsToDefault(), 1000);
+    this.onResize();
   }
 
   /**
@@ -111,6 +114,7 @@ export class Contacts {
    */
   openContact(person: SupabaseContactsInterface, id: number) {
     this.selectedContact.set(person);
+    this.contactsDetailOpen.set(this.responsiveDetailsOpen());
     this.removeActiveClass();
     const element = document.getElementById(id.toString());
     element?.classList.add('active_btn');
@@ -149,11 +153,15 @@ export class Contacts {
     }
   }
 
-  deleteUser(id: number){
+  deleteUser(id: number) {
     this.supabaseClientService.deleteRow('users', id);
     this.selectedContact.set(null);
   }
 
+  @HostListener('window:resize')
+  onResize() {
+    this.responsiveDetailsOpen.set(window.innerWidth < 1100);
+  }
   /**
    * Cleans up resources when the component is destroyed,
    * specifically unsubscribing from the Supabase realtime channel.

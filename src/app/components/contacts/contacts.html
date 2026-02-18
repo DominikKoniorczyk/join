@@ -39,16 +39,41 @@
     </div>
   </section>
   <section class="contacts_detail_area">
+    <div class="content_detail_inner">
     <div class="contacts_detail_headline">
       <h1>Contacts</h1>
       <div class="blue_vertical_line"></div>
       <p class="subheadline">Better with a team</p>
     </div>
+      @if (selectedContact()) {
+      <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)"> </app-contacts-menu>
+      }
+    </div>
+<<<<<<< HEAD
     @if (selectedContact()) {
       <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)">
       </app-contacts-menu>
     }
+=======
+>>>>>>> 7795b7b55088bbabfd1b898ba4db5bc631c37ba2
   </section>
+  }
+  @else{
+  <section class="details_mobile">
+    <div class="content_detail_inner">
+      <div class="contacts_detail_headline">
+        <h1>Contacts</h1>
+        <p class="subheadline">Better with a team</p>
+        <div class="blue_vertical_line"></div>
+      </div>
+      <button class="back_btn" aria-label="Go back"><img src="/assets/img/arrow-left-long.png"
+          alt="arrow left image"></button>
+    </div>
+    <div class="content_detail_inner">
+      <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)"> </app-contacts-menu>
+    </div>
+  </section>
+  }
 </div>
 
 <dialog id="addContactModal">
