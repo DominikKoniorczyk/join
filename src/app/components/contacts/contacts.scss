@@ -49,7 +49,7 @@ h3 {
 
 .blue_vertical_line {
   width: 3px;
-  background-color: #29ABE2;
+  background-color: #29abe2;
   height: 3.7rem;
   border-radius: 1.5px;
 }
@@ -258,7 +258,6 @@ dialog {
 
   @media (max-width: 768px) {
     max-width: 400px;
-
     &[open] {
       animation: slideUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
@@ -295,20 +294,20 @@ dialog {
 
 @keyframes slideUp {
   from {
-    transform: translate(-20%, 100%);
+    transform: translate(-50%, 100%);
   }
 
   to {
-    transform: translate(-20%, -20%);
+    transform: translate(-50%, -50%);
   }
 }
 
 @keyframes slideDown {
   from {
-    transform: translate(-20%, -20%);
+    transform: translate(-50%, -50%);
   }
 
   to {
-    transform: translate(-20%, 100%);
+    transform: translate(-50%, 100%);
   }
 }

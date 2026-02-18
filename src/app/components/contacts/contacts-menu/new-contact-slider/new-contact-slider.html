@@ -1,5 +1,10 @@
 <div class="content">
   <div class="left-column">
+    <div class="mobile-close-btn-container">
+      <button class="close-btn-mobile" (click)="emitCloseDialog(); onCancel()">
+        <img src="./assets/img/close-light.png" alt="" />
+      </button>
+    </div>
     <img class="logo" src="./assets/img/join-logo-light.png" alt="" />
     <h2>Add contact</h2>
     <div class="container-with-line">
@@ -61,7 +66,7 @@
           </div>
 
           <div class="button-container">
-            <button type="button" class="cancel-btn" (click)="onCancel()">
+            <button type="button" class="cancel-btn" (click)="emitCloseDialog(); onCancel()">
               Cancel <img class="btn-img" src="./assets/img/close-cross.png" alt="" />
             </button>
             <button type="submit" class="create-btn" [disabled]="contactForm.invalid">
