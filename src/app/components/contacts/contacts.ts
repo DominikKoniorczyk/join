@@ -1,5 +1,14 @@
 import { SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
-import { Component, computed, ElementRef, HostListener, inject, QueryList, signal, ViewChildren } from '@angular/core';
+import {
+  Component,
+  computed,
+  ElementRef,
+  HostListener,
+  inject,
+  QueryList,
+  signal,
+  ViewChildren,
+} from '@angular/core';
 import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
@@ -168,5 +177,18 @@ export class Contacts {
    */
   ngOnDestroy() {
     this.supabaseChannel.unsubscribe();
+  }
+
+  triggerUxFeedback() {
+    const notificationRef = document.getElementById('uxFeedbackNotification');
+    if (notificationRef instanceof HTMLDialogElement) {
+      notificationRef.showModal();
+      notificationRef.classList.add('active');
+
+      setTimeout(() => {
+        notificationRef.classList.remove('active');
+        notificationRef.close();
+      }, 2500);
+    }
   }
 }

@@ -73,7 +73,10 @@
 </div>
 
 <dialog id="addContactModal">
-  <app-new-contact-slider (closeDialog)="closeDialog()"></app-new-contact-slider>
+  <app-new-contact-slider
+    (contactCreated)="triggerUxFeedback()"
+    (closeDialog)="closeDialog()"
+  ></app-new-contact-slider>
 </dialog>
 
 <dialog id="uxFeedbackNotification" class="feedback-notification">

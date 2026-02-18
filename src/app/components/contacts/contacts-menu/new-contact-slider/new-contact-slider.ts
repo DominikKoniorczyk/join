@@ -20,7 +20,7 @@ import { InitialsPipe } from '../../../../services/contacts.services';
 export function contactNameValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const name: string = control.value;
-    if(name){
+    if (name) {
       const nameRegex = /^[a-zA-ZäöüÄÖÜß]{2,}\s+[a-zA-ZäöüÄÖÜß]{2,}$/;
       const isValid = nameRegex.test(name.trim());
       return isValid ? null : { invalidContactName: true };
@@ -45,8 +45,8 @@ export function contactEmailValidator(): ValidatorFn {
         return domain.substring(domain.lastIndexOf('.') + 1).length >= 2
           ? null
           : {
-            email: true,
-          };
+              email: true,
+            };
       }
     }
     return { email: {} };
@@ -61,7 +61,7 @@ export function contactEmailValidator(): ValidatorFn {
 export function contactPhoneValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const phoneNumber: number = control.value;
-    if(phoneNumber){
+    if (phoneNumber) {
       const validNumber = phoneNumber != 0 && control.value.length > 5;
       return validNumber ? null : { invalidPhoneNumber: true };
     }
@@ -79,6 +79,8 @@ export class NewContactSlider {
   // closeDialog = output<void>();
 
   @Output('closeDialog') close = new EventEmitter<void>();
+
+  @Output() contactCreated = new EventEmitter<void>();
 
   /** * The reactive form group for adding a new contact.
    * @type {FormGroup}
@@ -119,12 +121,13 @@ export class NewContactSlider {
   onSubmit() {
     if (this.contactForm.valid) {
       this.supabaseClient.uploadJSONToTable('users', this.contactData());
+      this.contactCreated.emit();
     } else {
       console.log('Form is invalid');
       this.contactForm.markAllAsTouched();
     }
     this.contactForm.reset();
-    this.contactData.set({name: '', phone_number: 0, email: '', color: ''});
+    this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
   }
 
   /**Subscripe the change on input fields. Set the values of the corresponding data in contactData.*
@@ -157,7 +160,7 @@ export class NewContactSlider {
    */
   onCancel() {
     this.contactForm.reset();
-    this.contactData.set({name: '', phone_number: 0, email: '', color: ''});
+    this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
   }
 
   colors: string[] = [

@@ -311,3 +311,33 @@ dialog {
     transform: translate(-50%, 100%);
   }
 }
+
+.feedback-notification {
+  border: none;
+  border-radius: 25px;
+  background: vars.$tertiary-color;
+  color: white;
+  padding: 12px 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+  transform: translateX(150%);
+
+  &.active {
+    animation: slideInOut 2.5s ease-in-out forwards;
+  }
+}
+
+@keyframes slideInOut {
+  0% {
+    transform: translateX(150%);
+  }
+  10% {
+    transform: translateX(0);
+  }
+  90% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(150%);
+  }
+}
