@@ -149,6 +149,11 @@ export class Contacts {
     }
   }
 
+  deleteUser(id: number){
+    this.supabaseClientService.deleteRow('users', id);
+    this.selectedContact.set(null);
+  }
+
   /**
    * Cleans up resources when the component is destroyed,
    * specifically unsubscribing from the Supabase realtime channel.
