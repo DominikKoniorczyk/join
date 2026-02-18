@@ -160,7 +160,7 @@ export class Contacts {
 
   @HostListener('window:resize')
   onResize() {
-    this.responsiveDetailsOpen.set(window.innerWidth < 1100);
+    this.responsiveDetailsOpen.set(window.innerWidth <= 1100);
   }
   /**
    * Cleans up resources when the component is destroyed,
