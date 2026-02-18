@@ -1,13 +1,17 @@
 @use '../../../../styles/variables.scss' as vars;
 
 .content {
-  width: 900px;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 2rem;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .left-column {
@@ -21,6 +25,9 @@
 
 .logo {
   width: 55px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .container-with-line {
@@ -58,6 +65,9 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .person-img {
@@ -75,6 +85,9 @@ form {
   display: flex;
   gap: 1rem;
   padding-top: 1rem;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .cancel-btn {
@@ -86,6 +99,9 @@ form {
   display: flex;
   align-items: center;
   cursor: pointer;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .create-btn {

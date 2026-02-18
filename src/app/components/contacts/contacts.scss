@@ -149,12 +149,14 @@
 dialog {
   border: none;
   border-radius: 25px;
-  width: 900px;
-  overflow: visible;
-  position: fixed;
+  max-width: 900px;
+  width: 100%;
   top: 30%;
   left: 20%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: 768px) {
+  }
 
   &[open] {
     animation: slideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
