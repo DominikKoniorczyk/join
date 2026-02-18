@@ -55,7 +55,7 @@
 
           <div class="input-field-container">
             <div class="input-group">
-              <input type="tel" placeholder="Phone" formControlName="phone" />
+              <input type="number" placeholder="Phone" formControlName="phone" />
               <img src="./assets/img/phone-icon.png" alt="" />
             </div>
             <div class="error-wrapper">
@@ -64,9 +64,8 @@
               }
             </div>
           </div>
-
           <div class="button-container">
-            <button type="button" class="cancel-btn" (click)="onCancel()">
+            <button type="button" class="cancel-btn" (click)="emitCloseDialog(); onCancel()">
               Cancel <img class="btn-img" src="./assets/img/close-cross.png" alt="" />
             </button>
             <button type="submit" class="create-btn" [disabled]="contactForm.invalid">

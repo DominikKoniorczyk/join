@@ -1,5 +1,15 @@
 @use '../../../../styles/variables.scss' as vars;
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
 .content {
   width: 100%;
   display: flex;
@@ -59,7 +69,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 890px) {
+    height: 100px;
+    width: 100px;
+  }
   @media (max-width: 768px) {
+    height: 120px;
+    width: 120px;
     position: absolute;
     top: 240px;
   }
@@ -71,6 +87,7 @@
   gap: 1rem;
   width: 500px;
   padding-bottom: 2rem;
+
   @media (max-width: 768px) {
     width: 100%;
     gap: 0;
@@ -81,7 +98,11 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  @media (max-width: 900px) {
+    width: 90%;
+  }
   @media (max-width: 768px) {
+    width: 100%;
     flex-direction: column;
     gap: 1rem;
     padding-top: 5rem;
@@ -117,6 +138,9 @@ form {
   display: flex;
   align-items: center;
   cursor: pointer;
+  @media (max-width: 825px) {
+    padding: 10px 10px;
+  }
   @media (max-width: 768px) {
     display: none;
   }
@@ -132,6 +156,9 @@ form {
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  @media (max-width: 825px) {
+    padding: 10px 10px;
+  }
 }
 
 .btn-img {
@@ -151,7 +178,6 @@ form {
 }
 
 .input-group {
-  width: 100%;
   display: flex;
   align-items: center;
   border: 1px solid vars.$font-lightcolor;
@@ -187,6 +213,9 @@ form {
 .close-btn-container {
   display: flex;
   justify-content: end;
+  @media (max-width: 900px) {
+    padding-right: clamp(20px, 1vw, 40px);
+  }
   @media (max-width: 768px) {
     display: none;
   }
