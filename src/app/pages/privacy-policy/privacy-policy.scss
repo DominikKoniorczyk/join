@@ -1,0 +1,61 @@
+@use '../../styles/variables.scss' as *;
+
+.privacy-page {
+    width: 100%;
+    min-height: calc(100vh - 64px);
+    background: $content-bg;
+}
+
+.privacy-container {
+    max-width: 980px;
+    width: 100%;
+    margin-left: clamp(0px, 8vw, 96px);
+
+    padding: clamp(60px, 10vh, 100px) 24px clamp(120px, 15vh, 150px);
+    box-sizing: border-box;
+
+    h1 {
+        font-size: clamp(40px, 8vw, 61px);
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 0 0 18px 0;
+    }
+
+    h2 {
+        font-size: clamp(20px, 4vw, 27px);
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 28px 0 12px 0;
+    }
+
+    p {
+        font-size: clamp(14px, 2vw, 16px);
+        line-height: 1.2;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 1150px) {
+    .privacy-container {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .privacy-container {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 80px;
+        padding: 100px 16px 60px;
+        box-sizing: border-box;
+
+        h1 {
+            font-size: clamp(32px, 10vw, 47px);
+        }
+
+        h2 {
+            font-size: clamp(22px, 6vw, 27px);
+        }
+    }
+}

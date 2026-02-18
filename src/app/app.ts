@@ -12,9 +12,12 @@ import { NewContactSlider } from './components/contacts/contacts-menu/new-contac
   imports: [CommonModule,RouterOutlet, Header, Footer, Contacts, NewContactSlider],
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  
 })
+
 export class App {
   protected readonly title = signal('join');
 
   router = inject(Router);   
 }
+
