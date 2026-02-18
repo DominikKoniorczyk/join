@@ -149,7 +149,11 @@ export class Contacts {
   closeDialog() {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
-      dialogRef.close();
+      dialogRef.classList.add('closed');
+      setTimeout(() => {
+        dialogRef.close();
+        dialogRef.classList.remove('closed');
+      }, 300);
     }
   }
 

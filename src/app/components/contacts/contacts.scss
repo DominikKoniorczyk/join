@@ -150,4 +150,31 @@ dialog {
   border: none;
   border-radius: 25px;
   width: 900px;
+  overflow: visible;
+
+  &[open] {
+    animation: slideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  &.closed {
+    animation: slideOut 0.3s ease-in forwards;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
