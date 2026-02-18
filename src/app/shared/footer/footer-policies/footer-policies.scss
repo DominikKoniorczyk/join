@@ -1,9 +1,16 @@
 @use '../../../styles/variables.scss' as vars;
 
+:host{
+  display: flex;
+  justify-content: center;
+}
+
 .content {
   padding-bottom: 3rem;
+  width: 70%;
   @media (max-width: 768px) {
     display: none;
+    width: 100%;
   }
 }
 

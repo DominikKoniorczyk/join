@@ -74,7 +74,6 @@ export class NewContactSlider {
 
   @Output('closeDialog') close = new EventEmitter<void>();
 
-
   /** * The reactive form group for adding a new contact.
    * @type {FormGroup}
    */
@@ -118,6 +117,7 @@ export class NewContactSlider {
       console.log('Form is invalid');
       this.contactForm.markAllAsTouched();
     }
+    this.contactForm.reset();
   }
 
   /**Subscripe the change on input fields. Set the values of the corresponding data in contactData.*

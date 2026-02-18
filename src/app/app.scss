@@ -1,8 +1,10 @@
 .main-container {
   max-width: calc(1440px - 15rem);
-  width: 100%;
+  width: calc(100% - 15rem);
+  height: 100dvh;
   margin-left: 15rem;
   @media (max-width: 768px) {
     margin: 0;
+    width: 100%;
   }
 }
