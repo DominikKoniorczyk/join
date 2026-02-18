@@ -1,66 +1,83 @@
 <div class="contacts-wrapper">
-  @if(!contactsDetailOpen()){
-  <section class="contacts_outer">
-    <button class="add_btn" (click)="openNewContact()">
-      Add new contact <img src="/assets/img/add-contact-icon.png" alt="add-contact-icon" />
-    </button>
-    <div class="contacts_scroll_container">
-      @if (isLoading()) {
-      <p>Loading contacts...</p>
-      } @else if (groupedUsers().length === 0) {
-      <p>No persons found.</p>
-      } @else {
-      @for (group of groupedUsers(); track group.key) {
-      <h2>{{ group.key }}</h2>
-      <div class="line_under_letter"></div>
-      @for (person of group.value; track person.id) {
-      <div #contactBtn id="{{ person.id }}" class="contact_inner_card" (click)="openContact(person, person.id)">
-        <div class="contact_initials" [style.background-color]="person.color" [attr.aria-label]="person.name">
-          <p>{{ person.name | initials }}</p>
+  @if (!contactsDetailOpen()) {
+    <section class="contacts_outer">
+      <button class="add_btn" (click)="openNewContact()">
+        Add new contact <img src="/assets/img/add-contact-icon.png" alt="add-contact-icon" />
+      </button>
+      <div class="contacts_scroll_container">
+        @if (isLoading()) {
+          <p>Loading contacts...</p>
+        } @else if (groupedUsers().length === 0) {
+          <p>No persons found.</p>
+        } @else {
+          @for (group of groupedUsers(); track group.key) {
+            <h2>{{ group.key }}</h2>
+            <div class="line_under_letter"></div>
+            @for (person of group.value; track person.id) {
+              <div
+                #contactBtn
+                id="{{ person.id }}"
+                class="contact_inner_card"
+                (click)="openContact(person, person.id)"
+              >
+                <div
+                  class="contact_initials"
+                  [style.background-color]="person.color"
+                  [attr.aria-label]="person.name"
+                >
+                  <p>{{ person.name | initials }}</p>
+                </div>
+                <div class="details">
+                  <h3>{{ person.name }}</h3>
+                  <a href="mailto:{{ person.email }}">
+                    {{ person.email }}
+                  </a>
+                </div>
+              </div>
+            }
+          }
+        }
+      </div>
+    </section>
+    <section class="contacts_detail_area">
+      <div class="content_detail_inner">
+        <div class="contacts_detail_headline">
+          <h1>Contacts</h1>
+          <div class="blue_vertical_line"></div>
+          <p class="subheadline">Better with a team</p>
         </div>
-        <div class="details">
-          <h3>{{ person.name }}</h3>
-          <a href="mailto:{{ person.email }}">
-            {{ person.email }}
-          </a>
+        @if (selectedContact()) {
+          <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)">
+          </app-contacts-menu>
+        }
+      </div>
+    </section>
+  } @else {
+    <section class="details_mobile">
+      <div class="content_detail_inner">
+        <div class="contacts_detail_headline">
+          <h1>Contacts</h1>
+          <p class="subheadline">Better with a team</p>
+          <div class="blue_vertical_line"></div>
         </div>
+        <button class="back_btn" aria-label="Go back">
+          <img src="/assets/img/arrow-left-long.png" alt="arrow left image" />
+        </button>
       </div>
-      }
-      }
-      }
-    </div>
-  </section>
-  <section class="contacts_detail_area">
-    <div class="content_detail_inner">
-      <div class="contacts_detail_headline">
-        <h1>Contacts</h1>
-        <div class="blue_vertical_line"></div>
-        <p class="subheadline">Better with a team</p>
+      <div class="content_detail_inner">
+        <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)">
+        </app-contacts-menu>
       </div>
-      @if (selectedContact()) {
-      <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)"> </app-contacts-menu>
-      }
-    </div>
-  </section>
-  }
-  @else{
-  <section class="details_mobile">
-    <div class="content_detail_inner">
-      <div class="contacts_detail_headline">
-        <h1>Contacts</h1>
-        <p class="subheadline">Better with a team</p>
-        <div class="blue_vertical_line"></div>
-      </div>
-      <button class="back_btn" aria-label="Go back"><img src="/assets/img/arrow-left-long.png"
-          alt="arrow left image"></button>
-    </div>
-    <div class="content_detail_inner">
-      <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)"> </app-contacts-menu>
-    </div>
-  </section>
+    </section>
   }
 </div>
 
 <dialog id="addContactModal">
   <app-new-contact-slider (closeDialog)="closeDialog()"></app-new-contact-slider>
+</dialog>
+
+<dialog id="uxFeedbackNotification" class="feedback-notification">
+  <div class="notification-content">
+    <p>Contact successfully created!</p>
+  </div>
 </dialog>
