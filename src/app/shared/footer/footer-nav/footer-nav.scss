@@ -66,20 +66,23 @@ button {
   width: 100%;
   align-items: center;
 
-  svg{
+  svg {
     width: 24px;
     height: 24px;
   }
 
-  #path1{
+  #path1,
+  #path2 {
     fill: vars.$font-lightcolor;
   }
 
   &:hover {
     cursor: pointer;
+    color: white;
 
-    #path1{
-      fill: red;
+    #path1,
+    #path2 {
+      fill: white;
     }
   }
 
