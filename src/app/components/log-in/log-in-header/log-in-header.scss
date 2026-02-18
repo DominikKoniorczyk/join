@@ -1,0 +1,33 @@
+@use '../../../styles/variables.scss' as *;
+
+.login-header {
+    position: fixed;
+    top: 67px;
+    right: 67px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    width: 279px;
+    height: 49px;
+}
+
+.login-text {
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.signup-btn {
+    height: 49px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 8px;
+    background: $primary-color;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 100ms ease;
+}
+
+.signup-btn:hover {
+    background: $brand-color;
+}

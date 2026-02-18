@@ -1,0 +1,7 @@
+@use '../../styles/variables.scss' as *;
+
+:host {
+    position: fixed;
+    inset: 0;
+    background: $content-bg;
+}

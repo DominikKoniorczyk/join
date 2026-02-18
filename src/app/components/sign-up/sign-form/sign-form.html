@@ -1,1 +1,70 @@
-<p>sign-form works!</p>
+<section class="sign-form-wrap">
+    <div class="sign-card">
+
+        <a class="back-arrow" routerLink="/login">
+            <img src="assets/img/arrow-left-long.png" alt="Back" />
+        </a>
+
+        <h1 class="title">Sign up</h1>
+        <div class="title-underline"></div>
+
+        <form class="form" (ngSubmit)="onSubmit()">
+
+            <!-- Name -->
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Name" />
+
+                <div class="icon-slot">
+                    <img src="assets/img/person-icon.png" alt="" />
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email" autocomplete="email" />
+
+                <div class="icon-slot">
+                    <img src="assets/img/mail-icon.png" alt="" />
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="input-group">
+                <input [(ngModel)]="password" name="password" [type]="showPassword ? 'text' : 'password'"
+                    placeholder="Password" autocomplete="new-password" (input)="showPassword = false" />
+
+                <button type="button" class="icon-slot" (click)="togglePassword()">
+                    <img [src]="getPasswordIcon()" alt="" />
+                </button>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="input-group">
+                <input [(ngModel)]="confirmPassword" name="confirmPassword"
+                    [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Confirm Password"
+                    autocomplete="new-password" (input)="showConfirmPassword = false" />
+
+                <button type="button" class="icon-slot" (click)="toggleConfirmPassword()">
+                    <img [src]="getConfirmPasswordIcon()" alt="" />
+                </button>
+            </div>
+
+            <div class="policy-row" (click)="togglePolicy()">
+                <img class="policy-box" [src]="acceptPolicy
+            ? 'assets/img/checkmarkbox-checked.png'
+            : 'assets/img/checkmarkbox-empty.png'" alt="" />
+                <span class="policy-text">
+                    I accept the
+                    <a routerLink="/privacy-policy" (click)="$event.stopPropagation()">
+                        Privacy policy
+                    </a>
+                </span>
+            </div>
+
+            <button class="submit-btn" type="submit" [disabled]="!acceptPolicy">
+                Sign up
+            </button>
+
+        </form>
+    </div>
+</section>

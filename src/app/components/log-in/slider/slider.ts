@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
-  imports: [],
+  standalone: true,
   templateUrl: './slider.html',
-  styleUrl: './slider.scss',
+  styleUrls: ['./slider.scss'],
 })
-export class Slider {
+export class Slider implements OnInit {
+  @Output() done = new EventEmitter<void>();
 
+  ngOnInit(): void {
+    setTimeout(() => this.done.emit(), 1000); // 1000ms bis Log In Fenster sichtbar wird.
+  }
 }

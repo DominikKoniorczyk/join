@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-log-in-header',
+  selector: 'app-log-in-footer',
   standalone: true,
   imports: [RouterLink],
-  templateUrl: './log-in-header.html',
-  styleUrls: ['./log-in-header.scss'],
+  templateUrl: './log-in-footer.html',
+  styleUrls: ['./log-in-footer.scss'],
 })
-export class LogInHeader {}
+export class LogInFooter {}

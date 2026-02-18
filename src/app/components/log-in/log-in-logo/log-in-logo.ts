@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-log-in-logo',
-  imports: [],
+  standalone: true,
   templateUrl: './log-in-logo.html',
-  styleUrl: './log-in-logo.scss',
+  styleUrls: ['./log-in-logo.scss'],
 })
-export class LogInLogo {
+export class LogInLogo implements OnInit {
+  @Input() mode: 'splash' | 'stable' = 'splash';
+  @Output() done = new EventEmitter<void>();
 
+  ngOnInit(): void {
+    if (this.mode === 'splash') {
+      setTimeout(() => this.done.emit(), 1000);
+    }
+  }
 }

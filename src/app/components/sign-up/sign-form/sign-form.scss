@@ -1,0 +1,161 @@
+@use '../../../styles/variables.scss' as *;
+
+.sign-form-wrap {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+}
+
+.sign-card {
+    position: relative;
+    width: 598px;
+    height: 630px;
+    background: #fff;
+    border-radius: 30px;
+    padding: 48px 88px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.08);
+}
+
+.back-arrow {
+    position: absolute;
+    top: 56px;
+    left: 56px;
+    cursor: pointer;
+
+    img {
+        width: 21px;
+        height: 21px;
+    }
+}
+
+.title {
+    font-weight: 700;
+    font-size: 61px;
+    text-align: center;
+    margin: 0;
+}
+
+.title-underline {
+    width: 150px;
+    height: 3px;
+    background: $brand-color;
+    margin-top: -20px;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.input-group {
+    position: relative;
+    width: 422px;
+    height: 48px;
+}
+
+.input-group input {
+    width: 100%;
+    height: 100%;
+    padding: 12px 56px 12px 21px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    box-sizing: border-box;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: $font-lightcolor;
+}
+
+.icon-slot {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+button.icon-slot {
+    cursor: pointer;
+}
+
+.icon-slot img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+}
+
+button.icon-slot:hover img {
+    opacity: 1;
+}
+
+.policy-row {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.policy-box {
+    width: 24px;
+    height: 24px;
+}
+
+.policy-text {
+    font-size: 16px;
+    color: $font-lightcolor;
+
+    a {
+        color: $brand-color;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:visited {
+            color: $brand-color;
+        }
+    }
+}
+
+.submit-btn {
+    margin-top: 18px;
+    width: 110px;
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid $primary-color;
+    background: $primary-color;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.submit-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
