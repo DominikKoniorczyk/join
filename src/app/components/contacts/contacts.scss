@@ -151,6 +151,10 @@ dialog {
   border-radius: 25px;
   width: 900px;
   overflow: visible;
+  position: fixed;
+  top: 30%;
+  left: 20%;
+  transform: translate(-50%, -50%);
 
   &[open] {
     animation: slideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -158,6 +162,10 @@ dialog {
 
   &.closed {
     animation: slideOut 0.3s ease-in forwards;
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }
 
