@@ -158,6 +158,7 @@ dialog {
   transform: translate(-20%, 0);
 
   @media (max-width: 768px) {
+    max-width: 400px;
   }
 
   &[open] {
