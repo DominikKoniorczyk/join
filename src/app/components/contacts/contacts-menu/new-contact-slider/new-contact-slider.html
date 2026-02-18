@@ -9,13 +9,13 @@
   </div>
   <div class="right-column">
     <div class="close-btn-container">
-      <button class="close-dialog-btn" (click)="emitCloseDialog()">
+      <button class="close-dialog-btn" (click)="emitCloseDialog(); onCancel()">
         <img src="./assets/img/close-cross.png" alt="" />
       </button>
     </div>
     <div class="bottom-container">
-      <div class="default-img">
-        @if (contactData()?.name) {
+      <div class="default-img" [style.background-color]="contactData().color || null">
+        @if (contactData().name) {
           <p>{{ contactData()!.name | initials }}</p>
         } @else {
           <img class="person-img" src="./assets/img/person-icon.png" alt="" />

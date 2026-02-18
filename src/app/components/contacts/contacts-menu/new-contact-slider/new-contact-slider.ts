@@ -20,9 +20,12 @@ import { InitialsPipe } from '../../../../services/contacts.services';
 export function contactNameValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const name: string = control.value;
-    const nameRegex = /^[a-zA-ZäöüÄÖÜß]{2,}\s+[a-zA-ZäöüÄÖÜß]{2,}$/;
-    const isValid = nameRegex.test(name.trim());
-    return isValid ? null : { invalidContactName: true };
+    if(name){
+      const nameRegex = /^[a-zA-ZäöüÄÖÜß]{2,}\s+[a-zA-ZäöüÄÖÜß]{2,}$/;
+      const isValid = nameRegex.test(name.trim());
+      return isValid ? null : { invalidContactName: true };
+    }
+    return null;
   };
 }
 
@@ -42,8 +45,8 @@ export function contactEmailValidator(): ValidatorFn {
         return domain.substring(domain.lastIndexOf('.') + 1).length >= 2
           ? null
           : {
-              email: true,
-            };
+            email: true,
+          };
       }
     }
     return { email: {} };
@@ -58,8 +61,11 @@ export function contactEmailValidator(): ValidatorFn {
 export function contactPhoneValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const phoneNumber: number = control.value;
-    const validNumber = phoneNumber != 0 && control.value.length > 5;
-    return validNumber ? null : { invalidPhoneNumber: true };
+    if(phoneNumber){
+      const validNumber = phoneNumber != 0 && control.value.length > 5;
+      return validNumber ? null : { invalidPhoneNumber: true };
+    }
+    return null;
   };
 }
 
@@ -118,6 +124,7 @@ export class NewContactSlider {
       this.contactForm.markAllAsTouched();
     }
     this.contactForm.reset();
+    this.contactData.set({name: '', phone_number: 0, email: '', color: ''});
   }
 
   /**Subscripe the change on input fields. Set the values of the corresponding data in contactData.*
@@ -126,6 +133,7 @@ export class NewContactSlider {
     this.contactForm.get('name')?.valueChanges.subscribe((value) => {
       this.contactData.update((current) => {
         if (!current) return current;
+        if (!current.color) return { ...current, name: value!, color: this.getRandomeColor() };
         return { ...current, name: value! };
       });
     });
@@ -149,6 +157,7 @@ export class NewContactSlider {
    */
   onCancel() {
     this.contactForm.reset();
+    this.contactData.set({name: '', phone_number: 0, email: '', color: ''});
   }
 
   colors: string[] = [
