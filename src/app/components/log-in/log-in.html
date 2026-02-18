@@ -1,1 +1,8 @@
-<p>log-in works!</p>
+<app-log-in-logo *ngIf="phase === 'splash'" mode="splash" (done)="onSplashDone()"></app-log-in-logo>
+
+<app-slider *ngIf="phase === 'slide'" (done)="onSlideDone()"></app-slider>
+
+<app-log-in-logo *ngIf="phase === 'stable'" mode="stable"></app-log-in-logo>
+<app-log-in-header *ngIf="phase === 'stable'"></app-log-in-header>
+<app-log-in-form *ngIf="phase === 'stable'"></app-log-in-form>
+<app-log-in-footer *ngIf="phase === 'stable'"></app-log-in-footer>
