@@ -166,6 +166,7 @@ h3 {
   width: 80%;
   height: 80%;
   overflow: hidden;
+  position: relative;
 }
 
 .details_mobile {
@@ -250,10 +251,12 @@ h3 {
 
   &[open] {
     animation: slideIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    z-index: 0;
   }
 
   &.closed {
     animation: slideOut 0.3s ease-in forwards;
+    z-index: -10;
   }
 
   @media (max-width: 768px) {
@@ -261,12 +264,15 @@ h3 {
     max-width: 400px;
     top: 50%;
     left: 50%;
+
     &[open] {
+      z-index: 0;
       animation: slideUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
 
     &.closed {
       animation: slideDown 0.3s ease-in forwards;
+      z-index: -10;
     }
   }
 
@@ -318,7 +324,6 @@ h3 {
 .feedback-notification {
   border-radius: 1rem;
   top: 80%;
-  left: 30%;
   width: 326px;
   height: 74px;
   display: flex;
@@ -327,13 +332,11 @@ h3 {
   font-size: 1.25rem;
   font-weight: 400;
   border: none;
-
+  opacity: 0;
   background: vars.$tertiary-color;
   color: white;
 
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-
-  transform: translateX(150%);
 
   &.active {
     animation: slideInOut 2.5s ease-in-out forwards;
@@ -342,15 +345,26 @@ h3 {
 
 @keyframes slideInOut {
   0% {
-    transform: translateX(150%);
+    left: 100%;
+    transform: translateX(100%);
+    opacity: 0;
   }
+
   10% {
+    left: 746px;
     transform: translateX(0);
+    opacity: 1;
   }
+
   90% {
+    left: 746px;
     transform: translateX(0);
+    opacity: 1;
   }
+
   100% {
-    transform: translateX(0);
+    left: 100%;
+    transform: translateX(100%);
+    opacity: 0;
   }
 }

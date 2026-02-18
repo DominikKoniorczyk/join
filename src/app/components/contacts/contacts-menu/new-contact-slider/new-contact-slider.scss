@@ -1,5 +1,15 @@
 @use '../../../../styles/variables.scss' as vars;
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
 .content {
   width: 100%;
   display: flex;

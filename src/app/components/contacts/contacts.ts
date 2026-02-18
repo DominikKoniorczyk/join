@@ -180,15 +180,16 @@ export class Contacts {
   }
 
   triggerUxFeedback() {
-    const notificationRef = document.getElementById('uxFeedbackNotification');
-    if (notificationRef instanceof HTMLDialogElement) {
-      notificationRef.showModal();
-      notificationRef.classList.add('active');
-
-      // setTimeout(() => {
-      //   notificationRef.classList.remove('active');
-      //   notificationRef.close();
-      // }, 2500);
-    }
+    setTimeout(() => {
+      const notificationRef = document.getElementById('uxFeedbackNotification');
+      if (notificationRef instanceof HTMLDialogElement) {
+        notificationRef.showModal();
+        notificationRef.classList.add('active');
+        setTimeout(() => {
+          notificationRef.classList.remove('active');
+          notificationRef.close();
+        }, 2500);
+      }
+    }, 302);
   }
 }

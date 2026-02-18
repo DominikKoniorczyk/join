@@ -62,7 +62,7 @@ export function contactPhoneValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const phoneNumber: number = control.value;
     if (phoneNumber) {
-      const validNumber = phoneNumber != 0 && control.value.length > 5;
+      const validNumber = phoneNumber != 0;
       return validNumber ? null : { invalidPhoneNumber: true };
     }
     return null;
@@ -128,6 +128,8 @@ export class NewContactSlider {
     }
     this.contactForm.reset();
     this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
+    this.emitCloseDialog();
+    setTimeout(() => {this.contactCreated.emit()}, 300);
   }
 
   /**Subscripe the change on input fields. Set the values of the corresponding data in contactData.*
