@@ -126,6 +126,7 @@ export class NewContactSlider {
     this.contactForm.get('name')?.valueChanges.subscribe((value) => {
       this.contactData.update((current) => {
         if (!current) return current;
+        if (!current.color) return { ...current, name: value!, color: this.getRandomeColor() };
         return { ...current, name: value! };
       });
     });
