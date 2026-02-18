@@ -25,11 +25,9 @@ export class ContactsMenu {
   */
   onEdit() {
     if (!this.person) return;
-
     this.isEditing = true;
-
-
     this.editableContact = { ...this.person };
+    this.editContact.emit(this.person);
   }
 
   /**
@@ -39,7 +37,6 @@ export class ContactsMenu {
    */
   onSave() {
     if (!this.editableContact) return;
-
     this.editContact.emit(this.editableContact);
     this.isEditing = false;
   }
@@ -75,9 +72,7 @@ export class ContactsMenu {
    */
   onDelete() {
     if (!this.person) return;
-
     const confirmDelete = confirm('Do you want to delete this user?');
-
     if (confirmDelete) {
       this.deleteContact.emit(this.person.id);
     }

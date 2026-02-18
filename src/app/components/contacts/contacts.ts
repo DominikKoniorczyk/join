@@ -1,4 +1,4 @@
-import { SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
+import { NewContactsInterface, SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
 import {
   Component,
   computed,
@@ -7,6 +7,7 @@ import {
   inject,
   QueryList,
   signal,
+  ViewChild,
   ViewChildren,
 } from '@angular/core';
 import { Supabase } from '../../services/supabase';
@@ -26,6 +27,7 @@ import { NewContactSlider } from './contacts-menu/new-contact-slider/new-contact
 })
 export class Contacts {
   @ViewChildren('contactBtn') allBtn!: QueryList<ElementRef<HTMLDivElement>>;
+  @ViewChild('contactModal') contactsModal!: NewContactSlider;
 
   supabaseClientService = inject(Supabase);
   supabaseChannel: RealtimeChannel;
@@ -177,6 +179,14 @@ export class Contacts {
    */
   ngOnDestroy() {
     this.supabaseChannel.unsubscribe();
+  }
+
+  editContact(contact: SupabaseContactsInterface){
+    if(contact){
+      this.contactsModal.editingContact = contact;
+      this.contactsModal.checkIsEditing();
+      this.openNewContact();
+    }
   }
 
   triggerUxFeedback() {

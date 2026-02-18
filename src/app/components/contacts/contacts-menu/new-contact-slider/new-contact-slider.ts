@@ -1,5 +1,5 @@
-import { NewContactsInterface } from './../../../../interfaces/supabase.interfaces';
-import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
+import { NewContactsInterface, SupabaseContactsInterface } from './../../../../interfaces/supabase.interfaces';
+import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { Supabase } from '../../../../services/supabase';
 import { InitialsPipe } from '../../../../services/contacts.services';
@@ -12,11 +12,12 @@ import { contactEmailValidator, contactNameValidator, contactPhoneValidator } fr
   styleUrl: './new-contact-slider.scss',
 })
 export class NewContactSlider {
-  // closeDialog = output<void>();
-
+  @Input() editingContact: SupabaseContactsInterface = {id: 0, created_at: "", name: "", email: "", phone_number: 0, color: ""};
   @Output('closeDialog') close = new EventEmitter<void>();
-
   @Output() contactCreated = new EventEmitter<void>();
+
+  id: number = 0;
+  isEditing: boolean = false;
 
   /** * The reactive form group for adding a new contact.
    * @type {FormGroup}
@@ -49,6 +50,22 @@ export class NewContactSlider {
     this.subscripeAllInputFields();
   }
 
+  checkIsEditing(){
+    if(this.returnValidEditing()){
+      this.contactForm.get('name')?.setValue(this.editingContact.name);
+      this.contactForm.get('email')?.setValue(this.editingContact.email);
+      this.contactForm.get('phone')?.setValue(this.editingContact.phone_number);
+      this.id = this.editingContact.id;
+      this.isEditing = true;
+      console.log(this.id);
+
+    }
+  }
+
+  returnValidEditing(){
+    return this.editingContact.name != "" || this.editingContact.email != "" || this.editingContact.phone_number != 0;
+  }
+
   /**
    * Handles form submission.
    * Logs the form data to the console if valid, otherwise marks all fields as touched to trigger error messages.
@@ -56,7 +73,8 @@ export class NewContactSlider {
    */
   onSubmit() {
     if (this.contactForm.valid) {
-      this.supabaseClient.uploadJSONToTable('users', this.contactData());
+      if(!this.isEditing) this.supabaseClient.uploadJSONToTable('users', this.contactData());
+      else this.supabaseClient.updateRow('users', this.contactData(), this.id);
       this.contactCreated.emit();
     } else {
       console.log('Form is invalid');
@@ -93,12 +111,25 @@ export class NewContactSlider {
   }
 
   /**
+   * Checks if the modal is in editing mode, if delete the contact.
    * Resets the contact form to its initial empty state and clears all validation errors.
    * @returns {void}
    */
   onCancel() {
+    if(this.isEditing) this.supabaseClient.deleteRow("users", this.id);
     this.contactForm.reset();
     this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
+    this.isEditing = false;
+  }
+
+  /**
+   * Resets the contact form to its initial empty state and clears all validation errors.
+   * @returns {void}
+   */
+  onClose() {
+    this.contactForm.reset();
+    this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
+    this.isEditing = false;
   }
 
   colors: string[] = [

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { environment } from '../environment/supabasekeys';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,8 @@ export class Supabase {
 
   constructor() {
     this.supabaseClient = createClient(
-      'https://ndtlhvbchxbiuaftuowb.supabase.co',
-      'sb_publishable_WuxJeCPnwQLmUudBbPIw8A_Ch0Wc3NV',
+      environment.supabaseUrl,
+      environment.supabaseAnonKey,
     );
   }
 
@@ -112,8 +113,8 @@ export class Supabase {
   async updateRow(tableName: string, newData: any, id: number) {
     const { error } = await this.supabaseClient
       .from(tableName)
-      .upsert(newData)
-      .eq('id', 0)
+      .update(newData)
+      .eq('id', id)
     if (error) throw error;
   }
 }

@@ -1,12 +1,12 @@
 <div class="content">
   <div class="left-column">
     <div class="mobile-close-btn-container">
-      <button class="close-btn-mobile" (click)="emitCloseDialog(); onCancel()">
+      <button class="close-btn-mobile" (click)="emitCloseDialog(); onClose()">
         <img src="./assets/img/close-light.png" alt="" />
       </button>
     </div>
     <img class="logo" src="./assets/img/join-logo-light.png" alt="" />
-    <h2>Add contact</h2>
+    <h2>@if(isEditing){Edit contact} @else{ Add contact}</h2>
     <div class="container-with-line">
       <p>Tasks are better with a team!</p>
       <div class="line"></div>
@@ -14,7 +14,7 @@
   </div>
   <div class="right-column">
     <div class="close-btn-container">
-      <button class="close-dialog-btn" (click)="emitCloseDialog(); onCancel()">
+      <button class="close-dialog-btn" (click)="emitCloseDialog(); onClose()">
         <img src="./assets/img/close-cross.png" alt="" />
       </button>
     </div>
@@ -33,14 +33,12 @@
               <input type="text" placeholder="Name" formControlName="name" />
               <img src="./assets/img/person-icon.png" alt="" />
             </div>
-
             <div class="error-wrapper">
               @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
                 <div class="error-message">Please fill out your first and last name.</div>
               }
             </div>
           </div>
-
           <div class="input-field-container">
             <div class="input-group">
               <input type="email" placeholder="Email" formControlName="email" />
@@ -52,7 +50,6 @@
               }
             </div>
           </div>
-
           <div class="input-field-container">
             <div class="input-group">
               <input type="number" placeholder="Phone" formControlName="phone" />
@@ -66,10 +63,10 @@
           </div>
           <div class="button-container">
             <button type="button" class="cancel-btn" (click)="emitCloseDialog(); onCancel()">
-              Cancel <img class="btn-img" src="./assets/img/close-cross.png" alt="" />
+              @if(isEditing){Delete} @else{Cancel} @if(!isEditing){<img class="btn-img" src="./assets/img/close-cross.png" alt="" />}
             </button>
             <button type="submit" class="create-btn" [disabled]="contactForm.invalid">
-              Create contact <img class="btn-img-check" src="./assets/img/check-small.png" alt="" />
+              @if(isEditing){Save} @else{Create contact} <img class="btn-img-check" src="./assets/img/check-small.png" alt="" />
             </button>
           </div>
         </form>
