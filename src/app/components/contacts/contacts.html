@@ -5,27 +5,36 @@
     </button>
     <div class="contacts_scroll_container">
       @if (isLoading()) {
-      <p>Loading contacts...</p>
+        <p>Loading contacts...</p>
       } @else if (groupedUsers().length === 0) {
-      <p>No persons found.</p>
+        <p>No persons found.</p>
       } @else {
-      @for (group of groupedUsers(); track group.key) {
-      <h2>{{ group.key }}</h2>
-      <div class="line_under_letter"></div>
-      @for (person of group.value; track person.id) {
-      <div #contactBtn id="{{ person.id }}" class="contact_inner_card" (click)="openContact(person, person.id)">
-        <div class="contact_initials" [style.background-color]="person.color" [attr.aria-label]="person.name">
-          <p>{{ person.name | initials }}</p>
-        </div>
-        <div class="details">
-          <h3>{{ person.name }}</h3>
-          <a href="mailto:{{ person.email }}">
-            {{ person.email }}
-          </a>
-        </div>
-      </div>
-      }
-      }
+        @for (group of groupedUsers(); track group.key) {
+          <h2>{{ group.key }}</h2>
+          <div class="line_under_letter"></div>
+          @for (person of group.value; track person.id) {
+            <div
+              #contactBtn
+              id="{{ person.id }}"
+              class="contact_inner_card"
+              (click)="openContact(person, person.id)"
+            >
+              <div
+                class="contact_initials"
+                [style.background-color]="person.color"
+                [attr.aria-label]="person.name"
+              >
+                <p>{{ person.name | initials }}</p>
+              </div>
+              <div class="details">
+                <h3>{{ person.name }}</h3>
+                <a href="mailto:{{ person.email }}">
+                  {{ person.email }}
+                </a>
+              </div>
+            </div>
+          }
+        }
       }
     </div>
   </section>
@@ -36,7 +45,8 @@
       <p class="subheadline">Better with a team</p>
     </div>
     @if (selectedContact()) {
-    <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)"> </app-contacts-menu>
+      <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)">
+      </app-contacts-menu>
     }
   </section>
 </div>
