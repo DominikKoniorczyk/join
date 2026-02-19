@@ -407,6 +407,13 @@ h3 {
   }
 }
 
+.mobile-btn-container {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
 .mobile-add-contact-btn {
   position: absolute;
   bottom: 100px;
