@@ -338,11 +338,19 @@ h3 {
   opacity: 0;
   background: vars.$tertiary-color;
   color: white;
-
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 
   &.active {
     animation: slideInOut 2.5s ease-in-out forwards;
+  }
+
+  @media (max-width: 768px) {
+    left: 100px;
+    bottom: -100px;
+
+    &.active {
+      animation: slideUpDown 2.5s ease-in-out forwards;
+    }
   }
 }
 
@@ -372,21 +380,25 @@ h3 {
   }
 }
 
-@keyframes sildeUpDown {
+@keyframes slideUpDown {
   0% {
     bottom: -100px;
+    transform: translateY(100%);
     opacity: 0;
   }
   15% {
     bottom: 40px;
+    transform: translateY(0);
     opacity: 1;
   }
   85% {
     bottom: 40px;
+    transform: translateY(0);
     opacity: 1;
   }
   100% {
     bottom: -100px;
+    transform: translateY(100%);
     opacity: 0;
   }
 }
