@@ -38,6 +38,9 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .contacts_detail_headline {
@@ -365,6 +368,25 @@ h3 {
   100% {
     left: 100%;
     transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes sildeUpDown {
+  0% {
+    bottom: -100px;
+    opacity: 0;
+  }
+  15% {
+    bottom: 40px;
+    opacity: 1;
+  }
+  85% {
+    bottom: 40px;
+    opacity: 1;
+  }
+  100% {
+    bottom: -100px;
     opacity: 0;
   }
 }
