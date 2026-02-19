@@ -203,6 +203,10 @@ export class Contacts {
     }
   }
 
+  closeMobileDetails(){
+    this.contactsDetailOpen.set(false);
+  }
+
   triggerUxFeedback() {
     setTimeout(() => {
       const notificationRef = document.getElementById('uxFeedbackNotification');
