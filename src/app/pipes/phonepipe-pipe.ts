@@ -24,11 +24,22 @@ export class PhonePipe implements PipeTransform {
     str = str.replace(/\D/g, '');
     let formatted = '+' + str[0] + str.slice(1);
     if (str.length > 2) {
-      const country = str.slice(0, 2);
+      const countryCode = this.getHasCountryCode(str);
+      const country = str.slice(0, countryCode ? 2 : 0);
       const rest = str.slice(2);
       const pattern = rest.match(/.{1,4}/g);
-      formatted = `+${country} ${pattern?.join(' ')}`;
+      let symbol = countryCode ? "+" : "0";
+      formatted = countryCode ? `+${country} ${pattern?.join(' ')}` : `${country} ${pattern?.join(' ')}`;
     }
     return formatted;
+  }
+
+  getHasCountryCode(value: string): boolean{
+    if(value.slice(0,1) != "0"){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }

@@ -38,17 +38,9 @@
         </div>
         <div class="info-group">
           <p class="info-label">Phone</p>
-          <a class="info-value email-link" href="tel:{{ selectedPerson()!.phone_number }}">{{
-            selectedPerson()!.phone_number | phoneFormat
-          }}</a>
+          <a class="info-value email-link" href="tel:{{ selectedPerson()!.phone_number }}">{{ selectedPerson()!.phone_number | phoneFormat }}</a>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="mobile-btn-container">
-    <button class="mobile-edit-contact-btn">
-      <img src="./assets/img/edit-mobile-btn-icon.png" alt="" />
-    </button>
   </div>
 }
