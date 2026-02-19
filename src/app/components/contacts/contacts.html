@@ -55,32 +55,33 @@
           >
           </app-contacts-menu>
         }
-        <dialog id="uxFeedbackNotification" class="feedback-notification">
-          <div class="notification-content">
-            <p>Contact successfully created!</p>
-          </div>
-        </dialog>
       </div>
     </section>
   } @else {
-  <section class="details_mobile">
-    <div class="content_detail_inner">
-      <div class="contacts_detail_headline">
-        <h1>Contacts</h1>
-        <p class="subheadline">Better with a team</p>
-        <div class="blue_vertical_line"></div>
+    <section class="details_mobile">
+      <div class="content_detail_inner">
+        <div class="contacts_detail_headline">
+          <h1>Contacts</h1>
+          <p class="subheadline">Better with a team</p>
+          <div class="blue_vertical_line"></div>
+        </div>
+        <button (click)="closeMobileDetails()" class="back_btn" aria-label="Go back">
+          <img src="/assets/img/arrow-left-long.png" alt="arrow left image" />
+        </button>
       </div>
-      <button (click)="closeMobileDetails()" class="back_btn" aria-label="Go back">
-        <img src="/assets/img/arrow-left-long.png" alt="arrow left image" />
-      </button>
-    </div>
-    <div class="content_detail_inner">
-      <app-contacts-menu #detailsMobil [person]="selectedContact()" (deleteContact)="deleteUser($event)">
-      </app-contacts-menu>
-    </div>
-
-  </section>
+      <div class="content_detail_inner">
+        <app-contacts-menu #detailsMobil [person]="selectedContact()" (deleteContact)="deleteUser($event)">
+        </app-contacts-menu>
+      </div>
+      
+    </section>
   }
+  
+  <dialog id="uxFeedbackNotification" class="feedback-notification">
+    <div class="notification-content">
+      <p>Contact successfully created!</p>
+    </div>
+  </dialog>
 
   <div class="mobile-btn-container">
     <button class="mobile-add-contact-btn" (click)="openNewContact()">
