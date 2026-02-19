@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, ElementRef, ViewChild, signal } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-footer-nav',
@@ -9,5 +10,20 @@ import { RouterModule } from '@angular/router';
   styleUrl: './footer-nav.scss',
 })
 export class FooterNav {
+  currentURL = signal<string>("");
 
+  constructor(private router: Router){
+    this.updateActiveURL(this.router.url);
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {this.updateActiveURL(this.router.url)
+      });
+  }
+
+  updateActiveURL(newUrl: string){
+    this.currentURL.set(newUrl);
+
+    console.log(newUrl);
+
+  }
 }

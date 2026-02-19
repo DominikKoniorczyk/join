@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="button-container left">
+  <div [class.active]="currentURL() == '/summary'" class="button-container left">
     <button routerLink="/summary">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -11,7 +11,7 @@
       Summary
     </button>
   </div>
-  <div class="button-container left_center">
+  <div [class.active]="currentURL() == '/task'" class="button-container left_center">
     <button>
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask
@@ -36,7 +36,7 @@
       Add Task
     </button>
   </div>
-  <div class="button-container right_center">
+  <div [class.active]="currentURL() == '/board'" class="button-container right_center">
     <button>
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -51,7 +51,7 @@
         /></svg>Board
     </button>
   </div>
-  <div class="button-container right">
+  <div [class.active]="currentURL() == '/contacts'" class="button-container right">
     <button routerLink="/contacts">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask

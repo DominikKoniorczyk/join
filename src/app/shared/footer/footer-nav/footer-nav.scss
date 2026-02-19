@@ -45,14 +45,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   &:hover {
     background-color: #2a3d59;
+
     @media (max-width: 768px) {
       width: 100%;
-      background-color: vars.$tertiary-color;
+      background-color: transparent;
       border-radius: 1rem;
     }
   }
+}
+
+.active {
+  background: vars.$primary-color;
 }
 
 button {
@@ -100,6 +106,7 @@ button {
 
   &:hover {
     background-color: #2a3d59;
+
     @media (max-width: 768px) {
       background-color: vars.$tertiary-color;
     }
