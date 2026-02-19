@@ -251,13 +251,13 @@ h3 {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .contacts_detail_area {
     display: none;
   }
 
   .contacts_outer {
-    height: calc(100vh - 96px - 96px);
+    height: calc(100vh - 184px);
   }
 
   .contacts_scroll_container {
