@@ -37,8 +37,8 @@
         <div class="blue_vertical_line"></div>
         <p class="subheadline">Better with a team</p>
       </div>
-      @if (selectedContact()) {
-      <app-contacts-menu [person]="selectedContact()" (deleteContact)="deleteUser($event)" (editContact)="editContact($event)">
+      @if (selectedContact().name != "") {
+      <app-contacts-menu #details [person]="selectedContact()" (deleteContact)="deleteUser($event)" (editContact)="editContact($event)">
       </app-contacts-menu>
       }
       <dialog id="uxFeedbackNotification" class="feedback-notification">
@@ -61,7 +61,7 @@
       </button>
     </div>
     <div class="content_detail_inner">
-      <app-contacts-menu #details [person]="selectedContact()" (deleteContact)="deleteUser($event)">
+      <app-contacts-menu #detailsMobil (deleteContact)="deleteUser($event)">
       </app-contacts-menu>
     </div>
 

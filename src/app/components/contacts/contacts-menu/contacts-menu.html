@@ -1,19 +1,19 @@
-@if (person) {
+@if (selectedPerson()) {
 <div class="contact-detail" role="region" aria-labelledby="contact-detail-name">
   <div class="detail-header">
     <div class="detail-avatar-container">
       <div
         class="detail-avatar"
-        [style.background-color]="person.color"
+        [style.background-color]="selectedPerson()?.color"
         role="img"
-        [attr.aria-label]="person.name"
+        [attr.aria-label]="selectedPerson()?.name"
       >
-        {{ person.name | initials }}
+        {{ selectedPerson().name | initials }}
       </div>
     </div>
     <div class="detail-name-section">
         <h2 class="detail-name" id="contact-detail-name">
-          {{ person.name }}
+          {{ selectedPerson().name }}
         </h2>
         <div class="detail-actions contact_actions">
           <button
@@ -40,13 +40,13 @@
     <div class="info-content">
       <div class="info-group">
         <p class="info-label">Email</p>
-        <a [href]="'mailto:' + person.email" class="info-value email-link">
-          {{ person.email }}
+        <a [href]="'mailto:' + selectedPerson()?.email" class="info-value email-link">
+          {{ selectedPerson()?.email }}
         </a>
       </div>
       <div class="info-group">
         <p class="info-label">Phone</p>
-        <a class="info-value email-link" href="tel:{{person.phone_number}}">{{ person.phone_number | phoneFormat }}</a>
+        <a class="info-value email-link" href="tel:{{selectedPerson()!.phone_number}}">{{ selectedPerson()!.phone_number | phoneFormat }}</a>
       </div>
     </div>
   </div>

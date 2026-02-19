@@ -28,12 +28,14 @@ import { NewContactSlider } from './contacts-menu/new-contact-slider/new-contact
 export class Contacts {
   @ViewChildren('contactBtn') allBtn!: QueryList<ElementRef<HTMLDivElement>>;
   @ViewChild('contactModal') contactsModal!: NewContactSlider;
+  @ViewChild('details') details!: ContactsMenu;
+  @ViewChild('detailsMobil') detailsMobile!: ContactsMenu;
 
   supabaseClientService = inject(Supabase);
   supabaseChannel: RealtimeChannel;
   dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
-  selectedContact = signal<SupabaseContactsInterface | null>(null);
+  selectedContact = signal<SupabaseContactsInterface>({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" });
   defaultContacts = defaultContacts;
   restoreDefaultContacts: boolean = false;
   contactsDetailOpen = signal(false);
@@ -131,6 +133,14 @@ export class Contacts {
     element?.classList.add('active_btn');
   }
 
+  updateDetails() {
+    const currentPerson = computed(() => this.dataUsers().filter(n => n.id == this.selectedContact().id));
+    console.log(currentPerson);
+
+    this.details?.update(currentPerson()[0]);
+    this.detailsMobile?.update(currentPerson()[0]);
+  }
+
   /**
    * Removes the active CSS class from all buttons.
    */
@@ -160,13 +170,14 @@ export class Contacts {
       setTimeout(() => {
         dialogRef.close();
         dialogRef.classList.remove('closed');
+        this.updateDetails();
       }, 300);
-    }
+    };
   }
 
   deleteUser(id: number) {
     this.supabaseClientService.deleteRow('users', id);
-    this.selectedContact.set(null);
+    this.selectedContact.set({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" });
   }
 
   @HostListener('window:resize')
@@ -181,8 +192,8 @@ export class Contacts {
     this.supabaseChannel.unsubscribe();
   }
 
-  editContact(contact: SupabaseContactsInterface){
-    if(contact){
+  editContact(contact: SupabaseContactsInterface) {
+    if (contact) {
       this.contactsModal.editingContact = contact;
       this.contactsModal.checkIsEditing();
       this.openNewContact();

@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
+import { Component, Input, Output, EventEmitter, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SupabaseContactsInterface } from '../../../interfaces/supabase.interfaces';
 import { PhonePipe } from '../../../pipes/phonepipe-pipe';
 import { InitialsPipe } from '../../../services/contacts.services';
 
@@ -17,18 +17,27 @@ export class ContactsMenu {
   @Output() deleteContact = new EventEmitter<number>();
   @Output() editContact = new EventEmitter<SupabaseContactsInterface>();
 
+  selectedPerson = signal<SupabaseContactsInterface>({id: 0, created_at:"", name: "", email:"", phone_number: 0, color: ""});
   isEditing = false;
-  editableContact: SupabaseContactsInterface | null = null;
 
   /**
   * Enables edit mode for the currently selected person
   * and creates a copy of their data for editing.
   */
   onEdit() {
-    if (!this.person) return;
+    if (!this.selectedPerson()) return;
     this.isEditing = true;
-    this.editableContact = { ...this.person };
-    this.editContact.emit(this.person);
+    this.editContact.emit(this.selectedPerson()!);
+  }
+
+  ngAfterViewInit(){
+    this.selectedPerson.set(this.person!);
+  }
+
+  update(person: SupabaseContactsInterface){
+    this.selectedPerson.set(person);
+    console.log(person);
+
   }
 
   /**
@@ -36,10 +45,10 @@ export class ContactsMenu {
    * Emits the `deleteContact` event with the person's ID if confirmed.
    */
   onDelete() {
-    if (!this.person) return;
+    if (!this.selectedPerson()) return;
     const confirmDelete = confirm('Do you want to delete this user?');
     if (confirmDelete) {
-      this.deleteContact.emit(this.person.id);
+      this.deleteContact.emit(this.selectedPerson()?.id);
     }
   }
 
