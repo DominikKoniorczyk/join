@@ -1,5 +1,15 @@
 import { SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
-import { Component, computed, ElementRef, HostListener, inject, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
+import {
+  Component,
+  computed,
+  ElementRef,
+  HostListener,
+  inject,
+  QueryList,
+  signal,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
@@ -21,11 +31,19 @@ export class Contacts {
   @ViewChild('details') details!: ContactsMenu;
   @ViewChild('detailsMobil') detailsMobile!: ContactsMenu;
 
+  isSlideOutVisible: boolean = false;
   supabaseClientService = inject(Supabase);
   supabaseChannel: RealtimeChannel;
   dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
-  selectedContact = signal<SupabaseContactsInterface>({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" });
+  selectedContact = signal<SupabaseContactsInterface>({
+    id: 0,
+    created_at: '',
+    name: '',
+    email: '',
+    phone_number: 0,
+    color: '',
+  });
   currentUserID: number = -1;
   defaultContacts = defaultContacts;
   restoreDefaultContacts: boolean = false;
@@ -138,7 +156,9 @@ export class Contacts {
    */
   updateDetails() {
     if (this.currentUserID != -1) {
-      const newCurrent: SupabaseContactsInterface = this.dataUsers().find(el => el.id === this.currentUserID)!;
+      const newCurrent: SupabaseContactsInterface = this.dataUsers().find(
+        (el) => el.id === this.currentUserID,
+      )!;
       this.selectedContact.set(newCurrent);
       this.details?.update(this.selectedContact());
       this.detailsMobile?.update(this.selectedContact());
@@ -175,7 +195,7 @@ export class Contacts {
         dialogRef.close();
         dialogRef.classList.remove('closed');
       }, 300);
-    };
+    }
   }
 
   /**
@@ -206,7 +226,14 @@ export class Contacts {
    */
   deleteUser(id: number) {
     this.supabaseClientService.deleteRow('users', id);
-    this.selectedContact.set({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" });
+    this.selectedContact.set({
+      id: 0,
+      created_at: '',
+      name: '',
+      email: '',
+      phone_number: 0,
+      color: '',
+    });
   }
 
   /**
@@ -246,5 +273,9 @@ export class Contacts {
         }, 2500);
       }
     }, 302);
+  }
+
+  toggleSlideOut() {
+    this.isSlideOutVisible = !this.isSlideOutVisible;
   }
 }
