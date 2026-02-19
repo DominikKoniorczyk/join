@@ -138,7 +138,7 @@ export class Contacts {
 
   updateDetails() {
     if (this.currentUserID != -1) {
-      const newCurrent: SupabaseContactsInterface = this.dataUsers().filter(el =>  el.id === this.currentUserID )[0];
+      const newCurrent: SupabaseContactsInterface = this.dataUsers().find(el =>  el.id === this.currentUserID )!;
       this.selectedContact.set(newCurrent);
       this.details?.update(this.selectedContact());
       this.detailsMobile?.update(this.selectedContact());
