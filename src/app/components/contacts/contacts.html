@@ -82,7 +82,7 @@
   </button>
   <div class="slide-out" [class.show]="isSlideOutVisible">
     <button (click)="editContact(selectedContact()); toggleSlideOut()" class="slide-out-btn"><img src="./assets/img/edit-icon.png" alt="" />Edit</button>
-    <button (click)="deleteUser(selectedContact().id); toggleSlideOut()" class="slide-out-btn">
+    <button (click)="deleteUser(selectedContact().id); toggleSlideOut(); closeMobileDetails()" class="slide-out-btn">
       <img src="./assets/img/delete-icon.png" alt="" />Delete
     </button>
   </div>
