@@ -261,11 +261,24 @@ export class Contacts {
    * and automatically removes the class and closes the dialog after 2.5 seconds.
    * The notification is triggered after a short delay of 302 milliseconds.
    */
+
   triggerUxFeedback() {
+    const isMobile = this.responsiveDetailsOpen();
+
     setTimeout(() => {
+      if (isMobile && this.dataUsers().length) {
+        const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
+
+        if (newest) {
+          this.openContact(newest, newest.id);
+          this.contactsDetailOpen.set(true);
+        }
+      }
+      
+      // Feedback
       const notificationRef = document.getElementById('uxFeedbackNotification');
       if (notificationRef instanceof HTMLDialogElement) {
-        notificationRef.showModal();
+        notificationRef.show();
         notificationRef.classList.add('active');
         setTimeout(() => {
           notificationRef.classList.remove('active');

@@ -42,11 +42,6 @@
         (editContact)="editContact($event)">
       </app-contacts-menu>
       }
-      <dialog id="uxFeedbackNotification" class="feedback-notification">
-        <div class="notification-content">
-          <p>Contact successfully created!</p>
-        </div>
-      </dialog>
     </div>
   </section>
   } @else {
@@ -67,7 +62,12 @@
     </div>
   </section>
   }
-</div>
+
+  <dialog id="uxFeedbackNotification" class="feedback-notification">
+    <div class="notification-content">
+      <p>Contact successfully created!</p>
+    </div>
+  </dialog>
 
 @if (!contactsDetailOpen()) {
 <div class="mobile-btn-container">
@@ -90,6 +90,8 @@
 }
 
 <dialog id="addContactModal" class="slider-modal">
+  <app-new-contact-slider #contactModal (contactCreated)="triggerUxFeedback()"
+    (closeDialog)="closeDialog()"></app-new-contact-slider>
   <app-new-contact-slider #contactModal (contactCreated)="triggerUxFeedback()"
     (closeDialog)="closeDialog()"></app-new-contact-slider>
 </dialog>
