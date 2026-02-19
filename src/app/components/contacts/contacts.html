@@ -63,21 +63,23 @@
       </div>
     </section>
   } @else {
-    <section class="details_mobile">
-      <div class="content_detail_inner">
-        <div class="contacts_detail_headline">
-          <h1>Contacts</h1>
-          <p class="subheadline">Better with a team</p>
-          <div class="blue_vertical_line"></div>
-        </div>
-        <button class="back_btn" aria-label="Go back">
-          <img src="/assets/img/arrow-left-long.png" alt="arrow left image" />
-        </button>
+  <section class="details_mobile">
+    <div class="content_detail_inner">
+      <div class="contacts_detail_headline">
+        <h1>Contacts</h1>
+        <p class="subheadline">Better with a team</p>
+        <div class="blue_vertical_line"></div>
       </div>
-      <div class="content_detail_inner">
-        <app-contacts-menu #detailsMobil (deleteContact)="deleteUser($event)"> </app-contacts-menu>
-      </div>
-    </section>
+      <button class="back_btn" aria-label="Go back">
+        <img src="/assets/img/arrow-left-long.png" alt="arrow left image" />
+      </button>
+    </div>
+    <div class="content_detail_inner">
+      <app-contacts-menu #detailsMobil [person]="selectedContact()" (deleteContact)="deleteUser($event)">
+      </app-contacts-menu>
+    </div>
+
+  </section>
   }
 
   <div class="mobile-btn-container">
