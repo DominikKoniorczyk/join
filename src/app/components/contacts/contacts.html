@@ -61,7 +61,7 @@
       </button>
     </div>
     <div class="content_detail_inner">
-      <app-contacts-menu #detailsMobil (deleteContact)="deleteUser($event)">
+      <app-contacts-menu #detailsMobil [person]="selectedContact()" (deleteContact)="deleteUser($event)">
       </app-contacts-menu>
     </div>
 
