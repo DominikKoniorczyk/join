@@ -1,15 +1,26 @@
 <div class="content">
   <div class="left-column">
-    <div class="mobile-close-btn-container">
-      <button class="close-btn-mobile" (click)="emitCloseDialog(); onClose()">
-        <img src="./assets/img/close-light.png" alt="" />
-      </button>
+    <div class="left-outer-container">
+      <div class="mobile-close-btn-container">
+        <button class="close-btn-mobile" (click)="emitCloseDialog(); onClose()">
+          <img src="./assets/img/close-light.png" alt="" />
+        </button>
+      </div>
     </div>
-    <img class="logo" src="./assets/img/join-logo-light.png" alt="" />
-    <h2>@if(isEditing){Edit contact} @else{ Add contact}</h2>
-    <div class="container-with-line">
-      <p>Tasks are better with a team!</p>
-      <div class="line"></div>
+
+    <div class="left-inner-container">
+      <img class="logo" src="./assets/img/join-logo-light.png" alt="" />
+      <h2>
+        @if (isEditing) {
+          Edit contact
+        } @else {
+          Add contact
+        }
+      </h2>
+      <div class="container-with-line">
+        <p>Tasks are better with a team!</p>
+        <div class="line"></div>
+      </div>
     </div>
   </div>
   <div class="right-column">
@@ -30,7 +41,13 @@
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
           <div class="input-field-container">
             <div class="input-group">
-              <input type="text" placeholder="Name" formControlName="name" name="fullName" autocomplete="name"/>
+              <input
+                type="text"
+                placeholder="Name"
+                formControlName="name"
+                name="fullName"
+                autocomplete="name"
+              />
               <img src="./assets/img/person-icon.png" alt="" />
             </div>
             <div class="error-wrapper">
@@ -41,7 +58,13 @@
           </div>
           <div class="input-field-container">
             <div class="input-group">
-              <input type="email" placeholder="Email" formControlName="email" name="email" autocomplete="email"/>
+              <input
+                type="email"
+                placeholder="Email"
+                formControlName="email"
+                name="email"
+                autocomplete="email"
+              />
               <img src="./assets/img/mail-icon.png" alt="" />
             </div>
             <div class="error-wrapper">
@@ -52,7 +75,13 @@
           </div>
           <div class="input-field-container">
             <div class="input-group">
-              <input type="number" placeholder="Phone" formControlName="phone" name="phone" autocomplete="tel"/>
+              <input
+                type="number"
+                placeholder="Phone"
+                formControlName="phone"
+                name="phone"
+                autocomplete="tel"
+              />
               <img src="./assets/img/phone-icon.png" alt="" />
             </div>
             <div class="error-wrapper">
@@ -63,10 +92,22 @@
           </div>
           <div class="button-container">
             <button type="button" class="cancel-btn" (click)="emitCloseDialog(); onCancel()">
-              @if(isEditing){Delete} @else{Cancel} @if(!isEditing){<img class="btn-img" src="./assets/img/close-cross.png" alt="" />}
+              @if (isEditing) {
+                Delete
+              } @else {
+                Cancel
+              }
+              @if (!isEditing) {
+                <img class="btn-img" src="./assets/img/close-cross.png" alt="" />
+              }
             </button>
             <button type="submit" class="create-btn" [disabled]="contactForm.invalid">
-              @if(isEditing){Save} @else{Create contact} <img class="btn-img-check" src="./assets/img/check-small.png" alt="" />
+              @if (isEditing) {
+                Save
+              } @else {
+                Create contact
+              }
+              <img class="btn-img-check" src="./assets/img/check-small.png" alt="" />
             </button>
           </div>
         </form>
