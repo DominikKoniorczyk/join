@@ -22,8 +22,5 @@ export class FooterNav {
 
   updateActiveURL(newUrl: string){
     this.currentURL.set(newUrl);
-
-    console.log(newUrl);
-
   }
 }

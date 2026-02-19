@@ -58,7 +58,20 @@
 }
 
 .active {
-  background: vars.$primary-color;
+  background: vars.$tertiary-color;
+
+  button{
+    color: white;
+  }
+
+  #path1,
+  #path2 {
+    fill: white;
+  }
+
+  @media (max-width: 768px) {
+    border-radius: 1rem;
+  }
 }
 
 button {
