@@ -5,6 +5,7 @@ import { SignForm } from './sign-form/sign-form';
 
 @Component({
   selector: 'app-sign-up',
+  standalone: true,
   imports: [LogInLogo, LogInFooter, SignForm],
   templateUrl: './sign-up.html',
   styleUrls: ['./sign-up.scss'],
