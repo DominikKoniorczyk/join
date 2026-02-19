@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SupabaseContactsInterface } from '../../../interfaces/supabase.interfaces';
 import { PhonePipe } from '../../../pipes/phonepipe-pipe';
+import { InitialsPipe } from '../../../services/contacts.services';
 
 @Component({
   selector: 'app-contacts-menu',
   standalone: true,
-  imports: [CommonModule, FormsModule, PhonePipe],
+  imports: [CommonModule, FormsModule, PhonePipe, InitialsPipe],
   templateUrl: './contacts-menu.html',
   styleUrls: ['./contacts-menu.scss']
 })
@@ -28,42 +29,6 @@ export class ContactsMenu {
     this.isEditing = true;
     this.editableContact = { ...this.person };
     this.editContact.emit(this.person);
-  }
-
-  /**
-   * Saves the changes made to the editable contact.
-   * Emits the `editContact` event with the updated contact data
-   * and exits edit mode.
-   */
-  onSave() {
-    if (!this.editableContact) return;
-    this.editContact.emit(this.editableContact);
-    this.isEditing = false;
-  }
-
-  /**
-   * Cancels the editing process, discards changes,
-   * and exits edit mode.
-   */
-  onCancel() {
-    this.isEditing = false;
-    this.editableContact = null;
-  }
-
-  /**
-   * Generates uppercase initials from a full name string.
-   *
-   * Example: 'John Doe' => 'JD'
-   * @param fullName The full name of the person.
-   * @returns A string containing the uppercase initials.
-   */
-  getInitials(fullName: string): string {
-    return fullName
-      .trim()
-      .split(' ')
-      .map(name => name[0])
-      .join('')
-      .toUpperCase();
   }
 
   /**

@@ -8,7 +8,7 @@
         role="img"
         [attr.aria-label]="person.name"
       >
-        {{ getInitials(person.name) }}
+        {{ person.name | initials }}
       </div>
     </div>
     <div class="detail-name-section">

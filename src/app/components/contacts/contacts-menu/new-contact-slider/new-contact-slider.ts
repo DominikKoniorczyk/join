@@ -57,8 +57,6 @@ export class NewContactSlider {
       this.contactForm.get('phone')?.setValue(this.editingContact.phone_number);
       this.id = this.editingContact.id;
       this.isEditing = true;
-      console.log(this.id);
-
     }
   }
 
