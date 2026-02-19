@@ -27,7 +27,7 @@
   position: absolute;
   background-color: #2a3647;
   min-width: 140px;
-  top: 80px;
+  top: 70px;
   right: 0px;
   border-radius: 20px 0 20px 20px;
   overflow: hidden;
@@ -46,5 +46,12 @@ a {
 
   &:hover {
     background-color: #2a3d59;
+  }
+}
+
+.mobile-help-btn {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
   }
 }
