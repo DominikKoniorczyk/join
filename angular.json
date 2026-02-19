@@ -30,12 +30,11 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {
+              "baseHref": "/projects-angular/join-01/",
               "budgets": [
                 {
                   "type": "initial",
