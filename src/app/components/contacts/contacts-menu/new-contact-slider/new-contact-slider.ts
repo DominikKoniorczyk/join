@@ -57,6 +57,7 @@ export class NewContactSlider {
       this.contactForm.get('phone')?.setValue(this.editingContact.phone_number);
       this.id = this.editingContact.id;
       this.isEditing = true;
+      this.contactData.set(this.editingContact);
     }
   }
 
@@ -90,7 +91,7 @@ export class NewContactSlider {
     this.contactForm.get('name')?.valueChanges.subscribe((value) => {
       this.contactData.update((current) => {
         if (!current) return current;
-        if (!current.color) return { ...current, name: value!, color: this.getRandomeColor() };
+        if (!current.color && !this.returnValidEditing()) return { ...current, name: value!, color: this.getRandomeColor() };
         return { ...current, name: value! };
       });
     });
