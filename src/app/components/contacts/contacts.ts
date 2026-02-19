@@ -36,14 +36,7 @@ export class Contacts {
   supabaseChannel: RealtimeChannel;
   dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
-  selectedContact = signal<SupabaseContactsInterface>({
-    id: 0,
-    created_at: '',
-    name: '',
-    email: '',
-    phone_number: 0,
-    color: '',
-  });
+  selectedContact = signal<SupabaseContactsInterface>({id: 0, created_at: '', name: '', email: '', phone_number: 0, color: ''});
   currentUserID: number = -1;
   defaultContacts = defaultContacts;
   restoreDefaultContacts: boolean = false;
@@ -261,46 +254,49 @@ export class Contacts {
    * and automatically removes the class and closes the dialog after 2.5 seconds.
    * The notification is triggered after a short delay of 302 milliseconds.
    */
-
   triggerUxFeedback() {
     const isMobile = this.responsiveDetailsOpen();
-
-    // setTimeout(() => {
-    //   if (isMobile && this.dataUsers().length) {
-    //     const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
-
-    //     if (newest) {
-    //       this.openContact(newest, newest.id);
-    //       this.contactsDetailOpen.set(true);
-    //     }
-    //   }
-
     setTimeout(() => {
       if (this.dataUsers().length) {
         const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
         if (newest) {
           this.openContact(newest, newest.id);
-          if (isMobile) {
-            this.contactsDetailOpen.set(true);
-          } else {
-            this.scrollToContact(newest.id);
-          }
+          if (isMobile) this.contactsDetailOpen.set(true);
+          else this.scrollToContact(newest.id);
         }
       }
-
-      // Feedback
-      const notificationRef = document.getElementById('uxFeedbackNotification');
-      if (notificationRef instanceof HTMLDialogElement) {
-        notificationRef.show();
-        notificationRef.classList.add('active');
-        setTimeout(() => {
-          notificationRef.classList.remove('active');
-          notificationRef.close();
-        }, 2500);
-      }
+      this.sendFeedback();
     }, 302);
   }
 
+  /**
+   * Displays a temporary UX feedback notification dialog.
+   *
+   * Opens the dialog element with the ID 'uxFeedbackNotification',
+   * applies the 'active' CSS class for animation purposes,
+   * and automatically removes the class and closes the dialog
+   * after 2.5 seconds.
+   */
+  sendFeedback() {
+    const notificationRef = document.getElementById('uxFeedbackNotification');
+    if (notificationRef instanceof HTMLDialogElement) {
+      notificationRef.show();
+      notificationRef.classList.add('active');
+      setTimeout(() => {
+        notificationRef.classList.remove('active');
+        notificationRef.close();
+      }, 2500);
+    }
+  }
+
+  /**
+   * Smoothly scrolls to a specific contact element in the list.
+   *
+   * Searches for the element in `allBtn` that matches the provided ID
+   * and scrolls it into view, centered within the viewport.
+   *
+   * @param id - The unique identifier of the contact to scroll to.
+   */
   scrollToContact(id: number) {
     setTimeout(() => {
       const contactElement = this.allBtn.find((el) => el.nativeElement.id === id.toString());
@@ -313,10 +309,18 @@ export class Contacts {
     }, 50);
   }
 
+  /**
+   * Toggles the visibility state of the slide-out panel.
+   *
+   * Inverts the current boolean value of `isSlideOutVisible`.
+   */
   toggleSlideOut() {
     this.isSlideOutVisible = !this.isSlideOutVisible;
   }
 
+  /**
+   * Closes the slide-out panel by setting its visibility state to false.
+   */
   closeSlideOut() {
     this.isSlideOutVisible = false;
   }
