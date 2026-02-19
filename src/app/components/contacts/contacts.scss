@@ -45,6 +45,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -197,7 +198,7 @@ h3 {
   width: 100%;
   height: fit-content;
 
-  @media (max-height: 800px){
+  @media (max-height: 800px) {
     padding-top: 1rem;
   }
 }
@@ -407,16 +408,19 @@ h3 {
     transform: translateY(100%);
     opacity: 0;
   }
+
   15% {
     bottom: 40px;
     transform: translateY(0);
     opacity: 1;
   }
+
   85% {
     bottom: 40px;
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     bottom: -100px;
     transform: translateY(100%);
@@ -429,20 +433,13 @@ h3 {
 
   @media (max-width: 768px) {
     display: block;
-    // height: 120px;
-    // overflow: hidden;
-    // position: absolute;
-    // bottom: 0;
-    // z-index: 0;
-    // right: 0;
-    // width: 120px;
+    position: fixed;
+    right: 1rem;
+    bottom: 100px;
   }
 }
 
 .mobile-add-contact-btn {
-  position: absolute;
-  bottom: 100px;
-  right: 1rem;
   width: 60px;
   height: 60px;
   border-radius: 100%;
@@ -460,9 +457,6 @@ h3 {
 }
 
 .mobile-edit-contact-btn {
-  position: absolute;
-  bottom: 100px;
-  right: 1rem;
   width: 60px;
   height: 60px;
   border-radius: 100%;
@@ -496,8 +490,8 @@ h3 {
 
 .slide-out {
   position: absolute;
-  bottom: 100px;
-  right: 1rem;
+  bottom: 0;
+  right: 0;
   background-color: white;
   transform: translateX(150%);
   transition: all 0.3s ease-in-out;

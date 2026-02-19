@@ -278,4 +278,8 @@ export class Contacts {
   toggleSlideOut() {
     this.isSlideOutVisible = !this.isSlideOutVisible;
   }
+
+  closeSlideOut(){
+    this.isSlideOutVisible = false;
+  }
 }
