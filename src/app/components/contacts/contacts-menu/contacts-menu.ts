@@ -36,8 +36,6 @@ export class ContactsMenu {
 
   update(person: SupabaseContactsInterface){
     this.selectedPerson.set(person);
-    console.log(person);
-
   }
 
   /**

@@ -36,6 +36,7 @@ export class Contacts {
   dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
   selectedContact = signal<SupabaseContactsInterface>({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" });
+  currentUserID: number = -1;
   defaultContacts = defaultContacts;
   restoreDefaultContacts: boolean = false;
   contactsDetailOpen = signal(false);
@@ -89,6 +90,7 @@ export class Contacts {
     )) as SupabaseContactsInterface[];
     this.dataUsers.set(data ?? []);
     this.isLoading.set(false);
+    this.updateDetails();
   }
 
   /**
@@ -131,14 +133,16 @@ export class Contacts {
     this.removeActiveClass();
     const element = document.getElementById(id.toString());
     element?.classList.add('active_btn');
+    this.currentUserID = id;
   }
 
   updateDetails() {
-    const currentPerson = computed(() => this.dataUsers().filter(n => n.id == this.selectedContact().id));
-    console.log(currentPerson);
-
-    this.details?.update(currentPerson()[0]);
-    this.detailsMobile?.update(currentPerson()[0]);
+    if (this.currentUserID != -1) {
+      const newCurrent: SupabaseContactsInterface = this.dataUsers().filter(el =>  el.id === this.currentUserID )[0];
+      this.selectedContact.set(newCurrent);
+      this.details?.update(this.selectedContact());
+      this.detailsMobile?.update(this.selectedContact());
+    }
   }
 
   /**
@@ -170,7 +174,6 @@ export class Contacts {
       setTimeout(() => {
         dialogRef.close();
         dialogRef.classList.remove('closed');
-        this.updateDetails();
       }, 300);
     };
   }

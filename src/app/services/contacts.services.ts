@@ -11,6 +11,7 @@ export class InitialsPipe implements PipeTransform {
   constructor() {}
 
   transform(fullName: string): string {
+    if(!fullName) return "";
     return fullName
       .trim()
       .split(' ')
