@@ -38,6 +38,9 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .contacts_detail_headline {
