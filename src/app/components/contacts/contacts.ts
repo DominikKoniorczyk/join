@@ -1,15 +1,5 @@
-import { NewContactsInterface, SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
-import {
-  Component,
-  computed,
-  ElementRef,
-  HostListener,
-  inject,
-  QueryList,
-  signal,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { SupabaseContactsInterface } from './../../interfaces/supabase.interfaces';
+import { Component, computed, ElementRef, HostListener, inject, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { Supabase } from '../../services/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
@@ -134,11 +124,21 @@ export class Contacts {
     const element = document.getElementById(id.toString());
     element?.classList.add('active_btn');
     this.currentUserID = id;
+    this.updateDetails();
   }
 
+  /**
+   * Updates the currently selected contact details based on the current user ID.
+   *
+   * If `currentUserID` is valid (not -1), the function:
+   * 1. Finds the corresponding user from `dataUsers()`.
+   * 2. Updates the `selectedContact` signal with the found user.
+   * 3. Calls `update` on `details` and `detailsMobile` (if they exist)
+   *    to refresh the UI with the new contact information.
+   */
   updateDetails() {
     if (this.currentUserID != -1) {
-      const newCurrent: SupabaseContactsInterface = this.dataUsers().find(el =>  el.id === this.currentUserID )!;
+      const newCurrent: SupabaseContactsInterface = this.dataUsers().find(el => el.id === this.currentUserID)!;
       this.selectedContact.set(newCurrent);
       this.details?.update(this.selectedContact());
       this.detailsMobile?.update(this.selectedContact());
@@ -178,15 +178,6 @@ export class Contacts {
     };
   }
 
-  deleteUser(id: number) {
-    this.supabaseClientService.deleteRow('users', id);
-    this.selectedContact.set({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" });
-  }
-
-  @HostListener('window:resize')
-  onResize() {
-    this.responsiveDetailsOpen.set(window.innerWidth <= 1100);
-  }
   /**
    * Cleans up resources when the component is destroyed,
    * specifically unsubscribing from the Supabase realtime channel.
@@ -195,6 +186,11 @@ export class Contacts {
     this.supabaseChannel.unsubscribe();
   }
 
+  /**
+   * Sets the contact to be edited and opens the contact modal.
+   *
+   * @param contact - The contact object that should be edited.
+   */
   editContact(contact: SupabaseContactsInterface) {
     if (contact) {
       this.contactsModal.editingContact = contact;
@@ -203,10 +199,41 @@ export class Contacts {
     }
   }
 
-  closeMobileDetails(){
+  /**
+   * Deletes a user from the 'users' table and resets the selected contact.
+   *
+   * @param id - The unique identifier of the user to be deleted.
+   */
+  deleteUser(id: number) {
+    this.supabaseClientService.deleteRow('users', id);
+    this.selectedContact.set({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" });
+  }
+
+  /**
+   * Handles window resize events and updates the responsive details signal.
+   *
+   * Triggered automatically whenever the window is resized.
+   * Sets `responsiveDetailsOpen` to true if window width is <= 1100 pixels.
+   */
+  @HostListener('window:resize')
+  onResize() {
+    this.responsiveDetailsOpen.set(window.innerWidth <= 1100);
+  }
+
+  /**
+   * Closes the mobile contact details panel by updating the relevant signal.
+   */
+  closeMobileDetails() {
     this.contactsDetailOpen.set(false);
   }
 
+  /**
+   * Displays a temporary UX feedback notification.
+   *
+   * Opens a modal dialog with ID 'uxFeedbackNotification', adds the 'active' class,
+   * and automatically removes the class and closes the dialog after 2.5 seconds.
+   * The notification is triggered after a short delay of 302 milliseconds.
+   */
   triggerUxFeedback() {
     setTimeout(() => {
       const notificationRef = document.getElementById('uxFeedbackNotification');
