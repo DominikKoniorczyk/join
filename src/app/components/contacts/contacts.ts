@@ -265,16 +265,29 @@ export class Contacts {
   triggerUxFeedback() {
     const isMobile = this.responsiveDetailsOpen();
 
-    setTimeout(() => {
-      if (isMobile && this.dataUsers().length) {
-        const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
+    // setTimeout(() => {
+    //   if (isMobile && this.dataUsers().length) {
+    //     const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
 
+    //     if (newest) {
+    //       this.openContact(newest, newest.id);
+    //       this.contactsDetailOpen.set(true);
+    //     }
+    //   }
+
+    setTimeout(() => {
+      if (this.dataUsers().length) {
+        const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
         if (newest) {
           this.openContact(newest, newest.id);
-          this.contactsDetailOpen.set(true);
+          if (isMobile) {
+            this.contactsDetailOpen.set(true);
+          } else {
+            this.scrollToContact(newest.id);
+          }
         }
       }
-      
+
       // Feedback
       const notificationRef = document.getElementById('uxFeedbackNotification');
       if (notificationRef instanceof HTMLDialogElement) {
@@ -288,11 +301,23 @@ export class Contacts {
     }, 302);
   }
 
+  scrollToContact(id: number) {
+    setTimeout(() => {
+      const contactElement = this.allBtn.find((el) => el.nativeElement.id === id.toString());
+      if (contactElement) {
+        contactElement.nativeElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      }
+    }, 50);
+  }
+
   toggleSlideOut() {
     this.isSlideOutVisible = !this.isSlideOutVisible;
   }
 
-  closeSlideOut(){
+  closeSlideOut() {
     this.isSlideOutVisible = false;
   }
 }
