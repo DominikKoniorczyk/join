@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-form',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './sign-form.html',
   styleUrls: ['./sign-form.scss'],
