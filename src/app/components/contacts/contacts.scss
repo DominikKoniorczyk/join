@@ -409,6 +409,7 @@ h3 {
 
 .mobile-btn-container {
   display: none;
+  overflow: hidden;
   @media (max-width: 768px) {
     display: block;
   }
@@ -432,4 +433,58 @@ h3 {
   &:hover {
     background-color: vars.$secondary-color;
   }
+}
+
+.mobile-edit-contact-btn {
+  position: absolute;
+  bottom: 100px;
+  right: 1rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  border: none;
+  background-color: vars.$primary-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 5px 10px 14px -7px rgba(0, 0, 0, 0.7);
+
+  &:hover {
+    background-color: vars.$secondary-color;
+  }
+}
+
+.slide-out-btn {
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background: #eeeeee;
+  }
+}
+
+.slide-out {
+  position: absolute;
+  bottom: 100px;
+  right: 1rem;
+  background-color: white;
+  transform: translateX(150%);
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 5px 10px 14px -7px rgba(0, 0, 0, 0.7);
+  border-radius: 20px 20px 0 20px;
+  gap: 0.3rem;
+}
+
+.slide-out.show {
+  transform: translateX(-20%);
 }
