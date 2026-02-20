@@ -179,6 +179,15 @@ form {
   }
 }
 
+.forbid{
+  cursor: not-allowed;
+
+  &:hover{
+    background-color: vars.$tertiary-color;
+    box-shadow: none;
+  }
+}
+
 .width-btn{
   width: 170px;
 }
