@@ -1,1 +1,63 @@
-<p>taskform works!</p>
+<h1>Add Task</h1>
+
+<div class="form">
+
+  <!-- LEFT -->
+  <div class="left">
+    <label>Title*</label>
+    <input [(ngModel)]="title" placeholder="Enter a title" />
+
+    <label>Description</label>
+    <textarea [(ngModel)]="description"></textarea>
+
+    <label>Due date*</label>
+    <input type="date" [(ngModel)]="dueDate" />
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+
+    <label>Priority</label>
+    <div class="priority">
+      <button (click)="priority='urgent'" [class.active]="priority==='urgent'">Urgent</button>
+      <button (click)="priority='medium'" [class.active]="priority==='medium'">Medium</button>
+      <button (click)="priority='low'" [class.active]="priority==='low'">Low</button>
+    </div>
+
+    <label>Assigned to</label>
+    <div class="contacts">
+      <div 
+        *ngFor="let contact of contacts"
+        (click)="toggleContact(contact.id)"
+        [class.selected]="assignedTo.includes(contact.id)">
+        {{ contact.name }}
+      </div>
+    </div>
+
+    <label>Category</label>
+    <input [(ngModel)]="category" placeholder="Select task category" />
+
+    <label>Subtasks</label>
+    <div class="subtask">
+      <input [(ngModel)]="newSubtask" placeholder="Add new subtask" />
+      <button (click)="addSubtask()">+</button>
+    </div>
+
+    <ul>
+      <li *ngFor="let sub of subtasks">{{ sub }}</li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="actions">
+  <button (click)="resetForm()">Clear</button>
+
+  <button 
+    (click)="createTask()" 
+    [disabled]="!isValid()">
+    Create Task ✔
+  </button>
+</div>
+
+<p>* This field is required</p>

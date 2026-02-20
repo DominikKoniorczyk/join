@@ -11,8 +11,8 @@
       Summary
     </button>
   </div>
-  <div [class.active]="currentURL() == '/task'" class="button-container left_center">
-    <button>
+  <div [class.active]="currentURL().includes('/add-task')" class="button-container left_center">
+  <button routerLink="/add-task">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask
           id="mask0_437099_707"
@@ -37,7 +37,7 @@
     </button>
   </div>
   <div [class.active]="currentURL() == '/board'" class="button-container right_center">
-    <button>
+   <button routerLink="/board">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           id="path2"

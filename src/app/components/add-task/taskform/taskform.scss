@@ -1,0 +1,62 @@
+.form {
+  display: flex;
+  gap: 40px;
+}
+
+.left, .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input, textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.priority {
+  display: flex;
+  gap: 10px;
+
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+
+    &.active {
+      background: orange;
+      color: white;
+    }
+  }
+}
+
+.contacts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  div {
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: #eee;
+    cursor: pointer;
+
+    &.selected {
+      background: #2a3647;
+      color: white;
+    }
+  }
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+button[disabled] {
+  opacity: 0.5;
+}
