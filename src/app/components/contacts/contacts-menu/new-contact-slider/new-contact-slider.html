@@ -105,7 +105,7 @@
                 <img class="btn-img" src="./assets/img/close-cross.png" alt="" />
               }
             </button>
-            <button type="submit" [class.width-btn]="!isEditing" class="create-btn" [disabled]="contactForm.invalid">
+            <button type="submit" [class.width-btn]="!isEditing" [class.forbid]="!this.contactForm.valid" class="create-btn" [disabled]="contactForm.invalid">
               @if (isEditing) {
                 Save
               } @else {
