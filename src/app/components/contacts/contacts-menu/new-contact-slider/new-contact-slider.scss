@@ -122,6 +122,7 @@ form {
 
 .button-container {
   display: flex;
+  box-sizing: border-box;
   gap: 1rem;
   padding-top: 1rem;
   @media (max-width: 768px) {
@@ -131,12 +132,14 @@ form {
 }
 
 .cancel-btn {
-  padding: 10px 20px;
   border-radius: 5px;
+  width: 95px;
+  height: 2.2rem;
   border: 1px solid vars.$tertiary-color;
   color: vars.$tertiary-color;
   background-color: white;
   display: flex;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
   @media (max-width: 825px) {
@@ -145,21 +148,48 @@ form {
   @media (max-width: 768px) {
     display: none;
   }
+
+  &:hover{
+    border: 3px solid vars.$secondary-color;
+    color: vars.$secondary-color;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.308);
+  }
 }
 
 .create-btn {
-  padding: 10px 20px;
   border-radius: 5px;
+  width: 95px;
+  height: 2.2rem;
   border: none;
   color: white;
   background-color: vars.$tertiary-color;
   display: flex;
   align-items: center;
+  justify-content: center;
+  font-weight: 700;
   gap: 10px;
   cursor: pointer;
   @media (max-width: 825px) {
     padding: 10px 10px;
   }
+
+  &:hover{
+    background-color: vars.$secondary-color;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.308);
+  }
+}
+
+.forbid{
+  cursor: not-allowed;
+
+  &:hover{
+    background-color: vars.$tertiary-color;
+    box-shadow: none;
+  }
+}
+
+.width-btn{
+  width: 170px;
 }
 
 .btn-img {
