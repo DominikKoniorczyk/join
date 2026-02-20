@@ -31,6 +31,7 @@ export class Contacts {
   @ViewChild('details') details!: ContactsMenu;
   @ViewChild('detailsMobil') detailsMobile!: ContactsMenu;
 
+  editingContactId = signal<number | null>(null);
   isSlideOutVisible: boolean = false;
   supabaseClientService = inject(Supabase);
   supabaseChannel: RealtimeChannel;
@@ -206,6 +207,7 @@ export class Contacts {
    */
   editContact(contact: SupabaseContactsInterface) {
     if (contact) {
+      this.editingContactId.set(contact.id);
       this.contactsModal.editingContact = contact;
       this.contactsModal.checkIsEditing();
       this.openNewContact();
@@ -256,16 +258,21 @@ export class Contacts {
    */
   triggerUxFeedback() {
     const isMobile = this.responsiveDetailsOpen();
+    const editId = this.editingContactId();
+
     setTimeout(() => {
       if (this.dataUsers().length) {
+        const editedContact = editId ? this.dataUsers().find(contact => contact.id === editId) : null;
         const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
-        if (newest) {
-          this.openContact(newest, newest.id);
+        const target = editedContact || newest;
+        if (target) {
+          this.openContact(target, target.id);
           if (isMobile) this.contactsDetailOpen.set(true);
-          else this.scrollToContact(newest.id);
+          else this.scrollToContact(target.id);
         }
       }
       this.sendFeedback();
+      this.editingContactId.set(null);
     }, 302);
   }
 
