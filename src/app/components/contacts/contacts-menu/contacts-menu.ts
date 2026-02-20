@@ -17,7 +17,7 @@ export class ContactsMenu {
   @Output() deleteContact = new EventEmitter<number>();
   @Output() editContact = new EventEmitter<SupabaseContactsInterface>();
 
-  selectedPerson = signal<SupabaseContactsInterface>({id: 0, created_at:"", name: "", email:"", phone_number: 0, color: ""});
+  selectedPerson = signal<SupabaseContactsInterface>({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" });
   isEditing = false;
 
   /**
@@ -30,11 +30,19 @@ export class ContactsMenu {
     this.editContact.emit(this.selectedPerson()!);
   }
 
-  ngAfterViewInit(){
+  /**
+   * Lifecycle hook that runs after the component's view has been initialized.
+   * Sets the currently selected person to the component's `person` property.
+   */
+  ngAfterViewInit() {
     this.selectedPerson.set(this.person!);
   }
 
-  update(person: SupabaseContactsInterface){
+  /**
+   * Updates the currently selected person.
+   * @param person The person object to set as selected.
+   */
+  update(person: SupabaseContactsInterface) {
     this.selectedPerson.set(person);
   }
 
@@ -44,10 +52,6 @@ export class ContactsMenu {
    */
   onDelete() {
     if (!this.selectedPerson()) return;
-    const confirmDelete = confirm('Do you want to delete this user?');
-    if (confirmDelete) {
-      this.deleteContact.emit(this.selectedPerson()?.id);
-    }
+    this.deleteContact.emit(this.selectedPerson()?.id);
   }
-
 }
