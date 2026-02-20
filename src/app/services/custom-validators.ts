@@ -9,7 +9,7 @@ export function contactNameValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const name: string = control.value;
     if (name) {
-      const nameRegex = /^[a-zA-ZäöüÄÖÜß]{2,12}\s+[a-zA-ZäöüÄÖÜß]{2,12}$/;
+      const nameRegex = /^[a-zA-ZäöüÄÖÜß]{2}\s+[a-zA-ZäöüÄÖÜß]{2}$/;
       const isValid = nameRegex.test(name.trim());
       return isValid ? null : { invalidContactName: true };
     }
