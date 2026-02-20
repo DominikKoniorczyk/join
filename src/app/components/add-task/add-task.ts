@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { TaskformComponent } from './taskform/taskform';
 
 @Component({
   selector: 'app-add-task',
-  imports: [],
+  standalone: true,
+  imports: [TaskformComponent],
   templateUrl: './add-task.html',
-  styleUrl: './add-task.scss',
+  styleUrls: ['./add-task.scss']
 })
-export class AddTask {
-
-}
+export class AddTaskComponent {}
