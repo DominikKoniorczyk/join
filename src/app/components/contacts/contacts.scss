@@ -15,7 +15,7 @@
 
 h1 {
   font-size: 61px;
-  font-weight: 700;
+  font-weight: 700; // bold
   margin-block: 0;
 }
 
@@ -179,6 +179,16 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.content_background{
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   background-color: #f6f7f8;
 }
 
