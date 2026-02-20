@@ -9,7 +9,7 @@ export function contactNameValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const name: string = control.value;
     if (name) {
-      const nameRegex = /^[a-zA-ZäöüÄÖÜß]{2,}\s+[a-zA-ZäöüÄÖÜß]{2,}$/;
+      const nameRegex = /^[a-zA-ZäöüÄÖÜß]{2,12}\s+[a-zA-ZäöüÄÖÜß]{2,12}$/;
       const isValid = nameRegex.test(name.trim());
       return isValid ? null : { invalidContactName: true };
     }
@@ -50,7 +50,8 @@ export function contactPhoneValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const phoneNumber: number = control.value;
     if (phoneNumber) {
-      const validNumber = phoneNumber != 0;
+      const phoneStr = phoneNumber.toString();
+      const validNumber = phoneNumber != 0 && phoneStr.length > 5 && phoneStr.length <= 15;
       return validNumber ? null : { invalidPhoneNumber: true };
     }
     return null;
