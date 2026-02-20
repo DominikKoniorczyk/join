@@ -256,24 +256,57 @@ export class Contacts {
    * and automatically removes the class and closes the dialog after 2.5 seconds.
    * The notification is triggered after a short delay of 302 milliseconds.
    */
-  triggerUxFeedback() {
+  // triggerUxFeedback() {
+  //   const isMobile = this.responsiveDetailsOpen();
+  //   const editId = this.editingContactId();
+
+  //   setTimeout(() => {
+  //     if (this.dataUsers().length) {
+  //       const editedContact = editId ? this.dataUsers().find(contact => contact.id === editId) : null;
+  //       const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
+  //       const target = editedContact || newest;
+  //       if (target) {
+  //         this.openContact(target, target.id);
+  //         if (isMobile) this.contactsDetailOpen.set(true);
+  //         else this.scrollToContact(target.id);
+  //       }
+  //     }
+  //     this.sendFeedback();
+  //     this.editingContactId.set(null);
+  //   }, 302);
+  // }
+
+  /**
+   * refactored triggerUxFeedback try
+   */
+
+  triggerUxFeedback(){
     const isMobile = this.responsiveDetailsOpen();
     const editId = this.editingContactId();
 
     setTimeout(() => {
-      if (this.dataUsers().length) {
-        const editedContact = editId ? this.dataUsers().find(contact => contact.id === editId) : null;
-        const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
-        const target = editedContact || newest;
-        if (target) {
-          this.openContact(target, target.id);
-          if (isMobile) this.contactsDetailOpen.set(true);
-          else this.scrollToContact(target.id);
-        }
-      }
+      this.handleContactIdSelection(editId, isMobile);
       this.sendFeedback();
       this.editingContactId.set(null);
-    }, 302);
+  }, 302);
+  }
+
+  handleContactIdSelection(editId: number | null, isMobile: boolean){
+    const users = this.dataUsers();
+    if(!users.length) return;
+
+    const editedContact = editId ? users.find(contact => contact.id === editId) : null;
+    const newest = [...users].sort((a, b) => b.id - a.id)[0];
+    const target = editedContact || newest;
+
+    if(target){
+      this.openContact(target,target.id);
+      if(isMobile){
+        this.contactsDetailOpen.set(true);
+      }else{
+        this.scrollToContact(target.id)
+      }
+    }
   }
 
   /**
