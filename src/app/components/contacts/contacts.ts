@@ -18,7 +18,7 @@ import defaultContacts from '../../../../public/assets/JSON/defaultContacts.json
 import { InitialsPipe } from '../../services/contacts.services';
 import { NewContactSlider } from './contacts-menu/new-contact-slider/new-contact-slider';
 import { AnimationService } from '../../services/animation.service';
-import { feedbackAnimations, feedbackDownToUpAnimations, slideOutAnimations } from './animations/feedback.toast.animation';
+import { feedbackAnimations, feedbackDownToUpAnimations, slideDownAnimations, slideInAnimations, slideOutAnimations, slideUpAnimations } from './animations/feedback.toast.animation';
 
 @Component({
   selector: 'app-contacts',
@@ -176,10 +176,12 @@ export class Contacts {
   /**
    * Opens the "Add Contact" dialog if it exists and is a valid HTMLDialogElement.
    */
-  openNewContact() {
+  async openNewContact() {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.showModal();
+      if(this.responsiveDetailsOpen()) await this.animService.animate(dialogRef, slideUpAnimations, 400, true);
+      else await this.animService.animate(dialogRef, slideInAnimations, 400, true);
     }
   }
 
@@ -190,7 +192,8 @@ export class Contacts {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.classList.add('closed');
-      await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
+      if(this.responsiveDetailsOpen()) await this.animService.animate(dialogRef, slideDownAnimations, 300, true);
+      else await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
       dialogRef.classList.remove('closed');
       dialogRef.close();
     }

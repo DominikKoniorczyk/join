@@ -48,10 +48,37 @@ export const feedbackDownToUpAnimations: Keyframes[] = [
 
 export const slideOutAnimations: Keyframes[] = [
   {
-    transform: "translate(-20%, 0)",
+    transform: "translate(-20%, 0)"
   },
   {
     transform: "translate(100%, 0)"
+  }
+];
+
+export const slideInAnimations: Keyframes[] = [
+  {
+    transform: "translate(100%, 0)"
+  },
+  {
+    transform: "translate(-20%, 0)"
+  }
+];
+
+export const slideUpAnimations: Keyframes[] = [
+  {
+    transform: "translate(-50%, 100%)"
+  },
+  {
+    transform: "translate(-50%, -50%)"
+  }
+];
+
+export const slideDownAnimations: Keyframes[] = [
+  {
+    transform: "translate(-50%, -50%)"
+  },
+  {
+    transform: "translate(-50%, 100%)"
   }
 ];
 
