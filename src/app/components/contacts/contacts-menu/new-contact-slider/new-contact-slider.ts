@@ -81,8 +81,7 @@ export class NewContactSlider {
     }
     this.contactForm.reset();
     this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
-    this.emitCloseDialog();
-    setTimeout(() => {this.contactCreated.emit()}, 300);
+    this.contactCreated.emit();
   }
 
   /**Subscripe the change on input fields. Set the values of the corresponding data in contactData.*

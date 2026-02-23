@@ -40,7 +40,7 @@ export class Contacts {
   supabaseChannel: RealtimeChannel;
   dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
-  selectedContact = signal<SupabaseContactsInterface>({id: 0, created_at: '', name: '', email: '', phone_number: 0, color: ''});
+  selectedContact = signal<SupabaseContactsInterface>({ id: 0, created_at: '', name: '', email: '', phone_number: 0, color: '' });
   currentUserID: number = -1;
   defaultContacts = defaultContacts;
   restoreDefaultContacts: boolean = false;
@@ -71,7 +71,8 @@ export class Contacts {
         this.getDataInitial();
       })
       .subscribe();
-    if (this.restoreDefaultContacts) setTimeout(() => this.restoreContactsToDefault(), 1000);
+    if (this.restoreDefaultContacts) this.restoreContactsToDefault();
+    this.getDataInitial();
     this.onResize();
   }
 
@@ -80,6 +81,7 @@ export class Contacts {
    * Deletes all current user rows and uploads the default contacts.
    */
   async restoreContactsToDefault() {
+    await this.getDataInitial();
     for (let i = 0; this.dataUsers().length; i++) {
       this.supabaseClientService.deleteRow('users', this.dataUsers()[i].id);
     }
@@ -184,14 +186,14 @@ export class Contacts {
   /**
    * Closes the "Add Contact" dialog if it exists and is a valid HTMLDialogElement.
    */
-  async closeDialog() {
+  async closeDialog(): Promise<void> {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.classList.add('closed');
       await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
       dialogRef.classList.remove('closed');
+      return new Promise(resolve => true);
     }
-
   }
 
   /**
@@ -263,30 +265,28 @@ export class Contacts {
   /**
    * refactored triggerUxFeedback try
    */
-  triggerUxFeedback(){
+  async triggerUxFeedback() {
     const isMobile = this.responsiveDetailsOpen();
     const editId = this.editingContactId();
-
-    setTimeout(() => {
-      this.handleContactIdSelection(editId, isMobile);
-      this.sendFeedback();
-      this.editingContactId.set(null);
-  }, 302);
+    await this.closeDialog();
+    this.handleContactIdSelection(editId, isMobile);
+    this.sendFeedback();
+    this.editingContactId.set(null);
   }
 
-  handleContactIdSelection(editId: number | null, isMobile: boolean){
+  handleContactIdSelection(editId: number | null, isMobile: boolean) {
     const users = this.dataUsers();
-    if(!users.length) return;
+    if (!users.length) return;
 
     const editedContact = editId ? users.find(contact => contact.id === editId) : null;
     const newest = [...users].sort((a, b) => b.id - a.id)[0];
     const target = editedContact || newest;
 
-    if(target){
-      this.openContact(target,target.id);
-      if(isMobile){
+    if (target) {
+      this.openContact(target, target.id);
+      if (isMobile) {
         this.contactsDetailOpen.set(true);
-      }else{
+      } else {
         this.scrollToContact(target.id)
       }
     }
@@ -306,11 +306,6 @@ export class Contacts {
       notificationRef.show();
       await this.animService.animate(notificationRef, feedbackAnimations, 2500, true);
       notificationRef.close();
-      // notificationRef.classList.add('active');
-      // setTimeout(() => {
-      //   notificationRef.classList.remove('active');
-      //   notificationRef.close();
-      // }, 2500);
     }
   }
 
@@ -323,15 +318,13 @@ export class Contacts {
    * @param id - The unique identifier of the contact to scroll to.
    */
   scrollToContact(id: number) {
-    setTimeout(() => {
-      const contactElement = this.allBtn.find((el) => el.nativeElement.id === id.toString());
-      if (contactElement) {
-        contactElement.nativeElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-        });
-      }
-    }, 50);
+    const contactElement = this.allBtn.find((el) => el.nativeElement.id === id.toString());
+    if (contactElement) {
+      contactElement.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
   }
 
   /**
