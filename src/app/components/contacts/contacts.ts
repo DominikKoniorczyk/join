@@ -18,7 +18,7 @@ import defaultContacts from '../../../../public/assets/JSON/defaultContacts.json
 import { InitialsPipe } from '../../services/contacts.services';
 import { NewContactSlider } from './contacts-menu/new-contact-slider/new-contact-slider';
 import { AnimationService } from '../../services/animation.service';
-import { feedbackAnimations, slideOutAnimations } from './animations/feedback.toast.animation';
+import { feedbackAnimations, feedbackDownToUpAnimations, slideOutAnimations } from './animations/feedback.toast.animation';
 
 @Component({
   selector: 'app-contacts',
@@ -186,13 +186,13 @@ export class Contacts {
   /**
    * Closes the "Add Contact" dialog if it exists and is a valid HTMLDialogElement.
    */
-  async closeDialog(): Promise<void> {
+  async closeDialog() {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.classList.add('closed');
       await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
       dialogRef.classList.remove('closed');
-      return new Promise(resolve => true);
+      dialogRef.close();
     }
   }
 
@@ -304,7 +304,8 @@ export class Contacts {
     const notificationRef = document.getElementById('uxFeedbackNotification');
     if (notificationRef instanceof HTMLDialogElement) {
       notificationRef.show();
-      await this.animService.animate(notificationRef, feedbackAnimations, 2500, true);
+      if(this.responsiveDetailsOpen()) await this.animService.animate(notificationRef, feedbackDownToUpAnimations, 2500, true);
+      else await this.animService.animate(notificationRef, feedbackAnimations, 2500, true);
       notificationRef.close();
     }
   }
