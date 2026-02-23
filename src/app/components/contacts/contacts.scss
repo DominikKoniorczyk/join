@@ -314,57 +314,15 @@ h3 {
 
     &[open] {
       z-index: 0;
-      animation: slideUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
 
     &.closed {
-      animation: slideDown 0.3s ease-in forwards;
       z-index: -10;
     }
   }
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.4);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translate(100%, 0);
-  }
-
-  to {
-    transform: translate(-20%, 0);
-  }
-}
-
-@keyframes slideOut {
-  from {
-    transform: translate(-20%, 0);
-  }
-
-  to {
-    transform: translate(100%, 0);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translate(-50%, 100%);
-  }
-
-  to {
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes slideDown {
-  from {
-    transform: translate(-50%, -50%);
-  }
-
-  to {
-    transform: translate(-50%, 100%);
   }
 }
 
@@ -402,10 +360,6 @@ h3 {
     background: transparent;
   }
 
-  &.active {
-    // animation: toastRightInOut 2.5s ease-in-out forwards;
-  }
-
   @media (max-width: 768px) {
     left: 50% !important;
     right: auto !important;
@@ -413,10 +367,6 @@ h3 {
     width: min(326px, calc(100vw - 32px));
 
     transform: translateX(-50%) translateY(120%);
-
-    // &.active {
-    //   animation: toastInOut 2.5s ease-in-out forwards;
-    // }
   }
 }
 
@@ -424,76 +374,6 @@ h3 {
   .contacts-wrapper {
     height: calc(100vh - 179px);
     overflow: hidden;
-  }
-}
-
-// @keyframes toastRightInOut {
-//   0% {
-//     opacity: 0;
-//     transform: translateX(120%);
-//   }
-
-//   15% {
-//     opacity: 1;
-//     transform: translateX(0);
-//   }
-
-//   85% {
-//     opacity: 1;
-//     transform: translateX(0);
-//   }
-
-//   100% {
-//     opacity: 0;
-//     transform: translateX(120%);
-//   }
-// }
-
-// @keyframes toastInOut {
-//   0% {
-//     opacity: 0;
-//     transform: translateX(-50%) translateY(120%);
-//   }
-
-//   15% {
-//     opacity: 1;
-//     transform: translateX(-50%) translateY(0);
-//   }
-
-//   85% {
-//     opacity: 1;
-//     transform: translateX(-50%) translateY(0);
-//   }
-
-//   100% {
-//     opacity: 0;
-//     transform: translateX(-50%) translateY(120%);
-//   }
-// }
-
-@keyframes slideUpDown {
-  0% {
-    bottom: -100px;
-    transform: translateY(100%);
-    opacity: 0;
-  }
-
-  15% {
-    bottom: 40px;
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  85% {
-    bottom: 40px;
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    bottom: -100px;
-    transform: translateY(100%);
-    opacity: 0;
   }
 }
 

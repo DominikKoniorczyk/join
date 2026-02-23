@@ -26,23 +26,27 @@ export const feedbackAnimations: Keyframes[] = [
 export const feedbackDownToUpAnimations: Keyframes[] = [
   {
     offset: 0,
-    transform: "transform: translateX(-50%) translateY(120%)",
-    opacity: "0"
+    transform: "translateX(-50%) translateY(100%)",
+    opacity: "0",
+    bottom: "0"
   },
   {
     offset: 0.15,
     transform: "translateX(-50%) translateY(0)",
-    opacity: "1"
+    opacity: "1",
+    bottom: "100px"
   },
   {
     offset: 0.85,
     transform: "translateX(-50%) translateY(0)",
-    opacity: "1"
+    opacity: "1",
+    bottom: "100px"
   },
   {
     offset: 1,
-    transform: "transform: translateX(-50%) translateY(120%)",
-    opacity: "0"
+    transform: "translateX(-50%) translateY(100%)",
+    opacity: "0",
+    bottom: "0"
   }
 ];
 
