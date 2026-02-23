@@ -17,6 +17,8 @@ import { ContactsMenu } from './contacts-menu/contacts-menu';
 import defaultContacts from '../../../../public/assets/JSON/defaultContacts.json';
 import { InitialsPipe } from '../../services/contacts.services';
 import { NewContactSlider } from './contacts-menu/new-contact-slider/new-contact-slider';
+import { AnimationService } from '../../services/animation.service';
+import { feedbackAnimations, slideOutAnimations } from './animations/feedback.toast.animation';
 
 @Component({
   selector: 'app-contacts',
@@ -34,6 +36,7 @@ export class Contacts {
   editingContactId = signal<number | null>(null);
   isSlideOutVisible: boolean = false;
   supabaseClientService = inject(Supabase);
+  animService = inject(AnimationService);
   supabaseChannel: RealtimeChannel;
   dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
@@ -181,14 +184,12 @@ export class Contacts {
   /**
    * Closes the "Add Contact" dialog if it exists and is a valid HTMLDialogElement.
    */
-  closeDialog() {
+  async closeDialog() {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.classList.add('closed');
-      setTimeout(() => {
-        dialogRef.close();
-        dialogRef.classList.remove('closed');
-      }, 300);
+      await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
+      dialogRef.classList.remove('closed');
     }
 
   }
@@ -257,30 +258,11 @@ export class Contacts {
    * and automatically removes the class and closes the dialog after 2.5 seconds.
    * The notification is triggered after a short delay of 302 milliseconds.
    */
-  // triggerUxFeedback() {
-  //   const isMobile = this.responsiveDetailsOpen();
-  //   const editId = this.editingContactId();
 
-  //   setTimeout(() => {
-  //     if (this.dataUsers().length) {
-  //       const editedContact = editId ? this.dataUsers().find(contact => contact.id === editId) : null;
-  //       const newest = [...this.dataUsers()].sort((a, b) => b.id - a.id)[0];
-  //       const target = editedContact || newest;
-  //       if (target) {
-  //         this.openContact(target, target.id);
-  //         if (isMobile) this.contactsDetailOpen.set(true);
-  //         else this.scrollToContact(target.id);
-  //       }
-  //     }
-  //     this.sendFeedback();
-  //     this.editingContactId.set(null);
-  //   }, 302);
-  // }
 
   /**
    * refactored triggerUxFeedback try
    */
-
   triggerUxFeedback(){
     const isMobile = this.responsiveDetailsOpen();
     const editId = this.editingContactId();
@@ -318,15 +300,17 @@ export class Contacts {
    * and automatically removes the class and closes the dialog
    * after 2.5 seconds.
    */
-  sendFeedback() {
+  async sendFeedback() {
     const notificationRef = document.getElementById('uxFeedbackNotification');
     if (notificationRef instanceof HTMLDialogElement) {
       notificationRef.show();
-      notificationRef.classList.add('active');
-      setTimeout(() => {
-        notificationRef.classList.remove('active');
-        notificationRef.close();
-      }, 2500);
+      await this.animService.animate(notificationRef, feedbackAnimations, 2500, true);
+      notificationRef.close();
+      // notificationRef.classList.add('active');
+      // setTimeout(() => {
+      //   notificationRef.classList.remove('active');
+      //   notificationRef.close();
+      // }, 2500);
     }
   }
 
