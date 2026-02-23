@@ -77,6 +77,12 @@ input[type='number'] {
     height: 90px;
     width: 90px;
   }
+
+  @media (max-width: 840px){
+    width: 120px;
+    aspect-ratio: 1/1;
+  }
+
   @media (max-width: 768px) {
     height: 100px;
     width: 100px;
