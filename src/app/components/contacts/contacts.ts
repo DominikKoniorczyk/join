@@ -185,11 +185,17 @@ export class Contacts {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.classList.add('closed');
-      setTimeout(() => {
-        dialogRef.close();
-        dialogRef.classList.remove('closed');
-      }, 300);
+    //   setTimeout(() => {
+    //     dialogRef.close();
+    //     dialogRef.classList.remove('closed');
+    //   }, 300);
+
+    dialogRef.addEventListener('animationend', () => {
+      dialogRef.close();
+      dialogRef.classList.remove('closed');
+    }, { once: true });
     }
+
   }
 
   /**
