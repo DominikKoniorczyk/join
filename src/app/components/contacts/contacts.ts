@@ -46,6 +46,7 @@ export class Contacts {
   restoreDefaultContacts: boolean = false;
   contactsDetailOpen = signal(false);
   responsiveDetailsOpen = signal(false);
+  isMobile = signal(false);
   groupedUsers = computed(() => {
     const groups = this.formGroups();
     return Object.keys(groups)
@@ -180,7 +181,7 @@ export class Contacts {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.showModal();
-      if(this.responsiveDetailsOpen()) await this.animService.animate(dialogRef, slideUpAnimations, 400, true);
+      if(this.isMobile()) await this.animService.animate(dialogRef, slideUpAnimations, 400, true);
       else await this.animService.animate(dialogRef, slideInAnimations, 400, true);
     }
   }
@@ -192,7 +193,7 @@ export class Contacts {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.classList.add('closed');
-      if(this.responsiveDetailsOpen()) await this.animService.animate(dialogRef, slideDownAnimations, 300, true);
+      if(this.isMobile()) await this.animService.animate(dialogRef, slideDownAnimations, 300, true);
       else await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
       dialogRef.classList.remove('closed');
       dialogRef.close();
@@ -247,6 +248,7 @@ export class Contacts {
   @HostListener('window:resize')
   onResize() {
     this.responsiveDetailsOpen.set(window.innerWidth <= 1100);
+    this.isMobile.set(window.innerWidth <= 768);
   }
 
   /**
