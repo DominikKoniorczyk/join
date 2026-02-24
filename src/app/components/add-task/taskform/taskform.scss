@@ -1,35 +1,98 @@
-.form {
-  display: flex;
-  gap: 40px;
+:host {
+  width: 90%;
+  height: 90%;
 }
 
-.left, .right {
+h1 {
+  margin-block-end: 3rem;
+}
+
+.form {
+  display: flex;
+  height: 70%;
+  width: 100%;
+  gap: 3rem;
+}
+
+.left,
+.right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 2rem;
 }
 
-input, textarea {
+.form-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.red {
+  color: red;
+}
+
+input,
+textarea {
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
+}
+
+textarea {
+  height: 80px;
 }
 
 .priority {
   display: flex;
   gap: 10px;
 
+  #path1,
+  #path2 {
+    fill: #FF3D00;
+  }
+
+  #path3,
+  #path4 {
+    fill: #FFA800;
+  }
+
+  #path5,
+  #path6 {
+    fill: #7AE229;
+  }
+
   button {
-    padding: 10px;
     border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
     border-radius: 8px;
+    width: 8.5rem;
+    height: 3.5rem;
+    font-size: 1.25rem;
 
     &.active {
-      background: orange;
+
+      #path1,
+      #path2,
+      #path3,
+      #path4,
+      #path5,
+      #path6 {
+        fill: white;
+      }
+
       color: white;
     }
   }
+}
+
+.vertical-line {
+  width: 1px;
+  height: 100%;
+  background-color: grey;
 }
 
 .contacts {

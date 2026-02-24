@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
+import { Component, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { TaskService } from '../../../services/task.service';
 import { Supabase } from '../../../services/supabase';
 import { OnInit } from '@angular/core';
@@ -13,30 +14,39 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./taskform.scss']
 })
 export class TaskformComponent implements OnInit {
-
- @Input() contacts: any[] = [];
-
+  contacts = signal<SupabaseContactsInterface[]>([]);
   title = '';
   description = '';
   dueDate = '';
-  priority: 'urgent' | 'medium' | 'low' = 'medium';
+  priority: 0 | 1 | 2 = 1;
   category = '';
-
   assignedTo: number[] = [];
-
   subtasks: string[] = [];
   newSubtask = '';
+  taskForm = new FormGroup({
+      title: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      desc: new FormControl(''),
+      date: new FormControl('', [Validators.required]),
+      cat: new FormControl('', [Validators.required]),
+      subtask: new FormControl('')
+    });
 
- constructor(
-  private taskService: TaskService,
-  private supabase: Supabase
-) {}
-async ngOnInit() {
-  const data = await this.supabase.getDataFromTable('contacts');
-  if (data) {
-    this.contacts = data;
+  constructor(private taskService: TaskService, private supabase: Supabase) { }
+
+  async ngOnInit() {
+    const data = await this.supabase.getDataFromTable('users');
+    if (data) {
+      this.contacts.set(data);
+    }
+    this.subscripeAllInputFields();
   }
-}
+
+  subscripeAllInputFields(){
+    this.taskForm.get('title')?.valueChanges.subscribe((value) => { this.title = value! });
+    this.taskForm.get('desc')?.valueChanges.subscribe((value) => { this.description = value! });
+    this.taskForm.get('date')?.valueChanges.subscribe((value) => { this.dueDate = value! });
+    this.taskForm.get('cat')?.valueChanges.subscribe((value) => { this.category = value! });
+  }
 
   toggleContact(id: number) {
     if (this.assignedTo.includes(id)) {
@@ -79,7 +89,7 @@ async ngOnInit() {
     this.title = '';
     this.description = '';
     this.dueDate = '';
-    this.priority = 'medium';
+    this.priority = 1;
     this.category = '';
     this.assignedTo = [];
     this.subtasks = [];
