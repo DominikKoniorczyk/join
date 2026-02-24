@@ -1,1 +1,73 @@
-<p>contacts-selector-with-search works!</p>
+<div class="contacts-selector" (click)="$event.stopPropagation()">
+  <div class="dropdown-wrapper">
+    <div class="dropdown-trigger" (click)="toggleDropdown($event)">
+      <span class="placeholder-text">
+        {{ selectedContacts.length > 0 ? selectedContacts.length + ' contact(s) selected' : 'Select contacts to assign' }}
+      </span>
+      <img
+        [src]="isOpen ? 'assets/img/arrow_drop_up.png' : 'assets/img/arrow_drop_down.png'"
+        alt="arrow"
+        class="arrow-icon"
+      />
+    </div>
+
+    @if (isOpen) {
+      <div class="dropdown-panel">
+        <div class="search-wrapper">
+          <input
+            type="text"
+            placeholder="Search contacts..."
+            [value]="searchTerm()"
+            (input)="searchTerm.set($any($event.target).value)"
+            class="search-input"
+            (click)="$event.stopPropagation()"
+          />
+        </div>
+
+        <ul class="contact-list">
+          @if (filteredContacts().length === 0) {
+            <li class="no-results">No contacts found.</li>
+          }
+          @for (contact of filteredContacts(); track contact.id) {
+            <li
+              class="contact-item"
+              [class.selected]="isSelected(contact)"
+              (click)="toggleContact($event, contact)"
+            >
+              <div
+                class="contact-avatar"
+                [style.background-color]="contact.color"
+              >
+                {{ getInitials(contact.name) }}
+              </div>
+
+              <span class="contact-name">{{ contact.name }}</span>
+
+              <img
+                [src]="isSelected(contact)
+                  ? 'assets/img/checkbox-white-marked.png'
+                  : 'assets/img/checkbox-dark.png'"
+                alt="checkbox"
+                class="checkbox-icon"
+              />
+            </li>
+          }
+        </ul>
+      </div>
+    }
+
+  </div>
+  @if (selectedContacts.length > 0) {
+    <div class="selected-avatars">
+      @for (contact of selectedContacts; track contact.id) {
+        <div
+          class="contact-avatar"
+          [style.background-color]="contact.color"
+          [title]="contact.name"
+        >
+          {{ getInitials(contact.name) }}
+        </div>
+      }
+    </div>
+  }
+</div>

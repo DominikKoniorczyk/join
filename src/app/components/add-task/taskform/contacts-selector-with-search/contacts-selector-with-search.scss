@@ -1,0 +1,155 @@
+@use '../../../../styles/variables.scss' as *;
+
+.contacts-selector {
+  width: 100%;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border: 1px solid $font-lightcolor;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $secondary-color;
+  }
+
+  .placeholder-text {
+    font-size: 16px;
+    color: $font-lightcolor;
+  }
+
+  .arrow-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.dropdown-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: #fff;
+  border: 1px solid $font-lightcolor;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.search-wrapper {
+  padding: 10px 12px;
+  border-bottom: 1px solid $font-lightcolor;
+
+  .search-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid $font-lightcolor;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: $secondary-color;
+    }
+  }
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 220px;
+  overflow-y: auto;
+
+  .no-results {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: $font-lightcolor;
+    text-align: center;
+  }
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover:not(.selected) {
+    background-color: $content-bg;
+  }
+
+  &.selected {
+    background-color: $primary-color;
+
+    .contact-name {
+      color: #fff;
+    }
+  }
+
+  &.selected:hover {
+    background-color: $tertiary-color;
+  }
+}
+
+.contact-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  flex-shrink: 0;
+  border: 2px solid #fff;
+}
+
+.contact-name {
+  flex: 1;
+  font-size: 15px;
+  color: $primary-color;
+}
+
+.checkbox-icon {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.selected-avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+
+  .contact-avatar {
+    width: 38px;
+    height: 38px;
+    font-size: 12px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px $font-lightcolor;
+    cursor: default;
+  }
+}
