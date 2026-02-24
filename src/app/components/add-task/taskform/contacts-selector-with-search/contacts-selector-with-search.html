@@ -1,6 +1,7 @@
-<div class="contacts-selector" (click)="$event.stopPropagation()">
+<div class="contacts-selector">
   <div class="dropdown-wrapper">
-    <div class="dropdown-trigger" (click)="toggleDropdown($event)">
+
+    <div class="dropdown-trigger" (click)="toggleDropdown()">
       <span class="placeholder-text">
         {{ selectedContacts.length > 0 ? selectedContacts.length + ' contact(s) selected' : 'Select contacts to assign' }}
       </span>
@@ -13,6 +14,7 @@
 
     @if (isOpen) {
       <div class="dropdown-panel">
+
         <div class="search-wrapper">
           <input
             type="text"
@@ -20,7 +22,6 @@
             [value]="searchTerm()"
             (input)="searchTerm.set($any($event.target).value)"
             class="search-input"
-            (click)="$event.stopPropagation()"
           />
         </div>
 
@@ -32,17 +33,12 @@
             <li
               class="contact-item"
               [class.selected]="isSelected(contact)"
-              (click)="toggleContact($event, contact)"
+              (click)="toggleContact(contact)"
             >
-              <div
-                class="contact-avatar"
-                [style.background-color]="contact.color"
-              >
+              <div class="contact-avatar" [style.background-color]="contact.color">
                 {{ getInitials(contact.name) }}
               </div>
-
               <span class="contact-name">{{ contact.name }}</span>
-
               <img
                 [src]="isSelected(contact)
                   ? 'assets/img/checkbox-white-marked.png'
@@ -53,10 +49,12 @@
             </li>
           }
         </ul>
+
       </div>
     }
 
   </div>
+
   @if (selectedContacts.length > 0) {
     <div class="selected-avatars">
       @for (contact of selectedContacts; track contact.id) {
