@@ -10,7 +10,7 @@ import { SupabaseContactsInterface } from '../../../../interfaces/supabase.inter
   templateUrl: './contacts-selector-with-search.html',
   styleUrl: './contacts-selector-with-search.scss',
 })
-  
+
 export class ContactsSelectorWithSearch implements OnInit, OnDestroy {
   private supabase = inject(Supabase);
 
@@ -27,17 +27,15 @@ export class ContactsSelectorWithSearch implements OnInit, OnDestroy {
     return [...contacts].sort((a, b) => a.name.localeCompare(b.name));
   });
 
-  private closeOnOutsideClick = () => {
-    setTimeout(() => {
-      this.isOpen = false;
-      this.searchTerm.set('');
-    }, 0);
-  };
+  closeOnOutsideClick() {
+    this.isOpen = false;
+    this.searchTerm.set('');
+  }
 
   async ngOnInit() {
     const data = (await this.supabase.getDataFromTable('users')) as SupabaseContactsInterface[];
     this.allContacts.set(data ?? []);
-    document.addEventListener('click', this.closeOnOutsideClick);
+    // document.addEventListener('click', this.closeOnOutsideClick);
   }
 
   ngOnDestroy() {

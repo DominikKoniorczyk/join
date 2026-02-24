@@ -43,9 +43,9 @@ export class NewContactSlider {
    */
   ngOnInit() {
     this.contactForm = new FormGroup({
-      name: new FormControl('', [Validators.required, contactNameValidator()]),
-      email: new FormControl('', [Validators.required, Validators.email, contactEmailValidator()]),
-      phone: new FormControl('', [Validators.required, contactPhoneValidator()]),
+      name: new FormControl('', { validators: [Validators.required, contactNameValidator()]}),
+      email: new FormControl('', { validators: [Validators.required, Validators.email, contactEmailValidator()]}),
+      phone: new FormControl('', { validators: [Validators.required, contactPhoneValidator()]}),
     });
     this.subscripeAllInputFields();
   }

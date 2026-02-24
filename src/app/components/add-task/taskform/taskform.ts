@@ -1,7 +1,7 @@
 import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
-import { Component, Input, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TaskService } from '../../../services/task.service';
 import { Supabase } from '../../../services/supabase';
 import { OnInit } from '@angular/core';
@@ -9,12 +9,13 @@ import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-taskform',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './taskform.html',
   styleUrls: ['./taskform.scss']
 })
 export class TaskformComponent implements OnInit {
   contacts = signal<SupabaseContactsInterface[]>([]);
+  currentDate = signal<string>("2026-02-01");
   title = '';
   description = '';
   dueDate = '';
@@ -24,10 +25,10 @@ export class TaskformComponent implements OnInit {
   subtasks: string[] = [];
   newSubtask = '';
   taskForm = new FormGroup({
-      title: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      title: new FormControl('', { validators: [Validators.required, Validators.minLength(5)]}),
       desc: new FormControl(''),
-      date: new FormControl('', [Validators.required]),
-      cat: new FormControl('', [Validators.required]),
+      date: new FormControl('', { validators: [Validators.required]}),
+      cat: new FormControl('', { validators: [Validators.required, Validators.minLength(1)]}),
       subtask: new FormControl('')
     });
 
@@ -39,6 +40,7 @@ export class TaskformComponent implements OnInit {
       this.contacts.set(data);
     }
     this.subscripeAllInputFields();
+    this.setCurrentDateAsMinValue();
   }
 
   subscripeAllInputFields(){
@@ -46,6 +48,10 @@ export class TaskformComponent implements OnInit {
     this.taskForm.get('desc')?.valueChanges.subscribe((value) => { this.description = value! });
     this.taskForm.get('date')?.valueChanges.subscribe((value) => { this.dueDate = value! });
     this.taskForm.get('cat')?.valueChanges.subscribe((value) => { this.category = value! });
+  }
+
+  setCurrentDateAsMinValue(){
+    this.currentDate.set(new Date().toISOString().split("T")[0]);
   }
 
   toggleContact(id: number) {
@@ -63,12 +69,9 @@ export class TaskformComponent implements OnInit {
     }
   }
 
-  isValid() {
-    return this.title.trim() !== '' && this.dueDate !== '';
-  }
+  test(){console.log('testing')}
 
   createTask() {
-    if (!this.isValid()) return;
 
     const task = {
       title: this.title,

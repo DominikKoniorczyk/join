@@ -1,4 +1,4 @@
-<div class="test-wrapper">
+<div class="test-wrapper" (click)="click()">
 
   <div class="test-header">
     <span>Assigned to TEST Seite</span>
@@ -8,7 +8,7 @@
 
     <div class="section">
       <label class="section-label">Assigned to</label>
-      <app-contacts-selector-with-search></app-contacts-selector-with-search>
+      <app-contacts-selector-with-search #test></app-contacts-selector-with-search>
     </div>
   </div>
 </div>
