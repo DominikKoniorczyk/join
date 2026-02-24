@@ -4,9 +4,9 @@
       <div class="detail-avatar-container">
         <div
           class="detail-avatar"
-          [style.background-color]="selectedPerson()?.color"
+          [style.background-color]="selectedPerson().color"
           role="img"
-          [attr.aria-label]="selectedPerson()?.name"
+          [attr.aria-label]="selectedPerson().name"
         >
           {{ selectedPerson().name | initials }}
         </div>
@@ -32,8 +32,8 @@
       <div class="info-content">
         <div class="info-group">
           <p class="info-label">Email</p>
-          <a [href]="'mailto:' + selectedPerson()?.email" class="info-value email-link">
-            {{ selectedPerson()?.email }}
+          <a [href]="'mailto:' + selectedPerson().email" class="info-value email-link">
+            {{ selectedPerson().email }}
           </a>
         </div>
         <div class="info-group">

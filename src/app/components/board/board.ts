@@ -30,7 +30,6 @@ export class Board implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       const status = params['status'];
-
       if (status) {
         setTimeout(() => {
           const el = document.getElementById(status);
@@ -39,7 +38,6 @@ export class Board implements OnInit {
       }
     });
   }
-
 
   loadTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
