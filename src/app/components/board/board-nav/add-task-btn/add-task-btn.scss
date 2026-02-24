@@ -1,0 +1,19 @@
+@use '../../../../styles/variables.scss' as vars;
+
+
+button{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: vars.$primary-color;
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+
+  &:hover{
+    background-color: vars.$secondary-color;
+  }
+}

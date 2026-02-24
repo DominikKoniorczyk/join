@@ -1,26 +1,5 @@
-.board-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-}
-
-.actions {
+.content{
   display: flex;
   align-items: center;
-  gap: 16px;
-}
-
-.add-task-btn {
-  background-color: #2a3647;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: unset;
-  cursor: pointer;
-  transition: 100ms;
-}
-
-.add-task-btn:hover {
-  background-color: #29abe2;
+  gap: 2rem;
 }

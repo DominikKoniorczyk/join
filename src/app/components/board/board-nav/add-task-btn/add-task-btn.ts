@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-task-btn',
@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AddTaskBtn {
 
+  // @Output() openAddTask = new EventEmitter<void>();
+  // addTask(): void {
+  //   this.openAddTask.emit();
+  // }
 }

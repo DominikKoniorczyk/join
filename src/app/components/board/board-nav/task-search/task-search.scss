@@ -1,34 +1,53 @@
-.search-wrapper {
-  position: relative;
+@use '../../../../styles/variables.scss' as vars;
+
+.search-container{
   display: flex;
   align-items: center;
+  gap: 1rem;
+  border: 2px solid vars.$font-lightcolor;
+  border-radius: 10px;
+  background-color: white;
+
+  &:focus-within{
+    border-color: vars.$secondary-color;
+  }
+}
+
+.seperator{
+  width: 3px;
+  height: 1.5rem;
+  background-color: vars.$font-lightcolor;
 }
 
 input {
-  width: 250px;
-  padding: 10px 40px 10px 16px;
-  border-radius: 10px;
-  border: 1px solid #d1d1d1;
+  font-size: 1.2rem;
+  width: 100%;
+  border:none;
   outline: none;
-  transition: 100ms;
+  padding-top: 0.8rem ;
+  padding-bottom: 0.8rem;
+  padding-left: 1.2rem;
+  border-radius: 10px;
+
+  &:focus{
+  border-color: vars.$secondary-color;
+  }
+
+  &::placeholder{
+    color: #D1D1D1;
+  }
 }
 
-input:focus {
-  border-color: #29abe2;
-}
 
-.search-icon {
-  position: absolute;
-  right: 32px;
-  font-size: 14px;
-  pointer-events: none;
-}
-
-.clear-btn {
-  position: absolute;
-  right: 8px;
-  background: transparent;
-  border: unset;
+button{
+ padding-right: 1.2rem;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+
+  &:hover svg path{
+    fill: vars.$secondary-color;
+  }
 }
