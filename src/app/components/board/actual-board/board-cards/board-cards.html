@@ -6,9 +6,9 @@
 
   <div class="progress-container">
   <div class="progress-bar">
-    <div class="progress-fill" style="width: 50%;"></div>
+    <div class="progress-fill" [style.width.%]="getPercentage()"></div>
   </div>
-  <div>1/2 Subtasks</div>
+  <div>{{ getSubtaskStatus()}}</div>
   </div>
   <div class="footer">
     <div class="assigned-user-container"><img src="./assets/img/person-icon.png" alt=""></div>
