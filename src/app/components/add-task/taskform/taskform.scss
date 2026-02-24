@@ -83,9 +83,24 @@ textarea {
       #path6 {
         fill: white;
       }
-
       color: white;
     }
+  }
+}
+
+.low-btn{
+  &.active{
+    background-color:  #7AE229;
+  }
+}
+.med-btn{
+  &.active{
+    background-color: #FFA800;
+  }
+}
+.urgent-btn{
+  &.active{
+    background-color: #FF3D00;
   }
 }
 
