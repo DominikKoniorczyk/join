@@ -30,11 +30,9 @@ export function contactEmailValidator(): ValidatorFn {
     if (email) {
       const domain: string = email.substring(email.lastIndexOf('@') + 1);
       if (domain.includes('.')) {
-        return domain.substring(domain.lastIndexOf('.') + 1).length >= 2
-          ? null
-          : {
-              email: true,
-            };
+        return domain.substring(domain.lastIndexOf('.') + 1).length >= 2 ? null : {
+          email: true,
+        };
       }
     }
     return { email: {} };
