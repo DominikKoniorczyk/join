@@ -51,13 +51,10 @@
                 fill="current" />
             </svg></button>
         </div>
-          <div class="form-inner">
-            <label>Assigned to</label>
-            <app-contacts-selector-with-search
-              #contactsSelector
-              (click)="$event.stopPropagation()"
-            ></app-contacts-selector-with-search>
-        </div>
+      </div>
+      <div class="form-inner">
+        <label>Assigned to</label>
+        <app-contacts-selector-with-search #contactsSelector (click)="$event.stopPropagation()"></app-contacts-selector-with-search>
       </div>
       <div class="form-inner">
         <label for="category">Category<span class="red">*</span></label>
