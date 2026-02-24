@@ -1,14 +1,24 @@
 <section>
+
+  
   <div class="summary-header">
     <h2>Summary</h2>
     <div class="spacer-blue"></div>
-    <span class="tagline">Everything in a nutshel!!</span>
+    <span class="tagline">Everything in a nutshell!</span>
   </div>
 
+  
   <div class="summary-content">
+
     <div class="card-container">
+
+      
       <div class="card-row">
-        <div class="card-to-do" routerLink="/board">
+
+        
+        <div class="card-to-do"
+             [routerLink]="['/board']"
+             [queryParams]="{ status: 'todo' }">
           <div class="icon"></div>
           <div class="text">
             <p class="count">{{ todoCount }}</p>
@@ -16,17 +26,26 @@
           </div>
         </div>
 
-        <div class="card-done" routerLink="/board">
+        
+        <div class="card-done"
+             [routerLink]="['/board']"
+             [queryParams]="{ status: 'done' }">
           <div class="icon"></div>
           <div class="text">
             <p class="count">{{ doneCount }}</p>
             <p>Done</p>
           </div>
         </div>
+
       </div>
 
+      
       <div class="card-row">
-        <div class="card-deadline" routerLink="/board">
+
+        <div class="card-deadline"
+             [routerLink]="['/board']"
+             [queryParams]="{ status: 'todo' }">
+
           <div class="highest-priority-badge">
             <div class="icon"></div>
             <div class="text">
@@ -36,35 +55,52 @@
           </div>
 
           <div class="spacer"></div>
+
           <div class="deadline">
-            <p class="date">{{ nextDeadline | date : 'MMMM d, y' }}</p>
+            <p class="date">{{ nextDeadline | date:'MMMM d, y' }}</p>
             <p>Upcoming Deadline</p>
           </div>
+
         </div>
+
       </div>
 
-     <div class="card-row">
-        <div class="card-all-tasks" routerLink="/board">
+      
+      <div class="card-row">
+
+        
+        <div class="card-all-tasks"
+             [routerLink]="['/board']">
           <p class="count">{{ allTasksCount }}</p>
-          <p>Tasks&nbsp;in<br />Board</p>
+          <p>Tasks in<br>Board</p>
         </div>
 
-         <div class="card-in-progress" routerLink="/board">
+        
+        <div class="card-in-progress"
+             [routerLink]="['/board']"
+             [queryParams]="{ status: 'inprogress' }">
           <p class="count">{{ inProgressCount }}</p>
           <p>Tasks in Progress</p>
         </div>
 
-          <div class="card-awaiting-feedback" routerLink="/board">
+        
+        <div class="card-awaiting-feedback"
+             [routerLink]="['/board']"
+             [queryParams]="{ status: 'await' }">
           <p class="count">{{ awaitingFeedbackCount }}</p>
           <p>Awaiting Feedback</p>
         </div>
+
       </div>
+
     </div>
 
-
-     <div class="greeting">
+    
+    <div class="greeting">
       <p class="greeting-text">{{ greetingText }}</p>
       <p class="name">{{ userName }}</p>
     </div>
+
   </div>
+
 </section>

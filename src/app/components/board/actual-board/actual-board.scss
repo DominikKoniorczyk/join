@@ -1,0 +1,50 @@
+.task-card {
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #2a3647;
+  color: white;
+  border-radius: 8px;
+  font-size: 12px;
+  width: fit-content;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.users span {
+  background: #29abe2;
+  color: white;
+  border-radius: 50%;
+  padding: 6px;
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+.priority {
+  font-size: 12px;
+}

@@ -1,1 +1,25 @@
-<p>actual-board works!</p>
+<div class="task-card">
+
+  <span class="badge">{{ task.type }}</span>
+
+  <h3>{{ task.title }}</h3>
+
+  <p class="description">
+    {{ task.description }}
+  </p>
+
+  <div class="bottom">
+
+    <div class="users">
+      <span *ngFor="let user of task.assignedTo">
+        {{ user.name[0] }}
+      </span>
+    </div>
+
+    <div class="priority">
+      {{ task.priority }}
+    </div>
+
+  </div>
+
+</div>

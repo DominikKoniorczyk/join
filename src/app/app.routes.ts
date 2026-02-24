@@ -6,7 +6,7 @@ import { Contacts } from './components/contacts/contacts';
 import { Summary } from './components/summary/summary';
 import { PrivacyPolicy } from './pages/privacy-policy/privacy-policy';
 import { AddTaskComponent } from './components/add-task/add-task';
-// import { Board } from './components/board/board';
+import { Board } from './components/board/board';
 
 
 
@@ -19,7 +19,7 @@ export const routes: Routes = [
   { path: 'legal-notice', component: LegalNotice },
   { path: 'privacy-policy', component: PrivacyPolicy },
    { path: 'add-task', component: AddTaskComponent },
-  //  { path: 'board', component: Board },
+  { path: 'board', component: Board },
   {
     path: 'help',
     loadComponent: () =>

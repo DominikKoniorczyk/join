@@ -1,2 +1,147 @@
-<app-board-nav></app-board-nav>
-<app-actual-board></app-actual-board>
+<div class="board">
+
+  
+  <div class="board-header">
+    <h2>Board</h2>
+
+    <div class="board-actions">
+      <input type="text" placeholder="Find task..." />
+      <button (click)="openAddTask()">Add task</button>
+    </div>
+  </div>
+
+  
+  <div class="board-columns">
+
+    
+    <div class="column" id="todo">
+      <h3>To do</h3>
+
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[inprogressList, awaitList, doneList]"
+        (cdkDropListDropped)="drop($event, 'todo')"
+        class="task-list"
+      >
+        <div *ngFor="let task of todo" cdkDrag (click)="openTask(task)">
+          <app-actual-board [task]="task"></app-actual-board>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="column" id="inprogress">
+      <h3>In progress</h3>
+
+      <div
+        cdkDropList
+        #inprogressList="cdkDropList"
+        [cdkDropListData]="inprogress"
+        [cdkDropListConnectedTo]="[todoList, awaitList, doneList]"
+        (cdkDropListDropped)="drop($event, 'inprogress')"
+        class="task-list"
+      >
+        <div *ngFor="let task of inprogress" cdkDrag (click)="openTask(task)">
+          <app-actual-board [task]="task"></app-actual-board>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="column" id="await">
+      <h3>Await feedback</h3>
+
+      <div
+        cdkDropList
+        #awaitList="cdkDropList"
+        [cdkDropListData]="await"
+        [cdkDropListConnectedTo]="[todoList, inprogressList, doneList]"
+        (cdkDropListDropped)="drop($event, 'await')"
+        class="task-list"
+      >
+        <div *ngFor="let task of await" cdkDrag (click)="openTask(task)">
+          <app-actual-board [task]="task"></app-actual-board>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="column" id="done">
+      <h3>Done</h3>
+
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList, inprogressList, awaitList]"
+        (cdkDropListDropped)="drop($event, 'done')"
+        class="task-list"
+      >
+        <div *ngFor="let task of done" cdkDrag (click)="openTask(task)">
+          <app-actual-board [task]="task"></app-actual-board>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+ 
+  <div class="overlay" *ngIf="selectedTask" (click)="closeTask()">
+
+    <div class="task-modal" (click)="$event.stopPropagation()">
+
+      <button class="close-btn" (click)="closeTask()">✕</button>
+
+     
+      <div *ngIf="!isEditing">
+
+        <span class="badge">{{ selectedTask.type }}</span>
+
+        <h2>{{ selectedTask.title }}</h2>
+        <p>{{ selectedTask.description }}</p>
+
+        <p><strong>Due date:</strong> {{ selectedTask.dueDate }}</p>
+        <p><strong>Priority:</strong> {{ selectedTask.priority }}</p>
+
+        <div>
+          <p><strong>Assigned To:</strong></p>
+          <div *ngFor="let user of selectedTask.assignedTo || []">
+            {{ user.name }}
+          </div>
+        </div>
+
+        <div>
+          <p><strong>Subtasks:</strong></p>
+          <div *ngFor="let sub of selectedTask.subtasks || []">
+            <input type="checkbox" [(ngModel)]="sub.done" (change)="saveSubtasks()" />
+            {{ sub.title }}
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button (click)="editTask(selectedTask)">Edit</button>
+          <button (click)="deleteTask(selectedTask)">Delete</button>
+        </div>
+
+      </div>
+
+     
+      <div *ngIf="isEditing">
+
+        <input [(ngModel)]="selectedTask.title" placeholder="Title" />
+
+        <textarea [(ngModel)]="selectedTask.description" placeholder="Description"></textarea>
+
+        <div class="modal-actions">
+          <button (click)="saveTask()">Save</button>
+          <button (click)="isEditing = false">Cancel</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

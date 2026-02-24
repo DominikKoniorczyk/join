@@ -1,16 +1,30 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TaskService {
-  tasks: any[] = [];
+  private tasks: any[] = [];
 
-  addTask(task: any) {
-    this.tasks.push(task);
+  constructor() {
+    this.loadTasks();
   }
 
   getTasks() {
     return this.tasks;
+  }
+
+  addTask(task: any) {
+    this.tasks.push(task);
+    this.saveTasks();
+  }
+
+  saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  loadTasks() {
+    const data = localStorage.getItem('tasks');
+    this.tasks = data ? JSON.parse(data) : [];
   }
 }

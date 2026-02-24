@@ -1,1 +1,23 @@
-<p>task-search works!</p>
+<div class="search-wrapper">
+
+  <input
+    type="text"
+    placeholder="Find task"
+    [(ngModel)]="searchTerm"
+    (input)="onInput($event)"
+  />
+
+ 
+  <div class="search-icon">
+    🔍
+  </div>
+
+ 
+  <button
+    *ngIf="searchTerm"
+    class="clear-btn"
+    (click)="clearSearch()">
+    ✕
+  </button>
+
+</div>

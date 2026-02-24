@@ -1,0 +1,34 @@
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  width: 250px;
+  padding: 10px 40px 10px 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  outline: none;
+  transition: 100ms;
+}
+
+input:focus {
+  border-color: #29abe2;
+}
+
+.search-icon {
+  position: absolute;
+  right: 32px;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 8px;
+  background: transparent;
+  border: unset;
+  cursor: pointer;
+  font-size: 16px;
+}

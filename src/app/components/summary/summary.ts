@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router'; 
 import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule], 
   templateUrl: './summary.html',
   styleUrls: ['./summary.scss', './summary-responsive.scss']
 })
@@ -33,26 +34,30 @@ export class Summary implements OnInit {
   }
 
   calculateCounts() {
+
     this.todoCount = this.tasks.filter(t => t.status === 'todo').length;
+
     this.doneCount = this.tasks.filter(t => t.status === 'done').length;
+
     this.inProgressCount = this.tasks.filter(t => t.status === 'inprogress').length;
-    this.awaitingFeedbackCount = this.tasks.filter(t => t.status === 'feedback').length;
+
+    
+    this.awaitingFeedbackCount = this.tasks.filter(t => t.status === 'await').length;
 
     this.urgentCount = this.tasks.filter(t => t.priority === 'urgent').length;
 
-    this.allTasksCount =
-      this.todoCount +
-      this.doneCount +
-      this.inProgressCount +
-      this.awaitingFeedbackCount;
+    
+    this.allTasksCount = this.tasks.length;
 
-    // 👉 nächste Deadline berechnen
+    
     const dates = this.tasks
       .map(t => new Date(t.dueDate))
       .filter(d => !isNaN(d.getTime()));
 
     if (dates.length > 0) {
       this.nextDeadline = new Date(Math.min(...dates.map(d => d.getTime())));
+    } else {
+      this.nextDeadline = null;
     }
   }
 

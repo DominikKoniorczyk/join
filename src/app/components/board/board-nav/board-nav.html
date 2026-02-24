@@ -1,1 +1,19 @@
-<p>board-nav works!</p>
+<div class="board-nav">
+
+  <h1>Board</h1>
+
+  <div class="actions">
+
+    
+    <app-task-search
+      (searchChange)="onSearch($event)">
+    </app-task-search>
+
+   
+    <button class="add-task-btn" (click)="addTask()">
+      Add task +
+    </button>
+
+  </div>
+
+</div>

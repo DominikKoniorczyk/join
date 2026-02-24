@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board-cards',
-  imports: [],
+  standalone: true,
+  imports: [DragDropModule], // 🔥 DAS IST DER FIX
   templateUrl: './board-cards.html',
-  styleUrl: './board-cards.scss',
+  styleUrls: ['./board-cards.scss']
 })
-export class BoardCards {
-
-}
+export class BoardCardsComponent {}
