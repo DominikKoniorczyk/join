@@ -4,11 +4,12 @@ import { DragDropModule, CdkDragDrop, transferArrayItem, moveItemInArray } from 
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ActualBoard } from './actual-board/actual-board';
+import { BoardNav } from './board-nav/board-nav';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CommonModule, DragDropModule, FormsModule, ActualBoard],
+  imports: [CommonModule, DragDropModule, FormsModule, ActualBoard, BoardNav],
   templateUrl: './board.html',
   styleUrls: ['./board.scss']
 })
