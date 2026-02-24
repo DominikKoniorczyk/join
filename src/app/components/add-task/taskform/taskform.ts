@@ -1,20 +1,25 @@
 import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TaskService } from '../../../services/task.service';
 import { Supabase } from '../../../services/supabase';
 import { OnInit } from '@angular/core';
+import { ContactsSelectorWithSearch } from './contacts-selector-with-search/contacts-selector-with-search';
 
 @Component({
   selector: 'app-taskform',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ContactsSelectorWithSearch],
   templateUrl: './taskform.html',
   styleUrls: ['./taskform.scss']
 })
 export class TaskformComponent implements OnInit {
   contacts = signal<SupabaseContactsInterface[]>([]);
+  @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
+  closeDropdown() {
+    this.contactsSelector?.closeOnOutsideClick();
+  }
   currentDate = signal<string>("2026-02-01");
   title = '';
   description = '';
