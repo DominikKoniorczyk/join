@@ -46,6 +46,7 @@ export class ContactsSelectorWithSearch implements OnInit, OnDestroy {
 
   // Öffnet/schließt das Dropdown
   // 🤘 HIIIILLLFFFEEEE 😢
+  // http://localhost:4200/test-add-task
   toggleDropdown(event: MouseEvent) {
     event.stopPropagation();
     this.isOpen = !this.isOpen;
