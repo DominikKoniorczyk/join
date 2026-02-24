@@ -1,4 +1,4 @@
-<article>
+<article (click)="closeDropdown()">
   <h1>Add Task</h1>
   <form class="form" [formGroup]="taskForm" (ngSubmit)="createTask()">
     <section class="left">
@@ -51,16 +51,12 @@
                 fill="current" />
             </svg></button>
         </div>
-      </div>
-      <div class="form-inner">
-        <label>Assigned to</label>
-        <div class="contacts">
-          <!-- <div
-        *ngFor="let contact of contacts"
-        (click)="toggleContact(contact.id)"
-        [class.selected]="assignedTo.includes(contact.id)">
-        {{ contact.name }}
-      </div> -->
+          <div class="form-inner">
+            <label>Assigned to</label>
+            <app-contacts-selector-with-search
+              #contactsSelector
+              (click)="$event.stopPropagation()"
+            ></app-contacts-selector-with-search>
         </div>
       </div>
       <div class="form-inner">
