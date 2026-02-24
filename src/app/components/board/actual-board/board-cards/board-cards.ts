@@ -5,7 +5,7 @@ import { ShortenTextsnippetsPipe } from '../../../../pipes/shorten-textsnippets-
 @Component({
   selector: 'app-board-cards',
   standalone: true,
-  imports: [DragDropModule, ShortenTextsnippetsPipe], // 🔥 DAS IST DER FIX
+  imports: [DragDropModule, ShortenTextsnippetsPipe],
   templateUrl: './board-cards.html',
   styleUrls: ['./board-cards.scss']
 })
