@@ -52,7 +52,7 @@
 
 .content{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 svg{
@@ -75,10 +75,15 @@ button{
   }
 }
 
+.column{
+width: 200px;
+}
+
 .col-header{
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
 }
 
 h3{
@@ -86,7 +91,7 @@ h3{
 }
 
 .task-column{
-
+  width:100%;
   min-height: 500px;
   display: flex;
   flex-direction: column;
