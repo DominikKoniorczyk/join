@@ -1,22 +1,14 @@
 <div class="board">
-
-  
   <div class="board-header">
     <h2>Board</h2>
-
     <div class="board-actions">
       <input type="text" placeholder="Find task..." />
       <button (click)="openAddTask()">Add task</button>
     </div>
   </div>
-
-  
   <div class="board-columns">
-
-    
     <div class="column" id="todo">
       <h3>To do</h3>
-
       <div
         cdkDropList
         #todoList="cdkDropList"
@@ -31,7 +23,7 @@
       </div>
     </div>
 
-    
+
     <div class="column" id="inprogress">
       <h3>In progress</h3>
 
@@ -49,7 +41,7 @@
       </div>
     </div>
 
-    
+
     <div class="column" id="await">
       <h3>Await feedback</h3>
 
@@ -67,7 +59,7 @@
       </div>
     </div>
 
-    
+
     <div class="column" id="done">
       <h3>Done</h3>
 
@@ -87,14 +79,14 @@
 
   </div>
 
- 
+
   <div class="overlay" *ngIf="selectedTask" (click)="closeTask()">
 
     <div class="task-modal" (click)="$event.stopPropagation()">
 
       <button class="close-btn" (click)="closeTask()">✕</button>
 
-     
+
       <div *ngIf="!isEditing">
 
         <span class="badge">{{ selectedTask.type }}</span>
@@ -127,7 +119,7 @@
 
       </div>
 
-     
+
       <div *ngIf="isEditing">
 
         <input [(ngModel)]="selectedTask.title" placeholder="Title" />

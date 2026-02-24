@@ -47,7 +47,7 @@
           <div class="blue_vertical_line"></div>
           <p class="subheadline">Better with a team</p>
         </div>
-        @if (selectedContact()?.name != '') {
+        @if (selectedContact().name != '') {
           <app-contacts-menu
             #details
             [person]="selectedContact()"
