@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ShortenTextsnippetsPipe } from '../../../../pipes/shorten-textsnippets-pipe';
 
@@ -10,6 +10,8 @@ import { ShortenTextsnippetsPipe } from '../../../../pipes/shorten-textsnippets-
   styleUrls: ['./board-cards.scss']
 })
 export class BoardCardsComponent {
+
+  @Output() cardOpened = new EventEmitter<void>();
 
   task = {
     title: 'Kochweltpage & Recipe Recommender',
@@ -31,5 +33,9 @@ export class BoardCardsComponent {
     const totalAmount = this.task.subtask.length;
     const completed = this.task.subtask.filter(tasks => tasks.done).length;
     return completed + '/' + totalAmount + ' Subtasks'
+  }
+
+  openDialog(){
+    this.cardOpened.emit();
   }
 }
