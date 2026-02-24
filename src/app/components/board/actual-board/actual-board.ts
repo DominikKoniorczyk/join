@@ -10,15 +10,15 @@ import { CommonModule } from '@angular/common';
 })
 export class ActualBoard {
 
-  @Input() task: any;
+  // @Input() task: any;
 
-  open = false;
+  // open = false;
 
-  openTask() {
-    this.open = true;
-  }
+  // openTask() {
+  //   this.open = true;
+  // }
 
-  closeTask() {
-    this.open = false;
-  }
+  // closeTask() {
+  //   this.open = false;
+  // }
 }
