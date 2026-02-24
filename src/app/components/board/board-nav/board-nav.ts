@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { TaskSearch } from '../boardNav/task-search/task-search';
+import { TaskSearch } from './task-search/task-search';
 import { CommonModule } from '@angular/common';
 
 @Component({

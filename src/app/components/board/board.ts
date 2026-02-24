@@ -27,7 +27,7 @@ export class Board implements OnInit {
   ngOnInit(): void {
     this.loadTasks();
 
-    
+
     this.route.queryParams.subscribe(params => {
       const status = params['status'];
 
@@ -40,7 +40,7 @@ export class Board implements OnInit {
     });
   }
 
-  
+
   loadTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
 
@@ -50,18 +50,18 @@ export class Board implements OnInit {
     this.done = tasks.filter((t: any) => t.status === 'done');
   }
 
-  
+
   drop(event: CdkDragDrop<any[]>, status: string) {
 
-    
+
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-    } 
-    
+    }
+
     else {
       transferArrayItem(
         event.previousContainer.data,
@@ -74,7 +74,7 @@ export class Board implements OnInit {
       movedTask.status = status;
     }
 
-    
+
     const allTasks = [
       ...this.todo,
       ...this.inprogress,
@@ -85,24 +85,24 @@ export class Board implements OnInit {
     localStorage.setItem('tasks', JSON.stringify(allTasks));
   }
 
-  
+
   openAddTask() {
     this.router.navigate(['/add-task']);
   }
 
-  
+
   openTask(task: any) {
     this.selectedTask = task;
     this.isEditing = false;
   }
 
-  
+
   closeTask() {
     this.selectedTask = null;
     this.isEditing = false;
   }
 
-  
+
   deleteTask(task: any) {
     let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
 
@@ -114,11 +114,11 @@ export class Board implements OnInit {
   }
 
   editTask(task: any) {
-    this.selectedTask = { ...task }; 
+    this.selectedTask = { ...task };
     this.isEditing = true;
   }
 
-  
+
   saveTask() {
     let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
 
@@ -135,7 +135,7 @@ export class Board implements OnInit {
     this.loadTasks();
   }
 
-  
+
   saveSubtasks() {
     const allTasks = [
       ...this.todo,
