@@ -22,6 +22,10 @@ export class ActualBoard {
   @ViewChild('cardDialog') cardDetails! : ElementRef;
 
   selectedTask?: Task;
+  todoTasks: Task[] = [];
+  inProgressTasks: Task[] = [];
+  awaitFeedbackTasks: Task[] = [];
+  doneTasks: Task[] = [];
 
 
   async openDialog(task: Task){
@@ -51,5 +55,6 @@ export class ActualBoard {
       {id:2, title:'Start Page Layout', isDone:false }
     ]
   };
+
 
 }
