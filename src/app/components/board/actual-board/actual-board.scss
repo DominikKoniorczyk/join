@@ -119,3 +119,13 @@ h3{
   flex-direction: column;
   gap: 1rem;
 }
+
+
+dialog{
+  max-width: 500px;
+  border: none;
+  border-radius: 25px;
+  top: 20%;
+  left: 20%;
+  padding: 1rem;
+}

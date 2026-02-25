@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-board-cards-full',
@@ -9,7 +9,13 @@ import { Component, signal } from '@angular/core';
 export class BoardCardsFull {
 isChecked = signal(false);
 
+@Output() closeTriggered = new EventEmitter<void>();
+
 toggleCheck() {
     this.isChecked.update(value => !value);
   }
+
+onClose(){
+  this.closeTriggered.emit();
+}
 }

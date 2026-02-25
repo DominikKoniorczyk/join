@@ -20,6 +20,10 @@ export class ActualBoard {
     this.cardDetails?.nativeElement.showModal();
   }
 
+  closeDialog(){
+    this.cardDetails.nativeElement.close();
+  }
+
   // @Input() task: any;
 
   // open = false;
