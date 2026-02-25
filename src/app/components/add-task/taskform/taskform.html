@@ -92,6 +92,9 @@
             </div>
           </div>
           <ul>
+            @for (subtask of currentTask().subtasks; track subtask){
+              <li>{{subtask.title}} 1</li>
+            }
           </ul>
         </div>
       </section>

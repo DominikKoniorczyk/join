@@ -6,7 +6,8 @@ import { TaskService } from '../../../services/task.service';
 import { Supabase } from '../../../services/supabase';
 import { OnInit } from '@angular/core';
 import { ContactsSelectorWithSearch } from './contacts-selector-with-search/contacts-selector-with-search';
-import { Task } from '../../../interfaces/taskmodel.interfaces';
+import { Subtask, Task } from '../../../interfaces/taskmodel.interfaces';
+import { CurrentDate } from '../../../services/current-date';
 
 @Component({
   selector: 'app-taskform',
@@ -23,7 +24,7 @@ export class TaskformComponent implements OnInit {
   currentDate = signal<string>("2026-02-01");
   currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
   currentPrio = signal<number>(1);
-  newSubtask = '';
+  currentSubtask = signal<Subtask[]>([]);
   taskForm = new FormGroup({
     title: new FormControl('', { validators: [Validators.required, Validators.minLength(5)] }),
     desc: new FormControl(''),
@@ -32,7 +33,7 @@ export class TaskformComponent implements OnInit {
     subtask: new FormControl('')
   });
 
-  constructor(private taskService: TaskService, private supabase: Supabase) { }
+  constructor(private taskService: TaskService, private supabase: Supabase, private date: CurrentDate) { }
 
   async ngOnInit() {
     const data = await this.supabase.getDataFromTable('users');
@@ -40,7 +41,7 @@ export class TaskformComponent implements OnInit {
       this.contacts.set(data);
     }
     this.subscripeAllInputFields();
-    this.setCurrentDateAsMinValue();
+    this.currentDate.set(this.date.getCurrentDate());
   }
 
   closeDropdown() {
@@ -103,18 +104,27 @@ export class TaskformComponent implements OnInit {
   }
 
   onBlurSubtask() {
+    if(this.taskForm.get('subtask')?.value == "")
     this.subtask.nativeElement.classList.add("d-none");
   }
 
-  setCurrentDateAsMinValue() {
-    this.currentDate.set(new Date().toISOString().split("T")[0]);
+  addSubtask() {
+    if (this.taskForm.get('subtask')?.value != "") {
+      let currentSubtask = this.currentTask().subtasks;
+      console.log();
+
+      currentSubtask.push({id: 0, title: this.taskForm.get('subtask')?.value!, isDone: false});
+      this.currentTask.update((val) => {
+        if (!val) return val;
+        return { ...val, subtasks: currentSubtask};
+      })
+      this.taskForm.get('subtask')?.setValue("");
+    }
+    console.log(this.currentTask());
   }
 
-  addSubtask() {
-    if (this.newSubtask.trim()) {
-      // this.subtasks.push(this.newSubtask);
-      this.newSubtask = '';
-    }
+  clearSubtask(){
+    this.taskForm.get('subtask')?.setValue("");
   }
 
   createTask() {
