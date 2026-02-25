@@ -41,6 +41,7 @@ export class ActualBoard {
 
   dummyTask: Task = {
     id: 1,
+    progressStatus: 'To do',
     category: 'User Story',
     headline: 'Kochwelt & Recipe Recommender',
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ut soluta aliquam deleniti maxime, in itaque est tempore possimus sed consectetur obcaecati et laudantium quia, exercitationem sint sapiente molestias temporibus.',

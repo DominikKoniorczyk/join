@@ -6,7 +6,8 @@ export interface Subtask {
 
 export interface Task {
   id: number;
-  category: 'User Story' | 'Technical Task';
+  progressStatus: 'To do' | 'In progress' | 'Await feedback' | 'Done';
+  category: string;
   headline: string;
   desc: string;
   dueDate: string;
