@@ -16,6 +16,12 @@ export class BoardCardsComponent {
 
   @Output() cardOpened = new EventEmitter<void>();
 
+  priorityMap: { [key: number]: { label: string, icon: string } } = {
+    0: { label: 'Low', icon: 'urgency-low-icon.png' },
+    1: { label: 'Medium', icon: 'urgency-medium-icon.png' },
+    2: { label: 'Urgent', icon: 'urgency-urgent-icon.png' },
+  };
+
   getPercentage(){
     if(!this.task?.subtasks || this.task.subtasks.length === 0) return 0;
     const totalAmount = this.task.subtasks.length;

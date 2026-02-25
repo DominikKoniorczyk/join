@@ -12,7 +12,11 @@
   </div>
   <div class="footer">
     <div class="assigned-user-container"><img src="./assets/img/person-icon.png" alt=""></div>
-    <div class="urgency-icon"><img src="./assets/img/urgency-medium-icon.png" alt=""></div>
+    <div class="urgency-icon">
+      @if (priorityMap[task.priority]) {
+      <img [src]="'./assets/img/' + priorityMap[task.priority].icon" [alt]="priorityMap[task.priority].label">
+      }
+  </div>
   </div>
 </div>
 

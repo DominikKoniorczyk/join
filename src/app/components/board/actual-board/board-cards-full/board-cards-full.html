@@ -58,9 +58,9 @@
     <div class="priority-edit-container">
        <span class="rows">Priority</span>
     <div class="priority-edit-row">
-       <button class="prio-btn" type="button" (click)="tempPriority = 3">Urgent</button>
-       <button class="prio-btn" type="button" (click)="tempPriority = 2">Medium</button>
-       <button class="prio-btn" type="button" (click)="tempPriority = 1">Low</button>
+      <app-priority-button [type] = 0  [active]="tempPriority === 0" (click)="setPriority(0)"></app-priority-button>
+      <app-priority-button [type] = 1  [active]="tempPriority === 1" (click)="setPriority(1)"></app-priority-button>
+      <app-priority-button [type] = 2  [active]="tempPriority === 2" (click)="setPriority(2)"></app-priority-button>
     </div>
     </div>
   }

@@ -1,10 +1,11 @@
 import { Component, ElementRef, EventEmitter, inject, Input, Output, signal, ViewChild } from '@angular/core';
 import { Task, Subtask } from '../../../../interfaces/taskmodel.interfaces';
 import { CurrentDate } from '../../../../services/current-date';
+import { PriorityButton } from '../../../../shared/priority-button/priority-button';
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [],
+  imports: [PriorityButton],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })
@@ -32,9 +33,9 @@ onClose(){
 
 
 priorityMap: {[key: number]:{label: string, icon: string}} = {
-    1: {label: 'Low', icon: 'urgency-low-icon.png'},
-    2: {label: 'Medium', icon: 'urgency-medium-icon.png'},
-    3: {label: 'Urgend', icon: 'urgency-urgent-icon.png'},
+    0: {label: 'Low', icon: 'urgency-low-icon.png'},
+    1: {label: 'Medium', icon: 'urgency-medium-icon.png'},
+    2: {label: 'Urgent', icon: 'urgency-urgent-icon.png'},
   };
 
 toggleSubtask(subtask: Subtask){
@@ -52,6 +53,10 @@ saveChanges(){
   this.task.dueDate = this.dateInput.nativeElement.value;
   this.task.priority = this.tempPriority;
   this.isEditing = false;
+}
+
+setPriority(prio: number) {
+  this.tempPriority = prio;
 }
 
 
