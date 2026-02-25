@@ -20,11 +20,14 @@ button {
   align-items: center;
   gap: 0.5rem;
   border-radius: 8px;
-  width: 8.5rem;
+  max-width: 8.5rem;
   height: 3.5rem;
+  width: clamp(4rem, 10dvw, 8.5rem);
   font-size: 1.25rem;
 
   &.active {
+    font-size: 1.3rem;
+    font-weight: bold;
 
     #path1,
     #path2,
@@ -52,4 +55,21 @@ button {
 
 .urgent-active {
   background-color: #FF3D00;
+}
+
+@media (max-width: 1200px) {
+  button {
+    height: 2.8rem;
+    width: 6rem;
+    font-size: 1rem;
+
+    svg{
+      width: 16px;
+    }
+
+    &.active {
+      font-size: 1.05rem;
+      font-weight: bold;
+    }
+  }
 }

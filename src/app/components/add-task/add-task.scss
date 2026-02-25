@@ -1,8 +1,18 @@
-.main{
+.main {
   background-color: #f6f7f8;
-  height: calc(100% - 96px);;
+  height: calc(100% - 96px);
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 893px) {
+  .main {
+    height: calc(100% - 176px);
+    overflow: auto;
+  }
+  .form{
+    margin-bottom: 1rem;
+  }
 }

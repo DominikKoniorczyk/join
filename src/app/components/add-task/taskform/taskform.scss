@@ -311,3 +311,36 @@ option .icon {
   font-size: 1.6rem;
   text-box: trim-both cap alphabetic;
 }
+
+@media (max-width: 1000px) {
+  .form {
+    gap: clamp(0px, 10vw, 1rem);
+  }
+}
+
+@media (max-width: 893px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .bottom-actions {
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 360px){
+  .priority{
+    flex-wrap: wrap;
+  }
+  .buttons{
+    font-size: 1rem;
+    height: 40px;
+  }
+}
