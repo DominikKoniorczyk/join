@@ -5,6 +5,7 @@ import { BoardCardsFull } from './board-cards-full/board-cards-full';
 import { Dialog } from '@angular/cdk/dialog';
 import { AnimationService } from '../../../services/animation.service';
 import { slideInAnimations, slideOutAnimations } from '../animations-board/dialog.animation';
+import { Task } from '../../../interfaces/taskmodel.interfaces';
 
 @Component({
   selector: 'app-actual-board',
@@ -31,6 +32,30 @@ export class ActualBoard {
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true)
     dialogRef.close();
   }
+
+  priorityMap: {[key: number]:string} = {
+    1: 'low',
+    2: 'medium',
+    3: 'urgent'
+  }
+
+  dummyTask: Task = {
+    id: 1,
+    category: 'User Story',
+    headline: 'Kochwelt & Recipe Recommender',
+    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ut soluta aliquam deleniti maxime, in itaque est tempore possimus sed consectetur obcaecati et laudantium quia, exercitationem sint sapiente molestias temporibus.',
+    dueDate: '10/05/2023',
+    priority: 2,
+    assignedTo: ['Alexander Schulz', 'Alina Vogt'],
+    subtasks: [
+      {id:1, title:'Implement Recipe Recommendation', isDone:true},
+      {id:2, title:'Start Page Layout', isDone:false }
+    ]
+  };
+
+
+
+
 
   // @Input() task: any;
 
