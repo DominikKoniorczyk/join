@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="form-inner">
-          <label>Assigned to</label>
+          <label for="assigned-to">Assigned to</label>
           <app-contacts-selector-with-search #contactsSelector
             (click)="$event.stopPropagation()"></app-contacts-selector-with-search>
         </div>
@@ -43,9 +43,9 @@
           </select>
         </div>
         <div class="form-inner">
-          <label>Subtasks</label>
+          <label for="subtasks">Subtasks</label>
           <div class="subtask">
-            <input formControlName="subtask" placeholder="Add new subtask" (focus)="onFocusSubtask()" (blur)="onBlurSubtask()"/>
+            <input id="subtask" name="subtask" formControlName="subtask" placeholder="Add new subtask" (focus)="onFocusSubtask()" (blur)="onBlurSubtask()"/>
             <div #subtaskBtnContainer class="subtask-btn-area d-none">
               <button type="button" class="subtask-btn" (click)="addSubtask()"><svg width="13" height="13" viewBox="0 0 13 13"
                   fill="none" xmlns="http://www.w3.org/2000/svg">
