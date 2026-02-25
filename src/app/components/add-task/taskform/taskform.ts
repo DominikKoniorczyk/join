@@ -91,7 +91,7 @@ export class TaskformComponent implements OnInit {
   setPriority(current: number) {
     this.currentTask.update((val) => {
       if (!val) return val;
-      return { ...val, title: "testing" };
+      return { ...val, priority: current };
     })
     this.currentPrio.set(current);
   }
