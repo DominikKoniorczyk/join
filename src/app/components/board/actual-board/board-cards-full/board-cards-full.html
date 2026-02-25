@@ -65,11 +65,31 @@
     </div>
   }
 
-
-  <div class="assigned-container">
+@if(!isEditing){
+<div class="assigned-container">
     <span class="rows">Assigned To:</span>
-    <div class="info"></div>
+    <div class="info">
+     <div class="assigned-list">
+        @for (contact of task.assignedTo; track contact.id){
+          <div class="assigned-item">
+            <div class="avatar-circle" [style.background-color]="contact.color">
+              {{getInitials(contact.name)}}
+            </div>
+            <span class="contact-name">{{contact.name}}</span>
+          </div>
+        }
+      </div>
+    </div>
   </div>
+} @else {
+  <div class="assigned-edit-container">
+    <span class="rows">Assigned To</span>
+    <app-contacts-selector-with-search
+      [(selectedContacts)]="task.assignedTo">
+    </app-contacts-selector-with-search>
+  </div>
+}
+
 
 @if(!isEditing){
  <div class="subtask-container">
@@ -100,7 +120,7 @@
       <span>Edit</span>
     </button>
      } @else {
-      <button (click)="saveChanges()">Ok<img src="./assets/img/checkmark-icon.png" alt=""></button>
+      <button class="edit-save-btn" (click)="saveChanges()">Ok<img class="img-save-btn" src="./assets/img/checkmark-icon.png" alt=""></button>
      }
   </div>
   </div>

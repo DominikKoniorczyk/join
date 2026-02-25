@@ -2,10 +2,11 @@ import { Component, ElementRef, EventEmitter, inject, Input, Output, signal, Vie
 import { Task, Subtask } from '../../../../interfaces/taskmodel.interfaces';
 import { CurrentDate } from '../../../../services/current-date';
 import { PriorityButton } from '../../../../shared/priority-button/priority-button';
+import { ContactsSelectorWithSearch } from '../../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [PriorityButton],
+  imports: [PriorityButton, ContactsSelectorWithSearch],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })
@@ -59,5 +60,12 @@ setPriority(prio: number) {
   this.tempPriority = prio;
 }
 
+getInitials(name: string): string {
+  if (!name) return '';
+  const parts = name.trim().split(' ');
+  return (parts.length > 1
+    ? parts[0][0] + parts[parts.length - 1][0]
+    : parts[0][0]).toUpperCase();
+}
 
 }

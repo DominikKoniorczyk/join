@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, EventEmitter, inject, Input,  OnInit, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Supabase } from '../../../../services/supabase';
 import { SupabaseContactsInterface } from '../../../../interfaces/supabase.interfaces';
@@ -11,10 +11,13 @@ import { SupabaseContactsInterface } from '../../../../interfaces/supabase.inter
   styleUrl: './contacts-selector-with-search.scss',
 })
 export class ContactsSelectorWithSearch implements OnInit {
+@Output() selectedContactsChange = new EventEmitter<SupabaseContactsInterface[]>();
+
+
   private supabase = inject(Supabase);
 
   allContacts = signal<SupabaseContactsInterface[]>([]);
-  selectedContacts: SupabaseContactsInterface[] = [];
+  @Input() selectedContacts: SupabaseContactsInterface[] = [];
   isOpen = false;
   searchTerm = signal('');
 
@@ -50,6 +53,7 @@ export class ContactsSelectorWithSearch implements OnInit {
     } else {
       this.selectedContacts.splice(index, 1);
     }
+    this.selectedContactsChange.emit([...this.selectedContacts]);
   }
 
   isSelected(contact: SupabaseContactsInterface): boolean {

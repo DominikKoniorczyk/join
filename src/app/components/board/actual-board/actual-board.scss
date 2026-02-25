@@ -80,3 +80,17 @@ dialog{
   left: 20%;
   padding: 1rem;
 }
+
+
+.no-task-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 4rem;
+  background-color: #E7E7E7;
+  color: #A8A8A8;
+  border: 2px dashed #A8A8A8;
+  border-radius: 10px;
+  font-size: 1rem;
+}

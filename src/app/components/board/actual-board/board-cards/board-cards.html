@@ -11,7 +11,13 @@
   <div>{{ getSubtaskStatus()}}</div>
   </div>
   <div class="footer">
-    <div class="assigned-user-container"><img src="./assets/img/person-icon.png" alt=""></div>
+    <div class="assigned-user-container">@for (contact of task.assignedTo; track contact.id) {
+      <div class="mini-avatar"
+           [style.background-color]="contact.color"
+           [title]="contact.name">
+        {{ getInitials(contact.name) }}
+      </div>
+    }</div>
     <div class="urgency-icon">
       @if (priorityMap[task.priority]) {
       <img [src]="'./assets/img/' + priorityMap[task.priority].icon" [alt]="priorityMap[task.priority].label">
