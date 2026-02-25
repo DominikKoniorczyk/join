@@ -8,14 +8,12 @@ import { Task, Subtask } from '../../../../interfaces/taskmodel.interfaces';
   styleUrl: './board-cards-full.scss',
 })
 export class BoardCardsFull {
-isChecked = signal(false);
+
 @Input() task!: Task;
 
 @Output() closeTriggered = new EventEmitter<void>();
 
-toggleCheck() {
-    this.isChecked.update(value => !value);
-  }
+isEditing = false;
 
 onClose(){
   this.closeTriggered.emit();
@@ -31,4 +29,10 @@ priorityMap: {[key: number]:{label: string, icon: string}} = {
 toggleSubtask(subtask: Subtask){
   subtask.isDone = !subtask.isDone;
 }
+
+toggleEditMode(){
+  this.isEditing = true;
+}
+
+
 }
