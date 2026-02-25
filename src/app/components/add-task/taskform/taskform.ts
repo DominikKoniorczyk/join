@@ -19,7 +19,7 @@ export class TaskformComponent implements OnInit {
   contacts = signal<SupabaseContactsInterface[]>([]);
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   currentDate = signal<string>("2026-02-01");
-  currentTask = signal<Task>({id: "", title: "", description: "", dueDate: "", priority: 0 , category: "", assignedTo: [], subtasks: [], status: 'todo'});
+  currentTask = signal<Task>({id: "", title: "", description: "", dueDate: "", priority: 1 , category: "", assignedTo: [], subtasks: [], status: 'todo'});
   newSubtask = '';
   taskForm = new FormGroup({
       title: new FormControl('', { validators: [Validators.required, Validators.minLength(5)]}),
@@ -69,6 +69,6 @@ export class TaskformComponent implements OnInit {
   }
 
   resetForm() {
-    this.currentTask.set({id: "", title: "", description: "", dueDate: "", priority: 0 , category: "", assignedTo: [], subtasks: [], status: 'todo' });
+    this.currentTask.set({id: "", title: "", description: "", dueDate: "", priority: 1 , category: "", assignedTo: [], subtasks: [], status: 'todo' });
   }
 }
