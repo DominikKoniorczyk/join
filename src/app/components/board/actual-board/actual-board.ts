@@ -20,8 +20,11 @@ export class ActualBoard {
 
   @ViewChild('cardDialog') cardDetails! : ElementRef;
 
+  selectedTask?: Task;
 
-  async openDialog(){
+
+  async openDialog(task: Task){
+    this.selectedTask = task;
     const dialogRef = this.cardDetails.nativeElement;
     dialogRef.showModal();
     await this.animService.animate(dialogRef, slideInAnimations, 400, true)
@@ -31,12 +34,6 @@ export class ActualBoard {
     const dialogRef = this.cardDetails.nativeElement;
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true)
     dialogRef.close();
-  }
-
-  priorityMap: {[key: number]:string} = {
-    1: 'low',
-    2: 'medium',
-    3: 'urgent'
   }
 
   dummyTask: Task = {
