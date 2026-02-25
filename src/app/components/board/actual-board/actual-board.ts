@@ -36,12 +36,6 @@ export class ActualBoard {
     dialogRef.close();
   }
 
-  priorityMap: {[key: number]:string} = {
-    1: 'low',
-    2: 'medium',
-    3: 'urgent'
-  }
-
   dummyTask: Task = {
     id: 1,
     progressStatus: 'To do',
