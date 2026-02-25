@@ -1,0 +1,55 @@
+#path1,
+#path2 {
+  fill: #FF3D00;
+}
+
+#path3,
+#path4 {
+  fill: #FFA800;
+}
+
+#path5,
+#path6 {
+  fill: #7AE229;
+}
+
+button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 8px;
+  width: 8.5rem;
+  height: 3.5rem;
+  font-size: 1.25rem;
+
+  &.active {
+
+    #path1,
+    #path2,
+    #path3,
+    #path4,
+    #path5,
+    #path6 {
+      fill: white;
+    }
+
+    color: white;
+  }
+}
+
+
+.low-active {
+  background-color: #7AE229;
+}
+
+
+.med-active {
+  background-color: #FFA800;
+}
+
+
+.urgent-active {
+  background-color: #FF3D00;
+}

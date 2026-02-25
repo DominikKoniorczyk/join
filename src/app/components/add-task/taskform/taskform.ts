@@ -8,11 +8,12 @@ import { OnInit } from '@angular/core';
 import { ContactsSelectorWithSearch } from './contacts-selector-with-search/contacts-selector-with-search';
 import { Subtask, Task } from '../../../interfaces/taskmodel.interfaces';
 import { CurrentDate } from '../../../services/current-date';
+import { PriorityButton } from '../../../shared/priority-button/priority-button';
 
 @Component({
   selector: 'app-taskform',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ContactsSelectorWithSearch],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ContactsSelectorWithSearch, PriorityButton],
   templateUrl: './taskform.html',
   styleUrls: ['./taskform.scss']
 })
