@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ShortenTextsnippetsPipe } from '../../../../pipes/shorten-textsnippets-pipe';
+import { Task } from '../../../../interfaces/taskmodel.interfaces';
 
 @Component({
   selector: 'app-board-cards',
@@ -11,27 +12,22 @@ import { ShortenTextsnippetsPipe } from '../../../../pipes/shorten-textsnippets-
 })
 export class BoardCardsComponent {
 
+  @Input() task!: Task;
+
   @Output() cardOpened = new EventEmitter<void>();
 
-  task = {
-    title: 'Kochweltpage & Recipe Recommender',
-    subtask: [
-      {name: 'Implement Recipe Recommendation', done:true },
-      {name: 'Start Page Layout', done:true },
-      {name: 'Start Page Layout', done:false },
-    ]
-  }
-
   getPercentage(){
-    const totalAmount = this.task.subtask.length;
+    if(!this.task?.subtasks || this.task.subtasks.length === 0) return 0;
+    const totalAmount = this.task.subtasks.length;
     if (totalAmount == 0) return 0;
-    const completed = this.task.subtask.filter(tasks => tasks.done).length;
+    const completed = this.task.subtasks.filter(tasks => tasks.isDone).length;
     return (completed / totalAmount) * 100;
   }
 
   getSubtaskStatus(){
-    const totalAmount = this.task.subtask.length;
-    const completed = this.task.subtask.filter(tasks => tasks.done).length;
+    if(!this.task?.subtasks) return '0/0 Subtasks';
+    const totalAmount = this.task.subtasks.length;
+    const completed = this.task.subtasks.filter(tasks => tasks.isDone).length;
     return completed + '/' + totalAmount + ' Subtasks'
   }
 

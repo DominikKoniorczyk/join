@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Task, Subtask } from '../../../../interfaces/taskmodel.interfaces';
 
 @Component({
   selector: 'app-board-cards-full',
@@ -8,6 +9,7 @@ import { Component, EventEmitter, Output, signal } from '@angular/core';
 })
 export class BoardCardsFull {
 isChecked = signal(false);
+@Input() task!: Task;
 
 @Output() closeTriggered = new EventEmitter<void>();
 
@@ -17,5 +19,16 @@ toggleCheck() {
 
 onClose(){
   this.closeTriggered.emit();
+}
+
+
+priorityMap: {[key: number]:{label: string, icon: string}} = {
+    1: {label: 'Low', icon: 'urgency-low-icon.png'},
+    2: {label: 'Medium', icon: 'urgency-medium-icon.png'},
+    3: {label: 'Urgend', icon: 'urgency-urgent-icon.png'},
+  };
+
+toggleSubtask(subtask: Subtask){
+  subtask.isDone = !subtask.isDone;
 }
 }

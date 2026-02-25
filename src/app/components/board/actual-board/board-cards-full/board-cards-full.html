@@ -1,20 +1,20 @@
 <div class="content">
   <div class="header">
-      <div class="category">User Story</div>
+      <div class="category">{{task.category}}</div>
       <button class="close-btn" (click)="onClose()"> <img src="./assets/img/close-cross.png" alt=""></button>
   </div>
 
-  <div class="headline">Kochweltpage & Recipe Recommender</div>
-  <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ut soluta aliquam deleniti maxime, in itaque est tempore possimus sed consectetur obcaecati et laudantium quia, exercitationem sint sapiente molestias temporibus.</p>
+  <div class="headline">{{task.headline}}</div>
+  <p class="description">{{task.desc}}</p>
 
   <div class="duedate-container">
     <span class="rows">Due date:</span>
-    <span class="info">10/05/2023</span>
+    <span class="info">{{task.dueDate}}</span>
   </div>
 
   <div class="priority-container">
     <span class="rows">Priority:</span>
-    <span class="info" >Medium <img src="./assets/img/urgency-medium-icon.png" alt=""></span>
+    <span class="info" >{{priorityMap[task.priority].label}}<img [src]="'./assets/img/' + priorityMap[task.priority]?.icon" alt=""></span>
   </div>
 
   <div class="assigned-container">
@@ -25,11 +25,11 @@
 
   <div class="subtask-container">
     <span class="rows">Subtask:</span>
-    <div class="subtask-target-container"><button class="subtask-btn" (click)="toggleCheck()">@if (isChecked()) {
-        <img src="./assets/img/checkmarkbox-checked.png" alt="Erledigt">
-      } @else {
-        <img src="./assets/img/checkmarkbox-empty.png" alt="Offen">
-      }</button> <span> Implement Recipe Recommendation</span></div>
+    @for (subtask of task.subtasks; track subtask.id) {
+      <div class="subtask-target-container"><button class="subtask-btn" (click)="toggleSubtask(subtask)">
+        <img [src]="subtask.isDone ? './assets/img/checkmarkbox-checked.png' : './assets/img/checkmarkbox-empty.png'" alt="">
+      </button> <span> {{subtask.title}}</span></div>}
+
   </div>
 
   <div class="footer">

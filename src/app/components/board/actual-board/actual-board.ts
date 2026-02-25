@@ -20,8 +20,11 @@ export class ActualBoard {
 
   @ViewChild('cardDialog') cardDetails! : ElementRef;
 
+  selectedTask?: Task;
 
-  async openDialog(){
+
+  async openDialog(task: Task){
+    this.selectedTask = task;
     const dialogRef = this.cardDetails.nativeElement;
     dialogRef.showModal();
     await this.animService.animate(dialogRef, slideInAnimations, 400, true)
