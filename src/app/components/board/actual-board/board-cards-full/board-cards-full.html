@@ -37,7 +37,7 @@
     } @else {
      <div class="duedate-edit-container">
       <span class="rows">Due date</span>
-      <input class="edit-input" #dateInput type="date" [value]="task.dueDate">
+      <input class="edit-input" #dateInput type="date" [value]="task.dueDate" [min]="currentDate()">
      </div>
     }
 
