@@ -18,14 +18,16 @@
   </ng-container>
 
   <ng-template #editTpl>
-    <input
-      #editInput
-      class="edit-input"
-      type="text"
-      [(ngModel)]="editValue"
-      (keydown)="onKeydown($event)"
-    />
-
+    <div class="left">
+        <input
+        #editInput
+        class="edit-input"
+        type="text"
+        [(ngModel)]="editValue"
+        (keydown)="onKeydown($event)"
+        />
+    </div>
+    
     <div class="actions edit-actions">
       <button type="button" class="icon-btn" (click)="onDelete()" aria-label="Delete subtask">
         <img src="assets/img/delete.svg" alt="" />
