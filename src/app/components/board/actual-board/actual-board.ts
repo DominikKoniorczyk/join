@@ -51,19 +51,4 @@ export class ActualBoard {
     ]
   };
 
-
-
-
-
-  // @Input() task: any;
-
-  // open = false;
-
-  // openTask() {
-  //   this.open = true;
-  // }
-
-  // closeTask() {
-  //   this.open = false;
-  // }
 }

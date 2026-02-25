@@ -37,7 +37,7 @@
     } @else {
      <div class="duedate-edit-container">
       <span class="rows">Due date</span>
-      <input class="edit-input" #dateInput type="text" [value]="task.dueDate">
+      <input class="edit-input" #dateInput type="date" [value]="task.dueDate">
      </div>
     }
 
@@ -71,15 +71,16 @@
     <div class="info"></div>
   </div>
 
-
-  <div class="subtask-container">
+@if(!isEditing){
+ <div class="subtask-container">
     <span class="rows">Subtask:</span>
     @for (subtask of task.subtasks; track subtask.id) {
       <div class="subtask-target-container"><button class="subtask-btn" (click)="toggleSubtask(subtask)">
         <img [src]="subtask.isDone ? './assets/img/checkmarkbox-checked.png' : './assets/img/checkmarkbox-empty.png'" alt="">
       </button> <span> {{subtask.title}}</span></div>}
-
   </div>
+}
+
 
   <div class="footer">
     @if(!isEditing){
