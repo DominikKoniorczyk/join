@@ -3,9 +3,9 @@ export interface Task {
   title: string;
   description: string;
   dueDate: string;
-  priority: 'urgent' | 'medium' | 'low';
+  priority: 0 | 1 | 2;
   category: string;
-  assignedTo: number[]; // 🔥 wichtig: IDs von Contacts!
+  assignedTo: number[];
   subtasks: string[];
   status: 'todo' | 'in-progress' | 'done';
 }
