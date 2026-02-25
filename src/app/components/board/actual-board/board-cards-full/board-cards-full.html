@@ -31,17 +31,23 @@
   </div>
 
   <div class="priority-container">
-    <span class="rows">Priority:</span>
-    @if(!isEditing){
-      <span class="info" >{{priorityMap[task.priority].label}}<img [src]="'./assets/img/' + priorityMap[task.priority]?.icon" alt=""></span>
-    } @else{
-      <div class="priority-edit-row">
-       <button></button>
-       <button></button>
-       <button></button>
-      </div>
-    }
-  </div>
+  <span class="rows">Priority:</span>
+  @if(!isEditing) {
+    <span class="info">
+      {{ priorityMap[task.priority]?.label }}
+
+      @if (priorityMap[task.priority]) {
+        <img [src]="'./assets/img/' + priorityMap[task.priority]?.icon" alt="">
+      }
+    </span>
+  } @else {
+    <div class="priority-edit-row">
+       <button type="button" (click)="tempPriority = 3">Urgent</button>
+       <button type="button" (click)="tempPriority = 2">Medium</button>
+       <button type="button" (click)="tempPriority = 1">Low</button>
+    </div>
+  }
+</div>
 
   <div class="assigned-container">
     <span class="rows">Assigned To:</span>
