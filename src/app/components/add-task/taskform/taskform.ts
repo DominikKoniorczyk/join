@@ -47,14 +47,45 @@ export class TaskformComponent implements OnInit {
 
   subscripeAllInputFields() {
     this.taskForm.get('title')?.valueChanges.subscribe((value) => {
-      this.currentTask.update((val) => {
-        if (!val) return val;
-        return { ...val, title: value! };
-      })
+      this.updateTaskTitle(value!);
     });
-    // this.taskForm.get('desc')?.valueChanges.subscribe((value) => { this.currentTask.description = value! });
-    // this.taskForm.get('date')?.valueChanges.subscribe((value) => { this.currentTask.dueDate = value! });
-    // this.taskForm.get('cat')?.valueChanges.subscribe((value) => { this.currentTask.category = value! });
+    this.taskForm.get('desc')?.valueChanges.subscribe((value) => {
+      this.updateTaskDesc(value!);
+    });
+    this.taskForm.get('date')?.valueChanges.subscribe((value) => {
+      this.updateTaskDate(value!);
+    });
+    this.taskForm.get('cat')?.valueChanges.subscribe((value) => {
+      this.updateTaskCat(value!);
+    });
+  }
+
+  updateTaskTitle(value: string) {
+    this.currentTask.update((val) => {
+      if (!val) return val;
+      return { ...val, title: value };
+    })
+  }
+
+  updateTaskDesc(value: string) {
+    this.currentTask.update((val) => {
+      if (!val) return val;
+      return { ...val, description: value };
+    })
+  }
+
+  updateTaskDate(value: string) {
+    this.currentTask.update((val) => {
+      if (!val) return val;
+      return { ...val, dueDate: value };
+    })
+  }
+
+  updateTaskCat(value: string) {
+    this.currentTask.update((val) => {
+      if (!val) return val;
+      return { ...val, category: value };
+    })
   }
 
   setPriority(current: number) {
