@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, Input, Output, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, Output, signal, ViewChild } from '@angular/core';
 import { Task, Subtask } from '../../../../interfaces/taskmodel.interfaces';
+import { CurrentDate } from '../../../../services/current-date';
 
 @Component({
   selector: 'app-board-cards-full',
@@ -15,6 +16,10 @@ export class BoardCardsFull {
 
 isEditing = false;
 tempPriority: number = 0;
+currentDate = signal<string>("2026-02-01");
+
+dataService = inject(CurrentDate);
+
 
 @ViewChild('headlineInput') headlineInput!: ElementRef<HTMLInputElement>;
 @ViewChild('descInput') descInput!: ElementRef<HTMLInputElement>;
