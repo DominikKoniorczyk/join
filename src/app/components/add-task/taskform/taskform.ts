@@ -1,5 +1,5 @@
 import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, computed, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TaskService } from '../../../services/task.service';
@@ -19,15 +19,16 @@ export class TaskformComponent implements OnInit {
   contacts = signal<SupabaseContactsInterface[]>([]);
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   currentDate = signal<string>("2026-02-01");
-  currentTask = signal<Task>({id: "", title: "", description: "", dueDate: "", priority: 1 , category: "", assignedTo: [], subtasks: [], status: 'todo'});
+  currentTask = signal<Task>({ id: "", title: "", description: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], status: 'todo' });
+  currentPrio = signal<number>(1);
   newSubtask = '';
   taskForm = new FormGroup({
-      title: new FormControl('', { validators: [Validators.required, Validators.minLength(5)]}),
-      desc: new FormControl(''),
-      date: new FormControl('', { validators: [Validators.required]}),
-      cat: new FormControl('', { validators: [Validators.required, Validators.minLength(1)]}),
-      subtask: new FormControl('')
-    });
+    title: new FormControl('', { validators: [Validators.required, Validators.minLength(5)] }),
+    desc: new FormControl(''),
+    date: new FormControl('', { validators: [Validators.required] }),
+    cat: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
+    subtask: new FormControl('')
+  });
 
   constructor(private taskService: TaskService, private supabase: Supabase) { }
 
@@ -44,14 +45,39 @@ export class TaskformComponent implements OnInit {
     this.contactsSelector?.closeOnOutsideClick();
   }
 
-  subscripeAllInputFields(){
-    // this.taskForm.get('title')?.valueChanges.subscribe((value) => { this.currentTask.title = value! });
+  subscripeAllInputFields() {
+    this.taskForm.get('title')?.valueChanges.subscribe((value) => {
+      this.currentTask.update((val) => {
+        if (!val) return val;
+        return { ...val, title: value! };
+      })
+    });
     // this.taskForm.get('desc')?.valueChanges.subscribe((value) => { this.currentTask.description = value! });
     // this.taskForm.get('date')?.valueChanges.subscribe((value) => { this.currentTask.dueDate = value! });
     // this.taskForm.get('cat')?.valueChanges.subscribe((value) => { this.currentTask.category = value! });
   }
 
-  setCurrentDateAsMinValue(){
+  setPriority(current: number) {
+    this.currentTask.update((val) => {
+      if (!val) return val;
+      return { ...val, title: "testing" };
+    })
+    this.currentPrio.set(current);
+  }
+
+  get isLow() {
+    return this.currentTask()?.priority === 0;
+  }
+
+  get isMedium() {
+    return this.currentTask()?.priority === 1;
+  }
+
+  get isUrgent() {
+    return this.currentTask()?.priority === 2;
+  }
+
+  setCurrentDateAsMinValue() {
     this.currentDate.set(new Date().toISOString().split("T")[0]);
   }
 
@@ -69,6 +95,6 @@ export class TaskformComponent implements OnInit {
   }
 
   resetForm() {
-    this.currentTask.set({id: "", title: "", description: "", dueDate: "", priority: 1 , category: "", assignedTo: [], subtasks: [], status: 'todo' });
+    this.currentTask.set({ id: "", title: "", description: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], status: 'todo' });
   }
 }
