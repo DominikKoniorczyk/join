@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, signal, ViewChild } from '@angular/core';
 import { Task, Subtask } from '../../../../interfaces/taskmodel.interfaces';
 
 @Component({
@@ -14,6 +14,11 @@ export class BoardCardsFull {
 @Output() closeTriggered = new EventEmitter<void>();
 
 isEditing = false;
+tempPriority: number = 0;
+
+@ViewChild('headlineInput') headlineInput!: ElementRef<HTMLInputElement>;
+@ViewChild('descInput') descInput!: ElementRef<HTMLInputElement>;
+@ViewChild('dateInput') dateInput!: ElementRef<HTMLInputElement>;
 
 onClose(){
   this.closeTriggered.emit();
@@ -30,8 +35,17 @@ toggleSubtask(subtask: Subtask){
   subtask.isDone = !subtask.isDone;
 }
 
-toggleEditMode(){
+startEditing(){
   this.isEditing = true;
+  this.tempPriority = this.task.priority;
+}
+
+saveChanges(){
+  this.task.headline = this.headlineInput.nativeElement.value;
+  this.task.desc = this.descInput.nativeElement.value;
+  this.task.dueDate = this.dateInput.nativeElement.value;
+  this.task.priority = this.tempPriority;
+  this.isEditing = false;
 }
 
 
