@@ -1,53 +1,70 @@
 <div class="content">
 
-  <div class="header">
+
     @if(!isEditing){
+      <div class="header">
       <div class="category">{{task.category}}</div>
-      }
       <button class="close-btn" (click)="onClose()"> <img src="./assets/img/close-cross.png" alt=""></button>
-  </div>
+      </div>
+    } @else {
+        <div class="edit-header">
+        <button class="close-btn-edit" (click)="onClose()"> <img src="./assets/img/close-cross.png" alt=""></button>
+        </div>
+      }
+
+
 
   @if(!isEditing){
   <div class="headline">{{task.headline}}</div>
   } @else{
-    <label for="">Title</label>
-    <input #headlineInput type="text" [value]="task.headline">
+    <label class="input-title"  for="">Title</label>
+    <input class="edit-input" #headlineInput type="text" [value]="task.headline">
   }
 
   @if(!isEditing){
   <p class="description">{{task.desc}}</p>
   } @else {
-    <label for="">Description</label>
-    <input #descInput type="text" [value]="task.desc">
+    <label class="input-title" for="">Description</label>
+    <textarea class="edit-input-textarea" rows="5" #descInput type="text" [value]="task.desc"></textarea>
   }
 
-  <div class="duedate-container">
-    <span class="rows">Due date:</span>
-    @if(!isEditing){
-       <span class="info">{{task.dueDate}}</span>
-    } @else {
-      <input #dateInput type="text" [value]="task.dueDate">
-    }
-  </div>
 
+    @if(!isEditing){
+    <div class="duedate-container">
+    <span class="rows">Due date:</span>
+    <span class="info">{{task.dueDate}}</span>
+    </div>
+    } @else {
+     <div class="duedate-edit-container">
+      <span class="rows">Due date</span>
+      <input class="edit-input" #dateInput type="text" [value]="task.dueDate">
+     </div>
+    }
+
+
+
+  @if(!isEditing) {
   <div class="priority-container">
   <span class="rows">Priority:</span>
-  @if(!isEditing) {
     <span class="info">
       {{ priorityMap[task.priority]?.label }}
 
       @if (priorityMap[task.priority]) {
         <img [src]="'./assets/img/' + priorityMap[task.priority]?.icon" alt="">
       }
-    </span>
+  </span>
+  </div>
   } @else {
+    <div class="priority-edit-container">
+       <span class="rows">Priority</span>
     <div class="priority-edit-row">
-       <button type="button" (click)="tempPriority = 3">Urgent</button>
-       <button type="button" (click)="tempPriority = 2">Medium</button>
-       <button type="button" (click)="tempPriority = 1">Low</button>
+       <button class="prio-btn" type="button" (click)="tempPriority = 3">Urgent</button>
+       <button class="prio-btn" type="button" (click)="tempPriority = 2">Medium</button>
+       <button class="prio-btn" type="button" (click)="tempPriority = 1">Low</button>
+    </div>
     </div>
   }
-</div>
+
 
   <div class="assigned-container">
     <span class="rows">Assigned To:</span>
@@ -82,7 +99,7 @@
       <span>Edit</span>
     </button>
      } @else {
-      <button (click)="saveChanges()">Ok <img src="./assets/img/checkmark-icon.png" alt=""></button>
+      <button (click)="saveChanges()">Ok<img src="./assets/img/checkmark-icon.png" alt=""></button>
      }
   </div>
   </div>

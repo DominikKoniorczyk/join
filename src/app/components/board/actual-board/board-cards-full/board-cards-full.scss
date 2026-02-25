@@ -35,7 +35,27 @@
   align-items: center;
 }
 
+.edit-header{
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+}
+
 .close-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  &:hover{
+    background-color: vars.$light-grey;
+    border-radius: 10px;
+    transform: scale(1.1);
+  }
+}
+
+.close-btn-edit{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,4 +146,56 @@
   background-color: vars.$light-grey;
   height: 25px;
 
+}
+
+.edit-input{
+  height: 40px;
+  border-radius: 10px;
+  padding-left: 1rem;
+  font-size: 1rem;
+  border: 1px solid vars.$light-grey;
+  &:focus{
+    outline: none;
+  }
+}
+
+.edit-input-textarea{
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid vars.$light-grey;
+  &:focus{
+    outline: none;
+  }
+}
+
+.input-title{
+  color: #2a3647;
+  font-size: 1.25rem;
+}
+
+.duedate-edit-container{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.priority-edit-container{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.priority-edit-row{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.prio-btn{
+  background: transparent;
+  border-radius:0.6rem;
+  padding: 1rem;
+  border: 1px solid vars.$light-grey;
+  width: 6rem;
 }
