@@ -48,8 +48,15 @@ h1 {
 input,
 textarea {
   padding: 10px;
+  height: 20px;
   border-radius: 8px;
   border: 1px solid #D1D1D1;
+  font-size: 16px;
+
+  &:focus,
+  &:hover {
+    outline: 1px solid vars.$secondary-color;
+  }
 }
 
 textarea {
@@ -155,20 +162,79 @@ textarea {
   height: 56px;
   border: 1px solid #2A3647;
   background-color: transparent;
+  transition: all 0.2s ease;
 
   #path {
     stroke: black;
   }
 
-  &:hover{
+  &:hover {
     border: 3px solid vars.$secondary-color;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.308);
     color: vars.$secondary-color;
 
-    #path{
+    #path {
       stroke: vars.$secondary-color;
     }
   }
+}
+
+.subtask {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #D1D1D1;
+  background-color: white;
+  display: grid;
+  grid-template-areas: 'text button';
+  grid-template-columns: 85% 15%;
+
+  &:hover,
+  &:focus {
+    border: 1px solid vars.$secondary-color;
+  }
+
+  input {
+    border: none;
+    grid-area: text;
+    height: unset;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      border: none;
+    }
+  }
+
+  .short {
+    height: 22px;
+  }
+}
+
+.subtask-btn-area {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtask-btn {
+  width: 22px;
+  height: 22px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    border-radius: 50%;
+    background-color: #f6f7f8;
+  }
+}
+
+.d-none {
+  display: none;
 }
 
 .create-btn {
@@ -178,6 +244,7 @@ textarea {
   background-color: #2A3647;
   color: white;
   font-weight: 700;
+  transition: all 0.2s ease;
 
   #path {
     fill: white;
@@ -229,7 +296,7 @@ select {
 
 select:hover,
 select:focus {
-  border-color: #999999;
+  border-color: vars.$secondary-color;
 }
 
 select::picker-icon {

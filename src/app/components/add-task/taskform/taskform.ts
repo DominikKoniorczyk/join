@@ -1,5 +1,5 @@
 import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
-import { Component, computed, signal, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TaskService } from '../../../services/task.service';
@@ -16,8 +16,10 @@ import { Task } from '../../../interfaces/taskmodel.interfaces';
   styleUrls: ['./taskform.scss']
 })
 export class TaskformComponent implements OnInit {
-  contacts = signal<SupabaseContactsInterface[]>([]);
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
+  @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
+
+  contacts = signal<SupabaseContactsInterface[]>([]);
   currentDate = signal<string>("2026-02-01");
   currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
   currentPrio = signal<number>(1);
@@ -96,16 +98,12 @@ export class TaskformComponent implements OnInit {
     this.currentPrio.set(current);
   }
 
-  get isLow() {
-    return this.currentTask()?.priority === 0;
+  onFocusSubtask() {
+    this.subtask.nativeElement.classList.remove("d-none");
   }
 
-  get isMedium() {
-    return this.currentTask()?.priority === 1;
-  }
-
-  get isUrgent() {
-    return this.currentTask()?.priority === 2;
+  onBlurSubtask() {
+    this.subtask.nativeElement.classList.add("d-none");
   }
 
   setCurrentDateAsMinValue() {
