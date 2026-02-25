@@ -39,6 +39,8 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
+  max-width: 440px;
 }
 
 .red {
@@ -170,6 +172,20 @@ textarea {
   }
 }
 
+.subtask-block {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subtask-block .subtask,
+.subtask-block .subtask-list,
+.subtask-block .subtask-list li {
+  width: 100%;
+}
+
 .subtask-btn-area {
   width: 90%;
   display: flex;
@@ -190,6 +206,18 @@ textarea {
     border-radius: 50%;
     background-color: #f6f7f8;
   }
+}
+
+.subtask-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.subtask-list li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .d-none {

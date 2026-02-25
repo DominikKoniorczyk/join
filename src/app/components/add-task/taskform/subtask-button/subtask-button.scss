@@ -1,0 +1,102 @@
+@use '../../../../styles/variables.scss' as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.subtask-row {
+    width: 100%;
+    box-sizing: border-box;
+
+    height: 34px;
+    border: 1px solid #D1D1D1;
+    border-radius: 8px;
+
+    padding: 0 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .dot {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .text {
+      font-size: 14px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .icon-btn {
+    border: none;
+    background: transparent;
+    padding: 2px;
+    cursor: pointer;
+
+    img {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+  }
+
+  .hover-actions {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 120ms ease;
+  }
+
+  &:hover .hover-actions {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &.editing {
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+
+    .edit-input {
+      flex: 1;
+      width: 100%;
+      max-width: 440px;
+      font-size: 14px;
+      padding: 10px 12px;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #2a7cff;
+      background: transparent;
+    }
+  }
+}
+
+.subtask-row .left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 2px;
+}
+
+.subtask-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.subtask-list li {
+  list-style: none;
+}

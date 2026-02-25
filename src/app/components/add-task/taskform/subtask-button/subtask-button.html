@@ -1,1 +1,40 @@
-<p>subtask-button works!</p>
+<div class="subtask-row" [class.editing]="isEditing">
+
+  <ng-container *ngIf="!isEditing; else editTpl">
+    <div class="left">
+      <span class="dot">•</span>
+      <span class="text">{{ title }}</span>
+    </div>
+
+    <div class="actions hover-actions">
+      <button type="button" class="icon-btn" (click)="startEdit()" aria-label="Edit subtask">
+        <img src="assets/img/edit.svg" alt="" />
+      </button>
+
+      <button type="button" class="icon-btn" (click)="onDelete()" aria-label="Delete subtask">
+        <img src="assets/img/delete.svg" alt="" />
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #editTpl>
+    <input
+      #editInput
+      class="edit-input"
+      type="text"
+      [(ngModel)]="editValue"
+      (keydown)="onKeydown($event)"
+    />
+
+    <div class="actions edit-actions">
+      <button type="button" class="icon-btn" (click)="onDelete()" aria-label="Delete subtask">
+        <img src="assets/img/delete.svg" alt="" />
+      </button>
+
+      <button type="button" class="icon-btn" (click)="confirmEdit()" aria-label="Confirm edit">
+        <img src="assets/img/check-dark.svg" alt="" />
+      </button>
+    </div>
+  </ng-template>
+
+</div>

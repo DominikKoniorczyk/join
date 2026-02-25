@@ -8,14 +8,16 @@ import { ContactsSelectorWithSearch } from './contacts-selector-with-search/cont
 import { Subtask, Task } from '../../../interfaces/taskmodel.interfaces';
 import { CurrentDate } from '../../../services/current-date';
 import { PriorityButton } from '../../../shared/priority-button/priority-button';
+import { SubtaskButtonComponent } from './subtask-button/subtask-button';
 
 @Component({
   selector: 'app-taskform',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ContactsSelectorWithSearch, PriorityButton],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ContactsSelectorWithSearch, PriorityButton, SubtaskButtonComponent],
   templateUrl: './taskform.html',
   styleUrls: ['./taskform.scss']
 })
+  
 export class TaskformComponent implements OnInit {
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
@@ -132,5 +134,28 @@ export class TaskformComponent implements OnInit {
   resetForm() {
     this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
 
+  }
+
+    removeSubtask(index: number) {
+    this.currentTask.update((val) => {
+      if (!val) return val;
+      const updated = val.subtasks.filter((_, i) => i !== index);
+      return { ...val, subtasks: updated };
+    });
+  }
+
+  editSubtask(event: { index: number; title: string }) {
+    this.currentTask.update((val) => {
+      if (!val) return val;
+
+      const updated = val.subtasks.map((st, i) => {
+        if (i === event.index) {
+          return { ...st, title: event.title };
+        }
+        return st;
+      });
+
+      return { ...val, subtasks: updated };
+    });
   }
 }
