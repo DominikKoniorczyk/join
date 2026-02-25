@@ -6,6 +6,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { AnimationService } from '../../../services/animation.service';
 import { slideInAnimations, slideOutAnimations } from '../animations-board/dialog.animation';
 import { Task } from '../../../interfaces/taskmodel.interfaces';
+import { ContactsSelectorWithSearch } from '../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 
 @Component({
   selector: 'app-actual-board',
@@ -44,7 +45,7 @@ export class ActualBoard {
     desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ut soluta aliquam deleniti maxime, in itaque est tempore possimus sed consectetur obcaecati et laudantium quia, exercitationem sint sapiente molestias temporibus.',
     dueDate: '10/05/2023',
     priority: 2,
-    assignedTo: ['Alexander Schulz', 'Alina Vogt'],
+    assignedTo: [],
     subtasks: [
       {id:1, title:'Implement Recipe Recommendation', isDone:true},
       {id:2, title:'Start Page Layout', isDone:false }

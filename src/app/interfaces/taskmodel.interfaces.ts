@@ -1,3 +1,5 @@
+import { SupabaseContactsInterface } from "./supabase.interfaces";
+
 export interface Subtask {
   id: number;
   title: string;
@@ -12,6 +14,6 @@ export interface Task {
   desc: string;
   dueDate: string;
   priority: number;
-  assignedTo: string[];
+  assignedTo: SupabaseContactsInterface[];
   subtasks: Subtask[];
 }
