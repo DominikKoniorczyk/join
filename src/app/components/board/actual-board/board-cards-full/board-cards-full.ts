@@ -16,9 +16,10 @@ export class BoardCardsFull {
 
 isEditing = false;
 tempPriority: number = 0;
-currentDate = signal<string>("2026-02-01");
-
 dataService = inject(CurrentDate);
+currentDate = signal<string>(this.dataService.getCurrentDate());
+
+
 
 
 @ViewChild('headlineInput') headlineInput!: ElementRef<HTMLInputElement>;
