@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TaskformComponent } from './taskform/taskform';
 
 @Component({
@@ -8,4 +8,10 @@ import { TaskformComponent } from './taskform/taskform';
   templateUrl: './add-task.html',
   styleUrls: ['./add-task.scss']
 })
-export class AddTaskComponent {}
+export class AddTaskComponent {
+  @ViewChild('taskForm') form!: TaskformComponent;
+
+  closeDropdown(){
+    this.form?.closeDropdown();
+  }
+}

@@ -6,6 +6,7 @@ import { TaskService } from '../../../services/task.service';
 import { Supabase } from '../../../services/supabase';
 import { OnInit } from '@angular/core';
 import { ContactsSelectorWithSearch } from './contacts-selector-with-search/contacts-selector-with-search';
+import { Task } from '../../../interfaces/task.interface';
 
 @Component({
   selector: 'app-taskform',
@@ -17,17 +18,8 @@ import { ContactsSelectorWithSearch } from './contacts-selector-with-search/cont
 export class TaskformComponent implements OnInit {
   contacts = signal<SupabaseContactsInterface[]>([]);
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
-  closeDropdown() {
-    this.contactsSelector?.closeOnOutsideClick();
-  }
   currentDate = signal<string>("2026-02-01");
-  title = '';
-  description = '';
-  dueDate = '';
-  priority: 0 | 1 | 2 = 1;
-  category = '';
-  assignedTo: number[] = [];
-  subtasks: string[] = [];
+  currentTask = signal<Task>({id: "", title: "", description: "", dueDate: "", priority: 0 , category: "", assignedTo: [], subtasks: [], status: 'todo'});
   newSubtask = '';
   taskForm = new FormGroup({
       title: new FormControl('', { validators: [Validators.required, Validators.minLength(5)]}),
@@ -48,59 +40,35 @@ export class TaskformComponent implements OnInit {
     this.setCurrentDateAsMinValue();
   }
 
+  closeDropdown() {
+    this.contactsSelector?.closeOnOutsideClick();
+  }
+
   subscripeAllInputFields(){
-    this.taskForm.get('title')?.valueChanges.subscribe((value) => { this.title = value! });
-    this.taskForm.get('desc')?.valueChanges.subscribe((value) => { this.description = value! });
-    this.taskForm.get('date')?.valueChanges.subscribe((value) => { this.dueDate = value! });
-    this.taskForm.get('cat')?.valueChanges.subscribe((value) => { this.category = value! });
+    // this.taskForm.get('title')?.valueChanges.subscribe((value) => { this.currentTask.title = value! });
+    // this.taskForm.get('desc')?.valueChanges.subscribe((value) => { this.currentTask.description = value! });
+    // this.taskForm.get('date')?.valueChanges.subscribe((value) => { this.currentTask.dueDate = value! });
+    // this.taskForm.get('cat')?.valueChanges.subscribe((value) => { this.currentTask.category = value! });
   }
 
   setCurrentDateAsMinValue(){
     this.currentDate.set(new Date().toISOString().split("T")[0]);
   }
 
-  toggleContact(id: number) {
-    if (this.assignedTo.includes(id)) {
-      this.assignedTo = this.assignedTo.filter(i => i !== id);
-    } else {
-      this.assignedTo.push(id);
-    }
-  }
-
   addSubtask() {
     if (this.newSubtask.trim()) {
-      this.subtasks.push(this.newSubtask);
+      // this.subtasks.push(this.newSubtask);
       this.newSubtask = '';
     }
   }
 
-  test(){console.log('testing')}
-
   createTask() {
-
-    const task = {
-      title: this.title,
-      description: this.description,
-      dueDate: this.dueDate,
-      priority: this.priority,
-      category: this.category,
-      assignedTo: this.assignedTo,
-      subtasks: this.subtasks,
-      status: 'todo'
-    };
-
-    this.taskService.addTask(task);
+    const assignment: SupabaseContactsInterface[] = this.contactsSelector.selectedContacts;
+    const data = {}
     this.resetForm();
   }
 
   resetForm() {
-    this.title = '';
-    this.description = '';
-    this.dueDate = '';
-    this.priority = 1;
-    this.category = '';
-    this.assignedTo = [];
-    this.subtasks = [];
-    this.newSubtask = '';
+    this.currentTask.set({id: "", title: "", description: "", dueDate: "", priority: 0 , category: "", assignedTo: [], subtasks: [], status: 'todo' });
   }
 }
