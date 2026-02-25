@@ -11,7 +11,7 @@ export interface Task {
   headline: string;
   desc: string;
   dueDate: string;
-  priority: 1 | 2 | 3;
+  priority: number;
   assignedTo: string[];
   subtasks: Subtask[];
 }

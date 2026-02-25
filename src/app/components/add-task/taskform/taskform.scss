@@ -170,6 +170,10 @@ textarea {
   #path {
     fill: white;
   }
+
+  &:hover{
+    background-color: blue;
+  }
 }
 
 .actions {

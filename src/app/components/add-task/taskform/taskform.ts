@@ -6,7 +6,7 @@ import { TaskService } from '../../../services/task.service';
 import { Supabase } from '../../../services/supabase';
 import { OnInit } from '@angular/core';
 import { ContactsSelectorWithSearch } from './contacts-selector-with-search/contacts-selector-with-search';
-import { Task } from '../../../interfaces/task.interface';
+import { Task } from '../../../interfaces/taskmodel.interfaces';
 
 @Component({
   selector: 'app-taskform',
@@ -19,7 +19,7 @@ export class TaskformComponent implements OnInit {
   contacts = signal<SupabaseContactsInterface[]>([]);
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   currentDate = signal<string>("2026-02-01");
-  currentTask = signal<Task>({ id: "", title: "", description: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], status: 'todo' });
+  currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
   currentPrio = signal<number>(1);
   newSubtask = '';
   taskForm = new FormGroup({
@@ -63,14 +63,14 @@ export class TaskformComponent implements OnInit {
   updateTaskTitle(value: string) {
     this.currentTask.update((val) => {
       if (!val) return val;
-      return { ...val, title: value };
+      return { ...val, headline: value };
     })
   }
 
   updateTaskDesc(value: string) {
     this.currentTask.update((val) => {
       if (!val) return val;
-      return { ...val, description: value };
+      return { ...val, desc: value };
     })
   }
 
@@ -126,6 +126,6 @@ export class TaskformComponent implements OnInit {
   }
 
   resetForm() {
-    this.currentTask.set({ id: "", title: "", description: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], status: 'todo' });
+    this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
   }
 }
