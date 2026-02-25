@@ -3,7 +3,7 @@ export interface Task {
   title: string;
   description: string;
   dueDate: string;
-  priority: 0 | 1 | 2;
+  priority: number;
   category: string;
   assignedTo: number[];
   subtasks: string[];
