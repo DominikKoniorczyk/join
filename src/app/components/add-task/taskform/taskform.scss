@@ -1,3 +1,5 @@
+@use '../../../styles/variables.scss' as vars;
+
 :host {
   width: 85%;
   height: 90%;
@@ -157,12 +159,22 @@ textarea {
   #path {
     stroke: black;
   }
+
+  &:hover{
+    border: 3px solid vars.$secondary-color;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.308);
+    color: vars.$secondary-color;
+
+    #path{
+      stroke: vars.$secondary-color;
+    }
+  }
 }
 
 .create-btn {
   width: 183px;
   height: 56px;
-  border: 1px solid #2A3647;
+  border: none;
   background-color: #2A3647;
   color: white;
   font-weight: 700;
@@ -171,8 +183,9 @@ textarea {
     fill: white;
   }
 
-  &:hover{
-    background-color: blue;
+  &:hover {
+    background-color: vars.$secondary-color;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.308);
   }
 }
 
@@ -191,6 +204,11 @@ textarea {
 
 button[disabled] {
   opacity: 0.5;
+
+  &:hover {
+    background-color: #2A3647;
+    opacity: 0.5;
+  }
 }
 
 select,
