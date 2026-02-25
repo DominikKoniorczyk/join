@@ -2,7 +2,6 @@ import { SupabaseContactsInterface } from './../../../interfaces/supabase.interf
 import { Component, computed, ElementRef, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TaskService } from '../../../services/task.service';
 import { Supabase } from '../../../services/supabase';
 import { OnInit } from '@angular/core';
 import { ContactsSelectorWithSearch } from './contacts-selector-with-search/contacts-selector-with-search';
@@ -34,7 +33,7 @@ export class TaskformComponent implements OnInit {
     subtask: new FormControl('')
   });
 
-  constructor(private taskService: TaskService, private supabase: Supabase, private date: CurrentDate) { }
+  constructor(private supabase: Supabase, private date: CurrentDate) { }
 
   async ngOnInit() {
     const data = await this.supabase.getDataFromTable('users');
@@ -105,26 +104,22 @@ export class TaskformComponent implements OnInit {
   }
 
   onBlurSubtask() {
-    if(this.taskForm.get('subtask')?.value == "")
-    this.subtask.nativeElement.classList.add("d-none");
+    if (this.taskForm.get('subtask')?.value == "")
+      this.subtask.nativeElement.classList.add("d-none");
   }
 
   addSubtask() {
     if (this.taskForm.get('subtask')?.value != "") {
-      let currentSubtask = this.currentTask().subtasks;
-      console.log();
-
-      currentSubtask.push({id: 0, title: this.taskForm.get('subtask')?.value!, isDone: false});
+      let currentSubtask = { id: 0, title: this.taskForm.get('subtask')?.value!, isDone: false };
       this.currentTask.update((val) => {
         if (!val) return val;
-        return { ...val, subtasks: currentSubtask};
+        return { ...val, subtasks: [...val.subtasks, currentSubtask]};
       })
       this.taskForm.get('subtask')?.setValue("");
     }
-    console.log(this.currentTask());
   }
 
-  clearSubtask(){
+  clearSubtask() {
     this.taskForm.get('subtask')?.setValue("");
   }
 
@@ -136,5 +131,6 @@ export class TaskformComponent implements OnInit {
 
   resetForm() {
     this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
+
   }
 }
