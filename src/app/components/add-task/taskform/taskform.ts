@@ -1,5 +1,5 @@
 import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
-import { Component, computed, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, Input, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Supabase } from '../../../services/supabase';
@@ -19,6 +19,8 @@ import { SubtaskButtonComponent } from './subtask-button/subtask-button';
 })
 
 export class TaskformComponent implements OnInit {
+  @Input() progress: string = "To do";
+
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
   @ViewChild('subtaskInput') subtaskInput!: ElementRef<HTMLInputElement>;
@@ -45,6 +47,13 @@ export class TaskformComponent implements OnInit {
     }
     this.subscripeAllInputFields();
     this.currentDate.set(this.date.getCurrentDate());
+  }
+
+  ngAfterViewInit() {
+    this.currentTask.update((val) => {
+      if (!val) return val;
+      return { ...val, headline: this.progress};
+    })
   }
 
   closeDropdown() {
@@ -131,6 +140,7 @@ export class TaskformComponent implements OnInit {
   createTask() {
     const assignment: SupabaseContactsInterface[] = this.contactsSelector.selectedContacts;
     const data = {}
+    this.supabase.uploadJSONToTable('tasks', data);
     this.resetForm();
   }
 
@@ -164,7 +174,6 @@ export class TaskformComponent implements OnInit {
       ev.preventDefault();
       this.addSubtask();
     }
-
     if (ev.key === 'Escape') {
       ev.preventDefault();
       this.subtaskInput.nativeElement.blur();
