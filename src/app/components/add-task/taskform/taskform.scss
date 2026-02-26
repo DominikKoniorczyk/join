@@ -352,7 +352,7 @@ option .icon {
     flex-direction: column;
   }
 
-  .form-inner{
+  .form-inner {
     max-width: unset;
   }
 
@@ -369,15 +369,15 @@ option .icon {
   }
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
   .actions {
     display: none;
     justify-content: space-between;
   }
 }
 
-@media (max-width: 360px){
-  .priority{
+@media (max-width: 360px) {
+  .priority {
     flex-wrap: wrap;
   }
 }

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './subtask-button.html',
   styleUrls: ['./subtask-button.scss'],
 })
-  
+
 export class SubtaskButtonComponent {
   @Input() title: string = '';
   @Input() index: number = 0;

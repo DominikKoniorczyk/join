@@ -10,7 +10,7 @@ describe('Taskform', () => {
     await TestBed.configureTestingModule({
       imports: [Taskform]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(Taskform);
     component = fixture.componentInstance;

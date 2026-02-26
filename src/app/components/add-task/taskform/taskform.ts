@@ -50,14 +50,14 @@ export class TaskformComponent implements OnInit {
   ngAfterViewInit() {
     this.currentTask.update((val) => {
       if (!val) return val;
-      return { ...val, progressStatus: this.returnProgress()};
+      return { ...val, progressStatus: this.returnProgress() };
     })
   }
 
-  returnProgress(): 'To do'| 'In progress' | 'Await feedback' | 'Done'{
-    if(this.progress === 'To do') return 'To do';
-    else if(this.progress === 'In progress') return 'In progress';
-    else if(this.progress === 'Await feedback') return 'Await feedback';
+  returnProgress(): 'To do' | 'In progress' | 'Await feedback' | 'Done' {
+    if (this.progress === 'To do') return 'To do';
+    else if (this.progress === 'In progress') return 'In progress';
+    else if (this.progress === 'Await feedback') return 'Await feedback';
     else return 'Done';
   }
 
@@ -130,7 +130,7 @@ export class TaskformComponent implements OnInit {
       let currentSubtask = { id: 0, title: this.taskForm.get('subtask')?.value!, isDone: false };
       this.currentTask.update((val) => {
         if (!val) return val;
-        return { ...val, subtasks: [...val.subtasks, currentSubtask]};
+        return { ...val, subtasks: [...val.subtasks, currentSubtask] };
       })
       this.taskForm.get('subtask')?.setValue("");
       this.subtaskInput.nativeElement.blur();
@@ -145,8 +145,8 @@ export class TaskformComponent implements OnInit {
   createTask() {
     const assignment: SupabaseContactsInterface[] = this.contactsSelector.selectedContacts;
     this.currentTask.update((val) => {
-      if(!val) return val;
-      return {...val, assignedTo: assignment};
+      if (!val) return val;
+      return { ...val, assignedTo: assignment };
     });
     this.supabase.uploadJSONToTable('tasks', this.currentTask());
     this.resetForm();

@@ -13,23 +13,23 @@ export class AddTaskComponent {
 
   isFormValid = signal<boolean>(false);
 
-  ngAfterViewInit(){
-    if(this.form.taskForm){
-      this.form.taskForm.statusChanges.subscribe( status => {
+  ngAfterViewInit() {
+    if (this.form.taskForm) {
+      this.form.taskForm.statusChanges.subscribe(status => {
         this.isFormValid.set(this.form.taskForm.valid);
       })
     }
   }
 
-  closeDropdown(){
+  closeDropdown() {
     this.form.closeDropdown();
   }
 
-  resetForm(){
+  resetForm() {
     this.form.resetForm();
   }
 
-  createTask(){
+  createTask() {
     this.form.createTask();
   }
 }

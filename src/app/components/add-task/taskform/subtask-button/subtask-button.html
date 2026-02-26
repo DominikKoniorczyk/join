@@ -21,12 +21,7 @@
 
   <ng-template #editTpl>
     <div class="left">
-        <input #editInput
-        class="edit-input"
-        type="text"
-        [(ngModel)]="editValue"
-        (keydown)="onKeydown($event)"
-        />
+      <input #editInput class="edit-input" type="text" [(ngModel)]="editValue" (keydown)="onKeydown($event)" />
     </div>
 
     <div class="actions edit-actions">
