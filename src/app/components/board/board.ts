@@ -20,12 +20,18 @@ export class Board implements OnInit {
 
   onSearchChange(term: string) {
     this.searchTerm = term;
+    this.applySearch();
   }
 
   todo: any[] = [];
   inprogress: any[] = [];
   await: any[] = [];
   done: any[] = [];
+
+  private allTodo: any[] = [];
+  private allInprogress: any[] = [];
+  private allAwait: any[] = [];
+  private allDone: any[] = [];
 
   selectedTask: any = null;
   isEditing: boolean = false;
@@ -54,6 +60,34 @@ export class Board implements OnInit {
     this.inprogress = tasks.filter((t: any) => t.status === 'inprogress');
     this.await = tasks.filter((t: any) => t.status === 'await');
     this.done = tasks.filter((t: any) => t.status === 'done');
+
+    this.allTodo = [...this.todo];
+    this.allInprogress = [...this.inprogress];
+    this.allAwait = [...this.await];
+    this.allDone = [...this.done];
+
+    this.applySearch();
+  }
+
+  applySearch() {
+    const term = (this.searchTerm || '').toLowerCase().trim();
+
+    if (!term) {
+      this.todo = [...this.allTodo];
+      this.inprogress = [...this.allInprogress];
+      this.await = [...this.allAwait];
+      this.done = [...this.allDone];
+      return;
+    }
+
+    const matches = (t: any) =>
+      (t.title || t.headline || '').toLowerCase().includes(term) ||
+      (t.description || t.desc || '').toLowerCase().includes(term);
+
+    this.todo = this.allTodo.filter(matches);
+    this.inprogress = this.allInprogress.filter(matches);
+    this.await = this.allAwait.filter(matches);
+    this.done = this.allDone.filter(matches);
   }
 
 

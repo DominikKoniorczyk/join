@@ -14,8 +14,11 @@
         <app-board-nav (searchChange)="onSearchChange($event)"></app-board-nav>
       </div>
     </div>
-    <app-actual-board [searchTerm]="searchTerm" [todo]="todo" [inprogress]="inprogress" [await]="await"
-      [done]="done"></app-actual-board>
+
+    <div *ngIf="searchTerm && todo.length + inprogress.length + await.length + done.length === 0" class="no-results">
+      Keine Ergebnisse gefunden </div>
+    <app-actual-board [searchTerm]="searchTerm" [todo]="todo" [inprogress]="inprogress" [await]="await" [done]="done">
+    </app-actual-board>
   </div>
 </div>
 
