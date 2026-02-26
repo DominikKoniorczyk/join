@@ -17,7 +17,7 @@ import { SubtaskButtonComponent } from './subtask-button/subtask-button';
   templateUrl: './taskform.html',
   styleUrls: ['./taskform.scss']
 })
-  
+
 export class TaskformComponent implements OnInit {
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
@@ -136,7 +136,7 @@ export class TaskformComponent implements OnInit {
 
   }
 
-    removeSubtask(index: number) {
+  removeSubtask(index: number) {
     this.currentTask.update((val) => {
       if (!val) return val;
       const updated = val.subtasks.filter((_, i) => i !== index);

@@ -48,7 +48,7 @@
           <div class="subtask-block">
             <div class="subtask">
               <input id="subtask" name="subtask" formControlName="subtask" placeholder="Add new subtask" (focus)="onFocusSubtask()" (blur)="onBlurSubtask()"/>
-              
+
               <div #subtaskBtnContainer class="subtask-btn-area d-none">
                 <button type="button" class="subtask-btn" (click)="clearSubtask()">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,12 +73,7 @@
           <ul class="subtask-list">
             @for (subtask of currentTask().subtasks; track $index; let i = $index) {
               <li>
-                <app-subtask-button
-                  [title]="subtask.title"
-                  [index]="i"
-                  (deleteSubtask)="removeSubtask($event)"
-                  (updateSubtask)="editSubtask($event)">
-                </app-subtask-button>
+                <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)" (updateSubtask)="editSubtask($event)"></app-subtask-button>
               </li>
             }
           </ul>
