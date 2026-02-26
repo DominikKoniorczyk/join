@@ -12,8 +12,14 @@ button{
   padding: 1rem;
   border-radius: 10px;
   border: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 
   &:hover{
     background-color: vars.$secondary-color;
+  }
+
+  @media(max-width:1050px){
+    display: none;
   }
 }
