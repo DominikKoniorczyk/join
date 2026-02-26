@@ -30,6 +30,7 @@
 </svg></button>
     </div>
       <div class="task-column">
+        <app-board-cards [task]="dummyTask" (cardOpened)="openDialog(dummyTask)"></app-board-cards>
         @for (task of inProgressTasks; track task.id) {
           <app-board-cards [task]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
@@ -51,6 +52,7 @@
 </svg></button>
     </div>
       <div class="task-column">
+        <app-board-cards [task]="dummyTask" (cardOpened)="openDialog(dummyTask)"></app-board-cards>
          @for (task of awaitFeedbackTasks; track task.id) {
           <app-board-cards [task]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
@@ -67,6 +69,7 @@
       <h3>Done</h3>
     </div>
       <div class="task-column">
+        <app-board-cards [task]="dummyTask" (cardOpened)="openDialog(dummyTask)"></app-board-cards>
          @for (task of doneTasks; track task.id) {
           <app-board-cards [task]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {

@@ -1,5 +1,13 @@
 @use '../../styles/variables.scss' as vars;
 
+.main{
+  height: calc(100% - 96px);
+  overflow: auto;
+  @media(max-width:768px){
+    height: calc(100% - 176px);
+  }
+}
+
 .board-header{
 display: flex;
 align-items: center;
@@ -34,7 +42,10 @@ svg{
   justify-content: start;
   height: calc(100% - 96px);
   padding: 0 40px;
-
+  @media(max-width:1170px){
+    gap: 1rem;
+    padding: 2rem 40px;
+  }
 }
 
 .board-actions{
