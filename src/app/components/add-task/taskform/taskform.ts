@@ -19,7 +19,7 @@ import { SubtaskButtonComponent } from './subtask-button/subtask-button';
 })
 
 export class TaskformComponent implements OnInit {
-  @Input() progress: string = "To do";
+  @Input() progress: string = "In progress";
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
   @ViewChild('subtaskInput') subtaskInput!: ElementRef<HTMLInputElement>;
@@ -50,8 +50,15 @@ export class TaskformComponent implements OnInit {
   ngAfterViewInit() {
     this.currentTask.update((val) => {
       if (!val) return val;
-      return { ...val, headline: this.progress};
+      return { ...val, progressStatus: this.returnProgress()};
     })
+  }
+
+  returnProgress(): 'To do'| 'In progress' | 'Await feedback' | 'Done'{
+    if(this.progress === 'To do') return 'To do';
+    else if(this.progress === 'In progress') return 'In progress';
+    else if(this.progress === 'Await feedback') return 'Await feedback';
+    else return 'Done';
   }
 
   closeDropdown() {
@@ -137,8 +144,11 @@ export class TaskformComponent implements OnInit {
 
   createTask() {
     const assignment: SupabaseContactsInterface[] = this.contactsSelector.selectedContacts;
-    const data = this.currentTask();
-    this.supabase.uploadJSONToTable('tasks', data);
+    this.currentTask.update((val) => {
+      if(!val) return val;
+      return {...val, assignedTo: assignment};
+    });
+    this.supabase.uploadJSONToTable('tasks', this.currentTask());
     this.resetForm();
   }
 
