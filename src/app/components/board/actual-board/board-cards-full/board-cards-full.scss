@@ -1,121 +1,128 @@
 @use '../../../../styles/variables.scss' as vars;
 
-.content{
+.content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
 }
 
-.duedate-container{
+.duedate-container {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 5rem;
 }
 
-.priority-container{
+.priority-container {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 6rem;
 }
 
-.info{
+.info {
   font-size: 1.44rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-    @media(max-width: 768px){
+
+  @media(max-width: 768px) {
     font-size: 1rem;
   }
 }
 
-.header{
+.header {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
 }
 
-.edit-header{
+.edit-header {
   display: flex;
   width: 100%;
   justify-content: end;
   align-items: center;
 }
 
-.close-btn{
+.close-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   background-color: transparent;
-  &:hover{
+
+  &:hover {
     background-color: vars.$light-grey;
     border-radius: 10px;
     transform: scale(1.1);
   }
 }
 
-.close-btn-edit{
+.close-btn-edit {
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   background-color: transparent;
-  &:hover{
+
+  &:hover {
     background-color: vars.$light-grey;
     border-radius: 10px;
     transform: scale(1.1);
   }
 }
 
-.category{
+.category {
   color: white;
   background-color: #0038FF;
   width: fit-content;
   padding: 2px 10px;
   border-radius: 5px;
   font-size: 1.44rem;
-    @media(max-width: 768px){
+
+  @media(max-width: 768px) {
     font-size: 1rem;
   }
 }
 
-.headline{
+.headline {
   font-weight: bold;
   font-size: 3.8rem;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-  @media(max-width: 768px){
+
+  @media(max-width: 768px) {
     font-size: 3rem;
   }
 }
 
-.description{
+.description {
   font-size: 1.25rem;
-    @media(max-width: 768px){
+
+  @media(max-width: 768px) {
     font-size: 1rem;
   }
 }
 
-.rows{
+.rows {
   color: vars.$primary-color;
   font-size: 1.25rem;
-    @media(max-width: 768px){
+
+  @media(max-width: 768px) {
     font-size: 1rem;
   }
 }
 
-.subtask-container{
+.subtask-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.subtask-target-container{
+.subtask-target-container {
   width: 70%;
   font-size: 1rem;
   display: flex;
@@ -123,13 +130,13 @@
   padding-left: 2rem;
   gap: 1rem;
 
-  &:hover{
+  &:hover {
     background-color: vars.$light-grey;
     border-radius: 5px;
   }
 }
 
-.subtask-btn{
+.subtask-btn {
   background-color: transparent;
   border: none;
   display: contents;
@@ -137,14 +144,14 @@
   justify-content: center;
 }
 
-.footer{
+.footer {
   width: 100%;
   display: flex;
   justify-content: end;
   gap: 1rem;
 }
 
-.footer-btn{
+.footer-btn {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -153,67 +160,70 @@
   background-color: transparent;
   border: none;
   color: vars.$primary-color;
-  &:hover{
+
+  &:hover {
     color: vars.$secondary-color;
     font-weight: bold;
   }
 }
 
-.seperator{
+.seperator {
   width: 2px;
   background-color: vars.$light-grey;
   height: 25px;
 
 }
 
-.edit-input{
+.edit-input {
   height: 40px;
   border-radius: 10px;
   padding: 0rem 1rem;
   font-size: 1rem;
   border: 1px solid vars.$light-grey;
-  &:focus{
+
+  &:focus {
     outline: none;
   }
 }
 
-.edit-input-textarea{
+.edit-input-textarea {
   border-radius: 10px;
   padding: 1rem;
   font-size: 1rem;
   border: 1px solid vars.$light-grey;
-  &:focus{
+
+  &:focus {
     outline: none;
   }
 }
 
-.input-title{
+.input-title {
   color: #2a3647;
   font-size: 1.25rem;
 }
 
-.duedate-edit-container{
+.duedate-edit-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.priority-edit-container{
+.priority-edit-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.priority-edit-row{
+.priority-edit-row {
   display: flex;
   width: 100%;
   justify-content: space-between;
 
 }
 
-.prio-btn{
+.prio-btn {
   background: transparent;
-  border-radius:0.6rem;
+  border-radius: 0.6rem;
   padding: 1rem;
   border: 1px solid vars.$light-grey;
   width: 6rem;
@@ -225,7 +235,7 @@
   flex-direction: column;
   gap: 1rem;
   padding-left: 1rem;
-  padding-top: 1rem ;
+  padding-top: 1rem;
 
   .assigned-item {
     display: flex;
@@ -251,13 +261,13 @@
   }
 }
 
-.assigned-edit-container{
+.assigned-edit-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.edit-save-btn{
+.edit-save-btn {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -271,17 +281,17 @@
   gap: 0.5rem;
 }
 
-.img-save-btn{
+.img-save-btn {
   width: 1rem;
 }
 
-.subtask-edit-container{
+.subtask-edit-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.input-subtask-wrapper{
+.input-subtask-wrapper {
   display: flex;
   align-items: center;
   background-color: white;
@@ -291,7 +301,7 @@
   gap: 1rem;
 }
 
-.subtask-edit-btn-container{
+.subtask-edit-btn-container {
   display: flex;
   align-items: center;
   justify-content: end;
@@ -301,7 +311,7 @@
   padding-right: 1rem;
 }
 
-.edit-input-subtask{
+.edit-input-subtask {
   flex: 1;
   border: none;
   outline: none;
@@ -310,7 +320,7 @@
   background: transparent;
 }
 
-.subtask-edit-btn{
+.subtask-edit-btn {
   background: transparent;
   display: flex;
   align-items: center;

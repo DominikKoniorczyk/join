@@ -1,7 +1,7 @@
 @use '../../../../styles/variables.scss' as vars;
 
 
-button{
+button {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -15,11 +15,11 @@ button{
   white-space: nowrap;
   flex-shrink: 0;
 
-  &:hover{
+  &:hover {
     background-color: vars.$secondary-color;
   }
 
-  @media(max-width:1050px){
+  @media(max-width:1050px) {
     display: none;
   }
 }

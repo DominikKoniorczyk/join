@@ -10,7 +10,7 @@ describe('AddTaskBtn', () => {
     await TestBed.configureTestingModule({
       imports: [AddTaskBtn]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AddTaskBtn);
     component = fixture.componentInstance;

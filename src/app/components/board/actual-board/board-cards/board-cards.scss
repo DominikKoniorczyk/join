@@ -1,6 +1,6 @@
 @use '../../../../styles/variables.scss' as vars;
 
-.content{
+.content {
   height: 200px;
   cursor: pointer;
   display: flex;
@@ -14,7 +14,7 @@
 }
 
 
-.category{
+.category {
   color: white;
   background-color: #0038FF;
   width: fit-content;
@@ -22,38 +22,38 @@
   border-radius: 5px;
 }
 
-.headline{
+.headline {
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
 }
 
-.description{
+.description {
   color: vars.$light-grey;
 }
 
-.progress-container{
+.progress-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.progress-bar{
+.progress-bar {
   width: 50%;
   height: .5rem;
   background-color: #eee;
   border-radius: 10px;
   overflow: hidden;
 
-  .progress-fill{
+  .progress-fill {
     height: 100%;
     background-color: #4589FF;
     border-radius: 10px;
   }
 }
 
-.footer{
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,4 +80,3 @@
     }
   }
 }
-
