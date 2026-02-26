@@ -1,23 +1,25 @@
 <div class="main">
-<div class="content">
-  <div class="board-header">
-    <div class="first-container">
-    <h2>Board</h2>
-    <div class="btn-container">
-    <button class="mobile-btn"><svg  viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8 10.6667H0V8H8V0H10.6667V8H18.6667V10.6667H10.6667V18.6667H8V10.6667Z" fill="white"/>
-</svg>
-</button>
-</div>
+  <div class="content">
+    <div class="board-header">
+      <div class="first-container">
+        <h2>Board</h2>
+        <div class="btn-container">
+          <button class="mobile-btn"><svg viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 10.6667H0V8H8V0H10.6667V8H18.6667V10.6667H10.6667V18.6667H8V10.6667Z" fill="white" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="board-actions">
+        <app-board-nav (searchChange)="onSearchChange($event)"></app-board-nav>
+      </div>
     </div>
-    <div class="board-actions">
-      <app-board-nav></app-board-nav>
-    </div>
+    <app-actual-board [searchTerm]="searchTerm"></app-actual-board>
   </div>
-  <app-actual-board></app-actual-board>
 </div>
-</div>
-  <!-- <div class="board-columns">
+
+
+<!-- <div class="board-columns">
     <div class="column" id="todo">
       <h3>To do</h3>
       <div
@@ -146,4 +148,3 @@
 
     </div>
   </div> -->
-

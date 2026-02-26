@@ -10,19 +10,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './task-search.scss',
 })
 export class TaskSearch {
+  @Output() searchChange = new EventEmitter<string>();
+  searchTerm: string = '';
 
-  // @Output() searchChange = new EventEmitter<string>();
+  onInput(): void {
+    this.searchChange.emit(this.searchTerm);
+  }
 
-  // searchTerm: string = '';
-
-  // onInput(event: Event): void {
-  //   const value = (event.target as HTMLInputElement).value;
-  //   this.searchTerm = value;
-  //   this.searchChange.emit(value);
-  // }
-
-  // clearSearch(): void {
-  //   this.searchTerm = '';
-  //   this.searchChange.emit('');
-  // }
+  clearSearch(): void {
+    this.searchTerm = '';
+    this.searchChange.emit('');
+  }
 }

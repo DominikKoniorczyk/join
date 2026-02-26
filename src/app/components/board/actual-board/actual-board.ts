@@ -16,10 +16,10 @@ import { ContactsSelectorWithSearch } from '../../add-task/taskform/contacts-sel
   styleUrl: './actual-board.scss',
 })
 export class ActualBoard {
+  @Input() searchTerm: string = '';
+  @ViewChild('cardDialog') cardDetails!: ElementRef;
 
   animService = inject(AnimationService);
-
-  @ViewChild('cardDialog') cardDetails! : ElementRef;
 
   selectedTask?: Task;
   todoTasks: Task[] = [];
@@ -28,14 +28,14 @@ export class ActualBoard {
   doneTasks: Task[] = [];
 
 
-  async openDialog(task: Task){
+  async openDialog(task: Task) {
     this.selectedTask = task;
     const dialogRef = this.cardDetails.nativeElement;
     dialogRef.showModal();
     await this.animService.animate(dialogRef, slideInAnimations, 400, true)
   }
 
-  async closeDialog(){
+  async closeDialog() {
     const dialogRef = this.cardDetails.nativeElement;
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true)
     dialogRef.close();
@@ -51,8 +51,8 @@ export class ActualBoard {
     priority: 2,
     assignedTo: [],
     subtasks: [
-      {id:1, title:'Implement Recipe Recommendation', isDone:true},
-      {id:2, title:'Start Page Layout', isDone:false }
+      { id: 1, title: 'Implement Recipe Recommendation', isDone: true },
+      { id: 2, title: 'Start Page Layout', isDone: false }
     ]
   };
 

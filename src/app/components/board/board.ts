@@ -10,11 +10,17 @@ import { BoardNav } from './board-nav/board-nav';
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CommonModule, DragDropModule, FormsModule, ActualBoard, BoardNav],
+  imports: [CommonModule, DragDropModule, FormsModule, BoardNav, ActualBoard],
   templateUrl: './board.html',
   styleUrls: ['./board.scss']
 })
 export class Board implements OnInit {
+
+  searchTerm: string = '';
+
+  onSearchChange(term: string) {
+    this.searchTerm = term;
+  }
 
   todo: any[] = [];
   inprogress: any[] = [];
@@ -24,7 +30,7 @@ export class Board implements OnInit {
   selectedTask: any = null;
   isEditing: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loadTasks();
