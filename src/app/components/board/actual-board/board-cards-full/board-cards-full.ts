@@ -4,10 +4,11 @@ import { CurrentDate } from '../../../../services/current-date';
 import { PriorityButton } from '../../../../shared/priority-button/priority-button';
 import { ContactsSelectorWithSearch } from '../../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-button/subtask-button';
+import { AddTaskBtn } from "../../board-nav/add-task-btn/add-task-btn";
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent],
+  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent, AddTaskBtn],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })
@@ -21,6 +22,7 @@ isEditing = false;
 tempPriority: number = 0;
 dataService = inject(CurrentDate);
 currentDate = signal<string>(this.dataService.getCurrentDate());
+currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
 
 
 
@@ -47,6 +49,7 @@ toggleSubtask(subtask: Subtask){
 startEditing(){
   this.isEditing = true;
   this.tempPriority = this.task.priority;
+  this.currentTask.set({ ...this.task });
 }
 
 saveChanges(){
@@ -72,6 +75,40 @@ getInitials(name: string): string {
 clearSubtaskInput(inputElement: HTMLInputElement){
   inputElement.value = '';
   inputElement.focus();
+}
+
+  addSubtask(inputElement: HTMLInputElement) {
+    const value = inputElement.value.trim();
+    if(value !== ''){
+      const newSubtask = {
+        id: Date.now(),
+        title: value,
+        isDone: false
+      };
+    this.currentTask.update((task) =>{ return{...task, subtasks:[...task.subtasks, newSubtask]};});
+    inputElement.value = '';
+    inputElement.focus();
+    }
+  }
+
+  removeSubtask(index: number) {
+  this.currentTask.update(task => ({
+    ...task,
+    subtasks: task.subtasks.filter((_, i) => i !== index)
+  }));
+}
+
+editSubtask(event: { index: number; title: string }) {
+  this.currentTask.update(task => {
+    const updatedSubtasks = [...task.subtasks];
+    if (updatedSubtasks[event.index]) {
+      updatedSubtasks[event.index] = {
+        ...updatedSubtasks[event.index],
+        title: event.title
+      };
+    }
+    return { ...task, subtasks: updatedSubtasks };
+  });
 }
 
 }
