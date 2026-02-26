@@ -133,7 +133,6 @@ export class TaskformComponent implements OnInit {
 
   resetForm() {
     this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
-
   }
 
   removeSubtask(index: number) {
@@ -147,14 +146,12 @@ export class TaskformComponent implements OnInit {
   editSubtask(event: { index: number; title: string }) {
     this.currentTask.update((val) => {
       if (!val) return val;
-
       const updated = val.subtasks.map((st, i) => {
         if (i === event.index) {
           return { ...st, title: event.title };
         }
         return st;
       });
-
       return { ...val, subtasks: updated };
     });
   }
