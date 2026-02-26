@@ -1,5 +1,5 @@
 <form class="outer" [formGroup]="taskForm" (ngSubmit)="createTask()">
-  <article (click)="closeDropdown()">
+  <article class="content" (click)="closeDropdown()">
     <h1>Add Task</h1>
     <div class="form">
       <section class="left">
@@ -9,7 +9,8 @@
         </div>
         <div class="form-inner">
           <label for="description">Description</label>
-          <textarea name="description" id="description" formControlName="desc" placeholder="Enter a description"></textarea>
+          <textarea name="description" id="description" formControlName="desc"
+            placeholder="Enter a description"></textarea>
         </div>
         <div class="form-inner">
           <label for="date">Due date<span class="red">*</span></label>
@@ -28,7 +29,8 @@
         </div>
         <div class="form-inner">
           <p>Assigned to</p>
-          <app-contacts-selector-with-search #contactsSelector (click)="$event.stopPropagation()"></app-contacts-selector-with-search>
+          <app-contacts-selector-with-search #contactsSelector
+            (click)="$event.stopPropagation()"></app-contacts-selector-with-search>
         </div>
         <div class="form-inner">
           <label for="category">Category<span class="red">*</span></label>
@@ -45,13 +47,14 @@
           <p>Subtasks</p>
           <div class="subtask-block">
             <div class="subtask">
-              <input #subtaskInput id="subtask" name="subtask" formControlName="subtask" placeholder="Add new subtask" (focus)="onFocusSubtask()" (keydown)="onKeydown($event)" (blur)="onBlurSubtask()"/>
+              <input #subtaskInput id="subtask" name="subtask" formControlName="subtask" placeholder="Add new subtask"
+                (focus)="onFocusSubtask()" (keydown)="onKeydown($event)" (blur)="onBlurSubtask()" />
               <div #subtaskBtnContainer class="subtask-btn-area d-none">
                 <button type="button" class="subtask-btn" (click)="clearSubtask()">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path id="path"
                       d="M6.243 6.243L11.486 11.486M1 11.486L6.243 6.243L1 11.486ZM11.486 1L6.242 6.243L11.486 1ZM6.242 6.243L1 1L6.242 6.243Z"
-                      stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </button>
                 <div class="vertical-line short"></div>
@@ -67,7 +70,8 @@
           </div>
           <ul class="subtask-list">
             @for (subtask of currentTask().subtasks; track $index; let i = $index) {
-              <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)" (updateSubtask)="editSubtask($event)"></app-subtask-button>
+            <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)"
+              (updateSubtask)="editSubtask($event)"></app-subtask-button>
             }
           </ul>
         </div>
@@ -77,7 +81,7 @@
   <section class="bottom-actions">
     <p><span class="red">*</span>This field is required</p>
     <div class="actions">
-      <button class="clear-btn buttons" (click)="resetForm()">Clear <svg width="13" height="13" viewBox="0 0 13 13"
+      <button type="button" class="clear-btn buttons" (click)="resetForm()">Clear <svg width="13" height="13" viewBox="0 0 13 13"
           fill="none" xmlns="http://www.w3.org/2000/svg">
           <path id="path"
             d="M6.243 6.243L11.486 11.486M1 11.486L6.243 6.243L1 11.486ZM11.486 1L6.242 6.243L11.486 1ZM6.242 6.243L1 1L6.242 6.243Z"

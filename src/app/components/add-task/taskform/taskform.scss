@@ -258,6 +258,7 @@ textarea {
 
 button[disabled] {
   opacity: 0.5;
+  cursor: not-allowed;
 
   &:hover {
     background-color: #2A3647;
@@ -351,10 +352,15 @@ option .icon {
     flex-direction: column;
   }
 
+  .form-inner{
+    max-width: unset;
+  }
+
   .bottom-actions {
     flex-direction: column;
-    gap: 1rem;
-    padding-bottom: 1rem;
+    gap: 3rem;
+    padding: 1rem 0;
+    align-items: flex-start;
   }
 
   .actions {
@@ -363,12 +369,15 @@ option .icon {
   }
 }
 
+@media (max-width: 768px){
+  .actions {
+    display: none;
+    justify-content: space-between;
+  }
+}
+
 @media (max-width: 360px){
   .priority{
     flex-wrap: wrap;
-  }
-  .buttons{
-    font-size: 1rem;
-    height: 40px;
   }
 }
