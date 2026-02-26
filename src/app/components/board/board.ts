@@ -61,6 +61,7 @@ export class Board implements OnInit {
       );
     }
 
+
     else {
       transferArrayItem(
         event.previousContainer.data,
