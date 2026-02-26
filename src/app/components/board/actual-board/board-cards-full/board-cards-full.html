@@ -111,11 +111,9 @@
     <button class="subtask-edit-btn" (click)="addSubtask(subtaskInput)"><img src="./assets/img/check-icon.png" alt=""></button>
     </div>
     </div>
-    <ul class="subtask-list">
+    <ul>
       @for (subtask of currentTask().subtasks; track subtask.id; let i = $index){
-        <li>
-          <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)" (updateSubtask)="editSubtask($event)" ></app-subtask-button>
-        </li>
+        <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)" (updateSubtask)="editSubtask($event)" ></app-subtask-button>
       }
     </ul>
   </div>
