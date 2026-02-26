@@ -4,11 +4,11 @@ import { CurrentDate } from '../../../../services/current-date';
 import { PriorityButton } from '../../../../shared/priority-button/priority-button';
 import { ContactsSelectorWithSearch } from '../../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-button/subtask-button';
-import { AddTaskBtn } from "../../board-nav/add-task-btn/add-task-btn";
+
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent, AddTaskBtn],
+  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })
