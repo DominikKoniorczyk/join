@@ -1,5 +1,5 @@
 import { Supabase } from './../../../services/supabase';
-import { Component, ElementRef, inject, Input, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, signal, ViewChild,OnChanges, SimpleChanges, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardCardsComponent } from './board-cards/board-cards';
 import { BoardCardsFull } from './board-cards-full/board-cards-full';
@@ -18,12 +18,17 @@ import { RealtimeChannel } from '@supabase/supabase-js';
   templateUrl: './actual-board.html',
   styleUrl: './actual-board.scss',
 })
-export class ActualBoard {
+export class ActualBoard implements OnChanges {
+  @Input() searchTerm: string = '';
+  @Input() todo: any[] = [];
+  @Input() inprogress: any[] = [];
+  @Input() await: any[] = [];
+  @Input() done: any[] = [];
 
 
   animService = inject(AnimationService);
 
-  @ViewChild('cardDialog') cardDetails! : ElementRef;
+  @ViewChild('cardDialog') cardDetails!: ElementRef;
 
   dataTasks = signal<Task[]>([]);
 
@@ -35,6 +40,7 @@ export class ActualBoard {
 
   supabaseClientService = inject(Supabase);
   supabaseChannel: RealtimeChannel;
+
 
 
   toDoTasksColumn = signal<Task[]>([]);
@@ -111,16 +117,38 @@ export class ActualBoard {
 
 
 
-  async openDialog(task: Task){
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['searchTerm']) {
+      this.filterTasks();
+    }
+  }
+
+  private filterTasks(): void {
+    const term = (this.searchTerm || '').toLowerCase().trim();
+    if (!term) return;
+
+    const matches = (task: Task) => {
+      const title = (task.headline || '').toLowerCase();
+      const desc = (task.desc || '').toLowerCase();
+      return title.includes(term) || desc.includes(term);
+    };
+
+    this.todoTasks = this.todoTasks.filter(matches);
+    this.inProgressTasks = this.inProgressTasks.filter(matches);
+    this.awaitFeedbackTasks = this.awaitFeedbackTasks.filter(matches);
+    this.doneTasks = this.doneTasks.filter(matches);
+  }
+
+  async openDialog(task: Task) {
     this.selectedTask = task;
     const dialogRef = this.cardDetails.nativeElement;
     dialogRef.showModal();
-    await this.animService.animate(dialogRef, slideInAnimations, 400, true)
+    await this.animService.animate(dialogRef, slideInAnimations, 400, true);
   }
 
-  async closeDialog(){
+  async closeDialog() {
     const dialogRef = this.cardDetails.nativeElement;
-    await this.animService.animate(dialogRef, slideOutAnimations, 300, true)
+    await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
     dialogRef.close();
   }
 
@@ -134,10 +162,8 @@ export class ActualBoard {
     priority: 2,
     assignedTo: [],
     subtasks: [
-      {id:1, title:'Implement Recipe Recommendation', isDone:true},
-      {id:2, title:'Start Page Layout', isDone:false }
-    ]
+      { id: 1, title: 'Implement Recipe Recommendation', isDone: true },
+      { id: 2, title: 'Start Page Layout', isDone: false },
+    ],
   };
-
-
 }
