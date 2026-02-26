@@ -3,10 +3,11 @@ import { Task, Subtask } from '../../../../interfaces/taskmodel.interfaces';
 import { CurrentDate } from '../../../../services/current-date';
 import { PriorityButton } from '../../../../shared/priority-button/priority-button';
 import { ContactsSelectorWithSearch } from '../../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
+import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-button/subtask-button';
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [PriorityButton, ContactsSelectorWithSearch],
+  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })

@@ -99,6 +99,8 @@
         <img [src]="subtask.isDone ? './assets/img/checkmarkbox-checked.png' : './assets/img/checkmarkbox-empty.png'" alt="">
       </button> <span> {{subtask.title}}</span></div>}
   </div>
+} @else {
+  <app-subtask-button></app-subtask-button>
 }
 
 
