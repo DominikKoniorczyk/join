@@ -12,7 +12,8 @@
       <div class="task-column">
 
          @for (task of toDoTasksColumn(); track task.id) {
-           <app-board-cards [currentTask].set(task) (cardOpened)="openDialog(task)"></app-board-cards>
+
+           <app-board-cards [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
            } @empty {
            <div class="no-task-placeholder">No tasks To do</div>
             }
@@ -32,7 +33,7 @@
       <div class="task-column">
 
         @for (task of inProgressTasksColumn(); track task.id) {
-          <app-board-cards [currentTask].set(task) (cardOpened)="openDialog(task)"></app-board-cards>
+          <app-board-cards [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
           <div class="no-task-placeholder">
             No tasks in progress
@@ -54,7 +55,7 @@
       <div class="task-column">
 
          @for (task of awaitFeedbackTasksColumn(); track task.id) {
-          <app-board-cards [currentTask].set(task) (cardOpened)="openDialog(task)"></app-board-cards>
+          <app-board-cards [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
           <div class="no-task-placeholder">
             No tasks awaiting feedback
@@ -71,7 +72,7 @@
       <div class="task-column">
 
          @for (task of doneTasksColumn(); track task.id) {
-          <app-board-cards [currentTask].set(task) (cardOpened)="openDialog(task)"></app-board-cards>
+          <app-board-cards [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
           <div class="no-task-placeholder">
             No tasks done
@@ -84,4 +85,4 @@
 
 </div>
 
-<dialog #cardDialog>@if (selectedTask){<app-board-cards-full [currentTask].set(selectedTask) (closeTriggered)="closeDialog()"></app-board-cards-full>}</dialog>
+<dialog #cardDialog><app-board-cards-full #cardData (closeTriggered)="closeDialog()"></app-board-cards-full></dialog>

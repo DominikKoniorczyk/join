@@ -20,10 +20,7 @@ isEditing = false;
 tempPriority: number = 0;
 dataService = inject(CurrentDate);
 currentDate = signal<string>(this.dataService.getCurrentDate());
-@Input() currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
-
-
-
+currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
 
 @ViewChild('headlineInput') headlineInput!: ElementRef<HTMLInputElement>;
 @ViewChild('descInput') descInput!: ElementRef<HTMLInputElement>;
@@ -31,6 +28,10 @@ currentDate = signal<string>(this.dataService.getCurrentDate());
 
 onClose(){
   this.closeTriggered.emit();
+}
+
+initModal(data: Task){
+  this.currentTask.set(data);
 }
 
 

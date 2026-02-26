@@ -1,5 +1,5 @@
 import { Supabase } from './../../../services/supabase';
-import { Component, ElementRef, inject, Input, signal, ViewChild, OnChanges, SimpleChanges, } from '@angular/core';
+import { Component, ElementRef, inject, Input, signal, ViewChild, OnChanges, SimpleChanges, viewChild, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardCardsComponent } from './board-cards/board-cards';
 import { BoardCardsFull } from './board-cards-full/board-cards-full';
@@ -28,6 +28,7 @@ export class ActualBoard implements OnChanges {
   animService = inject(AnimationService);
 
   @ViewChild('cardDialog') cardDetails!: ElementRef;
+  @ViewChild('cardData') cardData!: BoardCardsFull;
 
   dataTasks = signal<Task[]>([]);
 
@@ -47,6 +48,7 @@ export class ActualBoard implements OnChanges {
 
   constructor() {
     this.supabaseChannel = this.supabaseClientService.supabaseClient.channel('custom-all-channel');
+    this.getTasksData();
   }
 
   ngOnInit(): void {
@@ -64,7 +66,7 @@ export class ActualBoard implements OnChanges {
     this.dataTasks.set(data);
     this.resetTasks();
     this.orderTasks();
-  }
+    }
 
   resetTasks() {
     this.toDoTasksColumn.set([]);
@@ -138,6 +140,7 @@ export class ActualBoard implements OnChanges {
   async openDialog(task: Task) {
     this.selectedTask = task;
     const dialogRef = this.cardDetails.nativeElement;
+    this.cardData.initModal(task);
     dialogRef.showModal();
     await this.animService.animate(dialogRef, slideInAnimations, 400, true);
   }
@@ -148,18 +151,4 @@ export class ActualBoard implements OnChanges {
     dialogRef.close();
   }
 
-  // dummyTask: Task = {
-  //   id: 1,
-  //   progressStatus: 'To do',
-  //   category: 'User Story',
-  //   headline: 'Kochwelt & Recipe Recommender',
-  //   desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ut soluta aliquam deleniti maxime, in itaque est tempore possimus sed consectetur obcaecati et laudantium quia, exercitationem sint sapiente molestias temporibus.',
-  //   dueDate: '10/05/2023',
-  //   priority: 2,
-  //   assignedTo: [],
-  //   subtasks: [
-  //     { id: 1, title: 'Implement Recipe Recommendation', isDone: true },
-  //     { id: 2, title: 'Start Page Layout', isDone: false },
-  //   ],
-  // };
 }

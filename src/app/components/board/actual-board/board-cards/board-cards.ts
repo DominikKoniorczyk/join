@@ -12,7 +12,7 @@ import { Task } from '../../../../interfaces/taskmodel.interfaces';
 })
 export class BoardCardsComponent {
 
-  @Input() currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
+  @Input() currentTask: Task = { id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' };
 
   @Output() cardOpened = new EventEmitter<void>();
 
@@ -23,17 +23,17 @@ export class BoardCardsComponent {
   };
 
   getPercentage(){
-    if(!this.currentTask()?.subtasks || this.currentTask().subtasks.length === 0) return 0;
-    const totalAmount = this.currentTask().subtasks.length;
+    if(!this.currentTask?.subtasks || this.currentTask.subtasks.length === 0) return 0;
+    const totalAmount = this.currentTask.subtasks.length;
     if (totalAmount == 0) return 0;
-    const completed = this.currentTask().subtasks.filter(tasks => tasks.isDone).length;
+    const completed = this.currentTask.subtasks.filter(tasks => tasks.isDone).length;
     return (completed / totalAmount) * 100;
   }
 
   getSubtaskStatus(){
-    if(!this.currentTask()?.subtasks) return '0/0 Subtasks';
-    const totalAmount = this.currentTask().subtasks.length;
-    const completed = this.currentTask().subtasks.filter(tasks => tasks.isDone).length;
+    if(!this.currentTask?.subtasks) return '0/0 Subtasks';
+    const totalAmount = this.currentTask.subtasks.length;
+    const completed = this.currentTask.subtasks.filter(tasks => tasks.isDone).length;
     return completed + '/' + totalAmount + ' Subtasks'
   }
 
