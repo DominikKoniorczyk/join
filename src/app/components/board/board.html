@@ -14,7 +14,8 @@
         <app-board-nav (searchChange)="onSearchChange($event)"></app-board-nav>
       </div>
     </div>
-    <app-actual-board [searchTerm]="searchTerm"></app-actual-board>
+    <app-actual-board [searchTerm]="searchTerm" [todo]="todo" [inprogress]="inprogress" [await]="await"
+      [done]="done"></app-actual-board>
   </div>
 </div>
 

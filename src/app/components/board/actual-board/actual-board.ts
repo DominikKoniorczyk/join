@@ -28,6 +28,11 @@ export class ActualBoard implements OnChanges {
   awaitFeedbackTasks: Task[] = [];
   doneTasks: Task[] = [];
 
+  @Input() todo: any[] = [];
+  @Input() inprogress: any[] = [];
+  @Input() await: any[] = [];
+  @Input() done: any[] = [];
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['searchTerm']) {
       this.filterTasks();
