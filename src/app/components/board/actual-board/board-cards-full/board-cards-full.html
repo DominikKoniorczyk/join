@@ -17,14 +17,14 @@
   @if(!isEditing){
   <div class="headline">{{task.headline}}</div>
   } @else{
-    <label class="input-title"  for="">Title</label>
+    <label class="input-title"  for="Title">Title</label>
     <input class="edit-input" #headlineInput type="text" [value]="task.headline">
   }
 
   @if(!isEditing){
   <p class="description">{{task.desc}}</p>
   } @else {
-    <label class="input-title" for="">Description</label>
+    <label class="input-title" for="Description">Description</label>
     <textarea class="edit-input-textarea" rows="5" #descInput type="text" [value]="task.desc"></textarea>
   }
 
@@ -104,7 +104,8 @@
   <div class="subtask-edit-container">
     <span class="rows">Subtask</span>
     <div class="input-subtask-wrapper">
-    <input #subtaskInput class="edit-input-subtask" type="text" placeholder="Add new subtask">
+    <input #subtaskInput class="edit-input-subtask" type="text" placeholder="Add new subtask" (keyup.enter)="addSubtask(subtaskInput)"
+  (keyup.escape)="clearSubtaskInput(subtaskInput)">
     <div class="subtask-edit-btn-container">
     <button class="subtask-edit-btn" (click)="clearSubtaskInput(subtaskInput)"><img src="./assets/img/close-cross.png" alt=""></button>
     <div class="seperator"></div>
@@ -131,7 +132,7 @@
       <span>Delete</span>
     </button>
      <div class="seperator"></div>
-    <button class="footer-btn" (click)="isEditing = true">
+    <button class="footer-btn" (click)="startEditing()">
       <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M2 16.25H3.4L12.025 7.625L10.625 6.225L2 14.85V16.25ZM16.3 6.175L12.05 1.975L13.45 0.575C13.8333 0.191667 14.3042 0 14.8625 0C15.4208 0 15.8917 0.191667 16.275 0.575L17.675 1.975C18.0583 2.35833 18.2583 2.82083 18.275 3.3625C18.2917 3.90417 18.1083 4.36667 17.725 4.75L16.3 6.175ZM14.85 7.65L4.25 18.25H0V14L10.6 3.4L14.85 7.65Z" fill="currentColor"/>
       </svg>

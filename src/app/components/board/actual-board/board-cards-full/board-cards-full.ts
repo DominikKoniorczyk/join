@@ -57,7 +57,7 @@ saveChanges(){
   this.task.desc = this.descInput.nativeElement.value;
   this.task.dueDate = this.dateInput.nativeElement.value;
   this.task.priority = this.tempPriority;
-  this.task.subtasks = [...this.task.subtasks, ...this.currentTask().subtasks];
+  this.task.subtasks = [ ...this.currentTask().subtasks];
   this.isEditing = false;
 }
 
@@ -78,19 +78,19 @@ clearSubtaskInput(inputElement: HTMLInputElement){
   inputElement.focus();
 }
 
-  addSubtask(inputElement: HTMLInputElement) {
-    const value = inputElement.value.trim();
-    if(value !== ''){
-      const newSubtask = {
-        id: Date.now(),
-        title: value,
-        isDone: false
-      };
-    this.currentTask.update((task) =>{ return{...task, subtasks:[...task.subtasks, newSubtask]};});
-    inputElement.value = '';
-    inputElement.focus();
-    }
+addSubtask(inputElement: HTMLInputElement) {
+  const value = inputElement.value.trim();
+  if(value !== ''){
+    const newSubtask = {
+      id: Date.now(),
+      title: value,
+      isDone: false
+    };
+  this.currentTask.update((task) =>{ return{...task, subtasks:[...task.subtasks, newSubtask]};});
+  inputElement.value = '';
+  inputElement.focus();
   }
+}
 
   removeSubtask(index: number) {
   this.currentTask.update(task => ({
