@@ -4,22 +4,22 @@
     <div class="form">
       <section class="left">
         <div class="form-inner">
-          <label>Title<span class="red">*</span></label>
-          <input formControlName="title" placeholder="Enter a title" />
+          <label for="title">Title<span class="red">*</span></label>
+          <input name="title" id="title" formControlName="title" placeholder="Enter a title" />
         </div>
         <div class="form-inner">
-          <label>Description</label>
-          <textarea formControlName="desc" placeholder="Enter a description"></textarea>
+          <label for="description">Description</label>
+          <textarea name="description" id="description" formControlName="desc" placeholder="Enter a description"></textarea>
         </div>
         <div class="form-inner">
-          <label>Due date<span class="red">*</span></label>
+          <label for="date">Due date<span class="red">*</span></label>
           <input formControlName="date" id="date" type="date" min="{{currentDate()}}" />
         </div>
       </section>
       <div class="vertical-line"></div>
       <section class="right">
         <div class="form-inner">
-          <label>Priority</label>
+          <p>Priority</p>
           <div class="priority">
             <app-priority-button [type]=2 [active]="currentPrio() === 2" (click)="setPriority(2)"></app-priority-button>
             <app-priority-button [type]=1 [active]="currentPrio() === 1" (click)="setPriority(1)"></app-priority-button>
@@ -27,9 +27,8 @@
           </div>
         </div>
         <div class="form-inner">
-          <label for="assigned-to">Assigned to</label>
-          <app-contacts-selector-with-search #contactsSelector
-            (click)="$event.stopPropagation()"></app-contacts-selector-with-search>
+          <p>Assigned to</p>
+          <app-contacts-selector-with-search #contactsSelector (click)="$event.stopPropagation()"></app-contacts-selector-with-search>
         </div>
         <div class="form-inner">
           <label for="category">Category<span class="red">*</span></label>
@@ -42,13 +41,11 @@
             <option value="userStory">User Story</option>
           </select>
         </div>
-
         <div class="form-inner">
-          <label for="subtasks">Subtasks</label>
+          <p>Subtasks</p>
           <div class="subtask-block">
             <div class="subtask">
-              <input id="subtask" name="subtask" formControlName="subtask" placeholder="Add new subtask" (focus)="onFocusSubtask()" (blur)="onBlurSubtask()"/>
-
+              <input #subtaskInput id="subtask" name="subtask" formControlName="subtask" placeholder="Add new subtask" (focus)="onFocusSubtask()" (keydown.return)="addSubtask()" (blur)="onBlurSubtask()"/>
               <div #subtaskBtnContainer class="subtask-btn-area d-none">
                 <button type="button" class="subtask-btn" (click)="clearSubtask()">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,9 +54,7 @@
                       stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </button>
-
                 <div class="vertical-line short"></div>
-
                 <button type="button" class="subtask-btn" (click)="addSubtask()">
                   <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path id="path"
