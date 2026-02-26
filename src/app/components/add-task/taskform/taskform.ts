@@ -120,6 +120,7 @@ export class TaskformComponent implements OnInit {
       })
       this.taskForm.get('subtask')?.setValue("");
       this.subtaskInput.nativeElement.blur();
+      this.onBlurSubtask();
     }
   }
 
@@ -156,5 +157,18 @@ export class TaskformComponent implements OnInit {
       });
       return { ...val, subtasks: updated };
     });
+  }
+
+  onKeydown(ev: KeyboardEvent) {
+    if (ev.key === 'Enter') {
+      ev.preventDefault();
+      this.addSubtask();
+    }
+
+    if (ev.key === 'Escape') {
+      ev.preventDefault();
+      this.subtaskInput.nativeElement.blur();
+      this.onBlurSubtask();
+    }
   }
 }
