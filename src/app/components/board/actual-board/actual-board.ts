@@ -152,18 +152,18 @@ export class ActualBoard implements OnChanges {
     dialogRef.close();
   }
 
-  dummyTask: Task = {
-    id: 1,
-    progressStatus: 'To do',
-    category: 'User Story',
-    headline: 'Kochwelt & Recipe Recommender',
-    desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ut soluta aliquam deleniti maxime, in itaque est tempore possimus sed consectetur obcaecati et laudantium quia, exercitationem sint sapiente molestias temporibus.',
-    dueDate: '10/05/2023',
-    priority: 2,
-    assignedTo: [],
-    subtasks: [
-      { id: 1, title: 'Implement Recipe Recommendation', isDone: true },
-      { id: 2, title: 'Start Page Layout', isDone: false },
-    ],
-  };
+  // dummyTask: Task = {
+  //   id: 1,
+  //   progressStatus: 'To do',
+  //   category: 'User Story',
+  //   headline: 'Kochwelt & Recipe Recommender',
+  //   desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ut soluta aliquam deleniti maxime, in itaque est tempore possimus sed consectetur obcaecati et laudantium quia, exercitationem sint sapiente molestias temporibus.',
+  //   dueDate: '10/05/2023',
+  //   priority: 2,
+  //   assignedTo: [],
+  //   subtasks: [
+  //     { id: 1, title: 'Implement Recipe Recommendation', isDone: true },
+  //     { id: 2, title: 'Start Page Layout', isDone: false },
+  //   ],
+  // };
 }
