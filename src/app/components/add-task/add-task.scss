@@ -1,3 +1,5 @@
+@use '../../styles/variables.scss' as vars;
+
 .main {
   height: calc(100% - 96px);
   width: 100%;
@@ -7,7 +9,7 @@
   position: relative;
 }
 
-.background{
+.background {
   position: absolute;
   z-index: -1;
   top: 0;
@@ -17,12 +19,107 @@
   background-color: #f6f7f8;
 }
 
+.button-area {
+  display: none;
+  width: 100%;
+  height: 4rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.actions-mobile {
+  display: flex;
+  width: 82%;
+  height: 100%;
+  justify-content: flex-end;
+  gap: 1rem;
+  align-items: center;
+}
+
+.buttons {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 21px;
+}
+
+.clear-btn {
+  width: 110px;
+  height: 56px;
+  border: 1px solid #2A3647;
+  background-color: transparent;
+  transition: all 0.2s ease;
+
+  #path {
+    stroke: black;
+  }
+
+  &:hover {
+    border: 3px solid vars.$secondary-color;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.308);
+    color: vars.$secondary-color;
+
+    #path {
+      stroke: vars.$secondary-color;
+    }
+  }
+}
+
+.create-btn {
+  width: 183px;
+  height: 56px;
+  border: none;
+  background-color: #2A3647;
+  color: white;
+  font-weight: 700;
+  transition: all 0.2s ease;
+
+  #path {
+    fill: white;
+  }
+
+  &:hover {
+    background-color: vars.$secondary-color;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.308);
+  }
+}
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: #2A3647;
+    opacity: 0.5;
+  }
+}
+
 @media (max-width: 893px) {
   .main {
-    height: calc(100% - 176px);
     overflow: auto;
   }
-  .form{
+
+  .form {
     margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    height: calc(100% - 176px - 4rem);
+    overflow: auto;
+  }
+
+  .button-area {
+    display: flex;
+  }
+}
+
+@media (max-width: 360px) {
+  .buttons {
+    font-size: 1rem;
+    height: 40px;
   }
 }

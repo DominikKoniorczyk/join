@@ -146,6 +146,7 @@ export class TaskformComponent implements OnInit {
 
   resetForm() {
     this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
+    this.taskForm.reset();
   }
 
   removeSubtask(index: number) {
