@@ -255,3 +255,46 @@
 .img-save-btn{
   width: 1rem;
 }
+
+.subtask-edit-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-subtask-wrapper{
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #D1D1D1;
+  border-radius: 10px;
+  width: 100%;
+  gap: 1rem;
+}
+
+.subtask-edit-btn-container{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+.edit-input-subtask{
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.subtask-edit-btn{
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
