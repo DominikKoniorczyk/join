@@ -49,7 +49,7 @@ toggleSubtask(subtask: Subtask){
 startEditing(){
   this.isEditing = true;
   this.tempPriority = this.task.priority;
-  this.currentTask.set({ ...this.task });
+  this.currentTask.set({ ...this.task, subtasks: [...this.task.subtasks] });
 }
 
 saveChanges(){
@@ -57,6 +57,7 @@ saveChanges(){
   this.task.desc = this.descInput.nativeElement.value;
   this.task.dueDate = this.dateInput.nativeElement.value;
   this.task.priority = this.tempPriority;
+  this.task.subtasks = [...this.task.subtasks, ...this.currentTask().subtasks];
   this.isEditing = false;
 }
 
