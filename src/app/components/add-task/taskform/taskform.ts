@@ -21,6 +21,7 @@ import { SubtaskButtonComponent } from './subtask-button/subtask-button';
 export class TaskformComponent implements OnInit {
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
+  @ViewChild('subtaskInput') subtaskInput!: ElementRef<HTMLInputElement>;
 
   contacts = signal<SupabaseContactsInterface[]>([]);
   currentDate = signal<string>("2026-02-01");
@@ -118,6 +119,7 @@ export class TaskformComponent implements OnInit {
         return { ...val, subtasks: [...val.subtasks, currentSubtask]};
       })
       this.taskForm.get('subtask')?.setValue("");
+      this.subtaskInput.nativeElement.blur();
     }
   }
 
