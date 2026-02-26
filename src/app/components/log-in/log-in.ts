@@ -12,14 +12,7 @@ type Phase = 'splash' | 'slide' | 'stable';
 @Component({
   selector: 'app-log-in',
   standalone: true,
-  imports: [
-    NgIf,
-    LogInLogo,
-    Slider,
-    LogInHeader,
-    LogInForm,
-    LogInFooter
-  ],
+  imports: [NgIf, LogInLogo, Slider, LogInHeader, LogInForm, LogInFooter],
   templateUrl: './log-in.html',
   styleUrls: ['./log-in.scss'],
 })
