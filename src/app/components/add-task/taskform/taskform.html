@@ -45,7 +45,7 @@
           <p>Subtasks</p>
           <div class="subtask-block">
             <div class="subtask">
-              <input #subtaskInput id="subtask" name="subtask" formControlName="subtask" placeholder="Add new subtask" (focus)="onFocusSubtask()" (keydown.return)="addSubtask()" (blur)="onBlurSubtask()"/>
+              <input #subtaskInput id="subtask" name="subtask" formControlName="subtask" placeholder="Add new subtask" (focus)="onFocusSubtask()" (keydown)="onKeydown($event)" (blur)="onBlurSubtask()"/>
               <div #subtaskBtnContainer class="subtask-btn-area d-none">
                 <button type="button" class="subtask-btn" (click)="clearSubtask()">
                   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
