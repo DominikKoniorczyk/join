@@ -1,5 +1,5 @@
 import { Supabase } from './../../../services/supabase';
-import { Component, ElementRef, inject, Input, signal, ViewChild, OnChanges, SimpleChanges, viewChild, } from '@angular/core';
+import { Component, ElementRef, inject, Input, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardCardsComponent } from './board-cards/board-cards';
 import { BoardCardsFull } from './board-cards-full/board-cards-full';
@@ -18,12 +18,9 @@ import { RealtimeChannel } from '@supabase/supabase-js';
   templateUrl: './actual-board.html',
   styleUrl: './actual-board.scss',
 })
-export class ActualBoard implements OnChanges {
+
+export class ActualBoard {
   @Input() searchTerm: string = '';
-  @Input() todo: any[] = [];
-  @Input() inprogress: any[] = [];
-  @Input() await: any[] = [];
-  @Input() done: any[] = [];
 
   animService = inject(AnimationService);
 
@@ -66,7 +63,7 @@ export class ActualBoard implements OnChanges {
     this.dataTasks.set(data);
     this.resetTasks();
     this.orderTasks();
-    }
+  }
 
   resetTasks() {
     this.toDoTasksColumn.set([]);
@@ -112,29 +109,49 @@ export class ActualBoard implements OnChanges {
     })
   }
 
-
-
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['searchTerm']) {
-      this.filterTasks();
-    }
+  private matches(task: Task, term: string): boolean {
+    const title = (task.headline || '').toLowerCase();
+    const desc = (task.desc || '').toLowerCase();
+    return title.includes(term) || desc.includes(term);
   }
 
-  private filterTasks(): void {
+  get filteredTodo(): Task[] {
     const term = (this.searchTerm || '').toLowerCase().trim();
-    if (!term) return;
+    const list = this.toDoTasksColumn();
+    if (!term) return list;
+    return list.filter(t => this.matches(t, term));
+  }
 
-    const matches = (task: Task) => {
-      const title = (task.headline || '').toLowerCase();
-      const desc = (task.desc || '').toLowerCase();
-      return title.includes(term) || desc.includes(term);
-    };
+  get filteredInProgress(): Task[] {
+    const term = (this.searchTerm || '').toLowerCase().trim();
+    const list = this.inProgressTasksColumn();
+    if (!term) return list;
+    return list.filter(t => this.matches(t, term));
+  }
 
-    this.todoTasks = this.todoTasks.filter(matches);
-    this.inProgressTasks = this.inProgressTasks.filter(matches);
-    this.awaitFeedbackTasks = this.awaitFeedbackTasks.filter(matches);
-    this.doneTasks = this.doneTasks.filter(matches);
+  get filteredAwaitFeedback(): Task[] {
+    const term = (this.searchTerm || '').toLowerCase().trim();
+    const list = this.awaitFeedbackTasksColumn();
+    if (!term) return list;
+    return list.filter(t => this.matches(t, term));
+  }
+
+  get filteredDone(): Task[] {
+    const term = (this.searchTerm || '').toLowerCase().trim();
+    const list = this.doneTasksColumn();
+    if (!term) return list;
+    return list.filter(t => this.matches(t, term));
+  }
+
+  get noSearchResults(): boolean {
+    const term = (this.searchTerm || '').trim();
+    if (!term) return false;
+    return (
+      this.filteredTodo.length === 0 &&
+      this.filteredInProgress.length === 0 &&
+      this.filteredAwaitFeedback.length === 0 &&
+      this.filteredDone.length === 0
+    );
   }
 
   async openDialog(task: Task) {

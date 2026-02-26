@@ -22,30 +22,30 @@ export class BoardCardsComponent {
     2: { label: 'Urgent', icon: 'urgency-urgent-icon.png' },
   };
 
-  getPercentage(){
-    if(!this.currentTask?.subtasks || this.currentTask.subtasks.length === 0) return 0;
+  getPercentage() {
+    if (!this.currentTask?.subtasks || this.currentTask.subtasks.length === 0) return 0;
     const totalAmount = this.currentTask.subtasks.length;
     if (totalAmount == 0) return 0;
     const completed = this.currentTask.subtasks.filter(tasks => tasks.isDone).length;
     return (completed / totalAmount) * 100;
   }
 
-  getSubtaskStatus(){
-    if(!this.currentTask?.subtasks) return '0/0 Subtasks';
+  getSubtaskStatus() {
+    if (!this.currentTask?.subtasks) return '0/0 Subtasks';
     const totalAmount = this.currentTask.subtasks.length;
     const completed = this.currentTask.subtasks.filter(tasks => tasks.isDone).length;
     return completed + '/' + totalAmount + ' Subtasks'
   }
 
-  openDialog(){
+  openDialog() {
     this.cardOpened.emit();
   }
 
   getInitials(name: string): string {
-  if (!name) return '';
-  const parts = name.trim().split(' ');
-  return (parts.length > 1
-    ? parts[0][0] + parts[parts.length - 1][0]
-    : parts[0][0]).toUpperCase();
-}
+    if (!name) return '';
+    const parts = name.trim().split(' ');
+    return (parts.length > 1
+      ? parts[0][0] + parts[parts.length - 1][0]
+      : parts[0][0]).toUpperCase();
+  }
 }
