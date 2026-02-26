@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ActualBoard } from './actual-board/actual-board';
 import { BoardNav } from './board-nav/board-nav';
+// Test Update
 
 @Component({
   selector: 'app-board',
@@ -60,7 +61,6 @@ export class Board implements OnInit {
         event.currentIndex
       );
     }
-
 
     else {
       transferArrayItem(
