@@ -1,12 +1,13 @@
 @use '../../styles/variables.scss' as vars;
 
 .main{
-
+  max-height: calc(100dvh - 96px);
+ overflow: auto;
 
 @media(max-width:1170px){
     height: calc(100% - 96px);
 }
-  overflow: auto;
+
   @media(max-width:768px){
     height: calc(100% - 176px);
   }
@@ -44,7 +45,7 @@ svg{
   justify-content: start;
   height: calc(100% - 96px);
   padding: 0 40px;
-  gap: 1rem;
+
   @media(max-width:1170px){
     gap: 1rem;
     padding: 2rem 40px;
