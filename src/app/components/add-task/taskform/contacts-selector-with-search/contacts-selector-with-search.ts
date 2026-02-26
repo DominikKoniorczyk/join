@@ -60,6 +60,10 @@ export class ContactsSelectorWithSearch implements OnInit {
     return this.selectedContacts.some((c) => c.id === contact.id);
   }
 
+  reset(){
+    this.selectedContacts = []
+  }
+
   getInitials(name: string): string {
     if (!name) return '';
     const parts = name.trim().split(' ');

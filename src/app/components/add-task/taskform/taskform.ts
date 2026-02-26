@@ -20,7 +20,6 @@ import { SubtaskButtonComponent } from './subtask-button/subtask-button';
 
 export class TaskformComponent implements OnInit {
   @Input() progress: string = "To do";
-
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
   @ViewChild('subtaskInput') subtaskInput!: ElementRef<HTMLInputElement>;
@@ -29,7 +28,6 @@ export class TaskformComponent implements OnInit {
   currentDate = signal<string>("2026-02-01");
   currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
   currentPrio = signal<number>(1);
-  currentSubtask = signal<Subtask[]>([]);
   taskForm = new FormGroup({
     title: new FormControl('', { validators: [Validators.required, Validators.minLength(5)] }),
     desc: new FormControl(''),
@@ -139,13 +137,14 @@ export class TaskformComponent implements OnInit {
 
   createTask() {
     const assignment: SupabaseContactsInterface[] = this.contactsSelector.selectedContacts;
-    const data = {}
+    const data = this.currentTask();
     this.supabase.uploadJSONToTable('tasks', data);
     this.resetForm();
   }
 
   resetForm() {
     this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
+    this.contactsSelector.reset();
     this.taskForm.reset();
   }
 
