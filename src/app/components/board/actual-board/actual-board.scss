@@ -86,16 +86,26 @@ app-board-cards {
 }
 
 dialog{
-  width: 90%;
   max-width: 500px;
   border: none;
   border-radius: 25px;
   top: 20%;
   left: 20%;
   padding: 1rem;
+  height: 800px;
+  overflow-y: auto;
     @media(max-width:1170px){
+    top: 10%;
     left: 25%;
-  }
+    }
+    @media(max-width:600px){
+      max-width: 400px;
+    }
+    @media(max-width:515px){
+      max-width: 350px;
+
+    }
+
 }
 
 
