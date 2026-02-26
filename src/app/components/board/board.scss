@@ -3,6 +3,8 @@
 .main{
   height: calc(100% - 96px);
   overflow: auto;
+  display: flex;
+  align-items: center;
   @media(max-width:768px){
     height: calc(100% - 176px);
   }
@@ -11,12 +13,10 @@
 .board-header{
 display: flex;
 align-items: center;
-
 justify-content: space-between;
-height: 232px;
+height: 350px;
 @media(max-width: 1050px){
   flex-direction: column;
-
   justify-content: center ;
   align-items: start;
   gap: 1rem;
@@ -42,6 +42,7 @@ svg{
   justify-content: start;
   height: calc(100% - 96px);
   padding: 0 40px;
+  gap: 1rem;
   @media(max-width:1170px){
     gap: 1rem;
     padding: 2rem 40px;

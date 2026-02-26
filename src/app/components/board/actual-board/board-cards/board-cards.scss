@@ -1,6 +1,7 @@
 @use '../../../../styles/variables.scss' as vars;
 
 .content{
+  height: 200px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
