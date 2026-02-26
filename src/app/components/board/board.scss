@@ -1,10 +1,12 @@
 @use '../../styles/variables.scss' as vars;
 
 .main{
-  height: calc(100% - 96px);
+
+
+@media(max-width:1170px){
+    height: calc(100% - 96px);
+}
   overflow: auto;
-  display: flex;
-  align-items: center;
   @media(max-width:768px){
     height: calc(100% - 176px);
   }
@@ -14,7 +16,7 @@
 display: flex;
 align-items: center;
 justify-content: space-between;
-height: 350px;
+height: 232px;
 @media(max-width: 1050px){
   flex-direction: column;
   justify-content: center ;
