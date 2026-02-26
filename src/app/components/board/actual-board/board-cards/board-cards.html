@@ -1,8 +1,8 @@
 
 <div class="content" (click)="openDialog()">
-  <div class="category">{{task.category}}</div>
-  <div class="headline">{{task.headline}}</div>
-  <p class="description">{{task.desc|shortenTextsnippets}}</p>
+  <div class="category">{{currentTask().category}}</div>
+  <div class="headline">{{currentTask().headline}}</div>
+  <p class="description">{{currentTask().desc|shortenTextsnippets}}</p>
 
   <div class="progress-container">
   <div class="progress-bar">
@@ -11,7 +11,7 @@
   <div>{{ getSubtaskStatus()}}</div>
   </div>
   <div class="footer">
-    <div class="assigned-user-container">@for (contact of task.assignedTo; track contact.id) {
+    <div class="assigned-user-container">@for (contact of currentTask().assignedTo; track contact.id) {
       <div class="mini-avatar"
            [style.background-color]="contact.color"
            [title]="contact.name">
@@ -19,8 +19,8 @@
       </div>
     }</div>
     <div class="urgency-icon">
-      @if (priorityMap[task.priority]) {
-      <img [src]="'./assets/img/' + priorityMap[task.priority].icon" [alt]="priorityMap[task.priority].label">
+      @if (priorityMap[currentTask().priority]) {
+      <img [src]="'./assets/img/' + priorityMap[currentTask().priority].icon" [alt]="priorityMap[currentTask().priority].label">
       }
   </div>
   </div>

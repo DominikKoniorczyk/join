@@ -3,7 +3,7 @@
 
     @if(!isEditing){
       <div class="header">
-      <div class="category">{{task.category}}</div>
+      <div class="category">{{currentTask().category}}</div>
       <button class="close-btn" (click)="onClose()"> <img src="./assets/img/close-cross.png" alt=""></button>
       </div>
     } @else {
@@ -15,29 +15,29 @@
 
 
   @if(!isEditing){
-  <div class="headline">{{task.headline}}</div>
+  <div class="headline">{{currentTask().headline}}</div>
   } @else{
     <label class="input-title"  for="Title">Title</label>
-    <input class="edit-input" #headlineInput type="text" [value]="task.headline">
+    <input class="edit-input" #headlineInput type="text" [value]="currentTask().headline">
   }
 
   @if(!isEditing){
-  <p class="description">{{task.desc}}</p>
+  <p class="description">{{currentTask().desc}}</p>
   } @else {
     <label class="input-title" for="Description">Description</label>
-    <textarea class="edit-input-textarea" rows="5" #descInput type="text" [value]="task.desc"></textarea>
+    <textarea class="edit-input-textarea" rows="5" #descInput type="text" [value]="currentTask().desc"></textarea>
   }
 
 
     @if(!isEditing){
     <div class="duedate-container">
     <span class="rows">Due date:</span>
-    <span class="info">{{task.dueDate}}</span>
+    <span class="info">{{currentTask().dueDate}}</span>
     </div>
     } @else {
      <div class="duedate-edit-container">
       <span class="rows">Due date</span>
-      <input class="edit-input" #dateInput type="date" [value]="task.dueDate" [min]="currentDate()">
+      <input class="edit-input" #dateInput type="date" [value]="currentTask().dueDate" [min]="currentDate()">
      </div>
     }
 
@@ -47,10 +47,10 @@
   <div class="priority-container">
   <span class="rows">Priority:</span>
     <span class="info">
-      {{ priorityMap[task.priority]?.label }}
+      {{ priorityMap[currentTask().priority]?.label }}
 
-      @if (priorityMap[task.priority]) {
-        <img [src]="'./assets/img/' + priorityMap[task.priority]?.icon" alt="">
+      @if (priorityMap[currentTask().priority]) {
+        <img [src]="'./assets/img/' + priorityMap[currentTask().priority]?.icon" alt="">
       }
   </span>
   </div>
@@ -70,7 +70,7 @@
     <span class="rows">Assigned To:</span>
     <div class="info">
      <div class="assigned-list">
-        @for (contact of task.assignedTo; track contact.id){
+        @for (contact of currentTask().assignedTo; track contact.id){
           <div class="assigned-item">
             <div class="avatar-circle" [style.background-color]="contact.color">
               {{getInitials(contact.name)}}
@@ -85,7 +85,7 @@
   <div class="assigned-edit-container">
     <span class="rows">Assigned To</span>
     <app-contacts-selector-with-search
-      [(selectedContacts)]="task.assignedTo">
+      [(selectedContacts)]="currentTask().assignedTo">
     </app-contacts-selector-with-search>
   </div>
 }
@@ -94,7 +94,7 @@
 @if(!isEditing){
  <div class="subtask-container">
     <span class="rows">Subtask:</span>
-    @for (subtask of task.subtasks; track subtask.id) {
+    @for (subtask of currentTask().subtasks; track subtask.id) {
       <div class="subtask-target-container"><button class="subtask-btn" (click)="toggleSubtask(subtask)">
         <img [src]="subtask.isDone ? './assets/img/checkmarkbox-checked.png' : './assets/img/checkmarkbox-empty.png'" alt="">
       </button> <span> {{subtask.title}}</span></div>}

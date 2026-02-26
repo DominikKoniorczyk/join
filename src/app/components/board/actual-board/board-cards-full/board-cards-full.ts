@@ -14,15 +14,13 @@ import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-butto
 })
 export class BoardCardsFull {
 
-@Input() task!: Task;
-
 @Output() closeTriggered = new EventEmitter<void>();
 
 isEditing = false;
 tempPriority: number = 0;
 dataService = inject(CurrentDate);
 currentDate = signal<string>(this.dataService.getCurrentDate());
-currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
+@Input() currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
 
 
 
@@ -48,16 +46,16 @@ toggleSubtask(subtask: Subtask){
 
 startEditing(){
   this.isEditing = true;
-  this.tempPriority = this.task.priority;
-  this.currentTask.set({ ...this.task, subtasks: [...this.task.subtasks] });
+  this.tempPriority = this.currentTask().priority;
+  this.currentTask.set({ ...this.currentTask(), subtasks: [...this.currentTask().subtasks] });
 }
 
 saveChanges(){
-  this.task.headline = this.headlineInput.nativeElement.value;
-  this.task.desc = this.descInput.nativeElement.value;
-  this.task.dueDate = this.dateInput.nativeElement.value;
-  this.task.priority = this.tempPriority;
-  this.task.subtasks = [ ...this.currentTask().subtasks];
+  this.currentTask().headline = this.headlineInput.nativeElement.value;
+  this.currentTask().desc = this.descInput.nativeElement.value;
+  this.currentTask().dueDate = this.dateInput.nativeElement.value;
+  this.currentTask().priority = this.tempPriority;
+  this.currentTask().subtasks = [ ...this.currentTask().subtasks];
   this.isEditing = false;
 }
 
