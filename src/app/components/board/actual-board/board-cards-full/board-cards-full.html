@@ -104,9 +104,9 @@
   <div class="subtask-edit-container">
     <span class="rows">Subtask</span>
     <div class="input-subtask-wrapper">
-    <input class="edit-input-subtask" type="text" placeholder="Add new subtask">
+    <input #subtaskInput class="edit-input-subtask" type="text" placeholder="Add new subtask">
     <div class="subtask-edit-btn-container">
-    <button class="subtask-edit-btn"><img src="./assets/img/close-cross.png" alt=""></button>
+    <button class="subtask-edit-btn" (click)="clearSubtaskInput(subtaskInput)"><img src="./assets/img/close-cross.png" alt=""></button>
     <div class="seperator"></div>
     <button class="subtask-edit-btn"><img src="./assets/img/check-icon.png" alt=""></button>
     </div>

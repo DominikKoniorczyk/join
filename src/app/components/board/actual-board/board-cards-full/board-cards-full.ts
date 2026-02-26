@@ -69,4 +69,9 @@ getInitials(name: string): string {
     : parts[0][0]).toUpperCase();
 }
 
+clearSubtaskInput(inputElement: HTMLInputElement){
+  inputElement.value = '';
+  inputElement.focus();
+}
+
 }
