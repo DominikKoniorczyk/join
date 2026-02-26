@@ -67,9 +67,7 @@
           </div>
           <ul class="subtask-list">
             @for (subtask of currentTask().subtasks; track $index; let i = $index) {
-              <li>
-                <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)" (updateSubtask)="editSubtask($event)"></app-subtask-button>
-              </li>
+              <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)" (updateSubtask)="editSubtask($event)"></app-subtask-button>
             }
           </ul>
         </div>
