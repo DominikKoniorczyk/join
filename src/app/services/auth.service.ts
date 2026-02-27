@@ -1,12 +1,12 @@
-import { Injectable, signal } from '@angular/core'; 
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-//hier einschalten ob true oder false 
-  guestRestrictionEnabled = true;
+//hier einschalten ob true oder false
+  guestRestrictionEnabled = false;
 
   isGuest = false;
 
@@ -24,12 +24,12 @@ export class AuthService {
     return localStorage.getItem('isGuest') === 'true';
   }
 
-  
+
   isGuestUser(): boolean {
     return localStorage.getItem('isGuest') === 'true';
   }
 
-  
+
   canAccess(route: string): boolean {
     if (!this.guestRestrictionEnabled) return true;
     if (!this.isGuestUser()) return true;
@@ -40,16 +40,16 @@ export class AuthService {
 
   showGuestMessage = signal(false);
 
- 
+
   handleGuestBlock(): void {
     if (!this.guestRestrictionEnabled) return;
 
-    
+
     this.showGuestMessage.set(true);
     console.log('SHOW');
 
     setTimeout(() => {
-      
+
       this.showGuestMessage.set(false);
       console.log('HIDE');
     }, 2000);

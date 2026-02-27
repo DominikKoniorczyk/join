@@ -9,12 +9,13 @@ import { slideInAnimations, slideOutAnimations } from '../animations-board/dialo
 import { Task } from '../../../interfaces/taskmodel.interfaces';
 import { ContactsSelectorWithSearch } from '../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { RealtimeChannel } from '@supabase/supabase-js';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @Component({
   selector: 'app-actual-board',
   standalone: true,
-  imports: [CommonModule, BoardCardsComponent, BoardCardsFull],
+  imports: [CommonModule, BoardCardsComponent, BoardCardsFull, DragDropModule],
   templateUrl: './actual-board.html',
   styleUrl: './actual-board.scss',
 })
@@ -167,5 +168,7 @@ export class ActualBoard {
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
     dialogRef.close();
   }
+
+
 
 }
