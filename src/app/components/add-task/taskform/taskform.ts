@@ -19,7 +19,7 @@ import { SubtaskButtonComponent } from './subtask-button/subtask-button';
 })
 
 export class TaskformComponent implements OnInit {
-  @Input() progress: string = "In progress";
+  @Input() progress: string = "To do";
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
   @ViewChild('subtaskInput') subtaskInput!: ElementRef<HTMLInputElement>;
