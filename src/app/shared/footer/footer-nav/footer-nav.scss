@@ -130,3 +130,36 @@ img {
   width: 20px;
   height: 20px;
 }
+.guest-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  background: #2a7cff;
+  color: white;
+  
+  padding: 16px 28px;
+  border-radius: 12px;
+  
+  font-size: 16px;
+  font-weight: 500;
+  
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  
+  z-index: 9999;
+
+  /* ❗ STANDARD: unsichtbar */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: all 0.3s ease;
+}
+
+/* 👉 sichtbar */
+.guest-popup.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%);
+}

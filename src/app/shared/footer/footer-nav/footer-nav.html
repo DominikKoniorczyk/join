@@ -1,6 +1,6 @@
 <div class="content">
   <div [class.active]="currentURL() == '/summary'" class="button-container left">
-    <button routerLink="/summary">
+    <button (click)="goTo('/summary')">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           id="path1"
@@ -12,7 +12,7 @@
     </button>
   </div>
   <div [class.active]="currentURL().includes('/add-task')" class="button-container left_center">
-  <button routerLink="/add-task">
+  <button (click)="goTo('/add-task')">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask
           id="mask0_437099_707"
@@ -37,7 +37,7 @@
     </button>
   </div>
   <div [class.active]="currentURL() == '/board'" class="button-container right_center">
-   <button routerLink="/board">
+   <button (click)="goTo('/board')">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           id="path2"
@@ -52,7 +52,7 @@
     </button>
   </div>
   <div [class.active]="currentURL() == '/contacts'" class="button-container right">
-    <button routerLink="/contacts">
+    <button (click)="goTo('/contacts')">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask
           id="mask0_437099_707"
@@ -75,5 +75,8 @@
       </svg>
       Contacts
     </button>
-  </div>
+  </div> 
+</div>
+<div class="guest-popup" [class.show]="auth.showGuestMessage()">
+  Bitte loggen Sie sich ein
 </div>

@@ -21,7 +21,8 @@ export class Summary implements OnInit {
   awaitingFeedbackCount: number = 0;
   allTasksCount: number = 0;
 
-  nextDeadline: Date | null = null;
+ currentDate: Date = new Date();
+ nextDeadline: Date | null = null;
 
   greetingText: string = this.getGreeting();
   userName: string = 'Guest';
@@ -50,19 +51,12 @@ export class Summary implements OnInit {
     this.allTasksCount = this.tasks.length;
 
     
-    const dates = this.tasks
-      .map(t => new Date(t.dueDate))
-      .filter(d => !isNaN(d.getTime()));
-
-    if (dates.length > 0) {
-      this.nextDeadline = new Date(Math.min(...dates.map(d => d.getTime())));
-    } else {
-      this.nextDeadline = null;
-    }
+ this.nextDeadline = new Date();
   }
 
   private getGreeting(): string {
     const hour = new Date().getHours();
+  
 
     if (hour < 12) return 'Good morning';
     if (hour < 18) return 'Good afternoon';
