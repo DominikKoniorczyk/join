@@ -56,6 +56,8 @@ button{
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding-left: 15px;
+  box-sizing: border-box;
 }
 
 h3{
@@ -66,20 +68,52 @@ h3{
   width:100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
   height: 70dvh;
   max-height: 100%;
   overflow: auto;
+  padding: 10px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
 
   @media(max-width: 1170px) {
+    justify-content: flex-start;
     height: auto;
     flex-direction: row;
     overflow-x: auto;
     padding:10px 5px ;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 10px;
+    width: 100%;
+    &::-webkit-scrollbar {
+      display: block;
+      height: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #A8A8A8;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    scrollbar-width: auto;
+    -ms-overflow-style: auto;
   }
 }
 
 app-board-cards {
+  width: 95%;
   @media(max-width: 1170px) {
     flex-shrink: 0;
     width: 280px;
@@ -118,7 +152,7 @@ dialog{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 95%;
   height: 4rem;
   background-color: #E7E7E7;
   color: #A8A8A8;
@@ -133,3 +167,5 @@ dialog{
        width: calc(100vw - 80px);
     }
 }
+
+
