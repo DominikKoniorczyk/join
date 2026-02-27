@@ -6,7 +6,7 @@ import { Injectable, signal } from '@angular/core';
 export class AuthService {
 
 //hier einschalten ob true oder false 
-  guestRestrictionEnabled = true;
+  guestRestrictionEnabled = false;
 
   isGuest = false;
 
