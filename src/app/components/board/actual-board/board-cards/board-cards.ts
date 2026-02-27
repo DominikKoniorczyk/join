@@ -22,6 +22,10 @@ export class BoardCardsComponent {
     2: { label: 'Urgent', icon: 'urgency-urgent-icon.png' },
   };
 
+  ngOnInit(){
+    console.log(this.currentTask.id);
+  }
+
   getPercentage() {
     if (!this.currentTask?.subtasks || this.currentTask.subtasks.length === 0) return 0;
     const totalAmount = this.currentTask.subtasks.length;

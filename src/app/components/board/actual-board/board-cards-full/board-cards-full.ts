@@ -1,9 +1,10 @@
-import { Component, ElementRef, EventEmitter, inject, Input, Output, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Output, signal, ViewChild } from '@angular/core';
 import { Task, Subtask } from '../../../../interfaces/taskmodel.interfaces';
 import { CurrentDate } from '../../../../services/current-date';
 import { PriorityButton } from '../../../../shared/priority-button/priority-button';
 import { ContactsSelectorWithSearch } from '../../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-button/subtask-button';
+import { Supabase } from '../../../../services/supabase';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class BoardCardsFull {
   @ViewChild('headlineInput') headlineInput!: ElementRef<HTMLInputElement>;
   @ViewChild('descInput') descInput!: ElementRef<HTMLInputElement>;
   @ViewChild('dateInput') dateInput!: ElementRef<HTMLInputElement>;
+
+  constructor(private supabase: Supabase){ }
 
   onClose() {
     this.closeTriggered.emit();
@@ -58,6 +61,16 @@ export class BoardCardsFull {
     this.currentTask().priority = this.tempPriority;
     this.currentTask().subtasks = [...this.currentTask().subtasks];
     this.isEditing = false;
+    this.pushDataToSupabase();
+  }
+
+  deleteTask(){
+    this.supabase.deleteRow('tasks', this.currentTask().id);
+    this.closeTriggered.emit();
+  }
+
+  pushDataToSupabase(){
+    this.supabase.updateRow('tasks', this.currentTask(), this.currentTask().id);
   }
 
   setPriority(prio: number) {

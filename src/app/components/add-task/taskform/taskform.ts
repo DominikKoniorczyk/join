@@ -144,11 +144,9 @@ export class TaskformComponent implements OnInit {
 
   createTask() {
     const assignment: SupabaseContactsInterface[] = this.contactsSelector.selectedContacts;
-    this.currentTask.update((val) => {
-      if (!val) return val;
-      return { ...val, assignedTo: assignment };
-    });
-    this.supabase.uploadJSONToTable('tasks', this.currentTask());
+    const uploadData = {headline: this.currentTask().headline, desc: this.currentTask().desc, dueDate: this.currentTask().dueDate, priority: this.currentTask().priority,
+      category: this.currentTask().category, assignedTo: assignment, subtasks: this.currentTask().subtasks, progressStatus: this.currentTask().progressStatus }
+    this.supabase.uploadJSONToTable('tasks', uploadData);
     this.resetForm();
   }
 
