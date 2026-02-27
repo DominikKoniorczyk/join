@@ -4,41 +4,13 @@
   max-height: calc(100dvh - 96px);
   overflow: auto;
 
-  @media(max-width:1170px) {
+  @media (max-width: 1170px) {
     height: calc(100% - 96px);
   }
 
-  @media(max-width:768px) {
+  @media (max-width: 768px) {
     height: calc(100% - 176px);
   }
-}
-
-.board-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 232px;
-
-  @media(max-width: 1050px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 1rem;
-    width: 100%;
-  }
-}
-
-h2 {
-  font-size: 4rem;
-
-  @media(max-width:768px) {
-    font-size: 41px;
-  }
-}
-
-svg {
-  width: 1rem;
-
 }
 
 .content {
@@ -48,9 +20,32 @@ svg {
   height: calc(100% - 96px);
   padding: 0 40px;
 
-  @media(max-width:1170px) {
+  @media (max-width: 1170px) {
     gap: 1rem;
     padding: 2rem 40px;
+  }
+}
+
+.board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 232px;
+
+  @media (max-width: 1050px) {
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+}
+
+h2 {
+  font-size: 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 41px;
   }
 }
 
@@ -60,27 +55,32 @@ svg {
 
 .first-container {
   display: flex;
-  width: 100%;
   justify-content: space-between;
+  width: 100%;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mobile-btn {
-  display: flex;
-  justify-content: center;
+  display: none;
   align-items: center;
-  background-color: vars.$primary-color;
+  justify-content: center;
   width: 3rem;
   height: 3rem;
+  background-color: vars.$primary-color;
+  border: none;
   border-radius: 10px;
   cursor: pointer;
-  display: none;
-  border: none;
 
-  @media(max-width:1050px) {
+  @media (max-width: 1050px) {
     display: block;
   }
 
-  @media(max-width:768px) {
+  @media (max-width: 768px) {
     width: 2rem;
     height: 2rem;
   }
@@ -90,8 +90,6 @@ svg {
   }
 }
 
-.btn-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+svg {
+  width: 1rem;
 }

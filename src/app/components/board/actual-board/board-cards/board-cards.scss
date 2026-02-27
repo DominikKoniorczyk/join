@@ -1,32 +1,31 @@
 @use '../../../../styles/variables.scss' as vars;
 
 .content {
-  height: 200px;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: white;
+  height: 200px;
   padding: 1rem;
+  background-color: white;
   border: none;
   border-radius: 25px;
   box-shadow: 2px 2px 14px 0px rgba(0, 0, 0, 0.411);
+  cursor: pointer;
 }
 
-
 .category {
-  color: white;
-  background-color: #0038FF;
   width: fit-content;
   padding: 2px 10px;
+  background-color: #0038FF;
+  color: white;
   border-radius: 5px;
 }
 
 .headline {
+  max-width: 100%;
   font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
 }
 
 .description {
@@ -35,8 +34,8 @@
 
 .progress-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .progress-bar {
@@ -55,8 +54,8 @@
 
 .footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .assigned-user-container {
@@ -64,16 +63,16 @@
   align-items: center;
 
   .mini-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    width: 32px;
+    height: 32px;
     font-size: 12px;
     font-weight: 400;
+    color: white;
     border: 2px solid #ffffff;
+    border-radius: 50%;
 
     &:not(:first-child) {
       margin-left: -17px;
