@@ -16,7 +16,7 @@ import { TaskformComponent } from '../../add-task/taskform/taskform';
 @Component({
   selector: 'app-actual-board',
   standalone: true,
-  imports: [CommonModule, BoardCardsComponent, BoardCardsFull, DragDropModule],
+  imports: [CommonModule, BoardCardsComponent, BoardCardsFull, DragDropModule, TaskformComponent],
   templateUrl: './actual-board.html',
   styleUrl: './actual-board.scss',
 })
