@@ -59,9 +59,9 @@
         </button>
       </div>
 
-      <div class="task-column">
+      <div class="task-column" cdkDropList>
         @for (task of filteredAwaitFeedback; track task.id) {
-        <app-board-cards [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
+        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
         <div class="no-task-placeholder">No tasks awaiting feedback</div>
         }
@@ -76,9 +76,9 @@
         <h3>Done</h3>
       </div>
 
-      <div class="task-column">
+      <div class="task-column" cdkDropList>
         @for (task of filteredDone; track task.id) {
-        <app-board-cards [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
+        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
         <div class="no-task-placeholder">No tasks done</div>
         }
