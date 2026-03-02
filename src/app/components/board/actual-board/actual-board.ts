@@ -34,6 +34,8 @@ export class ActualBoard {
 
   dataTasks = signal<Task[]>([]);
 
+  dropedTaks = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' })
+
   selectedTask?: Task;
   todoTasks: Task[] = [];
   inProgressTasks: Task[] = [];
@@ -187,7 +189,6 @@ export class ActualBoard {
   }
 
 
-
   async drop(event: CdkDragDrop<any[]>){
     if(event.previousContainer === event.container){
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -195,29 +196,9 @@ export class ActualBoard {
     else{
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       const movedTask = event.container.data[event.currentIndex];
-      const oldStatus = movedTask.progressStatus;
-      const newStatus = event.container.id as Task['progressStatus']
-
-      transferArrayItem(
-      event.previousContainer.data,
-      event.container.data,
-      event.previousIndex,
-      event.currentIndex
-    );
+      const newStatus = movedTask as Task;
       movedTask.progressStatus = newStatus;
-
-      try {
-      await this.supabaseClientService.updateTaskStatus(movedTask.id, newStatus);
-    } catch (err) {
-      transferArrayItem(
-        event.container.data,
-        event.previousContainer.data,
-        event.currentIndex,
-        event.previousIndex
-      );
-      movedTask.progressStatus = oldStatus;
-
-    }
+      this.supabaseClientService.updateRow("tasks", newStatus, newStatus.id)
     }
   }
 
