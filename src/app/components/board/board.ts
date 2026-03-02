@@ -105,6 +105,8 @@ export class Board implements OnInit {
   }
 
   async openAddTask(type: string) {
+    console.log("Open");
+
     const dialogRef = this.addTask.nativeElement;
     this.cardData.progress = type;
     dialogRef.showModal();
