@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { TaskformComponent } from '../taskform';
 
 @Component({
@@ -8,10 +8,11 @@ import { TaskformComponent } from '../taskform';
   styleUrl: './add-task-dialog.scss',
 })
 export class AddTaskDialog {
+  @ViewChild('taskform') form!: TaskformComponent;
   @Output() closeTriggered = new EventEmitter<void>();
 
   setCurrentProgress(input: string){
-
+    this.form.progress = input;
   }
 
   closeDialog(){

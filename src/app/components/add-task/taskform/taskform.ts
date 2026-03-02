@@ -1,5 +1,5 @@
 import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
-import { Component, ElementRef, Input, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Supabase } from '../../../services/supabase';
@@ -20,6 +20,8 @@ import { SubtaskButtonComponent } from './subtask-button/subtask-button';
 
 export class TaskformComponent implements OnInit {
   @Input() progress: string = "To do";
+  @Output() closeTriggered = new EventEmitter<void>();
+
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
   @ViewChild('subtaskInput') subtaskInput!: ElementRef<HTMLInputElement>;
@@ -145,9 +147,10 @@ export class TaskformComponent implements OnInit {
   createTask() {
     const assignment: SupabaseContactsInterface[] = this.contactsSelector.selectedContacts;
     const uploadData = {headline: this.currentTask().headline, desc: this.currentTask().desc, dueDate: this.currentTask().dueDate, priority: this.currentTask().priority,
-      category: this.currentTask().category, assignedTo: assignment, subtasks: this.currentTask().subtasks, progressStatus: this.currentTask().progressStatus }
+      category: this.currentTask().category, assignedTo: assignment, subtasks: this.currentTask().subtasks, progressStatus: this.progress }
     this.supabase.uploadJSONToTable('tasks', uploadData);
     this.resetForm();
+    this.closeTriggered.emit();
   }
 
   resetForm() {
