@@ -104,9 +104,9 @@ export class Board implements OnInit {
     localStorage.setItem('tasks', JSON.stringify(allTasks));
   }
 
-  async openAddTask() {
+  async openAddTask(type: string) {
     const dialogRef = this.addTask.nativeElement;
-    this.cardData.progress = this.currentTaks;
+    this.cardData.progress = type;
     dialogRef.showModal();
     await this.animService.animate(dialogRef, slideInAnimations, 400, true);
   }
