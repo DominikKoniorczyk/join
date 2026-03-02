@@ -97,4 +97,8 @@ export class Board implements OnInit {
 
     localStorage.setItem('tasks', JSON.stringify(allTasks));
   }
+
+  openAddTask(type: string){
+
+  }
 }
