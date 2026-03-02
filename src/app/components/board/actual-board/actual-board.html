@@ -15,7 +15,7 @@
         </button>
       </div>
 
-      <div class="task-column" cdkDropList >
+      <div class="task-column" cdkDropList id="To do" [cdkDropListData]="filteredTodo" (cdkDropListDropped)="drop($event)" >
         @for (task of filteredTodo; track task.id) {
         <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
@@ -37,7 +37,7 @@
         </button>
       </div>
 
-      <div class="task-column" cdkDropList >
+      <div class="task-column" cdkDropList id="In progress" [cdkDropListData]="filteredInProgress" (cdkDropListDropped)="drop($event)">
         @for (task of filteredInProgress; track task.id) {
         <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
@@ -59,7 +59,7 @@
         </button>
       </div>
 
-      <div class="task-column" cdkDropList>
+      <div class="task-column" cdkDropList id="Await feedback" [cdkDropListData]="filteredAwaitFeedback" (cdkDropListDropped)="drop($event)">
         @for (task of filteredAwaitFeedback; track task.id) {
         <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
@@ -76,9 +76,9 @@
         <h3>Done</h3>
       </div>
 
-      <div class="task-column" cdkDropList>
+      <div class="task-column" cdkDropList id="Done" [cdkDropListData]="filteredDone" (cdkDropListDropped)="drop($event)">
         @for (task of filteredDone; track task.id) {
-        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
+        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)" ></app-board-cards>
         } @empty {
         <div class="no-task-placeholder">No tasks done</div>
         }

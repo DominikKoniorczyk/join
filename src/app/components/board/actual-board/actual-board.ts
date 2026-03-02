@@ -9,7 +9,7 @@ import { slideInAnimations, slideOutAnimations } from '../animations-board/dialo
 import { Task } from '../../../interfaces/taskmodel.interfaces';
 import { ContactsSelectorWithSearch } from '../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { RealtimeChannel } from '@supabase/supabase-js';
-import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AddTaskDialog } from '../../add-task/taskform/add-task-dialog/add-task-dialog';
 
 
@@ -184,4 +184,18 @@ export class ActualBoard {
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
     dialogRef.close();
   }
+
+
+
+  drop(event: CdkDragDrop<any[]>){
+    if(event.previousContainer === event.container){
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    }
+    else{
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      const movedTask = event.container.data[event.currentIndex];
+      movedTask.progressStatus = event.container.id;
+    }
+  }
+
 }
