@@ -183,8 +183,6 @@ export class ActualBoard {
     dialogRef.close();
   }
 
-
-
   async drop(event: CdkDragDrop<any[]>){
     if(event.previousContainer === event.container){
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
