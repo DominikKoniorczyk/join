@@ -1,3 +1,4 @@
+import { TaskService } from './../../../services/task.service';
 import { Supabase } from './../../../services/supabase';
 import { Component, ElementRef, inject, Input, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,7 +10,7 @@ import { slideInAnimations, slideOutAnimations } from '../animations-board/dialo
 import { Task } from '../../../interfaces/taskmodel.interfaces';
 import { ContactsSelectorWithSearch } from '../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { RealtimeChannel } from '@supabase/supabase-js';
-import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AddTaskDialog } from '../../add-task/taskform/add-task-dialog/add-task-dialog';
 
 
@@ -184,4 +185,40 @@ export class ActualBoard {
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
     dialogRef.close();
   }
+
+
+
+  async drop(event: CdkDragDrop<any[]>){
+    if(event.previousContainer === event.container){
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    }
+    else{
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      const movedTask = event.container.data[event.currentIndex];
+      const oldStatus = movedTask.progressStatus;
+      const newStatus = event.container.id as Task['progressStatus']
+
+      transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
+      movedTask.progressStatus = newStatus;
+
+      try {
+      await this.supabaseClientService.updateTaskStatus(movedTask.id, newStatus);
+    } catch (err) {
+      transferArrayItem(
+        event.container.data,
+        event.previousContainer.data,
+        event.currentIndex,
+        event.previousIndex
+      );
+      movedTask.progressStatus = oldStatus;
+
+    }
+    }
+  }
+
 }

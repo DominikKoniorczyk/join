@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../environment/supabasekeys';
+import { Task } from '../interfaces/taskmodel.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -116,5 +117,16 @@ export class Supabase {
       .update(newData)
       .eq('id', id)
     if (error) throw error;
+  }
+
+
+  async updateTaskStatus(taskId: number, newStatus: Task['progressStatus']){
+    const {data, error} = await this.supabaseClient
+    .from('tasks')
+    .upsert({progressStatus: newStatus})
+    .eq('id', taskId);
+    if (error) {
+    throw error;
+  }
   }
 }
