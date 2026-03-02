@@ -1,5 +1,5 @@
 <div class="content" (click)="openDialog()">
-  <div class="category">{{currentTask.category}}</div>
+  <div [class.deepblue]="currentTask.category == 'User Story' " [class.turkise]="currentTask.category == 'Technical Task'"   class="category">{{currentTask.category}}</div>
   <div class="headline">{{currentTask.headline}}</div>
   <p class="description">{{currentTask.desc|shortenTextsnippets}}</p>
 
@@ -7,7 +7,7 @@
     <div class="progress-bar">
       <div class="progress-fill" [style.width.%]="getPercentage()"></div>
     </div>
-    <div>{{ getSubtaskStatus()}}</div>
+    <div class="progress-text">{{ getSubtaskStatus()}}</div>
   </div>
   <div class="footer">
     <div class="assigned-user-container">@for (contact of currentTask.assignedTo; track contact.id) {
