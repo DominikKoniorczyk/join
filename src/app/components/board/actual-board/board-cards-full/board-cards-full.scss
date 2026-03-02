@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  width: 450px;
+  width: 95%;
   height: 760px;
   justify-content: start;
 
@@ -342,6 +342,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 }
 
 .input-subtask-wrapper {
@@ -352,6 +353,24 @@
   border-radius: 10px;
   width: 100%;
   gap: 1rem;
+  min-height: 48px;
+}
+
+.subtask-edit-list-container{
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: vars.$light-grey;
+      border-radius: 10px;
+    }
+
 }
 
 .subtask-edit-btn-container {
@@ -379,4 +398,5 @@
   align-items: center;
   justify-content: center;
   border: none;
+  flex-shrink: 0;
 }
