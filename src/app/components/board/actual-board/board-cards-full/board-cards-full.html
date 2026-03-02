@@ -116,12 +116,12 @@
             alt=""></button>
       </div>
     </div>
-    <ul>
+    <div class="subtask-edit-list-container">
       @for (subtask of currentTask().subtasks; track subtask.id; let i = $index){
       <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)"
         (updateSubtask)="editSubtask($event)"></app-subtask-button>
       }
-    </ul>
+    </div>
   </div>
   }
 
