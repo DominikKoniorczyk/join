@@ -1,4 +1,4 @@
-<div class="content" >
+<div class="content" cdkDropListGroup >
 
   @if (noSearchResults) {
   <div class="no-results">Keine Ergebnisse gefunden</div>
@@ -15,9 +15,9 @@
         </button>
       </div>
 
-      <div class="task-column">
+      <div class="task-column" cdkDropList >
         @for (task of filteredTodo; track task.id) {
-        <app-board-cards [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
+        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
         <div class="no-task-placeholder">No tasks To do</div>
         }
@@ -37,9 +37,9 @@
         </button>
       </div>
 
-      <div class="task-column">
+      <div class="task-column" cdkDropList >
         @for (task of filteredInProgress; track task.id) {
-        <app-board-cards [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
+        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
         } @empty {
         <div class="no-task-placeholder">No tasks in progress</div>
         }

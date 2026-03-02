@@ -5,11 +5,12 @@ import { PriorityButton } from '../../../../shared/priority-button/priority-butt
 import { ContactsSelectorWithSearch } from '../../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-button/subtask-button';
 import { Supabase } from '../../../../services/supabase';
+import { CdkDropListGroup, CdkDropList } from "@angular/cdk/drag-drop";
 
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent],
+  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent, CdkDropListGroup, CdkDropList],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })
