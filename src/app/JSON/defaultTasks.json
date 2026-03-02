@@ -53,5 +53,15 @@
     ],
     "subtasks": [{"id": 1, "title": "Export data", "isDone": true}, {"id": 1, "title": "evaluate KPIs", "isDone": true}, {"id": 1, "title": "send report", "isDone": true}],
     "progressStatus": "Done"
+  },
+  {
+    "headline": "Organise a team workshop",
+    "desc": "Book a venue, create an agenda and invite participants.",
+    "dueDate": "2026-03-12",
+    "priority": 1,
+    "category": "User Story",
+    "assignedTo": [{"name":"Mareike Buschmann","phone_number":491701284925,"email":"mareike.buschmann@urbanmail24.de", "color": "#ffbb2b"}],
+    "subtasks": [{"id": 1, "title": "send out invitations", "isDone": false},{"id": 1, "title": "Reserve a place", "isDone": true}],
+    "progressStatus": "In progress"
   }
 ]
