@@ -168,7 +168,4 @@ export class ActualBoard {
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
     dialogRef.close();
   }
-
-
-
 }
