@@ -161,6 +161,10 @@ dialog {
   border-radius: 25px;
   overflow-y: auto;
 
+  @media(min-width:1440px){
+    left:20%;
+  }
+
   @media (max-width: 1170px) {
     top: 10%;
     left: 25%;

@@ -17,16 +17,20 @@
   @if(!isEditing){
   <div class="headline">{{currentTask().headline}}</div>
   } @else{
+    <div class="title-edit-container">
   <label class="input-title" for="Title">Title</label>
   <input class="edit-input" #headlineInput type="text" [value]="currentTask().headline">
+  </div>
   }
 
   @if(!isEditing){
   <p class="description">{{currentTask().desc}}</p>
   } @else {
+    <div class="description-edit-container">
   <label class="input-title" for="Description">Description</label>
   <textarea class="edit-input-textarea" rows="5" #descInput type="text" [value]="currentTask().desc"></textarea>
-  }
+    </div>
+}
 
 
   @if(!isEditing){
