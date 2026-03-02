@@ -5,7 +5,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Supabase } from '../../../services/supabase';
 import { OnInit } from '@angular/core';
 import { ContactsSelectorWithSearch } from './contacts-selector-with-search/contacts-selector-with-search';
-import { Subtask, Task } from '../../../interfaces/taskmodel.interfaces';
+import { Task } from '../../../interfaces/taskmodel.interfaces';
 import { CurrentDate } from '../../../services/current-date';
 import { PriorityButton } from '../../../shared/priority-button/priority-button';
 import { SubtaskButtonComponent } from './subtask-button/subtask-button';

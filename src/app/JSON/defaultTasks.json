@@ -1,0 +1,57 @@
+[
+  {
+    "headline": "Complete project planning for Q2",
+    "desc": "Define milestones, plan resources and coordinate budgets.",
+    "dueDate": "2026-03-15",
+    "priority": 2,
+    "category": "Technical Task",
+    "assignedTo": [
+      {"name":"Lukas Schneider","phone_number":491763482915,"email":"lukas.schneider@rheinmail.de", "color": "#ff7a00"},
+      {"name":"Sebastian Albrecht","phone_number":491601293847,"email":"sebastian.albrecht@mailzone.de", "color": "#6e52ff"}
+    ],
+    "subtasks": ["Define milestones", "resource planning", "obtain budget approval"],
+    "progressStatus": "In progress"
+  },
+  {
+    "headline": "Website-Redesign Review",
+    "desc": "Review the final design and provide feedback to the UX team.",
+    "dueDate": "2026-03-10",
+    "priority": 1,
+    "category": "User Story",
+    "assignedTo": [
+      {"name":"Melanie Winter","phone_number":491522918374,"email":"melanie.winter@postwerk.de", "color": "#ffbb2b"},
+      {"name":"Kevin Sauer","phone_number":491609283745,"email":"kevin.sauer@digitalmail.de", "color": "#ff7a00"},
+      {"name":"Sarah Conrad","phone_number":491734820195,"email":"sarah.conrad@netzcloud.de", "color": "#ff5eb3"}
+    ],
+    "subtasks": ["Check UI", "test mobile view", "document feedback"],
+    "progressStatus": "Await feedback"
+  },
+  {
+    "headline": "Prepare customer presentation",
+    "desc": "Create presentation slides and prepare demo.",
+    "dueDate": "2026-03-08",
+    "priority": 2,
+    "category": "Technical Task",
+    "assignedTo": [
+      {"name":"Franziska Wolff","phone_number":491530182947,"email":"franziska.wolff@mailstadt.de", "color": "#1fd7c1"}
+    ],
+    "subtasks": ["Create slides", "prepare demo data", "run a trial run"],
+    "progressStatus": "To do"
+  },
+  {
+    "headline": "Create monthly report",
+    "desc": "Analyse key figures and compile reports for management.",
+    "dueDate": "2026-03-05",
+    "priority": 0,
+    "category": "User Story",
+    "assignedTo": [
+      {"name":"Mareike Buschmann","phone_number":491701284925,"email":"mareike.buschmann@urbanmail24.de", "color": "#ffbb2b"},
+      {"name":"Simon Reuter","phone_number":491764019274,"email":"simon.reuter@citymail24.de", "color": "#ff7a00"},
+      {"name":"Jasmin Scholz","phone_number":491522830165,"email":"jasmin.scholz@briefzone24.de", "color": "#ff5eb3"},
+      {"name":"Henrik Braun","phone_number":491609472063,"email":"henrik.braun@mailpoint24.de", "color": "#6e52ff"},
+      {"name":"Tanja Keller","phone_number":491734019265,"email":"tanja.keller@netzmail24.de", "color": "#9327ff"}
+    ],
+    "subtasks": ["Export data", "evaluate KPIs", "send report"],
+    "progressStatus": "Done"
+  }
+]
