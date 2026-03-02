@@ -9,7 +9,7 @@
       {"name":"Lukas Schneider","phone_number":491763482915,"email":"lukas.schneider@rheinmail.de", "color": "#ff7a00"},
       {"name":"Sebastian Albrecht","phone_number":491601293847,"email":"sebastian.albrecht@mailzone.de", "color": "#6e52ff"}
     ],
-    "subtasks": ["Define milestones", "resource planning", "obtain budget approval"],
+    "subtasks": [{"id": 1, "title": "Define milestones", "isDone": false}, {"id": 1, "title": "resource planning", "isDone": true}, {"id": 1, "title": "obtain budget approval", "isDone": false}],
     "progressStatus": "In progress"
   },
   {
@@ -23,7 +23,7 @@
       {"name":"Kevin Sauer","phone_number":491609283745,"email":"kevin.sauer@digitalmail.de", "color": "#ff7a00"},
       {"name":"Sarah Conrad","phone_number":491734820195,"email":"sarah.conrad@netzcloud.de", "color": "#ff5eb3"}
     ],
-    "subtasks": ["Check UI", "test mobile view", "document feedback"],
+    "subtasks": [{"id": 1, "title": "Check UI", "isDone": true}, {"id": 1, "title": "test mobile view", "isDone": true}, {"id": 1, "title": "document feedback", "isDone": false} ],
     "progressStatus": "Await feedback"
   },
   {
@@ -35,7 +35,7 @@
     "assignedTo": [
       {"name":"Franziska Wolff","phone_number":491530182947,"email":"franziska.wolff@mailstadt.de", "color": "#1fd7c1"}
     ],
-    "subtasks": ["Create slides", "prepare demo data", "run a trial run"],
+    "subtasks": [{"id": 1, "title": "Create slides", "isDone": false}, {"id": 1, "title": "prepare demo data", "isDone": false}, {"id": 1, "title": "run a trial run", "isDone": false}],
     "progressStatus": "To do"
   },
   {
@@ -51,7 +51,7 @@
       {"name":"Henrik Braun","phone_number":491609472063,"email":"henrik.braun@mailpoint24.de", "color": "#6e52ff"},
       {"name":"Tanja Keller","phone_number":491734019265,"email":"tanja.keller@netzmail24.de", "color": "#9327ff"}
     ],
-    "subtasks": ["Export data", "evaluate KPIs", "send report"],
+    "subtasks": [{"id": 1, "title": "Export data", "isDone": true}, {"id": 1, "title": "evaluate KPIs", "isDone": true}, {"id": 1, "title": "send report", "isDone": true}],
     "progressStatus": "Done"
   }
 ]
