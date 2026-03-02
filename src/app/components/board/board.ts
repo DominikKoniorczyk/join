@@ -1,25 +1,19 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule, CdkDragDrop, transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ActualBoard } from './actual-board/actual-board';
 import { BoardNav } from './board-nav/board-nav';
-import { TaskformComponent } from '../add-task/taskform/taskform';
 import { AnimationService } from '../../services/animation.service';
-import { slideInAnimations, slideOutAnimations } from './animations-board/dialog.animation';
-// Test Update
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CommonModule, DragDropModule, FormsModule, BoardNav, ActualBoard, TaskformComponent],
+  imports: [CommonModule, DragDropModule, FormsModule, BoardNav, ActualBoard],
   templateUrl: './board.html',
   styleUrls: ['./board.scss']
 })
 export class Board implements OnInit {
-  @ViewChild('#addTaksDialog') addTask!: ElementRef;
-  @ViewChild('cardData') cardData!: TaskformComponent;
 
   searchTerm: string = '';
   currentTaks: string = 'To do';
@@ -104,18 +98,7 @@ export class Board implements OnInit {
     localStorage.setItem('tasks', JSON.stringify(allTasks));
   }
 
-  async openAddTask(type: string) {
-    console.log("Open");
+  openAddTask(type: string){
 
-    const dialogRef = this.addTask.nativeElement;
-    this.cardData.progress = type;
-    dialogRef.showModal();
-    await this.animService.animate(dialogRef, slideInAnimations, 400, true);
-  }
-
-  async closeDialog() {
-    const dialogRef = this.addTask.nativeElement;
-    await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
-    dialogRef.close();
   }
 }

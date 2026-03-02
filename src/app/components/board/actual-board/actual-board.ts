@@ -10,12 +10,13 @@ import { Task } from '../../../interfaces/taskmodel.interfaces';
 import { ContactsSelectorWithSearch } from '../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
+import { TaskformComponent } from '../../add-task/taskform/taskform';
 
 
 @Component({
   selector: 'app-actual-board',
   standalone: true,
-  imports: [CommonModule, BoardCardsComponent, BoardCardsFull, DragDropModule],
+  imports: [CommonModule, BoardCardsComponent, BoardCardsFull, DragDropModule, TaskformComponent],
   templateUrl: './actual-board.html',
   styleUrl: './actual-board.scss',
 })
@@ -27,6 +28,8 @@ export class ActualBoard {
 
   @ViewChild('cardDialog') cardDetails!: ElementRef;
   @ViewChild('cardData') cardData!: BoardCardsFull;
+  @ViewChild('addTaksDialog') addTask!: ElementRef;
+  @ViewChild('cardTaskData') cardTaskData!: TaskformComponent;
 
   dataTasks = signal<Task[]>([]);
 
@@ -165,6 +168,21 @@ export class ActualBoard {
 
   async closeDialog() {
     const dialogRef = this.cardDetails.nativeElement;
+    await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
+    dialogRef.close();
+  }
+
+  async openAddTask(type: string) {
+    console.log("Open");
+
+    const dialogRef = this.addTask.nativeElement;
+    this.cardTaskData.progress = type;
+    dialogRef.showModal();
+    await this.animService.animate(dialogRef, slideInAnimations, 400, true);
+  }
+
+  async closeAddTaskDialog() {
+    const dialogRef = this.addTask.nativeElement;
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
     dialogRef.close();
   }
