@@ -1,0 +1,13 @@
+.outer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 80dvh;
+}
+
+.close-btn{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}

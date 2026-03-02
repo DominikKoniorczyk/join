@@ -92,6 +92,6 @@
   <app-board-cards-full #cardData (closeTriggered)="closeDialog()"></app-board-cards-full>
 </dialog>
 
-<dialog #addTaksDialog>
-  <app-taskform #cardTaskData></app-taskform>
+<dialog class="addTaskDialog" #addTaksDialog>
+  <app-add-task-dialog #cardTaskData (closeTriggered)="closeAddTaskDialog()"></app-add-task-dialog>
 </dialog>

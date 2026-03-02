@@ -11,12 +11,13 @@ import { ContactsSelectorWithSearch } from '../../add-task/taskform/contacts-sel
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskformComponent } from '../../add-task/taskform/taskform';
+import { AddTaskDialog } from '../../add-task/taskform/add-task-dialog/add-task-dialog';
 
 
 @Component({
   selector: 'app-actual-board',
   standalone: true,
-  imports: [CommonModule, BoardCardsComponent, BoardCardsFull, DragDropModule, TaskformComponent],
+  imports: [CommonModule, BoardCardsComponent, BoardCardsFull, DragDropModule, AddTaskDialog],
   templateUrl: './actual-board.html',
   styleUrl: './actual-board.scss',
 })
