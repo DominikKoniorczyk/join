@@ -10,5 +10,11 @@ import { TaskformComponent } from '../taskform';
 export class AddTaskDialog {
   @Output() closeTriggered = new EventEmitter<void>();
 
-  progress: string = "To do";
+  setCurrentProgress(input: string){
+
+  }
+
+  closeDialog(){
+    this.closeTriggered.emit();
+  }
 }

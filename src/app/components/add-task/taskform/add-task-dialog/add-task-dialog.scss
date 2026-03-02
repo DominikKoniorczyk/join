@@ -1,3 +1,5 @@
+@use '../../../../styles/variables.scss' as vars;
+
 .outer{
   display: flex;
   justify-content: center;
@@ -10,4 +12,16 @@
   position: absolute;
   top: 5%;
   right: 5%;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover{
+    background-color: vars.$light-grey;
+  }
 }

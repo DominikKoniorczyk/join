@@ -10,7 +10,6 @@ import { Task } from '../../../interfaces/taskmodel.interfaces';
 import { ContactsSelectorWithSearch } from '../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
-import { TaskformComponent } from '../../add-task/taskform/taskform';
 import { AddTaskDialog } from '../../add-task/taskform/add-task-dialog/add-task-dialog';
 
 
@@ -30,7 +29,7 @@ export class ActualBoard {
   @ViewChild('cardDialog') cardDetails!: ElementRef;
   @ViewChild('cardData') cardData!: BoardCardsFull;
   @ViewChild('addTaksDialog') addTask!: ElementRef;
-  @ViewChild('cardTaskData') cardTaskData!: TaskformComponent;
+  @ViewChild('cardTaskData') cardTaskData!: AddTaskDialog;
 
   dataTasks = signal<Task[]>([]);
 
@@ -174,10 +173,8 @@ export class ActualBoard {
   }
 
   async openAddTask(type: string) {
-    console.log("Open");
-
     const dialogRef = this.addTask.nativeElement;
-    this.cardTaskData.progress = type;
+    this.cardTaskData.setCurrentProgress(type);
     dialogRef.showModal();
     await this.animService.animate(dialogRef, slideInAnimations, 400, true);
   }

@@ -1,4 +1,4 @@
 <div class="outer">
-  <button class="close-btn">X</button>
+  <button (click)="closeDialog()" aria-label="close add task dialog" class="close-btn"><img src="./assets/img/close-cross.png" alt="cross symbol"></button>
   <app-taskform (progress)=progress></app-taskform>
 </div>

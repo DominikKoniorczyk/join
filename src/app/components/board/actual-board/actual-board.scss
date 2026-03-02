@@ -180,6 +180,12 @@ dialog {
   }
 }
 
+.addTaskDialog{
+  max-width: 1200px;
+  max-height: unset;
+  left: 25%;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 25px;
