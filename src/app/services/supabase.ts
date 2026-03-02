@@ -118,15 +118,4 @@ export class Supabase {
       .eq('id', id)
     if (error) throw error;
   }
-
-
-  async updateTaskStatus(taskId: number, newStatus: Task['progressStatus']){
-    const {data, error} = await this.supabaseClient
-    .from('tasks')
-    .upsert({progressStatus: newStatus})
-    .eq('id', taskId);
-    if (error) {
-    throw error;
-  }
-  }
 }

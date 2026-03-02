@@ -1,14 +1,11 @@
-import { TaskService } from './../../../services/task.service';
 import { Supabase } from './../../../services/supabase';
 import { Component, ElementRef, inject, Input, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardCardsComponent } from './board-cards/board-cards';
 import { BoardCardsFull } from './board-cards-full/board-cards-full';
-import { Dialog } from '@angular/cdk/dialog';
 import { AnimationService } from '../../../services/animation.service';
 import { slideInAnimations, slideOutAnimations } from '../animations-board/dialog.animation';
 import { Task } from '../../../interfaces/taskmodel.interfaces';
-import { ContactsSelectorWithSearch } from '../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AddTaskDialog } from '../../add-task/taskform/add-task-dialog/add-task-dialog';
@@ -33,8 +30,6 @@ export class ActualBoard {
   @ViewChild('cardTaskData') cardTaskData!: AddTaskDialog;
 
   dataTasks = signal<Task[]>([]);
-
-  dropedTaks = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' })
 
   selectedTask?: Task;
   todoTasks: Task[] = [];
@@ -189,16 +184,17 @@ export class ActualBoard {
   }
 
 
+
   async drop(event: CdkDragDrop<any[]>){
     if(event.previousContainer === event.container){
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     }
     else{
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-      const movedTask = event.container.data[event.currentIndex];
-      const newStatus = movedTask as Task;
+      let movedTask = event.container.data[event.currentIndex] as Task;
+      const newStatus = event.container.id as Task['progressStatus'];
       movedTask.progressStatus = newStatus;
-      this.supabaseClientService.updateRow("tasks", newStatus, newStatus.id)
+      this.supabaseClientService.updateRow("tasks", movedTask, movedTask.id);
     }
   }
 

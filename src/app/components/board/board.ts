@@ -67,41 +67,6 @@ export class Board implements OnInit {
     this.done = this.allDone.filter(matches);
   }
 
-
-  drop(event: CdkDragDrop<any[]>, status: string) {
-
-
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
-
-    else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-
-      const movedTask = event.container.data[event.currentIndex];
-      movedTask.status = status;
-    }
-
-
-    const allTasks = [
-      ...this.todo,
-      ...this.inprogress,
-      ...this.await,
-      ...this.done
-    ];
-
-    localStorage.setItem('tasks', JSON.stringify(allTasks));
-  }
-
   async openAddTask(type: string) {
     this.actualBoard.openAddTask('To do');
   }
