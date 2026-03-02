@@ -188,19 +188,36 @@ export class ActualBoard {
 
 
 
-  drop(event: CdkDragDrop<any[]>){
+  async drop(event: CdkDragDrop<any[]>){
     if(event.previousContainer === event.container){
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     }
     else{
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       const movedTask = event.container.data[event.currentIndex];
+      const oldStatus = movedTask.progressStatus;
       const newStatus = event.container.id as Task['progressStatus']
+
+      transferArrayItem(
+      event.previousContainer.data,
+      event.container.data,
+      event.previousIndex,
+      event.currentIndex
+    );
       movedTask.progressStatus = newStatus;
 
-      this.supabaseClientService.updateTaskStatus(movedTask.id, newStatus);
-      transferArrayItem(event.container.data, event.previousContainer.data, event.currentIndex, event.previousIndex)
+      try {
+      await this.supabaseClientService.updateTaskStatus(movedTask.id, newStatus);
+    } catch (err) {
+      transferArrayItem(
+        event.container.data,
+        event.previousContainer.data,
+        event.currentIndex,
+        event.previousIndex
+      );
+      movedTask.progressStatus = oldStatus;
 
+    }
     }
   }
 
