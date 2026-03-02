@@ -1,3 +1,4 @@
+import { TaskService } from './../../../services/task.service';
 import { Supabase } from './../../../services/supabase';
 import { Component, ElementRef, inject, Input, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -194,7 +195,12 @@ export class ActualBoard {
     else{
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       const movedTask = event.container.data[event.currentIndex];
-      movedTask.progressStatus = event.container.id;
+      const newStatus = event.container.id as Task['progressStatus']
+      movedTask.progressStatus = newStatus;
+
+      this.supabaseClientService.updateTaskStatus(movedTask.id, newStatus);
+      transferArrayItem(event.container.data, event.previousContainer.data, event.currentIndex, event.previousIndex)
+
     }
   }
 
