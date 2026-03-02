@@ -17,7 +17,7 @@ export class AddTaskComponent {
   isFormValid = signal<boolean>(false);
   isLoading = signal<boolean>(true);
   dataTask = signal<Task[]>([]);
-  shouldRegenerateTasks: boolean = true;
+  shouldRegenerateTasks: boolean = false;
   initialTasks = defaultTasks;
 
   constructor(private supabaseClientService : Supabase){}
@@ -39,7 +39,7 @@ export class AddTaskComponent {
      */
   async getDataInitial() {
     const data = (await this.supabaseClientService.getDataFromTable(
-      'users',
+      'tasks',
     )) as Task[];
     this.dataTask.set(data ?? []);
     this.isLoading.set(false);
