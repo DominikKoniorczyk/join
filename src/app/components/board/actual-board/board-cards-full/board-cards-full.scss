@@ -25,7 +25,6 @@
 
 .category {
   color: white;
-  background-color: #0038FF;
   width: fit-content;
   padding: 4px 16px;
   border-radius: 5px;
@@ -34,6 +33,14 @@
   @media(max-width: 768px) {
     font-size: 1rem;
   }
+}
+
+.deepblue{
+  background-color: vars.$color-deep-blue;
+}
+
+.turkise{
+  background-color: vars.$color-turkise;
 }
 
 .close-btn {
@@ -354,7 +361,10 @@
 }
 
 .footer {
-  width: 100%;
+  position: absolute;
+  bottom: 2%;
+  right: 5%;
+  width: 80%;
   display: flex;
   justify-content: end;
   gap: 1rem;

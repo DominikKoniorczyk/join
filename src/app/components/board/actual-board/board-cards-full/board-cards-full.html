@@ -3,7 +3,7 @@
 
   @if(!isEditing){
   <div class="header">
-    <div class="category">{{currentTask().category}}</div>
+    <div [class.deepblue]="currentTask().category == 'User Story' " [class.turkise]="currentTask().category == 'Technical Task'"   class="category">{{currentTask().category}}</div>
     <button class="close-btn" (click)="onClose()"> <img src="./assets/img/close-cross.png" alt=""></button>
   </div>
   } @else {
