@@ -12,6 +12,7 @@ import { AddTaskBtn } from './add-task-btn/add-task-btn';
 })
 export class BoardNav {
   @Output() searchChange = new EventEmitter<string>();
+  @Output() openAddTask = new EventEmitter<void>();
 
   onSearchChange(term: string) {
     this.searchChange.emit(term);

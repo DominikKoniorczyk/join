@@ -7,9 +7,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './add-task-btn.scss',
 })
 export class AddTaskBtn {
+  @Output() openAddTask = new EventEmitter<void>();
 
-  // @Output() openAddTask = new EventEmitter<void>();
-  // addTask(): void {
-  //   this.openAddTask.emit();
-  // }
+  onClickedAddTask(){
+    this.openAddTask.emit();
+  }
 }

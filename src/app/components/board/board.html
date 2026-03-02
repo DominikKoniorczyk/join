@@ -11,9 +11,9 @@
         </div>
       </div>
       <div class="board-actions">
-        <app-board-nav (searchChange)="onSearchChange($event)"></app-board-nav>
+        <app-board-nav (searchChange)="onSearchChange($event)" (openAddTask)="openAddTask('To do')"></app-board-nav>
       </div>
     </div>
-    <app-actual-board [searchTerm]="searchTerm"></app-actual-board>
+    <app-actual-board #actualBoard [searchTerm]="searchTerm"></app-actual-board>
   </div>
 </div>
