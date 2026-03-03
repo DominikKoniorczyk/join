@@ -12,6 +12,8 @@ import { Task } from '../../../../interfaces/taskmodel.interfaces';
 })
 export class BoardCardsComponent {
 
+   isDropDownOpen = false;
+
   @Input() currentTask: Task = { id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' };
 
   @Output() cardOpened = new EventEmitter<void>();
@@ -47,5 +49,27 @@ export class BoardCardsComponent {
     return (parts.length > 1
       ? parts[0][0] + parts[parts.length - 1][0]
       : parts[0][0]).toUpperCase();
+  }
+
+  toggleDropdown() {
+    this.isDropDownOpen = !this.isDropDownOpen;
+  }
+
+  moveTaskMobile(up: boolean){
+    if(up){
+      switch(this.currentTask.progressStatus){
+        case 'To do': this.currentTask.progressStatus = 'To do'; break
+        case 'In progress': this.currentTask.progressStatus = 'To do'; break
+        case 'Await feedback': this.currentTask.progressStatus = 'In progress'; break
+        case 'Done': this.currentTask.progressStatus = 'Await feedback'; break
+      }
+    } else{
+      switch(this.currentTask.progressStatus){
+        case 'To do': this.currentTask.progressStatus = 'In progress'; break
+        case 'In progress': this.currentTask.progressStatus = 'Await feedback'; break
+        case 'Await feedback': this.currentTask.progressStatus = 'Done'; break
+        case 'Done': this.currentTask.progressStatus = 'Done'; break
+      }
+    }
   }
 }
