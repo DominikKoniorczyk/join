@@ -1,8 +1,8 @@
+import { ContactsSelectorWithSearch } from './../../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { Component, ElementRef, EventEmitter, inject, Output, signal, ViewChild } from '@angular/core';
 import { Task, Subtask } from '../../../../interfaces/taskmodel.interfaces';
 import { CurrentDate } from '../../../../services/current-date';
 import { PriorityButton } from '../../../../shared/priority-button/priority-button';
-import { ContactsSelectorWithSearch } from '../../../add-task/taskform/contacts-selector-with-search/contacts-selector-with-search';
 import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-button/subtask-button';
 import { Supabase } from '../../../../services/supabase';
 import { CdkDropListGroup, CdkDropList } from "@angular/cdk/drag-drop";
@@ -10,7 +10,7 @@ import { CdkDropListGroup, CdkDropList } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent, CdkDropListGroup, CdkDropList],
+  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })
@@ -27,6 +27,8 @@ export class BoardCardsFull {
   @ViewChild('headlineInput') headlineInput!: ElementRef<HTMLInputElement>;
   @ViewChild('descInput') descInput!: ElementRef<HTMLInputElement>;
   @ViewChild('dateInput') dateInput!: ElementRef<HTMLInputElement>;
+
+@ViewChild('selector') selector!: ContactsSelectorWithSearch;
 
   constructor(private supabase: Supabase){ }
 
@@ -123,6 +125,10 @@ export class BoardCardsFull {
       }
       return { ...task, subtasks: updatedSubtasks };
     });
+  }
+
+  closeDropdown(){
+    this.selector?.closeOnOutsideClick();
   }
 
 }

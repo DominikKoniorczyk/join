@@ -10,7 +10,7 @@
     <div class="progress-text">{{ getSubtaskStatus()}}</div>
   </div>
   <div class="footer">
-    <div class="assigned-user-container">@for (contact of currentTask.assignedTo; track contact.id) {
+    <div class="assigned-user-container">@for (contact of currentTask.assignedTo; track contact) {
       <div class="mini-avatar" [style.background-color]="contact.color" [title]="contact.name">
         {{ getInitials(contact.name) }}
       </div>

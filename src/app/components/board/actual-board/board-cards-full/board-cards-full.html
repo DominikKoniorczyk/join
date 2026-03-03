@@ -1,4 +1,4 @@
-<div class="content">
+<div (click)="closeDropdown()" class="content">
 
   @if(!isEditing){
   <div class="header">
@@ -27,7 +27,7 @@
     <span class="rows">Assigned To:</span>
     <div class="info">
       <div class="assigned-list">
-        @for (contact of currentTask().assignedTo; track contact.id){
+        @for (contact of currentTask().assignedTo; track contact){
         <div class="assigned-item">
           <div class="avatar-circle" [style.background-color]="contact.color">
             {{getInitials(contact.name)}}
@@ -41,7 +41,7 @@
    <div class="subtask-container">
     <span class="rows">Subtask:</span>
     <div class="subtask-list-wrapper">
-    @for (subtask of currentTask().subtasks; track subtask.id) {
+    @for (subtask of currentTask().subtasks; track subtask) {
     <div class="subtask-target-container"><button class="subtask-btn" (click)="toggleSubtask(subtask)">
         <img [src]="subtask.isDone ? './assets/img/checkmarkbox-checked.png' : './assets/img/checkmarkbox-empty.png'"
           alt="">
@@ -79,7 +79,7 @@
   </div>
     <div class="assigned-edit-container">
     <span class="rows">Assigned To</span>
-    <app-contacts-selector-with-search [(selectedContacts)]="currentTask().assignedTo">
+    <app-contacts-selector-with-search (click)="$event.stopPropagation()" #selector [(selectedContacts)]="currentTask().assignedTo">
     </app-contacts-selector-with-search>
   </div>
    <div class="subtask-edit-container">
