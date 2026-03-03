@@ -57,19 +57,27 @@ export class BoardCardsComponent {
 
   moveTaskMobile(up: boolean){
     if(up){
-      switch(this.currentTask.progressStatus){
-        case 'To do': this.currentTask.progressStatus = 'To do'; break
-        case 'In progress': this.currentTask.progressStatus = 'To do'; break
-        case 'Await feedback': this.currentTask.progressStatus = 'In progress'; break
-        case 'Done': this.currentTask.progressStatus = 'Await feedback'; break
-      }
+      this.currentTask.progressStatus = this.moveTaskUp();
     } else{
-      switch(this.currentTask.progressStatus){
-        case 'To do': this.currentTask.progressStatus = 'In progress'; break
-        case 'In progress': this.currentTask.progressStatus = 'Await feedback'; break
-        case 'Await feedback': this.currentTask.progressStatus = 'Done'; break
-        case 'Done': this.currentTask.progressStatus = 'Done'; break
-      }
+      this.currentTask.progressStatus = this.moveTaskDown();
     }
+  }
+
+  moveTaskUp(): 'To do' | 'In progress' | 'Await feedback' | 'Done'{
+    switch(this.currentTask.progressStatus){
+        case 'To do': return 'To do';
+        case 'In progress': return 'To do';
+        case 'Await feedback': return 'In progress';
+        case 'Done': return 'Await feedback';
+      }
+  }
+
+  moveTaskDown(): 'To do' | 'In progress' | 'Await feedback' | 'Done'{
+    switch(this.currentTask.progressStatus){
+        case 'To do': return 'In progress';
+        case 'In progress': return 'Await feedback';
+        case 'Await feedback': return 'Done';
+        case 'Done': return 'Done';
+      }
   }
 }
