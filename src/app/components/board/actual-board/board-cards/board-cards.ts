@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ShortenTextsnippetsPipe } from '../../../../pipes/shorten-textsnippets-pipe';
 import { Task } from '../../../../interfaces/taskmodel.interfaces';
+import { Supabase } from '../../../../services/supabase';
 
 @Component({
   selector: 'app-board-cards',
@@ -12,10 +13,9 @@ import { Task } from '../../../../interfaces/taskmodel.interfaces';
 })
 export class BoardCardsComponent {
 
-   isDropDownOpen = false;
+  isDropDownOpen = false;
 
   @Input() currentTask: Task = { id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' };
-
   @Output() cardOpened = new EventEmitter<void>();
 
   priorityMap: { [key: number]: { label: string, icon: string } } = {
@@ -23,6 +23,8 @@ export class BoardCardsComponent {
     1: { label: 'Medium', icon: 'urgency-medium-icon.png' },
     2: { label: 'Urgent', icon: 'urgency-urgent-icon.png' },
   };
+
+  constructor(private supabase: Supabase){}
 
   getPercentage() {
     if (!this.currentTask?.subtasks || this.currentTask.subtasks.length === 0) return 0;
@@ -61,6 +63,7 @@ export class BoardCardsComponent {
     } else{
       this.currentTask.progressStatus = this.moveTaskDown();
     }
+    this.updateDatabaseAfterMoving();
   }
 
   moveTaskUp(): 'To do' | 'In progress' | 'Await feedback' | 'Done'{
@@ -79,5 +82,11 @@ export class BoardCardsComponent {
         case 'Await feedback': return 'Done';
         case 'Done': return 'Done';
       }
+  }
+
+  updateDatabaseAfterMoving(){
+    const newData = {headline: this.currentTask.headline, desc: this.currentTask.desc, dueDate: this.currentTask.dueDate, priority: this.currentTask.priority,
+      category: this.currentTask.category, assignedTo: this.currentTask.assignedTo, subtasks: this.currentTask.subtasks, progressStatus: this.currentTask.progressStatus};
+    this.supabase.updateRow("tasks", newData, this.currentTask.id);
   }
 }
