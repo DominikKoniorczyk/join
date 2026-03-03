@@ -7,11 +7,9 @@
 }
 
 .content {
-  gap: 1rem;
   padding: 1rem;
   width: 95%;
   height: 760px;
-  justify-content: start;
 }
 
 .header {
@@ -444,13 +442,18 @@
 .inner-container{
   display: flex;
   flex-direction: column;
-  overflow: auto;
-  height: 90%;
+  height: fit-content;
   justify-content: center;
   align-items: center;
   padding: 1rem 0;
   @media(max-width:425px){
     padding: 2rem 0;
   }
+}
 
+.outer-container{
+   display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 90%;
 }
