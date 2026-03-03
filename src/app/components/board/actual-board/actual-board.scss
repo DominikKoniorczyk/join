@@ -184,6 +184,10 @@ dialog {
   max-width: 1200px;
   max-height: unset;
   left: 25%;
+
+  @media (max-height: 930px){
+    max-height: 80dvh;
+  }
 }
 
 .cdk-drag-preview {
