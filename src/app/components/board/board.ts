@@ -1,17 +1,15 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component,  ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DragDropModule, CdkDragDrop, transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
+import { DragDropModule, } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
 import { ActualBoard } from './actual-board/actual-board';
 import { BoardNav } from './board-nav/board-nav';
 import { AnimationService } from '../../services/animation.service';
-import { AddTaskDialog } from '../add-task/taskform/add-task-dialog/add-task-dialog';
-import { slideInAnimations, slideOutAnimations } from './animations-board/dialog.animation';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CommonModule, DragDropModule, FormsModule, BoardNav, ActualBoard, AddTaskDialog],
+  imports: [CommonModule, DragDropModule, FormsModule, BoardNav, ActualBoard],
   templateUrl: './board.html',
   styleUrls: ['./board.scss']
 })

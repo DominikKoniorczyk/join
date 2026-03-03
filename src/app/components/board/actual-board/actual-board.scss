@@ -219,3 +219,7 @@ dialog {
   outline-color: vars.$primary-color;
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+.no-results{
+  color: vars.$error-color-red ;
+}

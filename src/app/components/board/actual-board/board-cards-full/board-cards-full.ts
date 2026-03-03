@@ -5,7 +5,6 @@ import { CurrentDate } from '../../../../services/current-date';
 import { PriorityButton } from '../../../../shared/priority-button/priority-button';
 import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-button/subtask-button';
 import { Supabase } from '../../../../services/supabase';
-import { CdkDropListGroup, CdkDropList } from "@angular/cdk/drag-drop";
 
 
 @Component({
