@@ -10,4 +10,4 @@ import { FooterPolicies } from './footer-policies/footer-policies';
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
-export class Footer {}
+export class Footer { }

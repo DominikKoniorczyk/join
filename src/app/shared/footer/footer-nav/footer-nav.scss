@@ -60,7 +60,7 @@
 .active {
   background: vars.$tertiary-color;
 
-  button{
+  button {
     color: white;
   }
 
@@ -130,23 +130,24 @@ img {
   width: 20px;
   height: 20px;
 }
+
 .guest-popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
+
   background: #2a7cff;
   color: white;
-  
+
   padding: 16px 28px;
   border-radius: 12px;
-  
+
   font-size: 16px;
   font-weight: 500;
-  
+
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  
+
   z-index: 9999;
 
   /* ❗ STANDARD: unsichtbar */

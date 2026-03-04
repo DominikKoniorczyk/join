@@ -11,7 +11,7 @@ import { Board } from './components/board/board';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LogIn },
-  { path: 'sign-up', component: SignUp},
+  { path: 'sign-up', component: SignUp },
   { path: 'summary', component: Summary },
   { path: 'contacts', component: Contacts },
   { path: 'legal-notice', component: LegalNotice },
