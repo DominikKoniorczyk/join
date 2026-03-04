@@ -74,8 +74,7 @@ export class ActualBoard {
   }
 
   resizeHandler(event: any) {
-    if(event.target.width <= 768) this.notMobile.set(false);
-    else this.notMobile.set(true);
+    this.notMobile.set(event.target.width > 768);
     this.updateDragStatus();
   }
 
