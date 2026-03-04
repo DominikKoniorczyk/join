@@ -1,5 +1,5 @@
 import { Supabase } from './../../../services/supabase';
-import { Component, ElementRef, EventEmitter, inject, Input, Output, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, Output, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardCardsComponent } from './board-cards/board-cards';
 import { BoardCardsFull } from './board-cards-full/board-cards-full';
@@ -7,7 +7,7 @@ import { AnimationService } from '../../../services/animation.service';
 import { slideInAnimations, slideOutAnimations } from '../animations-board/dialog.animation';
 import { Task } from '../../../interfaces/taskmodel.interfaces';
 import { RealtimeChannel } from '@supabase/supabase-js';
-import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AddTaskDialog } from '../../add-task/taskform/add-task-dialog/add-task-dialog';
 
 
@@ -23,24 +23,22 @@ export class ActualBoard {
   @Input() searchTerm: string = '';
   @Output() noSearchResult = new EventEmitter<boolean>();
 
-  animService = inject(AnimationService);
-
   @ViewChild('cardDialog') cardDetails!: ElementRef;
   @ViewChild('cardData') cardData!: BoardCardsFull;
   @ViewChild('addTaksDialog') addTask!: ElementRef;
   @ViewChild('cardTaskData') cardTaskData!: AddTaskDialog;
+  @ViewChildren(CdkDrag) allDrags!: QueryList<CdkDrag>;
 
   dataTasks = signal<Task[]>([]);
-
+  animService = inject(AnimationService);
+  notMobile = signal<boolean>(true);
   selectedTask?: Task;
   todoTasks: Task[] = [];
   inProgressTasks: Task[] = [];
   awaitFeedbackTasks: Task[] = [];
   doneTasks: Task[] = [];
-
   supabaseClientService = inject(Supabase);
   supabaseChannel: RealtimeChannel;
-
   toDoTasksColumn = signal<Task[]>([]);
   inProgressTasksColumn = signal<Task[]>([]);
   awaitFeedbackTasksColumn = signal<Task[]>([]);
@@ -49,6 +47,36 @@ export class ActualBoard {
   constructor() {
     this.supabaseChannel = this.supabaseClientService.supabaseClient.channel('custom-all-channel');
     this.getTasksData();
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener(
+        'resize',
+        this.resizeHandler.bind(this)
+      );
+    }
+  }
+
+  ngAfterViewInit() {
+    this.allDrags.changes.subscribe(() => {
+      this.updateDragStatus();
+    });
+    setTimeout(() => {this.setInnerWidthOnInit()}, 0);
+  }
+
+  setInnerWidthOnInit(){
+    this.notMobile.set(window.innerWidth > 768);
+    this.updateDragStatus();
+  }
+
+  updateDragStatus() {
+    this.allDrags.forEach(drag => {
+      drag.disabled = !this.notMobile();
+    });
+  }
+
+  resizeHandler(event: any) {
+    if(event.target.width <= 768) this.notMobile.set(false);
+    else this.notMobile.set(true);
+    this.updateDragStatus();
   }
 
   ngOnInit(): void {
@@ -57,6 +85,10 @@ export class ActualBoard {
         this.getTasksData();
       })
       .subscribe();
+  }
+
+  ngOnDestroy() {
+    this.supabaseChannel.unsubscribe();
   }
 
   async getTasksData() {
@@ -184,11 +216,11 @@ export class ActualBoard {
     dialogRef.close();
   }
 
-  async drop(event: CdkDragDrop<any[]>){
-    if(event.previousContainer === event.container){
+  async drop(event: CdkDragDrop<any[]>) {
+    if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     }
-    else{
+    else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       let movedTask = event.container.data[event.currentIndex] as Task;
       const newStatus = event.container.id as Task['progressStatus'];
