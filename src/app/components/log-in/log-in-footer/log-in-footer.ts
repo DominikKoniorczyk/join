@@ -7,4 +7,4 @@ import { RouterLink } from '@angular/router';
   templateUrl: './log-in-footer.html',
   styleUrls: ['./log-in-footer.scss'],
 })
-export class LogInFooter {}
+export class LogInFooter { }
