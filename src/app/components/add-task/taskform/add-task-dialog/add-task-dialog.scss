@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  height: 80dvh;
+  height: 100%;
 }
 
 .inner{
@@ -120,6 +120,11 @@ button[disabled] {
 
   .form {
     margin-bottom: 1rem;
+  }
+
+  .close-btn{
+    position: unset;
+    align-self: end;
   }
 }
 
