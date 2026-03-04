@@ -1,5 +1,11 @@
 @use '../../../../styles/variables.scss' as vars;
 
+
+:host{
+  position: relative;
+  anchor-name: --search;
+}
+
 .search-container {
   display: flex;
   align-items: center;
@@ -51,7 +57,6 @@ input {
   }
 }
 
-
 button {
   padding-right: 1.2rem;
   border: none;
@@ -63,4 +68,13 @@ button {
   &:hover svg path {
     fill: vars.$secondary-color;
   }
+}
+
+.no-results{
+  position: absolute;
+  position-anchor: --search;
+  position-area: bottom center;
+  color: vars.$error-color-red;
+  width: 100%;
+  text-align: center;
 }

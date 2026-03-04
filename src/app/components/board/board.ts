@@ -1,4 +1,4 @@
-import { Component,  ViewChild } from '@angular/core';
+import { Component,  signal,  ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule, } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
@@ -16,9 +16,11 @@ import { AnimationService } from '../../services/animation.service';
 export class Board {
 
   @ViewChild('actualBoard') actualBoard!: ActualBoard;
+  @ViewChild('boardNav') nav!: BoardNav;
 
   searchTerm: string = '';
   currentTaks: string = 'To do';
+  noSearchResult:boolean = false;
 
   todo: any[] = [];
   inprogress: any[] = [];
@@ -35,11 +37,16 @@ export class Board {
 
   constructor(private animService: AnimationService) { }
 
+  ngAfterViewInit(){
+
+  }
+
   /**
    * Updates the current search term and applies it to the task lists.
    * @param term The search term entered by the user.
    */
   onSearchChange(term: string) {
+    this.nav.onSearchResultChange(this.actualBoard.noSearchResults);
     this.searchTerm = term;
     this.applySearch();
   }

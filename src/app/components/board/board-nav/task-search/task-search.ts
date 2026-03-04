@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class TaskSearch {
   @Output() searchChange = new EventEmitter<string>();
   searchTerm: string = '';
+  @Input() searchResults: boolean = false;
 
   onInput(): void {
     this.searchChange.emit(this.searchTerm);

@@ -1,4 +1,4 @@
 <div class="content">
-    <app-task-search (searchChange)="onSearchChange($event)"></app-task-search>
+    <app-task-search #search (searchChange)="onSearchChange($event)"></app-task-search>
     <app-add-task-btn (openAddTask)="openAddTask.emit()"></app-add-task-btn>
 </div>

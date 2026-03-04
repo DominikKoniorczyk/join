@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { TaskSearch } from './task-search/task-search';
 import { CommonModule } from '@angular/common';
 import { AddTaskBtn } from './add-task-btn/add-task-btn';
@@ -13,8 +13,15 @@ import { AddTaskBtn } from './add-task-btn/add-task-btn';
 export class BoardNav {
   @Output() searchChange = new EventEmitter<string>();
   @Output() openAddTask = new EventEmitter<void>();
+  @Input() searchResults: boolean = false;
+
+  @ViewChild('search') searchArea!: TaskSearch;
 
   onSearchChange(term: string) {
     this.searchChange.emit(term);
+  }
+
+  onSearchResultChange(valid: boolean){
+    this.searchArea.searchResults = valid;
   }
 }

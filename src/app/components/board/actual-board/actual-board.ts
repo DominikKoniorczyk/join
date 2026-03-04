@@ -1,5 +1,5 @@
 import { Supabase } from './../../../services/supabase';
-import { Component, ElementRef, inject, Input, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, Output, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardCardsComponent } from './board-cards/board-cards';
 import { BoardCardsFull } from './board-cards-full/board-cards-full';
@@ -21,6 +21,7 @@ import { AddTaskDialog } from '../../add-task/taskform/add-task-dialog/add-task-
 
 export class ActualBoard {
   @Input() searchTerm: string = '';
+  @Output() noSearchResult = new EventEmitter<boolean>();
 
   animService = inject(AnimationService);
 
@@ -147,7 +148,7 @@ export class ActualBoard {
 
   get noSearchResults(): boolean {
     const term = (this.searchTerm || '').trim();
-    if (!term) return false;
+    if (!term || this.searchTerm == "") return false;
     return (
       this.filteredTodo.length === 0 &&
       this.filteredInProgress.length === 0 &&
