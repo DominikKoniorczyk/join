@@ -7,4 +7,4 @@ import { RouterModule } from '@angular/router';
   templateUrl: './footer-policies.html',
   styleUrl: './footer-policies.scss',
 })
-export class FooterPolicies {}
+export class FooterPolicies { }

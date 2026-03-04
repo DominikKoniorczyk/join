@@ -13,23 +13,24 @@ import { CommonModule } from '@angular/common';
 export class FooterNav {
   currentURL = signal<string>("");
 
-  constructor(private router: Router, public auth: AuthService){
+  constructor(private router: Router, public auth: AuthService) {
     this.updateActiveURL(this.router.url);
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {this.updateActiveURL(this.router.url)
+      .subscribe(() => {
+        this.updateActiveURL(this.router.url)
       });
   }
 
-  updateActiveURL(newUrl: string){
+  updateActiveURL(newUrl: string) {
     this.currentURL.set(newUrl);
   }
   goTo(route: string) {
-  if (!this.auth.canAccess(route)) {
-    this.auth.handleGuestBlock();
-    return;
-  }
+    if (!this.auth.canAccess(route)) {
+      this.auth.handleGuestBlock();
+      return;
+    }
 
-  this.router.navigate([route]);
-}
+    this.router.navigate([route]);
+  }
 }
