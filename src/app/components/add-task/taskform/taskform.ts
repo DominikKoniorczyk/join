@@ -31,7 +31,7 @@ export class TaskformComponent implements OnInit {
   currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
   currentPrio = signal<number>(1);
   taskForm = new FormGroup({
-    title: new FormControl('', { validators: [Validators.required, Validators.minLength(5)] }),
+    title: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
     desc: new FormControl(''),
     date: new FormControl('', { validators: [Validators.required] }),
     cat: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
