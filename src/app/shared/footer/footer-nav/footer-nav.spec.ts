@@ -10,7 +10,7 @@ describe('FooterNav', () => {
     await TestBed.configureTestingModule({
       imports: [FooterNav]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FooterNav);
     component = fixture.componentInstance;

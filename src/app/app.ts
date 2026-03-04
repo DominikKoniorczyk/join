@@ -12,7 +12,7 @@ import { Footer } from './shared/footer/footer';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-  
+
 export class App {
   protected readonly title = signal('join');
   router = inject(Router);

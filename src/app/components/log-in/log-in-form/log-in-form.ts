@@ -12,7 +12,7 @@ export class LogInForm {
   password = '';
   showPassword = false;
 
-    constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router, private auth: AuthService) { }
 
   togglePassword() {
     this.showPassword = !this.showPassword;
