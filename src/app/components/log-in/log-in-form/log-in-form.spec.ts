@@ -10,7 +10,7 @@ describe('LogInForm', () => {
     await TestBed.configureTestingModule({
       imports: [LogInForm]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(LogInForm);
     component = fixture.componentInstance;
