@@ -56,6 +56,24 @@ export function contactPhoneValidator(): ValidatorFn {
   };
 }
 
+/**
+ * Creates a validator that checks whether a date value is in the past.
+ *
+ * This Angular reactive form validator ensures that the provided date
+ * is **today or in the future**. If the date is earlier than today,
+ * the validator returns a validation error.
+ *
+ * Behavior:
+ * - If the control has no value, the validator returns `null`.
+ * - The current day is normalized to midnight (00:00:00) so that
+ *   today's date is considered valid.
+ * - If the input date is earlier than today, the validator returns
+ *   `{ pastDate: true }`.
+ *
+ * @returns {ValidatorFn} A validator function that returns a
+ * `ValidationErrors` object with `{ pastDate: true }` if the date
+ * is in the past, otherwise `null`.
+ */
 export function noPastDateValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!control.value) return null;
