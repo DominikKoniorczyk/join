@@ -4,7 +4,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 5px;
   height: 100%;
   min-height: 200px;
   padding: 1rem;
@@ -65,7 +66,15 @@
   min-width: fit-content;
 }
 
+.main-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
 .footer {
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;

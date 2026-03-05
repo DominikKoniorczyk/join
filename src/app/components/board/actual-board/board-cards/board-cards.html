@@ -1,4 +1,5 @@
 <div class="content" (click)="openDialog()">
+  <div class="main-info">
   <div class="header">
   <div [class.deepblue]="currentTask.category == 'User Story' " [class.turkise]="currentTask.category == 'Technical Task'"   class="category">{{currentTask.category}}</div>
   <button (click)="toggleDropdown() ; $event.stopPropagation()" class="mobile-drag-btn"><svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,19 +46,16 @@
   <div class="headline">{{currentTask.headline}}</div>
   <p class="description">{{currentTask.desc|shortenTextsnippets}}</p>
 
+@if (currentTask.subtasks && currentTask.subtasks.length > 0) {
   <div class="progress-container">
     <div class="progress-bar">
       <div class="progress-fill" [style.width.%]="getPercentage()"></div>
     </div>
-    <div class="progress-text">{{ getSubtaskStatus()}}</div>
+    <div class="progress-text">{{ getSubtaskStatus() }}</div>
   </div>
+}
+</div>
   <div class="footer">
-    <!-- <div class="assigned-user-container">@for (contact of currentTask.assignedTo; track contact) {
-      <div class="mini-avatar" [style.background-color]="contact.color" [title]="contact.name">
-        {{ getInitials(contact.name) }}
-      </div>
-      }
-    </div> -->
     <div class="assigned-user-container">
   @for (contact of currentTask.assignedTo.slice(0, 3); track contact) {
     <div class="mini-avatar" [style.background-color]="contact.color" [title]="contact.name">
