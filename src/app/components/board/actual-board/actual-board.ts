@@ -46,7 +46,6 @@ export class ActualBoard {
 
   constructor(private cdr: ChangeDetectorRef) {
     this.supabaseChannel = this.supabaseClientService.supabaseClient.channel('custom-all-channel');
-    this.getTasksData();
     if (window.visualViewport) {
       window.visualViewport.addEventListener(
         'resize',
@@ -84,6 +83,7 @@ export class ActualBoard {
         this.getTasksData();
       })
       .subscribe();
+    this.getTasksData();
   }
 
   ngOnDestroy() {
