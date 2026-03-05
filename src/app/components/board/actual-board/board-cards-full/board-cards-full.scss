@@ -395,10 +395,30 @@
   background-color: transparent;
   border: none;
   color: vars.$primary-color;
+  display: inline-flex;
+
+  span {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &::after {
+      display: block;
+      content: attr(data-text);
+      font-weight: bold;
+      height: 0;
+      overflow: hidden;
+      visibility: hidden;
+    }
+  }
+
 
   &:hover {
     color: vars.$secondary-color;
-    font-weight: bold;
+    span {
+      font-weight: bold;
+    }
   }
 }
 
