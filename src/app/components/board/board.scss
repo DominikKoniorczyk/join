@@ -30,10 +30,19 @@
   justify-content: start;
   height: 100%;
   padding: 0 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   @media (max-width: 1170px) {
     gap: 1rem;
-    padding: 2rem 40px;
+    padding: unset;
+    align-items: center;
+  }
+}
+
+.inner{
+  @media (max-width: 1170px) {
+    width: 90%;
   }
 }
 
