@@ -1,5 +1,5 @@
 import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
-import { Component, ElementRef, EventEmitter, Input, Output, signal, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Supabase } from '../../../services/supabase';
@@ -40,7 +40,7 @@ export class TaskformComponent implements OnInit {
     subtask: new FormControl('')
   });
 
-  constructor(private supabase: Supabase, private date: CurrentDate, private router: Router) { }
+  constructor(private supabase: Supabase, private date: CurrentDate, private router: Router, private cdr: ChangeDetectorRef) { }
 
   async ngOnInit() {
     const data = await this.supabase.getDataFromTable('users');
@@ -49,6 +49,7 @@ export class TaskformComponent implements OnInit {
     }
     this.subscripeAllInputFields();
     this.currentDate.set(this.date.getCurrentDate());
+    this.cdr.detectChanges();
   }
 
   /**

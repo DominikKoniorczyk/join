@@ -1,5 +1,5 @@
 import { Supabase } from './../../../services/supabase';
-import { Component, ElementRef, EventEmitter, inject, Input, Output, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoardCardsComponent } from './board-cards/board-cards';
 import { BoardCardsFull } from './board-cards-full/board-cards-full';
@@ -44,7 +44,7 @@ export class ActualBoard {
   awaitFeedbackTasksColumn = signal<Task[]>([]);
   doneTasksColumn = signal<Task[]>([]);
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     this.supabaseChannel = this.supabaseClientService.supabaseClient.channel('custom-all-channel');
     this.getTasksData();
     if (window.visualViewport) {
@@ -59,10 +59,10 @@ export class ActualBoard {
     this.allDrags.changes.subscribe(() => {
       this.updateDragStatus();
     });
-    setTimeout(() => {this.setInnerWidthOnInit()}, 0);
+    setTimeout(() => { this.setInnerWidthOnInit() }, 0);
   }
 
-  setInnerWidthOnInit(){
+  setInnerWidthOnInit() {
     this.notMobile.set(window.innerWidth > 768);
     this.updateDragStatus();
   }
@@ -97,6 +97,7 @@ export class ActualBoard {
     this.dataTasks.set(data);
     this.resetTasks();
     this.orderTasks();
+    this.cdr.detectChanges();
   }
 
   resetTasks() {
