@@ -68,7 +68,7 @@ export class ActualBoard {
   }
 
   updateDragStatus() {
-    this.allDrags.forEach(drag => {
+    this.allDrags?.forEach(drag => {
       drag.disabled = !this.notMobile();
     });
   }
