@@ -376,6 +376,10 @@ option .icon {
     width: 100%;
     justify-content: space-between;
   }
+
+  .subtask-block{
+    max-width: unset;
+  }
 }
 
 @media (max-width: 768px) {
