@@ -10,6 +10,7 @@ import { CurrentDate } from '../../../services/current-date';
 import { PriorityButton } from '../../../shared/priority-button/priority-button';
 import { SubtaskButtonComponent } from './subtask-button/subtask-button';
 import { noPastDateValidator } from '../../../services/custom-validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-taskform',
@@ -39,7 +40,7 @@ export class TaskformComponent implements OnInit {
     subtask: new FormControl('')
   });
 
-  constructor(private supabase: Supabase, private date: CurrentDate) { }
+  constructor(private supabase: Supabase, private date: CurrentDate, private router: Router) { }
 
   async ngOnInit() {
     const data = await this.supabase.getDataFromTable('users');
@@ -203,6 +204,7 @@ export class TaskformComponent implements OnInit {
     this.supabase.uploadJSONToTable('tasks', uploadData);
     this.resetForm();
     this.closeTriggered.emit();
+    this.router.navigateByUrl('board');
   }
 
   /**
