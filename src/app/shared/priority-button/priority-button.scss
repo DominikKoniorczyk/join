@@ -73,3 +73,22 @@ button {
     }
   }
 }
+
+@media (max-width: 420px){
+  :host{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  button {
+    height: 3.5rem;
+    width: 100%;
+    max-width: unset;
+    font-size: 1.25rem;
+
+    svg{
+      width: 22px;
+    }
+  }
+}
