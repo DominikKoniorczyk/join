@@ -6,6 +6,7 @@
         <div class="form-inner">
           <label for="title">Title<span class="red">*</span></label>
           <input [class.invalid]="taskForm.get('title')?.invalid" name="title" id="title" formControlName="title" placeholder="Enter a title" />
+          <p class="d-none" [class.invalid-text]="taskForm.get('title')?.invalid">This field is required</p>
         </div>
         <div class="form-inner">
           <label for="description">Description</label>
@@ -15,6 +16,7 @@
         <div class="form-inner">
           <label for="date">Due date<span class="red">*</span></label>
           <input [class.invalid]="taskForm.get('date')?.invalid" formControlName="date" id="date" type="date" min="{{currentDate()}}" />
+          <p class="d-none" [class.invalid-text]="taskForm.get('date')?.invalid">This field is required, only futured dates</p>
         </div>
       </section>
       <div class="vertical-line"></div>

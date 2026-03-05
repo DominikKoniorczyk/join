@@ -305,6 +305,17 @@ select:open::picker-icon {
   border-color: red;
 }
 
+.d-none{
+  display: none;
+}
+
+.invalid-text{
+  color: red;
+  display: block;
+  font-size: 1rem;
+  font-weight: 200;
+}
+
 ::picker(select) {
   border: none;
 }
