@@ -40,7 +40,7 @@
 
   </div>
 
-  @if (selectedContacts.length > 0) {
+  <!-- @if (selectedContacts.length > 0) {
   <div class="selected-avatars">
     @for (contact of selectedContacts; track contact.id) {
     <div class="contact-avatar" [style.background-color]="contact.color" [title]="contact.name">
@@ -48,5 +48,21 @@
     </div>
     }
   </div>
-  }
+  } -->
+  @if (selectedContacts.length > 0) {
+  <div class="selected-avatars">
+    @for (contact of selectedContacts.slice(0, 3); track contact.id) {
+      <div class="contact-avatar" [style.background-color]="contact.color" [title]="contact.name">
+        {{ getInitials(contact.name) }}
+      </div>
+    }
+
+    @if (selectedContacts.length > 3) {
+      <div class="extra-count">
+        +{{ selectedContacts.length - 3 }}
+      </div>
+    }
+  </div>
+}
+
 </div>

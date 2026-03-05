@@ -139,9 +139,25 @@
   object-fit: contain;
 }
 
-.selected-avatars {
+// .selected-avatars {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 6px;
+//   margin-top: 10px;
+
+//   .contact-avatar {
+//     width: 38px;
+//     height: 38px;
+//     font-size: 12px;
+//     border: 2px solid #fff;
+//     box-shadow: 0 0 0 1px $font-lightcolor;
+//     cursor: default;
+//   }
+// }
+
+.selected-avatars{
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 6px;
   margin-top: 10px;
 
@@ -151,6 +167,10 @@
     font-size: 12px;
     border: 2px solid #fff;
     box-shadow: 0 0 0 1px $font-lightcolor;
-    cursor: default;
+  }
+
+  .extra-count{
+    font-size: 1rem;
+    font-weight: bold;
   }
 }
