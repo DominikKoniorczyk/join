@@ -31,6 +31,7 @@ export class BoardCardsFull {
   constructor(private supabase: Supabase){ }
 
   onClose() {
+    this.isEditing = false;
     this.closeTriggered.emit();
   }
 
