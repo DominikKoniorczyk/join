@@ -46,7 +46,14 @@ export class BoardCardsFull {
     2: { label: 'Urgent', icon: 'urgency-urgent-icon.png' },
   };
 
-  toggleSubtask(subtask: Subtask) {
+  toggleSubtask(subtask: Subtask){
+    const task = {headline: this.currentTask().headline, desc: this.currentTask().desc, dueDate: this.currentTask().dueDate, priority: this.currentTask().priority, category: this.currentTask().category, assignedTo: this.currentTask().assignedTo, subtasks: this.currentTask().subtasks, progressStatus: this.currentTask().progressStatus};
+    task.subtasks.forEach(el => {
+      if(el.title == subtask.title){
+        el.isDone = !el.isDone;
+      }
+    });
+    this.supabase.updateRow("tasks", task, this.currentTask().id);
     subtask.isDone = !subtask.isDone;
   }
 
