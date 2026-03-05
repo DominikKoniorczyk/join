@@ -188,7 +188,6 @@ export class TaskformComponent implements OnInit {
    */
   clearSubtask() {
     this.taskForm.get('subtask')?.setValue("");
-    this.currentPrio.set(1);
   }
 
   /**
@@ -213,6 +212,7 @@ export class TaskformComponent implements OnInit {
     this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
     this.contactsSelector.reset();
     this.taskForm.reset();
+    this.setPriority(1);
   }
 
   /**
