@@ -392,5 +392,6 @@ option .icon {
 @media (max-width: 420px) {
   .priority {
     flex-direction: column;
+    gap: 1rem;
   }
 }
