@@ -26,8 +26,7 @@ export class BoardCardsFull {
   @ViewChild('headlineInput') headlineInput!: ElementRef<HTMLInputElement>;
   @ViewChild('descInput') descInput!: ElementRef<HTMLInputElement>;
   @ViewChild('dateInput') dateInput!: ElementRef<HTMLInputElement>;
-
-@ViewChild('selector') selector!: ContactsSelectorWithSearch;
+  @ViewChild('selector') selector!: ContactsSelectorWithSearch;
 
   constructor(private supabase: Supabase){ }
 
