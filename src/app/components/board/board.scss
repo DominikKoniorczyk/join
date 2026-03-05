@@ -3,6 +3,7 @@
 .main {
   max-height: calc(100dvh - 96px);
   overflow: auto;
+  background-color: vars.$content-bg;
 
   @media (max-width: 1170px) {
     height: calc(100% - 96px);
