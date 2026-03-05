@@ -5,7 +5,7 @@
       <section class="left">
         <div class="form-inner">
           <label for="title">Title<span class="red">*</span></label>
-          <input name="title" id="title" formControlName="title" placeholder="Enter a title" />
+          <input [class.invalid]="taskForm.get('title')?.invalid" name="title" id="title" formControlName="title" placeholder="Enter a title" />
         </div>
         <div class="form-inner">
           <label for="description">Description</label>
@@ -14,7 +14,7 @@
         </div>
         <div class="form-inner">
           <label for="date">Due date<span class="red">*</span></label>
-          <input formControlName="date" id="date" type="date" min="{{currentDate()}}" />
+          <input [class.invalid]="taskForm.get('date')?.invalid" formControlName="date" id="date" type="date" min="{{currentDate()}}" />
         </div>
       </section>
       <div class="vertical-line"></div>
@@ -34,7 +34,7 @@
         </div>
         <div class="form-inner">
           <label for="category">Category<span class="red">*</span></label>
-          <select formControlName="cat" name="category" id="category">
+          <select [class.invalid]="taskForm.get('cat')?.invalid" formControlName="cat" name="category" id="category">
             <button>
               <selectedcontent></selectedcontent>
             </button>

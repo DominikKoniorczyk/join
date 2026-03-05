@@ -301,6 +301,10 @@ select:open::picker-icon {
   rotate: 180deg;
 }
 
+.invalid{
+  border-color: red;
+}
+
 ::picker(select) {
   border: none;
 }

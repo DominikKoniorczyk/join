@@ -9,6 +9,7 @@ import { Task } from '../../../interfaces/taskmodel.interfaces';
 import { CurrentDate } from '../../../services/current-date';
 import { PriorityButton } from '../../../shared/priority-button/priority-button';
 import { SubtaskButtonComponent } from './subtask-button/subtask-button';
+import { noPastDateValidator } from '../../../services/custom-validators';
 
 @Component({
   selector: 'app-taskform',
@@ -33,7 +34,7 @@ export class TaskformComponent implements OnInit {
   taskForm = new FormGroup({
     title: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
     desc: new FormControl(''),
-    date: new FormControl('', { validators: [Validators.required] }),
+    date: new FormControl('', { validators: [ noPastDateValidator(), Validators.required]}),
     cat: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
     subtask: new FormControl('')
   });
