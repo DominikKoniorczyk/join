@@ -5,8 +5,8 @@
       <section class="left">
         <div class="form-inner">
           <label for="title">Title<span class="red">*</span></label>
-          <input [class.invalid]="taskForm.get('title')?.invalid" name="title" id="title" formControlName="title" placeholder="Enter a title" />
-          <p class="d-none" [class.invalid-text]="taskForm.get('title')?.invalid">This field is required</p>
+          <input [class.invalid]="taskForm.get('title')?.invalid && taskForm.get('title')?.touched" name="title" id="title" formControlName="title" placeholder="Enter a title" />
+          <p class="d-none" [class.invalid-text]="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">This field is required</p>
         </div>
         <div class="form-inner">
           <label for="description">Description</label>
@@ -15,8 +15,8 @@
         </div>
         <div class="form-inner">
           <label for="date">Due date<span class="red">*</span></label>
-          <input [class.invalid]="taskForm.get('date')?.invalid" formControlName="date" id="date" type="date" min="{{currentDate()}}" />
-          <p class="d-none" [class.invalid-text]="taskForm.get('date')?.invalid">This field is required, only futured dates</p>
+          <input [class.invalid]="taskForm.get('date')?.invalid && taskForm.get('date')?.touched" formControlName="date" id="date" type="date" min="{{currentDate()}}" />
+          <p class="d-none" [class.invalid-text]="taskForm.get('date')?.invalid && taskForm.get('date')?.touched">This field is required, only futured dates</p>
         </div>
       </section>
       <div class="vertical-line"></div>
@@ -36,7 +36,7 @@
         </div>
         <div class="form-inner">
           <label for="category">Category<span class="red">*</span></label>
-          <select [class.invalid]="taskForm.get('cat')?.invalid" formControlName="cat" name="category" id="category">
+          <select [class.invalid]="taskForm.get('cat')?.invalid && taskForm.get('cat')?.touched" formControlName="cat" name="category" id="category">
             <button>
               <selectedcontent></selectedcontent>
             </button>
