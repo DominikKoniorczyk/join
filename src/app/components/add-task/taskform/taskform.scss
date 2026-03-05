@@ -212,12 +212,17 @@ textarea {
   margin: 0;
   padding: 0;
   list-style: none;
-}
+  max-height: 90px;
+  overflow-y: auto;
 
-.subtask-list li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  &::-webkit-scrollbar{
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb{
+    background-color: #A8A8A8;
+    border-radius: 8px;
+  }
 }
 
 .d-none {
