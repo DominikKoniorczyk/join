@@ -59,7 +59,7 @@
       }
     </div> -->
     <div class="assigned-user-container">
-  @for (contact of currentTask.assignedTo.slice(0, 3); track contact.id) {
+  @for (contact of currentTask.assignedTo.slice(0, 3); track contact) {
     <div class="mini-avatar" [style.background-color]="contact.color" [title]="contact.name">
       {{ getInitials(contact.name) }}
     </div>
