@@ -58,8 +58,6 @@ export class BoardCardsComponent {
   }
 
   moveTaskMobile(up: boolean){
-    console.log('ja');
-
     if(up){
       this.currentTask.progressStatus = this.moveTaskUp();
     } else{
