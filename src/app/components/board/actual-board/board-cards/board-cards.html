@@ -50,12 +50,25 @@
     <div class="progress-text">{{ getSubtaskStatus()}}</div>
   </div>
   <div class="footer">
-    <div class="assigned-user-container">@for (contact of currentTask.assignedTo; track contact) {
+    <!-- <div class="assigned-user-container">@for (contact of currentTask.assignedTo; track contact) {
       <div class="mini-avatar" [style.background-color]="contact.color" [title]="contact.name">
         {{ getInitials(contact.name) }}
       </div>
       }
+    </div> -->
+    <div class="assigned-user-container">
+  @for (contact of currentTask.assignedTo.slice(0, 3); track contact.id) {
+    <div class="mini-avatar" [style.background-color]="contact.color" [title]="contact.name">
+      {{ getInitials(contact.name) }}
     </div>
+  }
+
+  @if (currentTask.assignedTo.length > 3) {
+    <div class="extra-count-mini">
+      +{{ currentTask.assignedTo.length - 3 }}
+    </div>
+  }
+</div>
     <div class="urgency-icon">
       @if (priorityMap[currentTask.priority]) {
       <img [src]="'./assets/img/' + priorityMap[currentTask.priority].icon"
