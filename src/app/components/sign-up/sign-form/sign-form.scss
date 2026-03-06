@@ -5,24 +5,23 @@
     inset: 0;
     display: grid;
     place-items: center;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .sign-card {
     position: relative;
-    width: 598px;
+    width: min(598px, 100%);
     min-height: 630px;
-
     background: #ffffff;
     border-radius: 30px;
-
     padding: 48px 88px;
     box-sizing: border-box;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 32px;
-
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.08);
 }
 
@@ -30,14 +29,11 @@
     position: absolute;
     top: 56px;
     left: 56px;
-
     width: 32px;
     height: 32px;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
 
     img {
@@ -74,7 +70,8 @@
 
 .input-group {
     position: relative;
-    width: 422px;
+    width: 100%;
+    max-width: 422px;
     height: 48px;
 }
 
@@ -82,15 +79,14 @@
     width: 100%;
     height: 100%;
     padding: 12px 56px 12px 21px;
-
     border-radius: 10px;
     border: 1px solid #d1d1d1;
     background: #ffffff;
     box-sizing: border-box;
-
     font-size: 16px;
     line-height: 1.2;
     outline: none;
+    transition: border-color 120ms ease, background-color 120ms ease;
 }
 
 .input-group input::placeholder {
@@ -106,18 +102,14 @@
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
-
     width: 24px;
     height: 24px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: transparent;
     border: 0;
     padding: 0;
-
     z-index: 2;
 }
 
@@ -139,6 +131,8 @@ button.icon-slot:hover img {
 
 .policy-row {
     margin-top: 10px;
+    width: 100%;
+    max-width: 422px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -150,6 +144,7 @@ button.icon-slot:hover img {
     width: 24px;
     height: 24px;
     object-fit: contain;
+    flex-shrink: 0;
 }
 
 .policy-text {
@@ -173,19 +168,15 @@ button.icon-slot:hover img {
 
 .submit-btn {
     margin-top: 18px;
-
     width: 110px;
     height: 48px;
     border-radius: 8px;
-
     border: 1px solid $primary-color;
     background: $primary-color;
     color: #fff;
-
     font-size: 16px;
     font-weight: 700;
     line-height: 1.2;
-
     cursor: pointer;
     transition: background-color 120ms ease, border-color 120ms ease, opacity 120ms ease;
 }
@@ -204,7 +195,8 @@ button.icon-slot:hover img {
 }
 
 .error-text {
-    width: 422px;
+    width: 100%;
+    max-width: 422px;
     margin: -8px 0 0;
     font-size: 16px;
     line-height: 1.2;
@@ -212,36 +204,27 @@ button.icon-slot:hover img {
     text-align: left;
 }
 
-/* Feedback */
 .toast {
     position: fixed;
     top: 47%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    width: 312px;
-    height: 74px;
-
+    width: min(312px, calc(100vw - 32px));
+    min-height: 74px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding-left: 25px;
-    padding-right: 25px;
-
+    padding: 16px 25px;
     border-radius: 20px;
     background: #2a3647;
     color: #ffffff;
-
     font-family: Inter, sans-serif;
     font-weight: 400;
     font-size: 20px;
     line-height: 120%;
     text-align: center;
-
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
     z-index: 9999;
-
     animation: slideInCenter 300ms ease-out;
 }
 
@@ -254,5 +237,176 @@ button.icon-slot:hover img {
     to {
         opacity: 1;
         transform: translate(-50%, -50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .sign-form-wrap {
+        padding: 24px 16px;
+        align-items: center;
+    }
+
+    .sign-card {
+        width: 100%;
+        min-height: auto;
+        padding: 32px 24px;
+        gap: 24px;
+        border-radius: 24px;
+    }
+
+    .back-arrow {
+        top: 34px;
+        left: 24px;
+    }
+
+    .title {
+        font-size: 47px;
+    }
+
+    .title-underline {
+        width: 110px;
+        margin-top: -14px;
+    }
+}
+
+@media (max-width: 544px) {
+    .sign-form-wrap {
+        padding: 0 16px;
+        place-items: center;
+    }
+
+    .sign-card {
+        width: calc(100% - 32px);
+        max-width: 396px;
+        min-height: 595px;
+        padding: 32px 16px;
+        gap: 32px;
+        border-radius: 30px;
+    }
+
+    .back-arrow {
+        top: 32px;
+        left: 24px;
+        width: 24px;
+        height: 24px;
+
+        img {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    .title {
+        font-size: 47px;
+        line-height: 1.2;
+    }
+
+    .title-underline {
+        width: 88px;
+        margin-top: -18px;
+    }
+
+    .form {
+        gap: 16px;
+    }
+
+    .input-group {
+        width: 100%;
+        max-width: 364px;
+        height: 48px;
+    }
+
+    .input-group input {
+        padding: 12px 48px 12px 16px;
+        font-size: 16px;
+    }
+
+    .icon-slot {
+        right: 16px;
+    }
+
+    .error-text {
+        width: 100%;
+        max-width: 364px;
+        font-size: 14px;
+        margin: -8px 0 0;
+    }
+
+    .policy-row {
+        width: 100%;
+        max-width: 364px;
+        justify-content: center;
+        margin-top: 8px;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .policy-text {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .submit-btn {
+        margin-top: 8px;
+        width: 180px;
+        height: 51px;
+    }
+}
+
+@media (max-width: 400px) {
+    .sign-form-wrap {
+        padding: 0 12px;
+    }
+
+    .sign-card {
+        width: calc(100% - 24px);
+        min-height: auto;
+        padding: 28px 12px 20px;
+        gap: 24px;
+    }
+
+    .back-arrow {
+        left: 16px;
+        top: 28px;
+    }
+
+    .title {
+        font-size: 34px;
+    }
+
+    .title-underline {
+        width: 76px;
+        margin-top: -14px;
+    }
+
+    .input-group {
+        height: 44px;
+    }
+
+    .input-group input {
+        padding: 10px 44px 10px 14px;
+        font-size: 15px;
+    }
+
+    .error-text {
+        max-width: 100%;
+        font-size: 13px;
+    }
+
+    .policy-row {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .policy-text {
+        font-size: 13px;
+        line-height: 1.3;
+    }
+
+    .submit-btn {
+        width: 160px;
+        height: 48px;
     }
 }
