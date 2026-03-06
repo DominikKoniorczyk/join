@@ -40,3 +40,62 @@
 .signup-btn:hover {
     background: $brand-color;
 }
+
+@media (max-width: 768px) {
+    .login-header {
+        top: 40px;
+        right: 40px;
+        gap: 24px;
+    }
+
+    .login-text {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 544px) {
+    .login-header {
+        top: auto;
+        right: auto;
+        bottom: 110px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    .login-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 428px) {
+    .login-header {
+        bottom: 100px;
+        gap: 20px;
+    }
+
+    .signup-btn {
+        height: 45px;
+        font-size: 16px;
+        padding: 0 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .login-header {
+        bottom: 92px;
+        gap: 16px;
+    }
+
+    .login-text {
+        font-size: 15px;
+    }
+
+    .signup-btn {
+        height: 42px;
+        font-size: 15px;
+        padding: 0 14px;
+    }
+}
