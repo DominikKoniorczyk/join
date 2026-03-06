@@ -13,11 +13,11 @@ import { DatePipe } from '@angular/common';
 export class MidBtn implements OnInit{
   tasks = signal<Task[]>([]);
 
-  readonly priorityMap: { [key: number]: { label: string, icon: string } } = {
-    0: { label: 'Low', icon: 'urgency-low-icon.png' },
-    1: { label: 'Medium', icon: 'urgency-medium-icon.png' },
-    2: { label: 'Urgent', icon: 'urgency-urgent-icon.png' },
-  };
+readonly priorityMap: Record<number, { label: string, type: number }> = {
+  0: { label: 'Low', type: 0 },
+  1: { label: 'Medium', type: 1 },
+  2: { label: 'Urgent', type: 2 },
+};
 
   constructor(private supabaseService: Supabase, private dateService: CurrentDate) {}
 
