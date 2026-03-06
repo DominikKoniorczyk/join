@@ -1,1 +1,30 @@
-<p>mid-btn works!</p>
+<div class="content">
+  <button>
+    <div class="inner-content">
+    <div class="left-col">
+      <div class="left-side">
+        <div class="circle">
+          <div class="urgency-icon">
+           @if (nextTask() && priorityMap[nextTask()!.priority]) {
+            <img [src]="'./assets/img/' + priorityMap[nextTask()!.priority].icon" [alt]="priorityMap[nextTask()!.priority].label">
+          }
+          </div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="amount">
+          {{ taskCountForDate() }}
+        </div>
+        <div class="urgency">
+          <span>{{ priorityText() }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="seperator"></div>
+    <div class="right-col">
+      <div class="date">{{ nextTask()?.dueDate | date:'MMMM d, y' }}</div>
+      <span>Upcoming Deadline</span>
+    </div>
+    </div>
+  </button>
+</div>
