@@ -27,6 +27,7 @@
 }
 
 .help-header-row {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,8 +50,8 @@
 
 .back-arrow {
   position: absolute;
-  top: 5rem;
-  right: 2rem;
+  top: 2rem;
+  right: -4rem;
   z-index: 20;
 
   display: inline-flex;
@@ -135,14 +136,5 @@
 @media (max-width: 768px) {
   .last {
     padding-bottom: 8rem;
-  }
-
-  .help-header-row{
-    position: relative;
-  }
-
-  .back-arrow{
-    top: 2rem;
-    right: 0;
   }
 }
