@@ -1,6 +1,5 @@
 <section class="sign-form-wrap">
     <div class="sign-card">
-
         <a class="back-arrow" routerLink="/login" aria-label="Back to login">
             <img src="assets/img/arrow-left-long.png" alt="Back" />
         </a>
@@ -8,79 +7,95 @@
         <h1 class="title">Sign up</h1>
         <div class="title-underline"></div>
 
-        <div class="toast" *ngIf="showSuccess">
-            You Signed Up successfully
+        @if (showSuccess) {
+        <div class="toast">
+            You signed up successfully
         </div>
+        }
 
-        <form class="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
-
-            <div class="input-group" [class.input-error]="showError(f, nameCtrl)">
-                <input type="text" name="name" placeholder="Name" [(ngModel)]="name" required [pattern]="namePattern"
-                    #nameCtrl="ngModel" />
+        <form class="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <div class="input-group" [class.input-error]="isInvalid('name')">
+                <input type="text" formControlName="name" placeholder="Name" />
                 <div class="icon-slot">
                     <img src="assets/img/person-icon.png" alt="" />
                 </div>
             </div>
 
-            <p class="error-text" *ngIf="showError(f, nameCtrl) && nameCtrl.errors?.['required']">
+            @if (hasError('name', 'required')) {
+            <p class="error-text">
                 Name is required.
             </p>
-            <p class="error-text" *ngIf="showError(f, nameCtrl) && nameCtrl.errors?.['pattern']">
+            }
+
+            @if (hasError('name', 'pattern')) {
+            <p class="error-text">
                 Please enter first and last name (no numbers).
             </p>
+            }
 
-            <div class="input-group" [class.input-error]="showError(f, emailCtrl)">
-                <input type="text" name="email" placeholder="Email" autocomplete="email" [(ngModel)]="email" required
-                    [pattern]="emailPattern" #emailCtrl="ngModel" />
+            <div class="input-group" [class.input-error]="isInvalid('email')">
+                <input type="text" formControlName="email" placeholder="Email" autocomplete="email" />
                 <div class="icon-slot">
                     <img src="assets/img/mail-icon.png" alt="" />
                 </div>
             </div>
 
-            <p class="error-text" *ngIf="showError(f, emailCtrl) && emailCtrl.errors?.['required']">
+            @if (hasError('email', 'required')) {
+            <p class="error-text">
                 Email is required.
             </p>
-            <p class="error-text" *ngIf="showError(f, emailCtrl) && emailCtrl.errors?.['pattern']">
+            }
+
+            @if (hasError('email', 'email') || hasError('email', 'pattern')) {
+            <p class="error-text">
                 Please enter a valid email address.
             </p>
+            }
 
-            <div class="input-group" [class.input-error]="showError(f, passwordCtrl)">
-                <input name="password" placeholder="Password" autocomplete="new-password" [(ngModel)]="password"
-                    [type]="showPassword ? 'text' : 'password'" required minlength="6" (input)="showPassword = false"
-                    #passwordCtrl="ngModel" />
+            <div class="input-group" [class.input-error]="isInvalid('password')">
+                <input formControlName="password" placeholder="Password" autocomplete="new-password"
+                    [type]="showPassword ? 'text' : 'password'" (input)="showPassword = false" />
 
                 <button type="button" class="icon-slot" (click)="togglePassword()">
                     <img [src]="getPasswordIcon()" alt="" />
                 </button>
             </div>
 
-            <p class="error-text" *ngIf="showError(f, passwordCtrl) && passwordCtrl.errors?.['required']">
+            @if (hasError('password', 'required')) {
+            <p class="error-text">
                 Password is required.
             </p>
-            <p class="error-text" *ngIf="showError(f, passwordCtrl) && passwordCtrl.errors?.['minlength']">
+            }
+
+            @if (hasError('password', 'minlength')) {
+            <p class="error-text">
                 Password must be at least 6 characters.
             </p>
+            }
 
-            <div class="input-group"
-                [class.input-error]="showError(f, confirmCtrl) || (password && confirmPassword && password !== confirmPassword)">
-                <input name="confirmPassword" placeholder="Confirm Password" autocomplete="new-password"
-                    [(ngModel)]="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" required
-                    (input)="showConfirmPassword = false" #confirmCtrl="ngModel" />
+            <div class="input-group" [class.input-error]="isInvalid('confirmPassword') || passwordMismatch">
+                <input formControlName="confirmPassword" placeholder="Confirm Password" autocomplete="new-password"
+                    [type]="showConfirmPassword ? 'text' : 'password'" (input)="showConfirmPassword = false" />
 
                 <button type="button" class="icon-slot" (click)="toggleConfirmPassword()">
                     <img [src]="getConfirmPasswordIcon()" alt="" />
                 </button>
             </div>
 
-            <p class="error-text" *ngIf="showError(f, confirmCtrl) && confirmCtrl.errors?.['required']">
+            @if (hasError('confirmPassword', 'required')) {
+            <p class="error-text">
                 Please confirm your password.
             </p>
-            <p class="error-text" *ngIf="password && confirmPassword && password !== confirmPassword">
+            }
+
+            @if (passwordMismatch) {
+            <p class="error-text">
                 Your passwords don't match. Please try again.
             </p>
+            }
 
             <div class="policy-row" (click)="togglePolicy()">
-                <img class="policy-box" [src]="acceptPolicy
+                <img class="policy-box" [src]="policyAccepted
             ? 'assets/img/checkmarkbox-checked.png'
             : 'assets/img/checkmarkbox-empty.png'" alt="" />
                 <span class="policy-text">
@@ -91,10 +106,15 @@
                 </span>
             </div>
 
-            <button class="submit-btn" type="submit" [disabled]="!canSubmit(f)">
+            @if (hasError('acceptPolicy', 'required')) {
+            <p class="error-text">
+                You must accept the privacy policy.
+            </p>
+            }
+
+            <button class="submit-btn" type="submit" [disabled]="signUpForm.invalid">
                 Sign up
             </button>
-
         </form>
     </div>
 </section>
