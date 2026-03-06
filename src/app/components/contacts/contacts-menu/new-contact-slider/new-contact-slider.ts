@@ -76,7 +76,6 @@ export class NewContactSlider {
       else this.supabaseClient.updateRow('users', this.contactData(), this.id);
       this.contactCreated.emit();
     } else {
-      console.log('Form is invalid');
       this.contactForm.markAllAsTouched();
     }
     this.contactForm.reset();

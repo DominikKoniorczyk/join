@@ -8,12 +8,37 @@ import { Task } from '../interfaces/taskmodel.interfaces';
 })
 export class Supabase {
   supabaseClient: SupabaseClient;
+  colors: string[] = [
+    '#ff7a00',
+    '#ff5eb3',
+    '#6e52ff',
+    '#9327ff',
+    '#00bee8',
+    '#1fd7c1',
+    '#ffa35e',
+    '#fc71ff',
+    '#ffc701',
+    '#0038ff',
+    '#c3ff2b',
+    '#ffe62b',
+    '#ff4646',
+    '#ffbb2b',
+  ];
 
   constructor() {
     this.supabaseClient = createClient(
       environment.supabaseUrl,
       environment.supabaseAnonKey,
     );
+  }
+
+  /**
+   * Generates a random hex color string from the predefined colors array.
+   * @returns {string} A hex color code (e.g., '#ff7a00').
+   */
+  getRandomeColor(): string {
+    const randomIndex = Math.floor(Math.random() * this.colors.length);
+    return this.colors[randomIndex];
   }
 
   /**
@@ -127,7 +152,8 @@ export class Supabase {
    * @returns {Promise<import('@supabase/supabase-js').AuthResponse>}
    * A promise resolving to the Supabase authentication response containing user and session information.
    */
-  async signUpUser(email: string, password: string) {
+  async signUpUser(name: string, email: string, password: string) {
+    this.uploadJSONToTable("users", { name: name, email: email, color: this.getRandomeColor() });
     return await this.supabaseClient.auth.signUp({ email: email, password: password });
   }
 
