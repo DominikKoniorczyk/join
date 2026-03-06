@@ -1,1 +1,26 @@
-<p>bot-btn works!</p>
+<div class="content">
+  <button (click)="redirectToBoard()">
+      <div class="inner-content">
+        <div class="amount">
+          {{ boardCount() }}
+        </div>
+        <span>Tasks in board</span>
+      </div>
+  </button>
+   <button (click)="redirectToBoard()">
+      <div class="inner-content">
+        <div class="amount">
+          {{ progressCount() }}
+        </div>
+        <span>Tasks in progress</span>
+      </div>
+  </button>
+   <button (click)="redirectToBoard()">
+      <div class="inner-content">
+        <div class="amount">
+          {{ feedbackCount() }}
+        </div>
+        <span>Awaiting feedback</span>
+      </div>
+  </button>
+</div>

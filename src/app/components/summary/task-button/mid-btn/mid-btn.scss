@@ -1,0 +1,94 @@
+@use '../../../../styles/variables.scss' as vars;
+
+.content{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+button{
+  width: 100%;
+  height: 200px;
+  border-radius: 25px;
+  border: none;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
+  cursor: pointer;
+  color: vars.$primary-color;
+  font-size: 1rem;
+
+  &:hover{
+    background-color: vars.$primary-color;
+    transform: scale(1.1);
+    color: white;
+
+    .amount{
+      color: white;
+    }
+  }
+}
+
+.inner-content{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.date{
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.amount{
+  color: black;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.seperator{
+  width: 2px;
+  height: 130px;
+  background-color: vars.$font-lightcolor;
+}
+
+
+.left-col{
+  display: flex;
+}
+
+.left-side{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-side{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-col{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+}
+
+
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  &.bg-urgent { background-color: #F84216; }
+  &.bg-medium { background-color: #F9AC22; }
+  &.bg-low    { background-color: #7EE538; }
+}
