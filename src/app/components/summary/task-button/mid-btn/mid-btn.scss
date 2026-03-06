@@ -87,11 +87,8 @@ button{
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: white;
 
-  .urgency-icon img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-  }
+  &.bg-urgent { background-color: #F84216; }
+  &.bg-medium { background-color: #F9AC22; }
+  &.bg-low    { background-color: #7EE538; }
 }
