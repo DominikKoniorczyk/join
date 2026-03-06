@@ -5,6 +5,7 @@
   height: 100%;
   position: relative;
   max-height: calc(100vh - 96px);
+  box-sizing: border-box;
 }
 
 .background {
@@ -18,15 +19,15 @@
 }
 
 .help-container {
-  max-width: 980px;
   width: 100%;
-  margin-left: 96px;
-  margin-right: auto;
-  padding: 100px 24px 80px;
-  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
 }
 
 .help-header-row {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,10 +42,16 @@
   }
 }
 
+.help-inner {
+  width: 90%;
+  max-width: 980px;
+  margin-top: 3rem;
+}
+
 .back-arrow {
-  position: fixed;
-  top: 225px;
-  right: 48px;
+  position: absolute;
+  top: 2rem;
+  right: -4rem;
   z-index: 20;
 
   display: inline-flex;
@@ -86,23 +93,17 @@
 }
 
 .steps {
-  list-style: none;
-  counter-reset: step;
+  list-style: decimal;
+  font-size: 27px;
+  font-weight: 700;
   padding-left: 0;
   margin-top: 16px;
+  width: 90%;
+  margin-left: 2rem;
 
   li {
     counter-increment: step;
     margin-bottom: 24px;
-  }
-
-  li::before {
-    content: counter(step) '. ';
-    font-weight: 700;
-    font-size: 27px;
-    line-height: 1.2;
-    margin-right: 8px;
-    color: #000;
   }
 
   .step-title {
@@ -114,11 +115,14 @@
   }
 
   .step-text {
-    margin-top: 6px;
-    margin-left: 39px;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.2;
+    font-weight: 400;
   }
+}
+
+.last {
+  padding-bottom: 4rem;
 }
 
 .enjoy {
@@ -129,59 +133,8 @@
   color: #000;
 }
 
-@media (min-width: 428px) and (max-width: 768px) {
-
-  .help-container {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 128px 16px 100px;
-  }
-
-  .help-header-row h1 {
-    font-size: 47px;
-    line-height: 1.2;
-  }
-
-  .back-arrow {
-    position: fixed;
-    top: 240px;
-    right: 80px;
-
-    img {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  .help-content h2 {
-    font-size: 27px;
-    line-height: 1.2;
-  }
-
-  .help-content p {
-    font-size: 16px;
-    line-height: 1.2;
-  }
-
-  .steps li::before {
-    font-size: 27px;
-    line-height: 1.2;
-  }
-
-  .steps .step-title {
-    font-size: 20px;
-    line-height: 1.2;
-  }
-
-  .steps .step-text {
-    margin-left: 32px;
-    font-size: 16px;
-    line-height: 1.2;
-  }
-
-  .enjoy {
-    font-size: 27px;
-    line-height: 1.2;
+@media (max-width: 768px) {
+  .last {
+    padding-bottom: 8rem;
   }
 }
