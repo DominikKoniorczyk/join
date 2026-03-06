@@ -6,7 +6,8 @@ import { BotBtn } from './bot-btn/bot-btn';
   selector: 'app-task-button',
   standalone: true,
   imports: [TopBtn, MidBtn, BotBtn],
-  templateUrl: './task-button.html'
+  templateUrl: './task-button.html',
+  styleUrls: ['./task-button.scss']
 })
 export class TaskButtonComponent  {
 
