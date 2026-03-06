@@ -36,6 +36,9 @@ button{
         fill: vars.$primary-color;
       }
     }
+    .amount{
+      color: white;
+    }
   }
 }
 
@@ -52,4 +55,10 @@ button{
   svg path {
     transition: fill 0.3s ease-in-out;
   }
+}
+
+.amount{
+  color: black;
+  font-size: 4rem;
+  font-weight: bold;
 }
