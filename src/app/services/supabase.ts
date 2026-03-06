@@ -118,4 +118,28 @@ export class Supabase {
       .eq('id', id)
     if (error) throw error;
   }
+
+  /**
+   * Registers a new user using email and password via Supabase authentication.
+   *
+   * @param {string} email - The user's email address.
+   * @param {string} password - The user's password.
+   * @returns {Promise<import('@supabase/supabase-js').AuthResponse>}
+   * A promise resolving to the Supabase authentication response containing user and session information.
+   */
+  async signUpUser(email: string, password: string) {
+    return await this.supabaseClient.auth.signUp({ email: email, password: password });
+  }
+
+  /**
+   * Signs in an existing user using email and password via Supabase authentication.
+   *
+   * @param {string} email - The user's email address.
+   * @param {string} password - The user's password.
+   * @returns {Promise<import('@supabase/supabase-js').AuthTokenResponsePassword>}
+   * A promise resolving to the Supabase authentication response containing the session and user data.
+   */
+  async signInUser(email: string, password: string) {
+    return await this.supabaseClient.auth.signInWithPassword({ email: email, password: password });
+  }
 }
