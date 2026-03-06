@@ -1,23 +1,13 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TaskformComponent } from '../../add-task/taskform/taskform';
-import { Supabase } from '../../../services/supabase';
-import { OnInit } from '@angular/core';
+import { TopBtn } from './top-btn/top-btn';
+import { MidBtn } from './mid-btn/mid-btn';
+import { BotBtn } from './bot-btn/bot-btn';
 @Component({
   selector: 'app-task-button',
   standalone: true,
-  imports: [CommonModule, TaskformComponent],
+  imports: [TopBtn, MidBtn, BotBtn],
   templateUrl: './task-button.html'
 })
-export class TaskButtonComponent implements OnInit {
-  contacts: any[] = [];
+export class TaskButtonComponent  {
 
-  constructor(private supabase: Supabase) {}
-
-  async ngOnInit() {
-    const data = await this.supabase.getDataFromTable('contacts');
-    if (data) {
-      this.contacts = data;
-    }
-  }
 }

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TaskService } from '../../services/task.service';
+import { TaskButtonComponent } from './task-button/task-button';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TaskButtonComponent],
   templateUrl: './summary.html',
   styleUrls: ['./summary.scss', './summary-responsive.scss']
 })
