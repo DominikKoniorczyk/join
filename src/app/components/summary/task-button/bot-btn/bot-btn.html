@@ -1,5 +1,5 @@
 <div class="content">
-  <button>
+  <button (click)="redirectToBoard()">
       <div class="inner-content">
         <div class="amount">
           {{ boardCount() }}
@@ -7,7 +7,7 @@
         <span>Tasks in board</span>
       </div>
   </button>
-   <button>
+   <button (click)="redirectToBoard()">
       <div class="inner-content">
         <div class="amount">
           {{ progressCount() }}
@@ -15,7 +15,7 @@
         <span>Tasks in progress</span>
       </div>
   </button>
-   <button>
+   <button (click)="redirectToBoard()">
       <div class="inner-content">
         <div class="amount">
           {{ feedbackCount() }}

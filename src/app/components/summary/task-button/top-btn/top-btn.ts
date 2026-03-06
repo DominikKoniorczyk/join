@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Task } from '../../../../interfaces/taskmodel.interfaces';
 import { Supabase } from '../../../../services/supabase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-btn',
@@ -11,7 +12,7 @@ import { Supabase } from '../../../../services/supabase';
 export class TopBtn implements OnInit {
   tasksSignal = signal<Task[]>([]);
 
-  constructor(private supabaseService: Supabase) {}
+  constructor(private supabaseService: Supabase, private router: Router) {}
 
   async ngOnInit() {
     await this.loadTasks();
@@ -26,5 +27,10 @@ export class TopBtn implements OnInit {
 
   getTaskCount(status: string): number {
     return this.tasksSignal().filter(task => task.progressStatus === status).length;
+  }
+
+
+  redirectToBoard(){
+    this.router.navigateByUrl('/board');
   }
 }

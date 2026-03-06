@@ -3,6 +3,7 @@ import { Task } from '../../../../interfaces/taskmodel.interfaces';
 import { Supabase } from '../../../../services/supabase';
 import { CurrentDate } from '../../../../services/current-date';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mid-btn',
@@ -19,7 +20,7 @@ readonly priorityMap: Record<number, { label: string, type: number }> = {
   2: { label: 'Urgent', type: 2 },
 };
 
-  constructor(private supabaseService: Supabase, private dateService: CurrentDate) {}
+  constructor(private supabaseService: Supabase, private dateService: CurrentDate, private router: Router) {}
 
  nextTask = computed(() => {
     const today = new Date(this.dateService.getCurrentDate());
@@ -59,5 +60,10 @@ readonly priorityMap: Record<number, { label: string, type: number }> = {
     default: return 'Medium';
   }
 });
+
+
+  redirectToBoard(){
+    this.router.navigateByUrl('/board');
+  }
 
 }
