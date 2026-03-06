@@ -26,3 +26,28 @@
     top: 80px;
     left: 77px;
 }
+
+@media (max-width: 1000px) {
+    .logo-stage.stable .join-logo {
+        width: 80px;
+        height: auto;
+        top: 40px;
+        left: 40px;
+    }
+}
+
+@media (max-width: 544px) {
+    .logo-stage.stable .join-logo {
+        width: 64px;
+        top: 32px;
+        left: 24px;
+    }
+}
+
+@media (max-width: 400px) {
+    .logo-stage.stable .join-logo {
+        width: 56px;
+        top: 24px;
+        left: 16px;
+    }
+}
