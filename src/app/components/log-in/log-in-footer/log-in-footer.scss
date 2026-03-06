@@ -2,7 +2,7 @@
 
 .login-footer {
     position: fixed;
-    bottom: 40px;
+    bottom: 35px;
     left: 50%;
     transform: translateX(-50%);
 
@@ -30,4 +30,31 @@
 
 .footer-link:hover {
     color: $brand-color;
+}
+
+@media (max-width: 544px) {
+    .login-footer {
+        gap: 24px;
+    }
+
+    .footer-link {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 428px) {
+    .login-footer {
+        bottom: 24px;
+    }
+}
+
+@media (max-width: 320px) {
+    .login-footer {
+        gap: 16px;
+        bottom: 18px;
+    }
+
+    .footer-link {
+        font-size: 13px;
+    }
 }

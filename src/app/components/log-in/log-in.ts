@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
-
 import { LogInLogo } from './log-in-logo/log-in-logo';
 import { Slider } from './slider/slider';
 import { LogInHeader } from './log-in-header/log-in-header';
@@ -12,7 +10,7 @@ type Phase = 'splash' | 'slide' | 'stable';
 @Component({
   selector: 'app-log-in',
   standalone: true,
-  imports: [NgIf, LogInLogo, Slider, LogInHeader, LogInForm, LogInFooter],
+  imports: [LogInLogo, Slider, LogInHeader, LogInForm, LogInFooter],
   templateUrl: './log-in.html',
   styleUrls: ['./log-in.scss'],
 })

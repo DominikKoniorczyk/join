@@ -27,27 +27,31 @@
     left: 77px;
 }
 
-@media (max-width: 1000px) {
-    .logo-stage.stable .join-logo {
-        width: 80px;
-        height: auto;
-        top: 40px;
-        left: 40px;
-    }
-}
-
-@media (max-width: 544px) {
+@media (min-width: 429px) and (max-width: 1000px) {
     .logo-stage.stable .join-logo {
         width: 64px;
-        top: 32px;
-        left: 24px;
+        height: auto;
+        top: 37px;
+        left: 38px;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 428px) {
     .logo-stage.stable .join-logo {
-        width: 56px;
-        top: 24px;
+        position: fixed;
+        width: 64px;
+        height: auto;
+
+        top: 37px;
+        left: 38px;
+    }
+}
+
+@media (max-width: 320px) {
+    .logo-stage.stable .join-logo {
+        width: 48px;
+        height: auto;
+        top: 16px;
         left: 16px;
     }
 }

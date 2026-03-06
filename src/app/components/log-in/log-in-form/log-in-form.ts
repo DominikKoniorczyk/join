@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+
 @Component({
   selector: 'app-log-in-form',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './log-in-form.html',
   styleUrls: ['./log-in-form.scss'],
@@ -24,6 +26,7 @@ export class LogInForm {
       ? 'assets/img/visibility-on-icon.png'
       : 'assets/img/visibility-off-icon.png';
   }
+
   loginAsGuest() {
     this.auth.loginAsGuest();
     this.router.navigate(['/summary']);

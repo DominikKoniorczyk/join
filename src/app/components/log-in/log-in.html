@@ -1,8 +1,14 @@
-<app-log-in-logo *ngIf="phase === 'splash'" mode="splash" (done)="onSplashDone()"></app-log-in-logo>
+@if (phase === 'splash') {
+<app-log-in-logo mode="splash" (done)="onSplashDone()"></app-log-in-logo>
+}
 
-<app-slider *ngIf="phase === 'slide'" (done)="onSlideDone()"></app-slider>
+@if (phase === 'slide') {
+<app-slider (done)="onSlideDone()"></app-slider>
+}
 
-<app-log-in-logo *ngIf="phase === 'stable'" mode="stable"></app-log-in-logo>
-<app-log-in-header *ngIf="phase === 'stable'"></app-log-in-header>
-<app-log-in-form *ngIf="phase === 'stable'"></app-log-in-form>
-<app-log-in-footer *ngIf="phase === 'stable'"></app-log-in-footer>
+@if (phase === 'stable') {
+<app-log-in-logo mode="stable"></app-log-in-logo>
+<app-log-in-header></app-log-in-header>
+<app-log-in-form></app-log-in-form>
+<app-log-in-footer></app-log-in-footer>
+}

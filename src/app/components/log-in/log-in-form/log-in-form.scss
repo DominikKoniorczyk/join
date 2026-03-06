@@ -163,3 +163,111 @@ button.icon-slot:hover img {
         opacity: 1;
     }
 }
+
+@media (max-width: 768px) {
+    .login-card {
+        width: min(calc(100% - 48px), 560px);
+        padding: 40px 48px;
+    }
+
+    .input-group {
+        width: 100%;
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 544px) {
+    .login-form-wrap {
+        place-items: start center;
+        padding-top: 150px;
+        padding-bottom: 150px;
+        box-sizing: border-box;
+    }
+
+    .login-card {
+        width: calc(100% - 32px);
+        padding: 32px 24px;
+        gap: 28px;
+    }
+
+    .login-title {
+        font-size: 54px;
+    }
+
+    .login-form {
+        gap: 24px;
+    }
+
+    .input-group {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .button-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 428px) {
+    .login-form-wrap {
+        padding-top: 140px;
+        padding-bottom: 140px;
+    }
+
+    .login-card {
+        width: calc(100% - 24px);
+        max-width: 396px;
+        padding: 32px 16px;
+        border-radius: 30px;
+    }
+
+    .login-title {
+        font-size: 47px;
+    }
+
+    .title-underline {
+        width: 88px;
+        margin-top: -16px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 180px;
+        height: 51px;
+    }
+}
+
+@media (max-width: 320px) {
+    .login-form-wrap {
+        padding-top: 120px;
+        padding-bottom: 130px;
+    }
+
+    .login-card {
+        width: calc(100% - 16px);
+        padding: 24px 12px;
+        gap: 24px;
+    }
+
+    .login-title {
+        font-size: 38px;
+    }
+
+    .input-group input {
+        padding: 12px 44px 12px 14px;
+        font-size: 15px;
+    }
+
+    .button-row {
+        gap: 16px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 160px;
+        height: 48px;
+        font-size: 15px;
+    }
+}
