@@ -4,10 +4,6 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-
-  @media(max-width:550px){
-    gap: 0.45rem;
-  }
 }
 
 .inner-content{
@@ -17,9 +13,9 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-    @media(max-width:800px){
-    gap: 0;
 
+  @media(max-width:800px){
+    gap: 0;
   }
 }
 
@@ -57,6 +53,11 @@ button{
 
   }
 
+  @media(max-width: 380px) {
+    height: 95px;
+    width: 95px;
+  }
+
 }
 
 .amount{
@@ -73,5 +74,9 @@ span{
   color: vars.$primary-color;
   @media(max-width:1000px){
    font-size: 1rem;
+  }
+
+    @media(max-width: 380px) {
+   font-size:  0.85rem;;
   }
 }

@@ -9,6 +9,7 @@
   @media(max-width: 500px) {
     gap: 0.5rem;
   }
+
 }
 
 .inner-content{
@@ -62,6 +63,11 @@ button{
   @media(max-width: 500px) {
     height: 110px;
     max-width: 45%;
+  }
+
+    @media(max-width: 380px) {
+    height: 95px;
+    font-size:  0.85rem;;
   }
 }
 

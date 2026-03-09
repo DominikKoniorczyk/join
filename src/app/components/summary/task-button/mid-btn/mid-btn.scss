@@ -36,6 +36,14 @@ button{
   @media(max-width: 500px) {
     height: 110px;
   }
+
+      @media(max-width: 380px) {
+    height: 95px;
+    font-size:  0.85rem;
+  }
+
+
+
 }
 
 .inner-content{

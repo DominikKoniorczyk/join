@@ -13,7 +13,7 @@
     width: 500px;
   }
 
-   @media(max-width:545px){
-    width: 450px;
+    @media(max-width:768px){
+    width: clamp(300px, 90vw, 500px);
   }
 }
