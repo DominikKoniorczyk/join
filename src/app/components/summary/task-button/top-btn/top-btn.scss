@@ -24,7 +24,7 @@ button{
   transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
   cursor: pointer;
   color: vars.$primary-color;
-  font-size: 1rem;
+  font-size: 1.25rem;
 
   &:hover{
     background-color: vars.$primary-color;
@@ -39,6 +39,12 @@ button{
     .amount{
       color: white;
     }
+  }
+
+   @media(max-width:1000px){
+    width: 250px;
+    height: 150px;
+    font-size: 1rem;
   }
 }
 
@@ -55,10 +61,26 @@ button{
   svg path {
     transition: fill 0.3s ease-in-out;
   }
+
+   @media(max-width:1000px){
+    height: 40px;
+    width: 40px;
+  }
+}
+
+svg{
+   @media(max-width:1000px){
+    height: 20px;
+    width: 20px;
+  }
 }
 
 .amount{
   color: black;
   font-size: 4rem;
   font-weight: bold;
+   @media(max-width:1000px){
+
+    font-size: 3rem;
+  }
 }

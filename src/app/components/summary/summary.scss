@@ -27,26 +27,56 @@ section{
   flex-direction: row;
   gap: 2rem;
 
+  @media(max-width:1020px){
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+  }
+
   h2 {
     font-size: 3.8rem;
+    @media(max-width:1020px){
+      font-size: 47px;
+    }
   }
 
   .spacer-blue {
     width: 3px;
     height: 60px;
-    border-radius: 4px;
     background-color: #29ABE2;
     border-radius: 3px;
+    @media(max-width:1020px){
+     display: none;
+    }
   }
 
-  span {
+  .tagline {
     font-size: 2rem;
     color: vars.$primary-color;
+    @media(max-width:1020px){
+      font-size: 1.25rem;
+    }
   }
+}
+
+.spacer-blue-mobile{
+  display: none;
+  width: 90px;
+  height: 3px;
+  background-color: #29ABE2;
+  border-radius: 3px;
+
+  @media(max-width:1020px){
+    display: block;
+  }
+
 }
 
 .greeting {
   width: 100%;
+  @media(max-width:1200px){
+    display: none;
+  }
 }
 
 .name {

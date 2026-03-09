@@ -36,10 +36,26 @@ button{
       color: white;
     }
   }
+
+  @media(max-width:1000px){
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .amount{
   color: black;
   font-size: 4rem;
   font-weight: bold;
+  @media(max-width:1000px){
+   font-size: 3rem;
+  }
+}
+
+span{
+  font-size: 1.25rem;
+  color: vars.$primary-color;
+  @media(max-width:1000px){
+   font-size: 1rem;
+  }
 }

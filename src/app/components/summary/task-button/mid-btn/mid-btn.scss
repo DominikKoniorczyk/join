@@ -16,7 +16,7 @@ button{
   transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
   cursor: pointer;
   color: vars.$primary-color;
-  font-size: 1rem;
+  font-size: 1.25rem;
 
   &:hover{
     background-color: vars.$primary-color;
@@ -26,6 +26,10 @@ button{
     .amount{
       color: white;
     }
+  }
+  @media(max-width:1000px){
+    height: 150px;
+    font-size: 1rem;
   }
 }
 
@@ -46,6 +50,9 @@ button{
   color: black;
   font-size: 4rem;
   font-weight: bold;
+  @media(max-width:1000px){
+    font-size: 3rem;
+  }
 }
 
 .seperator{
@@ -91,4 +98,9 @@ button{
   &.bg-urgent { background-color: #F84216; }
   &.bg-medium { background-color: #F9AC22; }
   &.bg-low    { background-color: #7EE538; }
+
+   @media(max-width:1000px){
+    width: 40px;
+    height: 40px;
+  }
 }
