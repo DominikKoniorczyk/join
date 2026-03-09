@@ -27,9 +27,14 @@ button{
       color: white;
     }
   }
+
   @media(max-width:1000px){
     height: 150px;
     font-size: 1rem;
+  }
+
+  @media(max-width: 500px) {
+    height: 110px;
   }
 }
 
@@ -59,6 +64,14 @@ button{
   width: 2px;
   height: 130px;
   background-color: vars.$font-lightcolor;
+
+  @media(max-width:1000px){
+    height: 90px;
+  }
+
+  @media(max-width: 500px) {
+    height: 70px;
+  }
 }
 
 

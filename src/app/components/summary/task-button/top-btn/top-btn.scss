@@ -4,6 +4,11 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  gap: 1rem;
+
+  @media(max-width: 500px) {
+    gap: 0.5rem;
+  }
 }
 
 .inner-content{
@@ -15,7 +20,10 @@
 }
 
 button{
-  width: 300px;
+  // width: 300px;
+  // height: 200px;
+  width: 100%;
+  max-width: 300px;
   height: 200px;
   border-radius: 25px;
   border: none;
@@ -45,6 +53,15 @@ button{
     width: 250px;
     height: 150px;
     font-size: 1rem;
+  }
+
+  @media(max-width:800px){
+    width: 230px;
+  }
+
+  @media(max-width: 500px) {
+    height: 110px;
+    max-width: 45%;
   }
 }
 
