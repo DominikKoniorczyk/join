@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 2rem;
   width: 700px;
+
   @media(max-width:1000px){
     width: 650px;
   }
@@ -13,7 +14,7 @@
     width: 500px;
   }
 
-    @media(max-width:768px){
+   @media(max-width:768px){
     width: clamp(300px, 90vw, 500px);
   }
 }
