@@ -1,8 +1,8 @@
 <div class="circle" (click)="toggleDropdown()">
-  <p class="initial-firstname">S</p>
-  <p class="initial-lastname">M</p>
+  <p class="initial-firstname">{{ currentUserName() | initialsSelector:1 }}</p>
+  <p class="initial-lastname">{{ currentUserName() | initialsSelector:2 }}</p>
   <div class="dropdown" [class.show]="isDropDownOpen">
     <a routerLink="/legal-notice">Legal Notice</a><a routerLink="/privacy-policy">Privacy Policy</a
-    ><button (click)="logOut()">Log Out</button><a class="mobile-help-btn" routerLink="/help">Help</a>
+    ><a (click)="logOut()">Log Out</a><a class="mobile-help-btn" routerLink="/help">Help</a>
   </div>
 </div>

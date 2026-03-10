@@ -20,3 +20,18 @@ export class InitialsPipe implements PipeTransform {
       .toUpperCase();
   }
 }
+
+@Pipe({ name: 'initialsSelector' })
+export class InitialsSelctorPipe implements PipeTransform {
+  transform(fullName: string, position?: number): string {
+    if (!fullName) return "";
+    const parts = fullName.trim().split(' ').filter(p => p.length > 0);
+    if (position === 1 && parts.length > 0) {
+      return parts[0][0].toUpperCase();
+    }
+    if (position === 2 && parts.length > 1) {
+      return parts[parts.length - 1][0].toUpperCase();
+    }
+    return parts.map(p => p[0]).join('').toUpperCase();
+  }
+}
