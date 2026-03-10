@@ -272,14 +272,19 @@ button.icon-slot:hover img {
     }
 }
 
-.error-message{
-  color: $error-color-red;
+.error-wrap {
+    margin-top: -20px;
+    margin-bottom: -12px;
 }
 
-.d-none{
-  display: none;
+.error-message {
+    color: $error-color-red;
 }
 
-.red{
-  outline: 1px solid $error-color-red;
+.d-none {
+    display: none;
+}
+
+.red {
+    outline: 1px solid $error-color-red;
 }
