@@ -26,11 +26,6 @@ export class FooterNav {
     this.currentURL.set(newUrl);
   }
   goTo(route: string) {
-    if (!this.auth.canAccess()) {
-      this.auth.handleGuestBlock();
-      return;
-    }
-
     this.router.navigate([route]);
   }
 }
