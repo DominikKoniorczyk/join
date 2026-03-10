@@ -49,6 +49,20 @@ a {
   }
 }
 
+button{
+  display: flex;
+  justify-content: start;
+  padding: 12px 10px;
+  color: vars.$font-lightcolor;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    background-color: #2a3d59;
+  }
+}
+
 .mobile-help-btn {
   display: none;
   @media (max-width: 768px) {
