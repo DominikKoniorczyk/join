@@ -177,7 +177,6 @@ export class Supabase {
   async logOut(){
     return await this.supabaseClient.auth.signOut();
   }
-
 }
 
 
