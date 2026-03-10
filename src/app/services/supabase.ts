@@ -174,6 +174,9 @@ export class Supabase {
      return data.user?? null;
   }
 
+  async logOut(){
+    return await this.supabaseClient.auth.signOut();
+  }
 
 }
 
