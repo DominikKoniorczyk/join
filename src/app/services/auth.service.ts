@@ -5,6 +5,9 @@ import { Injectable, signal } from '@angular/core';
 })
 export class AuthService {
 
+
+  isLoggedIn = false;
+
 //hier einschalten ob true oder false
   guestRestrictionEnabled = false;
 
@@ -30,12 +33,10 @@ export class AuthService {
   }
 
 
-  canAccess(route: string): boolean {
-    if (!this.guestRestrictionEnabled) return true;
-    if (!this.isGuestUser()) return true;
-
-    const allowedRoutes = ['/summary', '/legal-notice', '/privacy-policy'];
-    return allowedRoutes.includes(route);
+  canAccess(): boolean {
+    if (!this.guestRestrictionEnabled && this.isGuestUser()) return true;
+    if (this.isGuestUser()) return true;
+    return false ;
   }
 
   showGuestMessage = signal(false);

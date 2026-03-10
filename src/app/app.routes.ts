@@ -7,17 +7,18 @@ import { Summary } from './components/summary/summary';
 import { PrivacyPolicy } from './pages/privacy-policy/privacy-policy';
 import { AddTaskComponent } from './components/add-task/add-task';
 import { Board } from './components/board/board';
+import { LogInGuard } from './services/log-in-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LogIn },
   { path: 'sign-up', component: SignUp },
-  { path: 'summary', component: Summary },
-  { path: 'contacts', component: Contacts },
+  { path: 'summary', component: Summary , canActivate: [LogInGuard] },
+  { path: 'contacts', component: Contacts , canActivate: [LogInGuard] },
   { path: 'legal-notice', component: LegalNotice },
   { path: 'privacy-policy', component: PrivacyPolicy },
-  { path: 'add-task', component: AddTaskComponent },
-  { path: 'board', component: Board },
+  { path: 'add-task', component: AddTaskComponent , canActivate: [LogInGuard] },
+  { path: 'board', component: Board, canActivate: [LogInGuard]},
   {
     path: 'help',
     loadComponent: () =>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { environment } from '../environment/supabasekeys';
 import { Task } from '../interfaces/taskmodel.interfaces';
 
@@ -168,4 +168,13 @@ export class Supabase {
   async signInUser(email: string, password: string) {
     return await this.supabaseClient.auth.signInWithPassword({ email: email, password: password });
   }
+
+  async getUser(): Promise < User | null > {
+     const {data} = await this.supabaseClient.auth.getUser();
+     return data.user?? null;
+  }
+
+
 }
+
+
