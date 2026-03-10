@@ -1,7 +1,10 @@
+import { SupabaseClient } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors, ValidatorFn, ValueChangeEvent } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { Supabase } from '../../../services/supabase';
+
 
 @Component({
   selector: 'app-sign-form',
@@ -21,7 +24,7 @@ export class SignForm {
   namePattern = '^[A-Za-zÄÖÜäöüß]+\\s+[A-Za-zÄÖÜäöüß]+(\\s*[A-Za-zÄÖÜäöüß]*)*$';
   emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$';
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private supabase: Supabase) {
     this.signUpForm = this.fb.group(
       {
         name: ['', [Validators.required, Validators.pattern(this.namePattern)]],
@@ -102,6 +105,8 @@ export class SignForm {
     }
 
     this.showSuccess = true;
+
+    this.supabase.signUpUser(this.signUpForm.get('name')?.value, this.signUpForm.get('email')?.value, this.signUpForm.get('password')?.value)
 
     setTimeout(() => {
       this.router.navigate(['/login'], { replaceUrl: true });
