@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Supabase } from '../../../../services/supabase';
+import { AuthService } from '../../../../services/auth.service';
+
 
 @Component({
   selector: 'app-drop-down',
@@ -8,9 +11,18 @@ import { RouterModule } from '@angular/router';
   styleUrl: './drop-down.scss',
 })
 export class DropDown {
+
   isDropDownOpen = false;
 
   toggleDropdown() {
     this.isDropDownOpen = !this.isDropDownOpen;
+  }
+
+  constructor(private supaBase: Supabase, private route: Router, private auth: AuthService){}
+
+  async logOut(){
+   await this.supaBase.logOut();
+   this.auth.logout();
+   this.route.navigateByUrl('/login');
   }
 }
