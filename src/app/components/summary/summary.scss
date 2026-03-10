@@ -8,6 +8,10 @@ section{
   align-items: center;
   height: 100%;
   max-height: calc(100dvh - 96px);
+
+  @media (max-width: 768px) {
+    max-height: calc(100dvh - 96px - 80px);
+  }
 }
 
 .background {
@@ -18,6 +22,13 @@ section{
   right: 0;
   bottom: 0;
   background-color: #f6f7f8;
+}
+
+.inner-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
 }
 
 .summary-header {
@@ -93,11 +104,16 @@ section{
 .outer{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  max-height: 100%;
   gap: 4rem;
   width: 90%;
-  height: 100%;
   overflow: auto;
+  @media (max-width: 768px) {
+    justify-content: unset;
+  }
+  @media (max-width: 400px){
+    width: unset;
+  }
 }
 
 .inner{

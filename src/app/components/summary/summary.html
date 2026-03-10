@@ -1,23 +1,25 @@
 <section>
 
+  <div class="background"></div>
   <div class="outer">
-    <div class="background"></div>
-  <div class="summary-header">
-    <h2>Join 360</h2>
-    <div class="spacer-blue"></div>
-    <span class="tagline">Key Metrics at a Glance</span>
-    <div class="spacer-blue-mobile"></div>
+    <article class="inner-content">
+      <div class="summary-header">
+        <h2>Join 360</h2>
+        <div class="spacer-blue"></div>
+        <span class="tagline">Key Metrics at a Glance</span>
+        <div class="spacer-blue-mobile"></div>
+      </div>
+
+      <div class="inner">
+        <app-task-button></app-task-button>
+
+        <div class="greeting">
+          <p class="greeting-text">{{ greetingText() }},</p>
+          <p class="name">{{ userName }}</p>
+        </div>
+      </div>
+    </article>
+
   </div>
-
-  <div class="inner">
-    <app-task-button></app-task-button>
-
-    <div class="greeting">
-      <p class="greeting-text">{{ greetingText() }},</p>
-      <p class="name">{{ userName }}</p>
-    </div>
-   </div>
-
-    </div>
 
 </section>
