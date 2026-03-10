@@ -31,7 +31,7 @@ export class DropDown {
       const loggedInUser = await this.supaBase.getLoggedInUser(email) as SupabaseContactsInterface[];
       this.currentUserName.set(loggedInUser[0].name);
     }
-    else this.currentUserName.set("Guest");
+    else this.currentUserName.set("Guest ");
   }
 
   async logOut() {
