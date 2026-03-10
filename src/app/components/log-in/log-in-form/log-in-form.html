@@ -3,10 +3,10 @@
         <h1 class="login-title">Log in</h1>
         <div class="title-underline"></div>
 
-        <form class="login-form" autocomplete="on">
+        <form [formGroup]="logInGroup" class="login-form" autocomplete="on">
 
             <div class="input-group">
-                <input type="email" placeholder="Email" name="email" autocomplete="email" />
+                <input formControlName="email" type="email" placeholder="Email" name="email" autocomplete="email" />
 
                 <div class="icon-slot" aria-hidden="true">
                     <img src="assets/img/mail-icon.png" alt="" />
@@ -14,7 +14,7 @@
             </div>
 
             <div class="input-group">
-                <input [(ngModel)]="password" name="password" [type]="showPassword ? 'text' : 'password'"
+                <input formControlName="password" name="password" [type]="showPassword ? 'text' : 'password'"
                     placeholder="Password" autocomplete="current-password" (input)="showPassword = false" />
 
                 <button type="button" class="icon-slot" (click)="togglePassword()"
@@ -24,7 +24,7 @@
             </div>
 
             <div class="button-row">
-                <button type="submit" class="btn-primary">Log in</button>
+                <button type="submit" class="btn-primary" (click)="onSubmit()">Log in</button>
                 <button type="button" class="btn-secondary" (click)="loginAsGuest()">
                     Guest Log in
                 </button>

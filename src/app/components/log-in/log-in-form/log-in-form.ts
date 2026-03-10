@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { Supabase } from '../../../services/supabase';
 
 @Component({
   selector: 'app-log-in-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './log-in-form.html',
   styleUrls: ['./log-in-form.scss'],
 })
@@ -14,7 +15,17 @@ export class LogInForm {
   password = '';
   showPassword = false;
 
-  constructor(private router: Router, private auth: AuthService) { }
+  logInGroup!: FormGroup;
+  emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$';
+
+  constructor(private router: Router, private supaBase: Supabase, private auth: AuthService) {
+        this.logInGroup = new FormGroup (
+      {
+        email: new FormControl('', {validators:[Validators.required, Validators.pattern(this.emailPattern)]}) ,
+        password: new FormControl('', {validators:[Validators.required, Validators.minLength(6)]}) ,
+      })
+    ;
+  }
 
   togglePassword() {
     this.showPassword = !this.showPassword;
@@ -30,5 +41,11 @@ export class LogInForm {
   loginAsGuest() {
     this.auth.loginAsGuest();
     this.router.navigate(['/summary']);
+  }
+
+  async onSubmit(){
+    const { data, error } = await this.supaBase.signInUser(this.logInGroup.get('email')?.value, this.logInGroup.get('password')?.value);
+    if(!error) this.router.navigateByUrl('/summary');
+
   }
 }
