@@ -29,4 +29,7 @@ app-footer-nav {
 
 app-footer-policies {
   width: 100%;
+  @media (max-height: 575px){
+    display: none;
+  }
 }
