@@ -93,8 +93,11 @@ section{
 .outer{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 4rem;
   width: 90%;
+  height: 100%;
+  overflow: auto;
 }
 
 .inner{
