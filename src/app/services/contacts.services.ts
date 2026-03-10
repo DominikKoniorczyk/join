@@ -32,6 +32,6 @@ export class InitialsSelctorPipe implements PipeTransform {
     if (position === 2 && parts.length > 1) {
       return parts[parts.length - 1][0].toUpperCase();
     }
-    return parts.map(p => p[0]).join('').toUpperCase();
+    return "";
   }
 }
