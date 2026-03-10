@@ -65,7 +65,7 @@
     box-sizing: border-box;
     font-size: 16px;
     line-height: 1.2;
-    outline: none;
+
 }
 
 .input-group input::placeholder {
@@ -270,4 +270,16 @@ button.icon-slot:hover img {
         height: 48px;
         font-size: 15px;
     }
+}
+
+.error-message{
+  color: $error-color-red;
+}
+
+.d-none{
+  display: none;
+}
+
+.red{
+  outline: 1px solid $error-color-red;
 }

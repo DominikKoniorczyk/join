@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -17,6 +17,7 @@ export class LogInForm {
 
   logInGroup!: FormGroup;
   emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$';
+  invalid = signal<boolean>(false);
 
   constructor(private router: Router, private supaBase: Supabase, private auth: AuthService) {
         this.logInGroup = new FormGroup (
@@ -45,7 +46,12 @@ export class LogInForm {
 
   async onSubmit(){
     const { data, error } = await this.supaBase.signInUser(this.logInGroup.get('email')?.value, this.logInGroup.get('password')?.value);
-    if(!error) this.router.navigateByUrl('/summary');
-
+    if(!error){
+      this.router.navigateByUrl('/summary');
+      this.invalid.set(false);
+    }
+    if(error){
+      this.invalid.set(true);
+    }
   }
 }

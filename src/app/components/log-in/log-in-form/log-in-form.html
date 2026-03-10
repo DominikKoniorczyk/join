@@ -6,7 +6,7 @@
         <form [formGroup]="logInGroup" class="login-form" autocomplete="on">
 
             <div class="input-group">
-                <input formControlName="email" type="email" placeholder="Email" name="email" autocomplete="email" />
+                <input formControlName="email" type="email" placeholder="Email" name="email" autocomplete="email" [class.red]="invalid()"/>
 
                 <div class="icon-slot" aria-hidden="true">
                     <img src="assets/img/mail-icon.png" alt="" />
@@ -15,12 +15,16 @@
 
             <div class="input-group">
                 <input formControlName="password" name="password" [type]="showPassword ? 'text' : 'password'"
-                    placeholder="Password" autocomplete="current-password" (input)="showPassword = false" />
+                    placeholder="Password" autocomplete="current-password" (input)="showPassword = false" [class.red]="invalid()" />
 
                 <button type="button" class="icon-slot" (click)="togglePassword()"
                     aria-label="Toggle password visibility">
                     <img [src]="getPasswordIcon()" alt="" />
                 </button>
+            </div>
+
+            <div [class.d-none]="!invalid()">
+              <span class="error-message">Check your email and password. Please try again.</span>
             </div>
 
             <div class="button-row">
