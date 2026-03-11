@@ -1,127 +1,123 @@
 @use '../../../../styles/variables.scss' as vars;
 
-.content{
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
+.content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
-button{
-  width: 100%;
-  height: 200px;
-  border-radius: 25px;
-  border: none;
-  background-color: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
-  cursor: pointer;
-  color: vars.$primary-color;
-  font-size: 1.25rem;
+button {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 25px;
+    background-color: white;
+    color: vars.$primary-color;
+    font-size: 1.25rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
 
-  &:hover{
-    background-color: vars.$primary-color;
-    transform: scale(1.1);
-    color: white;
+    &:hover {
+        background-color: vars.$primary-color;
+        color: white;
+        transform: scale(1.1);
 
-    .amount{
-      color: white;
+        .amount {
+            color: white;
+        }
     }
-  }
 
-  @media(max-width:1000px){
-    height: 150px;
-    font-size: 1rem;
-  }
+    @media(max-width: 1000px) {
+        height: 150px;
+        font-size: 1rem;
+    }
 
-  @media(max-width: 500px) {
-    height: 110px;
-  }
+    @media(max-width: 500px) {
+        height: 110px;
+    }
 
-      @media(max-width: 380px) {
-    height: 95px;
-    font-size:  0.85rem;
-  }
-
-
-
+    @media(max-width: 380px) {
+        height: 95px;
+        font-size: 0.85rem;
+    }
 }
 
-.inner-content{
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  align-items: center;
-
+.inner-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }
 
-.date{
-  font-size: 1rem;
-  font-weight: bold;
+.left-col {
+    display: flex;
 }
 
-.amount{
-  color: black;
-  font-size: 4rem;
-  font-weight: bold;
-  @media(max-width:1000px){
-    font-size: 3rem;
-  }
+.left-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.seperator{
-  width: 2px;
-  height: 130px;
-  background-color: vars.$font-lightcolor;
-
-  @media(max-width:1000px){
-    height: 90px;
-  }
-
-  @media(max-width: 500px) {
-    height: 70px;
-  }
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-
-.left-col{
-  display: flex;
+.right-col {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
 }
-
-.left-side{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.right-side{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.right-col{
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 1rem;
-}
-
 
 .circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 
-  &.bg-urgent { background-color: #F84216; }
-  &.bg-medium { background-color: #F9AC22; }
-  &.bg-low    { background-color: #7EE538; }
+    &.bg-urgent { background-color: #F84216; }
+    &.bg-medium { background-color: #F9AC22; }
+    &.bg-low { background-color: #7EE538; }
 
-   @media(max-width:1000px){
-    width: 40px;
-    height: 40px;
-  }
+    @media(max-width: 1000px) {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.seperator {
+    width: 2px;
+    height: 130px;
+    background-color: vars.$font-lightcolor;
+
+    @media(max-width: 1000px) {
+        height: 90px;
+    }
+
+    @media(max-width: 500px) {
+        height: 70px;
+    }
+}
+
+.amount {
+    font-size: 4rem;
+    font-weight: bold;
+    color: black;
+
+    @media(max-width: 1000px) {
+        font-size: 3rem;
+    }
+}
+
+.date {
+    font-size: 1rem;
+    font-weight: bold;
 }

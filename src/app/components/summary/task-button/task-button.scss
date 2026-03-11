@@ -1,20 +1,22 @@
-.content{
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 700px;
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    gap: 2rem;
 
-  @media(max-width:1000px){
-    width: 650px;
-  }
-  @media(max-width:945px){
-    width: 520px;
-  }
-  @media(max-width:800px){
-    width: 500px;
-  }
+    @media(max-width: 1000px) {
+        width: 650px;
+    }
 
-   @media(max-width:768px){
-    width: clamp(300px, 90vw, 500px);
-  }
+    @media(max-width: 945px) {
+        width: 520px;
+    }
+
+    @media(max-width: 800px) {
+        width: 500px;
+    }
+
+    @media(max-width: 768px) {
+        width: clamp(300px, 90vw, 500px);
+    }
 }

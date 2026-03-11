@@ -1,109 +1,113 @@
 @use '../../../../styles/variables.scss' as vars;
 
-.content{
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  gap: 1rem;
+.content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
 
-  @media(max-width: 500px) {
-    gap: 0.5rem;
-  }
-
+    @media(max-width: 500px) {
+        gap: 0.5rem;
+    }
 }
 
-.inner-content{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+.inner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
 }
 
-button{
-  // width: 300px;
-  // height: 200px;
-  width: 100%;
-  max-width: 300px;
-  height: 200px;
-  border-radius: 25px;
-  border: none;
-  background-color: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
-  cursor: pointer;
-  color: vars.$primary-color;
-  font-size: 1.25rem;
+button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    border: none;
+    border-radius: 25px;
+    background-color: white;
+    color: vars.$primary-color;
+    font-size: 1.25rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
 
-  &:hover{
-    background-color: vars.$primary-color;
-    transform: scale(1.1);
-    color: white;
-    .circle {
-      background-color: white;
-      svg path {
-        fill: vars.$primary-color;
-      }
+    &:hover {
+        background-color: vars.$primary-color;
+        color: white;
+        transform: scale(1.1);
+
+        .circle {
+            background-color: white;
+            svg path {
+                fill: vars.$primary-color;
+            }
+        }
+
+        .amount {
+            color: white;
+        }
     }
-    .amount{
-      color: white;
+
+    @media(max-width: 1000px) {
+        width: 250px;
+        height: 150px;
+        font-size: 1rem;
     }
-  }
 
-   @media(max-width:1000px){
-    width: 250px;
-    height: 150px;
-    font-size: 1rem;
-  }
+    @media(max-width: 800px) {
+        width: 230px;
+    }
 
-  @media(max-width:800px){
-    width: 230px;
-  }
-
-  @media(max-width: 500px) {
-    height: 110px;
-    max-width: 45%;
-  }
+    @media(max-width: 500px) {
+        max-width: 45%;
+        height: 110px;
+    }
 
     @media(max-width: 380px) {
-    height: 95px;
-    font-size:  0.85rem;;
-  }
+        width: 95px;
+        height: 95px;
+        font-size: 0.85rem;
+    }
 }
 
-.circle{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: vars.$primary-color;
-  transition: background-color 0.3s ease-in-out;
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: vars.$primary-color;
+    transition: background-color 0.3s ease-in-out;
 
-  svg path {
-    transition: fill 0.3s ease-in-out;
-  }
+    svg path {
+        transition: fill 0.3s ease-in-out;
+    }
 
-   @media(max-width:1000px){
-    height: 40px;
-    width: 40px;
-  }
+    @media(max-width: 1000px) {
+        width: 40px;
+        height: 40px;
+    }
 }
 
-svg{
-   @media(max-width:1000px){
-    height: 20px;
-    width: 20px;
-  }
+svg {
+    @media(max-width: 1000px) {
+        width: 20px;
+        height: 20px;
+    }
 }
 
-.amount{
-  color: black;
-  font-size: 4rem;
-  font-weight: bold;
-   @media(max-width:1000px){
+.amount {
+    font-size: 4rem;
+    font-weight: bold;
+    color: black;
 
-    font-size: 3rem;
-  }
+    @media(max-width: 1000px) {
+        font-size: 3rem;
+    }
 }
