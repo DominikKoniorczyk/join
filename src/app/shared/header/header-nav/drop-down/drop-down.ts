@@ -42,7 +42,7 @@ export class DropDown {
       this.currentUserName.set(loggedInUser[0].name);
       this.loggedIn = true;
     }
-    else if(this.auth.isLoggedIn){
+    else if(this.auth.isGuest){
       this.currentUserName.set("Guest");
       this.loggedIn = true;
     }
