@@ -86,3 +86,19 @@ export function noPastDateValidator(): ValidatorFn {
     return null;
   };
 }
+
+/**
+ * Validator function to check if password and confirm password fields match.
+ *
+ * @returns {ValidatorFn} A validator function returning a passwordMismatch error if passwords differ.
+ */
+export function passwordMatchValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+    if (!password || !confirmPassword) return null;
+    return password === confirmPassword
+      ? null
+      : { passwordMismatch: true };
+  };
+}
