@@ -181,7 +181,7 @@ export class Contacts {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.showModal();
-      if(this.isMobile()) await this.animService.animate(dialogRef, slideUpAnimations, 400, true);
+      if (this.isMobile()) await this.animService.animate(dialogRef, slideUpAnimations, 400, true);
       else await this.animService.animate(dialogRef, slideInAnimations, 400, true);
     }
   }
@@ -193,7 +193,7 @@ export class Contacts {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.classList.add('closed');
-      if(this.isMobile()) await this.animService.animate(dialogRef, slideDownAnimations, 300, true);
+      if (this.isMobile()) await this.animService.animate(dialogRef, slideDownAnimations, 300, true);
       else await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
       dialogRef.classList.remove('closed');
       dialogRef.close();
@@ -257,18 +257,17 @@ export class Contacts {
   closeMobileDetails() {
     this.contactsDetailOpen.set(false);
   }
-
   /**
-   * Displays a temporary UX feedback notification.
+   * Handles user experience feedback when a contact is edited or selected.
+   * Performs the following steps:
+   * 1. Determines if the view is mobile.
+   * 2. Retrieves the currently editing contact ID.
+   * 3. Closes any open dialog.
+   * 4. Handles the selection of the contact ID based on device type.
+   * 5. Sends UX feedback.
+   * 6. Clears the editing contact ID.
    *
-   * Opens a modal dialog with ID 'uxFeedbackNotification', adds the 'active' class,
-   * and automatically removes the class and closes the dialog after 2.5 seconds.
-   * The notification is triggered after a short delay of 302 milliseconds.
-   */
-
-
-  /**
-   * refactored triggerUxFeedback try
+   * @returns {Promise<void>}
    */
   async triggerUxFeedback() {
     const isMobile = this.responsiveDetailsOpen();
@@ -279,14 +278,20 @@ export class Contacts {
     this.editingContactId.set(null);
   }
 
+  /**
+   * Handles selecting a contact by ID or defaults to the newest contact.
+   * Opens the contact details and either scrolls to it (desktop) or opens
+   * the contact detail panel (mobile).
+   *
+   * @param {number | null} editId - The ID of the contact to edit, or null to select the newest contact.
+   * @param {boolean} isMobile - True if the action is performed on a mobile device, false otherwise.
+   */
   handleContactIdSelection(editId: number | null, isMobile: boolean) {
     const users = this.dataUsers();
     if (!users.length) return;
-
     const editedContact = editId ? users.find(contact => contact.id === editId) : null;
     const newest = [...users].sort((a, b) => b.id - a.id)[0];
     const target = editedContact || newest;
-
     if (target) {
       this.openContact(target, target.id);
       if (isMobile) {
@@ -309,7 +314,7 @@ export class Contacts {
     const notificationRef = document.getElementById('uxFeedbackNotification');
     if (notificationRef instanceof HTMLDialogElement) {
       notificationRef.show();
-      if(this.responsiveDetailsOpen()) await this.animService.animate(notificationRef, feedbackDownToUpAnimations, 2500, true);
+      if (this.responsiveDetailsOpen()) await this.animService.animate(notificationRef, feedbackDownToUpAnimations, 2500, true);
       else await this.animService.animate(notificationRef, feedbackAnimations, 2500, true);
       notificationRef.close();
     }
