@@ -3,8 +3,7 @@
 :host {
     position: fixed;
     inset: 0;
-    background: $content-bg;
-
     overflow-x: hidden;
     overflow-y: auto;
+    background: $content-bg;
 }
