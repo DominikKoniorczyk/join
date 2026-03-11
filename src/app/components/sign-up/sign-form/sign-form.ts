@@ -150,6 +150,7 @@ export class SignForm {
     this.supabase.signUpUser(this.signUpForm.get('name')?.value, this.signUpForm.get('email')?.value, this.signUpForm.get('password')?.value);
     setTimeout(() => {
       this.router.navigate(['/login'], { replaceUrl: true });
-    }, 1000);
+      this.supabase.logOut();
+    }, 100);
   }
 }

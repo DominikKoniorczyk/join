@@ -15,6 +15,7 @@ import { InitialsSelctorPipe } from '../../../../services/contacts.services';
 export class DropDown {
   currentUserName = signal<string>("");
   isDropDownOpen = false;
+  loggedIn: boolean = false;
 
   constructor(private supaBase: Supabase, private route: Router, private auth: AuthService) {
     this.getUserName();
@@ -39,8 +40,13 @@ export class DropDown {
     if (user) {
       const loggedInUser = await this.supaBase.getLoggedInUser(email) as SupabaseContactsInterface[];
       this.currentUserName.set(loggedInUser[0].name);
+      this.loggedIn = true;
     }
-    else this.currentUserName.set("Guest ");
+    else if(this.auth.isGuest){
+      this.currentUserName.set("Guest");
+      this.loggedIn = true;
+    }
+    else this.currentUserName.set("Guest")
   }
 
   /**
