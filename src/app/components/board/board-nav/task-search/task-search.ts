@@ -14,10 +14,16 @@ export class TaskSearch {
   searchTerm: string = '';
   @Input() searchResults: boolean = false;
 
+  /**
+   * Emits the current search term whenever the input value changes.
+   */
   onInput(): void {
     this.searchChange.emit(this.searchTerm);
   }
 
+  /**
+   * Clears the search input and emits an empty string.
+   */
   clearSearch(): void {
     this.searchTerm = '';
     this.searchChange.emit('');

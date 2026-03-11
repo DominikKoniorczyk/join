@@ -37,10 +37,6 @@ export class Board {
 
   constructor(private animService: AnimationService) { }
 
-  ngAfterViewInit(){
-
-  }
-
   /**
    * Updates the current search term and applies it to the task lists.
    * @param term The search term entered by the user.

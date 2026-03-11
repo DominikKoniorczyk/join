@@ -21,6 +21,10 @@ export class SubtaskButtonComponent {
   isEditing: boolean = false;
   editValue: string = '';
 
+  /**
+   * Enables edit mode for the subtask and focuses the input field.
+   * The current title is copied into the editable value.
+   */
   startEdit() {
     this.isEditing = true;
     this.editValue = this.title;
@@ -29,6 +33,11 @@ export class SubtaskButtonComponent {
     }, 0);
   }
 
+  /**
+   * Confirms the edit of the subtask title.
+   * Trims the input value and emits the updated title if it is not empty.
+   * Exits edit mode after emitting the change.
+   */
   confirmEdit() {
     const cleaned = this.editValue.trim();
     if (cleaned === '') return;
@@ -36,17 +45,26 @@ export class SubtaskButtonComponent {
     this.isEditing = false;
   }
 
+  /**
+   * Emits an event to delete the current subtask using its index.
+   */
   onDelete() {
     this.deleteSubtask.emit(this.index);
   }
 
+  /**
+   * Handles keyboard events while editing the subtask.
+   * - Enter confirms the edit.
+   * - Escape cancels edit mode.
+   *
+   * @param {KeyboardEvent} ev - The keyboard event triggered by the user.
+   */
   onKeydown(ev: KeyboardEvent) {
     if (ev.key === 'Enter') {
       ev.preventDefault();
       this.confirmEdit();
     }
-
-    if (ev.key === 'Escape') {
+    else if (ev.key === 'Escape') {
       ev.preventDefault();
       this.isEditing = false;
     }

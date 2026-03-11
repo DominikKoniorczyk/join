@@ -20,7 +20,7 @@ export class AddTaskComponent {
   shouldRegenerateTasks: boolean = false;
   initialTasks = defaultTasks;
 
-  constructor(private supabaseClientService : Supabase){}
+  constructor(private supabaseClientService: Supabase) { }
 
   /**
    * Restores the tasks table to the default contacts.
@@ -45,6 +45,11 @@ export class AddTaskComponent {
     this.isLoading.set(false);
   }
 
+  /**
+   * Angular lifecycle hook that runs after the component's view has been fully initialized.
+   * Subscribes to form status changes to keep the `isFormValid` signal updated.
+   * Optionally restores default tasks if `shouldRegenerateTasks` is enabled.
+   */
   ngAfterViewInit() {
     if (this.form.taskForm) {
       this.form.taskForm.statusChanges.subscribe(status => {
@@ -54,14 +59,23 @@ export class AddTaskComponent {
     if (this.shouldRegenerateTasks) this.restoreTasksToDefault();
   }
 
+  /**
+   * Closes the dropdown menu through the form component.
+   */
   closeDropdown() {
     this.form.closeDropdown();
   }
 
+  /**
+   * Resets the task form to its initial state.
+   */
   resetForm() {
     this.form.resetForm();
   }
 
+  /**
+   * Triggers the task creation process through the form component.
+   */
   createTask() {
     this.form.createTask();
   }

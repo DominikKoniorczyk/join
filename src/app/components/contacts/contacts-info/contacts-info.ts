@@ -10,8 +10,4 @@ import { PhonePipe } from '../../../pipes/phonepipe-pipe';
 })
 export class ContactsInfo {
   currentContact!: SupabaseContactsInterface;
-
-  ngAfterViewInit() {
-
-  }
 }
