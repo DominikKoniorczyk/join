@@ -4,6 +4,8 @@ import { Slider } from './slider/slider';
 import { LogInHeader } from './log-in-header/log-in-header';
 import { LogInForm } from './log-in-form/log-in-form';
 import { LogInFooter } from './log-in-footer/log-in-footer';
+import { AuthService } from '../../services/auth.service';
+import { Supabase } from '../../services/supabase';
 
 type Phase = 'splash' | 'slide' | 'stable';
 
@@ -16,6 +18,13 @@ type Phase = 'splash' | 'slide' | 'stable';
 })
 export class LogIn {
   phase: Phase = 'splash';
+
+  constructor(private auth: AuthService, private supabase: Supabase){}
+
+  ngAfterViewInit(){
+    this.auth.logout();
+    this.supabase.logOut();
+  }
 
   /**
    * Called when the splash animation is completed.
