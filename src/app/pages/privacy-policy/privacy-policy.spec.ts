@@ -10,7 +10,7 @@ describe('PrivacyPolicy', () => {
     await TestBed.configureTestingModule({
       imports: [PrivacyPolicy]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PrivacyPolicy);
     component = fixture.componentInstance;
