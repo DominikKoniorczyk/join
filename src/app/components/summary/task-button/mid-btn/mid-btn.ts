@@ -29,21 +29,18 @@ export class MidBtn implements OnInit {
     const task = this.nextTask();
     return task ? task.dueDate : null;
   });
-  taskCountForDate = computed(() => {
-    const deadline = this.nextDeadline();
-    if (!deadline) return 0;
-    return this.tasks().filter(task => task.dueDate === deadline && task.progressStatus !== 'Done').length;
+  priorityText = computed(() => 'Urgent');
+  urgentTasks = computed(() => {
+    const today = new Date(this.dateService.getCurrentDate());
+    today.setHours(0, 0, 0, 0);
+    return this.tasks().filter(t =>
+      t.progressStatus !== 'Done' &&
+      t.priority === 2 &&
+      new Date(t.dueDate) >= today
+    );
   });
-  priorityText = computed(() => {
-    const task = this.nextTask();
-    if (!task) return '';
-    switch (task.priority) {
-      case 0: return 'Low';
-      case 1: return 'Medium';
-      case 2: return 'Urgent';
-      default: return 'Medium';
-    }
-  });
+  taskCountForDate = computed(() => this.urgentTasks().length);
+
 
   constructor(private supabaseService: Supabase, private dateService: CurrentDate, private router: Router) { }
 
