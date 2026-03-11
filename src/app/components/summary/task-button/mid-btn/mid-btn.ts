@@ -31,12 +31,9 @@ export class MidBtn implements OnInit {
   });
   priorityText = computed(() => 'Urgent');
   urgentTasks = computed(() => {
-    const today = new Date(this.dateService.getCurrentDate());
-    today.setHours(0, 0, 0, 0);
     return this.tasks().filter(t =>
       t.progressStatus !== 'Done' &&
-      t.priority === 2 &&
-      new Date(t.dueDate) >= today
+      t.priority === 2
     );
   });
   taskCountForDate = computed(() => this.urgentTasks().length);
