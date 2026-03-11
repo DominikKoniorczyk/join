@@ -19,10 +19,6 @@ export const routes: Routes = [
   { path: 'privacy-policy', component: PrivacyPolicy },
   { path: 'add-task', component: AddTaskComponent , canActivate: [LogInGuard] },
   { path: 'board', component: Board, canActivate: [LogInGuard]},
-  {
-    path: 'help',
-    loadComponent: () =>
-      import('./pages/help-text/help-text').then((m) => m.HelpText),
-  },
+  { path: 'help', loadComponent: () => import('./pages/help-text/help-text').then((m) => m.HelpText), },
   { path: '**', redirectTo: 'login' },
 ];
