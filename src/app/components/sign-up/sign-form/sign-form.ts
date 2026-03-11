@@ -1,10 +1,9 @@
-import { SupabaseClient } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors, ValidatorFn, ValueChangeEvent } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Supabase } from '../../../services/supabase';
-
+import { passwordMatchValidator } from '../../../services/custom-validators';
 
 @Component({
   selector: 'app-sign-form',
@@ -33,7 +32,7 @@ export class SignForm {
         confirmPassword: ['', Validators.required],
         acceptPolicy: [false, Validators.requiredTrue],
       },
-      { validators: this.passwordMatchValidator() }
+      { validators: passwordMatchValidator() }
     );
   }
 
@@ -155,21 +154,5 @@ export class SignForm {
     setTimeout(() => {
       this.router.navigate(['/login'], { replaceUrl: true });
     }, 1000);
-  }
-
-  /**
-   * Validator function to check if password and confirm password fields match.
-   *
-   * @returns {ValidatorFn} A validator function returning a passwordMismatch error if passwords differ.
-   */
-  passwordMatchValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const password = control.get('password')?.value;
-      const confirmPassword = control.get('confirmPassword')?.value;
-      if (!password || !confirmPassword) return null;
-      return password === confirmPassword
-        ? null
-        : { passwordMismatch: true };
-    };
   }
 }
