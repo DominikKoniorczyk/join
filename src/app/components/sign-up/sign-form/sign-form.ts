@@ -13,13 +13,10 @@ import { passwordMatchValidator } from '../../../services/custom-validators';
   styleUrls: ['./sign-form.scss'],
 })
 export class SignForm {
-
   signUpForm!: FormGroup;
-
   showPassword = false;
   showConfirmPassword = false;
   showSuccess = false;
-
   namePattern = '^[A-Za-zÄÖÜäöüß]+\\s+[A-Za-zÄÖÜäöüß]+(\\s*[A-Za-zÄÖÜäöüß]*)*$';
   emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$';
 
