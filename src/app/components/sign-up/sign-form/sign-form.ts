@@ -151,6 +151,6 @@ export class SignForm {
     setTimeout(() => {
       this.router.navigate(['/login'], { replaceUrl: true });
       this.supabase.logOut();
-    }, 100);
+    }, 1000);
   }
 }
