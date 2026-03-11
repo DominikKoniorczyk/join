@@ -1,19 +1,27 @@
 .content {
     display: flex;
     flex-direction: column;
-    width: 700px;
+    width: 650px;
     gap: 2rem;
 
-    @media(max-width: 1000px) {
-        width: 650px;
+    @media(max-width: 960px) {
+        width: 630px;
     }
 
     @media(max-width: 945px) {
         width: 520px;
     }
 
-    @media(max-width: 800px) {
+      @media(max-width: 835px) {
         width: 500px;
+    }
+
+    @media(max-width: 800px) {
+        width: 480px;
+    }
+
+    @media(max-width: 780px) {
+        width: 460px;
     }
 
     @media(max-width: 768px) {
