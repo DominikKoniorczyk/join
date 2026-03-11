@@ -17,10 +17,18 @@ type Phase = 'splash' | 'slide' | 'stable';
 export class LogIn {
   phase: Phase = 'splash';
 
+  /**
+   * Called when the splash animation is completed.
+   * Transitions the component phase to the slide animation.
+   */
   onSplashDone(): void {
     this.phase = 'slide';
   }
 
+  /**
+   * Called when the slide animation is completed.
+   * Transitions the component phase to a stable state.
+   */
   onSlideDone(): void {
     this.phase = 'stable';
   }
