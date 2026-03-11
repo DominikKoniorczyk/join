@@ -35,13 +35,20 @@ export class TaskformComponent implements OnInit {
   taskForm = new FormGroup({
     title: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
     desc: new FormControl(''),
-    date: new FormControl('', { validators: [ noPastDateValidator(), Validators.required]}),
+    date: new FormControl('', { validators: [noPastDateValidator(), Validators.required] }),
     cat: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
     subtask: new FormControl('')
   });
 
   constructor(private supabase: Supabase, private date: CurrentDate, private router: Router, private cdr: ChangeDetectorRef) { }
 
+  /**
+   * Angular lifecycle hook that runs after the component has been initialized.
+   * Loads contacts from the Supabase `users` table, initializes form input
+   * subscriptions, sets the current date, and triggers change detection.
+   *
+   * @returns {Promise<void>}
+   */
   async ngOnInit() {
     const data = await this.supabase.getDataFromTable('users');
     if (data) {
