@@ -2,14 +2,14 @@
   <div class="left-column">
     <div class="left-outer-container">
       <div class="mobile-close-btn-container">
-        <button class="close-btn-mobile" (click)="emitCloseDialog(); onClose()">
+        <button class="close-btn-mobile" (click)="emitCloseDialog(); onClose()" aria-label="Close dialog">
           <img src="./assets/img/close-light.png" alt="" />
         </button>
       </div>
     </div>
 
     <div class="left-inner-container">
-      <img class="logo" src="./assets/img/join-logo-light.png" alt="" />
+      <img class="logo" src="./assets/img/join-logo-light.png" alt="Join Logo" />
       <h2>
         @if (isEditing) {
           Edit contact
@@ -19,14 +19,14 @@
       </h2>
       <div class="container-with-line">
         <p>Tasks are better with a team!</p>
-        <div class="line"></div>
+        <div class="line" aria-hidden="true"></div>
       </div>
     </div>
   </div>
   <div class="right-column">
     <div class="close-btn-container">
       <button class="close-dialog-btn" (click)="emitCloseDialog(); onClose()">
-        <img src="./assets/img/close-cross.png" alt="" />
+        <img src="./assets/img/close-cross.png" alt="cross <mat-icon>icon</mat-icon>" aria-hidden="true"/>
       </button>
     </div>
     <div class="bottom-container">
@@ -91,7 +91,7 @@
             </div>
             <div class="error-wrapper">
               @if (contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched) {
-                <div class="error-message">Please add a valid phone number.</div>
+                <div class="error-message" role="alert">Please add a valid phone number.</div>
               }
             </div>
           </div>
