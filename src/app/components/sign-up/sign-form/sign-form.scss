@@ -1,276 +1,451 @@
 @use '../../../styles/variables.scss' as *;
 
 .sign-form-wrap {
-    display: grid;
-    place-items: center;
-    min-height: 100dvh;
-    padding: 140px 16px 110px;
-    box-sizing: border-box;
-    overflow-x: hidden;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 140px 16px 110px;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .sign-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: min(598px, 100%);
-    min-height: 630px;
-    max-width: 100%;
-    padding: 48px 88px;
-    gap: 32px;
-    border-radius: 30px;
-    background: #ffffff;
-    box-sizing: border-box;
-    box-shadow: 0 0 14px rgba(0, 0, 0, 0.08);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(598px, 100%);
+  min-height: 630px;
+  max-width: 100%;
+  padding: 48px 88px;
+  gap: 32px;
+  border-radius: 30px;
+  background: #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.08);
 }
 
 .back-arrow {
-    position: absolute;
-    top: 56px;
-    left: 56px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
+  position: absolute;
+  top: 56px;
+  left: 56px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
 
-    img {
-        width: 21px;
-        height: 21px;
-        object-fit: contain;
-    }
+  img {
+    width: 21px;
+    height: 21px;
+    object-fit: contain;
+  }
 }
 
 .title {
-    margin: 0;
-    text-align: center;
-    font-family: Inter, sans-serif;
-    font-size: 61px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #000;
+  margin: 0;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
 }
 
 .title-underline {
-    width: 150px;
-    height: 3px;
-    margin-top: -20px;
-    background: #29ABE2;
+  width: 150px;
+  height: 3px;
+  margin-top: -20px;
+  background: #29ABE2;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1.3rem;
 }
 
 .input-group {
-    position: relative;
+  position: relative;
+  width: 100%;
+  max-width: 422px;
+  height: 48px;
+
+  input {
     width: 100%;
-    max-width: 422px;
-    height: 48px;
+    height: 100%;
+    padding: 12px 56px 12px 21px;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    background: #ffffff;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.2;
+    outline: none;
+    transition: border-color 120ms ease, background-color 120ms ease;
 
-    input {
-        width: 100%;
-        height: 100%;
-        padding: 12px 56px 12px 21px;
-        border: 1px solid #d1d1d1;
-        border-radius: 10px;
-        background: #ffffff;
-        box-sizing: border-box;
-        font-size: 16px;
-        line-height: 1.2;
-        outline: none;
-        transition: border-color 120ms ease, background-color 120ms ease;
-
-        &::placeholder {
-            color: $font-lightcolor;
-        }
-
-        &:focus {
-            border-color: $brand-color;
-        }
+    &::placeholder {
+      color: $font-lightcolor;
     }
 
-    &.input-error input {
-        border-color: $error-color-red;
-
-        &:focus {
-            border-color: $error-color-red;
-        }
+    &:focus {
+      border-color: $brand-color;
     }
+  }
+
+  &.input-error input {
+    border-color: $error-color-red;
+
+    &:focus {
+      border-color: $error-color-red;
+    }
+  }
 }
 
 .icon-slot {
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    transform: translateY(-50%);
-    z-index: 2;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transform: translateY(-50%);
+  z-index: 2;
 
-    img {
-        display: block;
-        width: 20px;
-        height: 20px;
-        object-fit: contain;
-        opacity: 0.7;
-    }
+  img {
+    display: block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    opacity: 0.7;
+  }
 }
 
 button.icon-slot {
-    cursor: pointer;
+  cursor: pointer;
 
-    &:hover img {
-        opacity: 1;
-    }
+  &:hover img {
+    opacity: 1;
+  }
 }
 
 .policy-row {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    width: 100%;
-    max-width: 422px;
-    gap: 10px;
-    cursor: pointer;
-    user-select: none;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 422px;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .policy-box {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .policy-text {
-    font-size: 16px;
-    line-height: 1.2;
-    color: $font-lightcolor;
+  font-size: 16px;
+  line-height: 1.2;
+  color: $font-lightcolor;
 }
 
 .policy-link {
-    color: $brand-color;
-    text-decoration: none;
+  color: $brand-color;
+  text-decoration: none;
 
-    &:visited { color: $brand-color; }
-    &:hover { text-decoration: underline; }
+  &:visited {
+    color: $brand-color;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .submit-btn {
-    margin-top: 18px;
-    width: 110px;
-    height: 48px;
-    border: 1px solid $primary-color;
-    border-radius: 8px;
-    background: $primary-color;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.2;
-    cursor: pointer;
-    transition: background-color 120ms ease, border-color 120ms ease, opacity 120ms ease;
+  margin-top: 18px;
+  width: 110px;
+  height: 48px;
+  border: 1px solid $primary-color;
+  border-radius: 8px;
+  background: $primary-color;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, opacity 120ms ease;
 
-    &:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-    }
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
 
 .error-text {
-    width: 100%;
-    max-width: 422px;
-    margin: -8px 0 0;
-    font-size: 16px;
-    line-height: 1.2;
-    color: $error-color-red;
-    text-align: left;
+  width: 100%;
+  max-width: 422px;
+  margin: -18px 0;
+  font-size: 16px;
+  line-height: 1.2;
+  color: $error-color-red;
+  text-align: left;
 }
 
 .toast {
-    position: fixed;
-    top: 47%;
-    left: 50%;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 16px 25px;
-    width: min(312px, calc(100vw - 32px));
-    min-height: 74px;
-    border-radius: 20px;
-    background: #2a3647;
-    color: #ffffff;
-    font-family: Inter, sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 120%;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    transform: translate(-50%, -50%);
-    animation: slideInCenter 300ms ease-out;
+  position: fixed;
+  top: 47%;
+  left: 50%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 25px;
+  width: min(312px, calc(100vw - 32px));
+  min-height: 74px;
+  border-radius: 20px;
+  background: #2a3647;
+  color: #ffffff;
+  font-family: Inter, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 120%;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, -50%);
+  animation: slideInCenter 300ms ease-out;
 }
 
 @keyframes slideInCenter {
-    from { opacity: 0; transform: translate(-50%, calc(-50% + 40px)); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 40px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 @media (max-width: 768px) {
-    .sign-form-wrap { padding: 24px 16px; align-items: center; }
-    .sign-card { width: 100%; min-height: auto; padding: 32px 24px; gap: 24px; border-radius: 24px; }
-    .back-arrow { top: 34px; left: 24px; }
-    .title { font-size: 47px; }
-    .title-underline { width: 110px; margin-top: -14px; }
+  .sign-form-wrap {
+    padding: 24px 16px;
+    align-items: center;
+  }
+
+  .sign-card {
+    width: 100%;
+    min-height: auto;
+    padding: 32px 24px;
+    gap: 24px;
+    border-radius: 24px;
+  }
+
+  .back-arrow {
+    top: 34px;
+    left: 24px;
+  }
+
+  .title {
+    font-size: 47px;
+  }
+
+  .title-underline {
+    width: 110px;
+    margin-top: -14px;
+  }
 }
 
 @media (max-width: 544px) {
-    .sign-form-wrap { padding: 0 16px; place-items: center; }
-    .sign-card { width: calc(100% - 32px); max-width: 396px; min-height: 595px; padding: 32px 16px; gap: 32px; border-radius: 30px; }
-    .back-arrow { top: 32px; left: 24px; width: 24px; height: 24px; img { width: 18px; height: 18px; } }
-    .title { font-size: 47px; line-height: 1.2; }
-    .title-underline { width: 88px; margin-top: -18px; }
-    .input-group, .error-text, .policy-row { max-width: 364px; }
-    .input-group { height: 48px; input { padding: 12px 48px 12px 16px; font-size: 16px; } }
-    .icon-slot { right: 16px; }
-    .error-text { font-size: 14px; margin: -8px 0 0; }
-    .policy-row { justify-content: flex-start; margin-top: 8px; gap: 8px; text-align: left; flex-wrap: wrap; }
-    .policy-box { width: 22px; height: 22px; }
-    .policy-text { font-size: 16px; line-height: 1.2; }
-    .submit-btn { margin-top: 8px; width: 180px; height: 51px; }
+  .sign-form-wrap {
+    padding: 0 16px;
+    place-items: center;
+  }
+
+  .sign-card {
+    width: calc(100% - 32px);
+    max-width: 396px;
+    min-height: 595px;
+    padding: 32px 16px;
+    gap: 32px;
+    border-radius: 30px;
+  }
+
+  .back-arrow {
+    top: 32px;
+    left: 24px;
+    width: 24px;
+    height: 24px;
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .title {
+    font-size: 47px;
+    line-height: 1.2;
+  }
+
+  .title-underline {
+    width: 88px;
+    margin-top: -18px;
+  }
+
+  .input-group,
+  .error-text,
+  .policy-row {
+    max-width: 364px;
+  }
+
+  .input-group {
+    height: 48px;
+
+    input {
+      padding: 12px 48px 12px 16px;
+      font-size: 16px;
+    }
+  }
+
+  .icon-slot {
+    right: 16px;
+  }
+
+  .error-text {
+    font-size: 14px;
+  }
+
+  .policy-row {
+    justify-content: flex-start;
+    margin-top: 8px;
+    gap: 8px;
+    text-align: left;
+    flex-wrap: wrap;
+  }
+
+  .policy-box {
+    width: 22px;
+    height: 22px;
+  }
+
+  .policy-text {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .submit-btn {
+    margin-top: 8px;
+    width: 180px;
+    height: 51px;
+  }
 }
 
 @media (max-width: 428px) {
-    .sign-card { gap: 32px; }
-    .title { font-size: 47px; }
-    .title-underline { width: 84px; margin-top: -16px; }
-    .policy-box { width: 16px; height: 16px; }
-    .policy-text { font-size: 14px; line-height: 1.25; }
-    .submit-btn { width: 180px; height: 51px; }
+  .sign-card {
+    gap: 32px;
+    min-height: unset;
+  }
+
+  .title {
+    font-size: 47px;
+  }
+
+  .title-underline {
+    width: 84px;
+    margin-top: -16px;
+  }
+
+  .policy-box {
+    width: 16px;
+    height: 16px;
+  }
+
+  .policy-text {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .submit-btn {
+    width: 180px;
+    height: 51px;
+  }
 }
 
 @media (max-width: 320px) {
-    .sign-form-wrap { padding: 0 12px; }
-    .sign-card { width: calc(100% - 24px); min-height: auto; padding: 28px 12px 20px; gap: 24px; }
-    .back-arrow { left: 16px; top: 28px; }
-    .title { font-size: 34px; }
-    .title-underline { width: 76px; margin-top: -16px; }
-    .input-group { height: 44px; max-width: 100%; input { padding: 10px 44px 10px 14px; font-size: 15px; } }
-    .error-text { max-width: 100%; font-size: 13px; }
-    .policy-row { max-width: 100%; justify-content: center; align-items: center; gap: 6px; flex-wrap: wrap; }
-    .policy-box { width: 14px; height: 14px; }
-    .policy-text { font-size: 14px; line-height: 1.3; }
-    .submit-btn { width: 180px; height: 51px; }
+  .sign-form-wrap {
+    padding: 0 12px;
+  }
+
+  .sign-card {
+    width: calc(100% - 24px);
+    min-height: auto;
+    padding: 28px 12px 20px;
+    gap: 24px;
+  }
+
+  .back-arrow {
+    left: 16px;
+    top: 28px;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+
+  .title-underline {
+    width: 76px;
+    margin-top: -16px;
+  }
+
+  .input-group {
+    height: 44px;
+    max-width: 100%;
+
+    input {
+      padding: 10px 44px 10px 14px;
+      font-size: 15px;
+    }
+  }
+
+  .error-text {
+    max-width: 100%;
+    font-size: 13px;
+  }
+
+  .policy-row {
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .policy-box {
+    width: 14px;
+    height: 14px;
+  }
+
+  .policy-text {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .submit-btn {
+    width: 180px;
+    height: 51px;
+  }
 }
