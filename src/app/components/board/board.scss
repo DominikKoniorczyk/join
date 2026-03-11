@@ -14,14 +14,14 @@
   }
 }
 
-.background-board{
+.background-board {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #f6f7f8;
   z-index: -1;
+  background-color: #f6f7f8;
 }
 
 .content {
@@ -34,13 +34,13 @@
   overflow-x: hidden;
 
   @media (max-width: 1170px) {
-    gap: 1rem;
-    padding: unset;
     align-items: center;
+    padding: unset;
+    gap: 1rem;
   }
 }
 
-.inner{
+.inner {
   @media (max-width: 1170px) {
     width: 90%;
   }
@@ -48,16 +48,16 @@
 
 .board-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   height: 232px;
 
   @media (max-width: 1050px) {
     flex-direction: column;
-    align-items: start;
     justify-content: center;
-    gap: 1rem;
+    align-items: start;
     width: 100%;
+    gap: 1rem;
   }
 }
 
@@ -81,20 +81,24 @@ h2 {
 
 .btn-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .mobile-btn {
   display: none;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 3rem;
   height: 3rem;
-  background-color: vars.$primary-color;
   border: none;
   border-radius: 10px;
+  background-color: vars.$primary-color;
   cursor: pointer;
+
+  &:hover {
+    background-color: vars.$secondary-color;
+  }
 
   @media (max-width: 1050px) {
     display: block;
@@ -103,10 +107,6 @@ h2 {
   @media (max-width: 768px) {
     width: 2rem;
     height: 2rem;
-  }
-
-  &:hover {
-    background-color: vars.$secondary-color;
   }
 }
 
