@@ -1,26 +1,28 @@
 <div class="content">
-  <button (click)="redirectToBoard()">
-      <div class="inner-content">
-        <div class="amount">
-          {{ boardCount() }}
-        </div>
-        <span>Tasks in board</span>
-      </div>
+  <button type="button"
+          (click)="redirectToBoard()"
+          aria-label="{{ boardCount() }} tasks in board">
+    <div class="inner-content" aria-hidden="true">
+      <div class="amount">{{ boardCount() }}</div>
+      <span>Tasks in board</span>
+    </div>
   </button>
-   <button (click)="redirectToBoard()">
-      <div class="inner-content">
-        <div class="amount">
-          {{ progressCount() }}
-        </div>
-        <span>Tasks in progress</span>
-      </div>
+
+  <button type="button"
+          (click)="redirectToBoard()"
+          aria-label="{{ progressCount() }} tasks in progress">
+    <div class="inner-content" aria-hidden="true">
+      <div class="amount">{{ progressCount() }}</div>
+      <span>Tasks in progress</span>
+    </div>
   </button>
-   <button (click)="redirectToBoard()">
-      <div class="inner-content">
-        <div class="amount">
-          {{ feedbackCount() }}
-        </div>
-        <span>Awaiting feedback</span>
-      </div>
+
+  <button type="button"
+          (click)="redirectToBoard()"
+          aria-label="{{ feedbackCount() }} tasks awaiting feedback">
+    <div class="inner-content" aria-hidden="true">
+      <div class="amount">{{ feedbackCount() }}</div>
+      <span>Awaiting feedback</span>
+    </div>
   </button>
 </div>

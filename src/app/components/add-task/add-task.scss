@@ -2,47 +2,47 @@
 
 .main {
   position: relative;
-  height: calc(100% - 96px);
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  width: 100%;
+  height: calc(100% - 96px);
+  overflow: auto;
 }
 
 .background {
   position: absolute;
   z-index: -1;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
   background-color: #f6f7f8;
 }
 
 .button-area {
   display: none;
-  width: 100%;
-  height: 4rem;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 4rem;
 }
 
 .actions-mobile {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
   width: 82%;
   height: 100%;
-  justify-content: flex-end;
   gap: 1rem;
-  align-items: center;
 }
 
 .buttons {
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  border-radius: 10px;
   font-size: 21px;
 }
 
@@ -92,8 +92,8 @@ button[disabled] {
   cursor: not-allowed;
 
   &:hover {
-    background-color: #2A3647;
     opacity: 0.5;
+    background-color: #2A3647;
   }
 }
 
@@ -120,7 +120,7 @@ button[disabled] {
 
 @media (max-width: 360px) {
   .buttons {
-    font-size: 1rem;
     height: 40px;
+    font-size: 1rem;
   }
 }

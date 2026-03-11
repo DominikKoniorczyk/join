@@ -169,15 +169,31 @@ export class Supabase {
     return await this.supabaseClient.auth.signInWithPassword({ email: email, password: password });
   }
 
+  /**
+   * Retrieves the currently authenticated user from Supabase.
+   *
+   * @returns {Promise<User | null>} A promise resolving to the user object, or null if no user is logged in.
+   */
   async getUser(): Promise<User | null> {
     const { data } = await this.supabaseClient.auth.getUser();
     return data.user ?? null;
   }
 
+  /**
+   * Signs out the currently authenticated user from Supabase.
+   *
+   * @returns {Promise<import('@supabase/supabase-js').ApiResponse>} A promise resolving to the sign-out response.
+   */
   async logOut() {
     return await this.supabaseClient.auth.signOut();
   }
 
+  /**
+   * Fetches a user from the "users" table based on their email address.
+   *
+   * @param {string} email - The email address of the user to retrieve.
+   * @returns {Promise<any[] | null>} A promise resolving to an array of user records, or null if an error occurs.
+   */
   async getLoggedInUser(email: string) {
     const { data, error } = await this.supabaseClient
       .from("users")

@@ -1,23 +1,27 @@
-<section>
+<section aria-labelledby="section-title">
+
+  <div class="background" aria-hidden="true"></div>
 
   <div class="outer">
-    <div class="background"></div>
-  <div class="summary-header">
-    <h2>Join 360</h2>
-    <div class="spacer-blue"></div>
-    <span class="tagline">Key Metrics at a Glance</span>
-    <div class="spacer-blue-mobile"></div>
+    <article class="inner-content" aria-label="User summary section">
+
+      <div class="summary-header">
+        <h2 id="section-title">Join 360</h2>
+        <div class="spacer-blue" aria-hidden="true"></div>
+        <span class="tagline">Key Metrics at a Glance</span>
+        <div class="spacer-blue-mobile" aria-hidden="true"></div>
+      </div>
+
+      <div class="inner">
+        <app-task-button aria-label="Redirect to Board Section"></app-task-button>
+
+        <div class="greeting" role="status" aria-live="polite">
+          <p class="greeting-text">{{ greetingText() }},</p>
+          <p class="name">{{ userName() }}</p>
+        </div>
+      </div>
+
+    </article>
   </div>
-
-  <div class="inner">
-    <app-task-button></app-task-button>
-
-    <div class="greeting">
-      <p class="greeting-text">{{ greetingText() }},</p>
-      <p class="name">{{ userName }}</p>
-    </div>
-   </div>
-
-    </div>
 
 </section>

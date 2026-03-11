@@ -21,6 +21,18 @@ export class InitialsPipe implements PipeTransform {
   }
 }
 
+/**
+ * Angular pipe that extracts initials from a full name.
+ * Can return the first or last initial depending on the `position` argument.
+ *
+ * @example
+ * {{ 'John Doe' | initialsSelector:1 }}  // Outputs: "J"
+ * {{ 'John Doe' | initialsSelector:2 }}  // Outputs: "D"
+ *
+ * @param {string} fullName - The full name to extract initials from.
+ * @param {number} [position] - Optional. 1 for first initial, 2 for last initial.
+ * @returns {string} The uppercase initial based on the specified position, or empty string if unavailable.
+ */
 @Pipe({ name: 'initialsSelector' })
 export class InitialsSelctorPipe implements PipeTransform {
   transform(fullName: string, position?: number): string {
@@ -32,6 +44,6 @@ export class InitialsSelctorPipe implements PipeTransform {
     if (position === 2 && parts.length > 1) {
       return parts[parts.length - 1][0].toUpperCase();
     }
-    return parts.map(p => p[0]).join('').toUpperCase();
+    return "";
   }
 }

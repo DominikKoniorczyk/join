@@ -8,16 +8,16 @@
         <div class="title-underline"></div>
 
         @if (showSuccess) {
-        <div class="toast">
+        <div class="toast" role="status" aria-live="polite">
             You signed up successfully
         </div>
         }
 
         <form class="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
             <div class="input-group" [class.input-error]="isInvalid('name')">
-                <input type="text" formControlName="name" placeholder="Name" />
+                <input type="text" formControlName="name" placeholder="Name" aria-label="Name" />
                 <div class="icon-slot">
-                    <img src="assets/img/person-icon.png" alt="" />
+                    <img src="assets/img/person-icon.png" alt="Name icon" />
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
             <div class="input-group" [class.input-error]="isInvalid('email')">
                 <input type="text" formControlName="email" placeholder="Email" autocomplete="email" />
                 <div class="icon-slot">
-                    <img src="assets/img/mail-icon.png" alt="" />
+                    <img src="assets/img/mail-icon.png" alt="Email Icon" />
                 </div>
             </div>
 
@@ -54,10 +54,10 @@
 
             <div class="input-group" [class.input-error]="isInvalid('password')">
                 <input formControlName="password" placeholder="Password" autocomplete="new-password"
-                    [type]="showPassword ? 'text' : 'password'" (input)="showPassword = false" />
+                    [type]="showPassword ? 'text' : 'password'" (input)="showPassword = false" aria-label="Password" />
 
-                <button type="button" class="icon-slot" (click)="togglePassword()">
-                    <img [src]="getPasswordIcon()" alt="" />
+                <button type="button" class="icon-slot" (click)="togglePassword()" aria-label="Toggle password visibility">
+                    <img [src]="getPasswordIcon()" alt="Eye icon for password visibility" />
                 </button>
             </div>
 
@@ -75,10 +75,10 @@
 
             <div class="input-group" [class.input-error]="isInvalid('confirmPassword') || passwordMismatch">
                 <input formControlName="confirmPassword" placeholder="Confirm Password" autocomplete="new-password"
-                    [type]="showConfirmPassword ? 'text' : 'password'" (input)="showConfirmPassword = false" />
+                    [type]="showConfirmPassword ? 'text' : 'password'" (input)="showConfirmPassword = false" aria-label="Confirm Password" />
 
                 <button type="button" class="icon-slot" (click)="toggleConfirmPassword()">
-                    <img [src]="getConfirmPasswordIcon()" alt="" />
+                    <img [src]="getConfirmPasswordIcon()" alt="Eye icon for confirm password visibility" />
                 </button>
             </div>
 
@@ -94,10 +94,10 @@
             </p>
             }
 
-            <div class="policy-row" (click)="togglePolicy()">
+            <div class="policy-row" (click)="togglePolicy()" role="checkbox" [attr.aria-checked]="policyAccepted">
                 <img class="policy-box" [src]="policyAccepted
             ? 'assets/img/checkmarkbox-checked.png'
-            : 'assets/img/checkmarkbox-empty.png'" alt="" />
+            : 'assets/img/checkmarkbox-empty.png'" alt="Privacy policy agreement checkbox" />
                 <span class="policy-text">
                     I accept the
                     <a class="policy-link" routerLink="/privacy-policy" (click)="$event.stopPropagation()">

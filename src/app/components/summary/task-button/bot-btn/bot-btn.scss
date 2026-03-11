@@ -1,82 +1,89 @@
 @use '../../../../styles/variables.scss' as vars;
 
-.content{
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
+.content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.inner-content{
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+.inner-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
 
-  @media(max-width:800px){
-    gap: 0;
-  }
-}
-
-button{
-  width: 200px;
-  height: 200px;
-  border-radius: 25px;
-  border: none;
-  background-color: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
-  cursor: pointer;
-  color: vars.$primary-color;
-  font-size: 1rem;
-
-  &:hover{
-    background-color: vars.$primary-color;
-    transform: scale(1.1);
-    color: white;
-
-    .amount{
-      color: white;
+    @media(max-width: 800px) {
+        gap: 0;
     }
-  }
-
-  @media(max-width:1000px){
-    width: 150px;
-    height: 150px;
-  }
-
-
-  @media(max-width:500px){
-    width: 110px;
-    height: 110px;
-
-  }
-
-  @media(max-width: 380px) {
-    height: 95px;
-    width: 95px;
-  }
-
 }
 
-.amount{
-  color: black;
-  font-size: 4rem;
-  font-weight: bold;
-  @media(max-width:1000px){
-   font-size: 3rem;
-  }
-}
+button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border: none;
+    border-radius: 25px;
+    background-color: white;
+    color: vars.$primary-color;
+    font-size: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
 
-span{
-  font-size: 1.25rem;
-  color: vars.$primary-color;
-  @media(max-width:1000px){
-   font-size: 1rem;
-  }
+    &:hover {
+        background-color: vars.$primary-color;
+        color: white;
+        transform: scale(1.1);
+
+        .amount {
+            color: white;
+        }
+
+        span {
+            color: white;
+        }
+    }
+
+    @media(max-width: 1000px) {
+        width: 150px;
+        height: 150px;
+    }
+
+    @media(max-width: 500px) {
+        width: 110px;
+        height: 110px;
+    }
 
     @media(max-width: 380px) {
-   font-size:  0.85rem;;
-  }
+        width: 95px;
+        height: 95px;
+    }
+}
+
+.amount {
+    color: black;
+    font-size: 4rem;
+    font-weight: bold;
+
+    @media(max-width: 1000px) {
+        font-size: 3rem;
+    }
+}
+
+span {
+    color: vars.$primary-color;
+    font-size: 1.25rem;
+
+    @media(max-width: 1000px) {
+        font-size: 1rem;
+    }
+
+    @media(max-width: 380px) {
+        font-size: 0.85rem;
+    }
 }

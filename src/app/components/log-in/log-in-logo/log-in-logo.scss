@@ -1,12 +1,11 @@
 .logo-stage {
     position: fixed;
     inset: 0;
-    z-index: 9999;
-    pointer-events: none;
-    background: transparent;
-
     display: grid;
     place-items: center;
+    z-index: 9999;
+    background: transparent;
+    pointer-events: none;
 }
 
 .join-logo {
@@ -17,41 +16,40 @@
 
 .logo-stage.stable {
     display: block;
-}
 
-.logo-stage.stable .join-logo {
-    position: fixed;
-    width: 100px;
-    height: 122px;
-    top: 80px;
-    left: 77px;
+    .join-logo {
+        position: fixed;
+        top: 80px;
+        left: 77px;
+        width: 100px;
+        height: 122px;
+    }
 }
 
 @media (min-width: 429px) and (max-width: 1000px) {
     .logo-stage.stable .join-logo {
-        width: 64px;
-        height: auto;
         top: 37px;
         left: 38px;
+        width: 64px;
+        height: auto;
     }
 }
 
 @media (max-width: 428px) {
     .logo-stage.stable .join-logo {
         position: fixed;
-        width: 64px;
-        height: auto;
-
         top: 37px;
         left: 38px;
+        width: 64px;
+        height: auto;
     }
 }
 
 @media (max-width: 320px) {
     .logo-stage.stable .join-logo {
-        width: 48px;
-        height: auto;
         top: 16px;
         left: 16px;
+        width: 48px;
+        height: auto;
     }
 }

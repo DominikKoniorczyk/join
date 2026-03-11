@@ -11,26 +11,48 @@ import { Router } from '@angular/router';
   templateUrl: './mid-btn.html',
   styleUrl: './mid-btn.scss',
 })
-export class MidBtn implements OnInit{
+export class MidBtn implements OnInit {
   tasks = signal<Task[]>([]);
-
-readonly priorityMap: Record<number, { label: string, type: number }> = {
-  0: { label: 'Low', type: 0 },
-  1: { label: 'Medium', type: 1 },
-  2: { label: 'Urgent', type: 2 },
-};
-
-  constructor(private supabaseService: Supabase, private dateService: CurrentDate, private router: Router) {}
-
- nextTask = computed(() => {
+  readonly priorityMap: Record<number, { label: string, type: number }> = {
+    0: { label: 'Low', type: 0 },
+    1: { label: 'Medium', type: 1 },
+    2: { label: 'Urgent', type: 2 },
+  };
+  nextTask = computed(() => {
     const today = new Date(this.dateService.getCurrentDate());
     today.setHours(0, 0, 0, 0);
-
     return this.tasks()
       .filter(t => t.progressStatus !== 'Done' && new Date(t.dueDate) >= today)
       .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime())[0] || null;
   });
+  nextDeadline = computed(() => {
+    const task = this.nextTask();
+    return task ? task.dueDate : null;
+  });
+  taskCountForDate = computed(() => {
+    const deadline = this.nextDeadline();
+    if (!deadline) return 0;
+    return this.tasks().filter(task => task.dueDate === deadline && task.progressStatus !== 'Done').length;
+  });
+  priorityText = computed(() => {
+    const task = this.nextTask();
+    if (!task) return '';
+    switch (task.priority) {
+      case 0: return 'Low';
+      case 1: return 'Medium';
+      case 2: return 'Urgent';
+      default: return 'Medium';
+    }
+  });
 
+  constructor(private supabaseService: Supabase, private dateService: CurrentDate, private router: Router) { }
+
+  /**
+   * Angular lifecycle hook that runs after the component is initialized.
+   * Retrieves all tasks from the Supabase `tasks` table and stores them in the `tasks` signal.
+   *
+   * @returns {Promise<void>}
+   */
   async ngOnInit() {
     const data = await this.supabaseService.getDataFromTable('tasks');
     if (data) {
@@ -38,32 +60,10 @@ readonly priorityMap: Record<number, { label: string, type: number }> = {
     }
   }
 
-  nextDeadline = computed(() => {
-    const task = this.nextTask();
-    return task ? task.dueDate:null;
-  })
-
-  taskCountForDate = computed(()=> {
-    const deadline = this.nextDeadline();
-    if(!deadline) return 0;
-    return this.tasks().filter(task => task.dueDate === deadline && task.progressStatus !== 'Done').length;
-  })
-
-  priorityText = computed(() => {
-  const task = this.nextTask();
-  if (!task) return '';
-
-  switch (task.priority) {
-    case 0: return 'Low';
-    case 1: return 'Medium';
-    case 2: return 'Urgent';
-    default: return 'Medium';
-  }
-});
-
-
-  redirectToBoard(){
+  /**
+   * Navigates the user to the '/board' route using the Angular router.
+   */
+  redirectToBoard() {
     this.router.navigateByUrl('/board');
   }
-
 }

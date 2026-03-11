@@ -17,11 +17,21 @@ export class BoardNav {
 
   @ViewChild('search') searchArea!: TaskSearch;
 
+  /**
+   * Emits the current search term when it changes.
+   *
+   * @param {string} term - The new search term entered by the user.
+   */
   onSearchChange(term: string) {
     this.searchChange.emit(term);
   }
 
-  onSearchResultChange(valid: boolean){
+  /**
+   * Updates the search results validity in the search area.
+   *
+   * @param {boolean} valid - True if search results are valid, false otherwise.
+   */
+  onSearchResultChange(valid: boolean) {
     this.searchArea.searchResults = valid;
   }
 }

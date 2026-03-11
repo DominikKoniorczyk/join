@@ -1,17 +1,16 @@
 @use '../../../../styles/variables.scss' as vars;
 
-
 button {
   display: flex;
   align-items: center;
+  padding: 1rem;
   gap: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: vars.$primary-color;
   color: white;
   font-weight: bold;
   font-size: 1rem;
-  background-color: vars.$primary-color;
-  padding: 1rem;
-  border-radius: 10px;
-  border: none;
   white-space: nowrap;
   flex-shrink: 0;
 
