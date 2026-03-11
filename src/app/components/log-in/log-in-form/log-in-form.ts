@@ -28,10 +28,19 @@ export class LogInForm {
       ;
   }
 
+  /**
+   * Toggles the visibility of the password input field.
+   */
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
 
+  /**
+   * Returns the appropriate icon path for the password input field
+   * based on whether the password is visible or not.
+   *
+   * @returns {string} The path to the password icon.
+   */
   getPasswordIcon() {
     const passwordValue = this.logInGroup.get('password')?.value;
     if (!passwordValue) return 'assets/img/password-lock-icon.png';
@@ -40,11 +49,21 @@ export class LogInForm {
       : 'assets/img/visibility-off-icon.png';
   }
 
+  /**
+   * Logs in as a guest user and navigates to the summary page.
+   */
   loginAsGuest() {
     this.auth.loginAsGuest();
     this.router.navigate(['/summary']);
   }
 
+  /**
+   * Handles form submission for user login.
+   * Attempts to sign in with the provided email and password using Supabase.
+   * Navigates to the summary page if successful and sets validation state.
+   *
+   * @returns {Promise<void>}
+   */
   async onSubmit() {
     const { data, error } = await this.supaBase.signInUser(this.logInGroup.get('email')?.value, this.logInGroup.get('password')?.value);
     if (!error) {
