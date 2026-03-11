@@ -1,4 +1,4 @@
-import { Component, computed, signal} from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TaskButtonComponent } from './task-button/task-button';
 import { Supabase } from '../../services/supabase';
@@ -11,22 +11,26 @@ import { SupabaseContactsInterface } from '../../interfaces/supabase.interfaces'
   templateUrl: './summary.html',
   styleUrls: ['./summary.scss']
 })
-export class Summary  {
+export class Summary {
+  userName = signal<string>('Guest');
+  greetingText = computed(() => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 18) return 'Good afternoon';
+    return 'Good evening';
+  });
 
-
-userName = signal<string>('Guest');
-
-greetingText = computed(()=> {
-  const hour = new Date().getHours();
-  if(hour < 12) return 'Good morning';
-  if(hour< 18) return 'Good afternoon';
-  return 'Good evening';
-});
-
-constructor(private supaBase: Supabase) {
+  constructor(private supaBase: Supabase) {
     this.getUserName();
   }
 
+  /**
+   * Retrieves the current user's name from Supabase.
+   * - If a user is logged in, fetches their full name and sets it in the `userName` signal.
+   * - If no user is logged in, sets the `userName` signal to "Guest".
+   *
+   * @returns {Promise<void>}
+   */
   async getUserName() {
     const user = await this.supaBase.getUser();
     const email = user?.email as string;
