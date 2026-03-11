@@ -34,11 +34,18 @@ export class PhonePipe implements PipeTransform {
     return formatted;
   }
 
-  getHasCountryCode(value: string): boolean{
-    if(value.slice(0,1) != "0"){
+  /**
+   * Checks whether a phone number string includes a country code.
+   * Assumes that numbers starting with "0" do not have a country code.
+   *
+   * @param {string} value - The phone number to check.
+   * @returns {boolean} True if the number likely has a country code, false otherwise.
+   */
+  getHasCountryCode(value: string): boolean {
+    if (value.slice(0, 1) != "0") {
       return true;
     }
-    else{
+    else {
       return false;
     }
   }
