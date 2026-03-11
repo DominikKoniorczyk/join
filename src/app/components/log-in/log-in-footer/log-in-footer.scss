@@ -5,31 +5,27 @@
     bottom: 35px;
     left: 50%;
     transform: translateX(-50%);
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 246px;
     height: 35px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 35px;
 }
 
 .footer-link {
     font-family: Inter, sans-serif;
-    font-weight: 400;
     font-size: 16px;
+    font-weight: 400;
     line-height: 1.2;
-
     color: #a8a8a8;
     text-decoration: none;
     cursor: pointer;
-
     transition: color 100ms ease;
-}
 
-.footer-link:hover {
-    color: $brand-color;
+    &:hover {
+        color: $brand-color;
+    }
 }
 
 @media (max-width: 544px) {
@@ -50,8 +46,8 @@
 
 @media (max-width: 320px) {
     .login-footer {
-        gap: 16px;
         bottom: 18px;
+        gap: 16px;
     }
 
     .footer-link {
