@@ -12,12 +12,28 @@ import { contactEmailValidator, contactNameValidator, contactPhoneValidator } fr
   styleUrl: './new-contact-slider.scss',
 })
 export class NewContactSlider {
-  @Input() editingContact: SupabaseContactsInterface = {id: 0, created_at: "", name: "", email: "", phone_number: 0, color: ""};
+  @Input() editingContact: SupabaseContactsInterface = { id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" };
   @Output('closeDialog') close = new EventEmitter<void>();
   @Output() contactCreated = new EventEmitter<void>();
 
   id: number = 0;
   isEditing: boolean = false;
+  colors: string[] = [
+    '#ff7a00',
+    '#ff5eb3',
+    '#6e52ff',
+    '#9327ff',
+    '#00bee8',
+    '#1fd7c1',
+    '#ffa35e',
+    '#fc71ff',
+    '#ffc701',
+    '#0038ff',
+    '#c3ff2b',
+    '#ffe62b',
+    '#ff4646',
+    '#ffbb2b',
+  ];
 
   /** * The reactive form group for adding a new contact.
    * @type {FormGroup}
@@ -43,15 +59,20 @@ export class NewContactSlider {
    */
   ngOnInit() {
     this.contactForm = new FormGroup({
-      name: new FormControl('', { validators: [Validators.required, contactNameValidator()]}),
-      email: new FormControl('', { validators: [Validators.required, Validators.email, contactEmailValidator()]}),
-      phone: new FormControl('', { validators: [Validators.required, contactPhoneValidator()]}),
+      name: new FormControl('', { validators: [Validators.required, contactNameValidator()] }),
+      email: new FormControl('', { validators: [Validators.required, Validators.email, contactEmailValidator()] }),
+      phone: new FormControl('', { validators: [Validators.required, contactPhoneValidator()] }),
     });
     this.subscripeAllInputFields();
   }
 
-  checkIsEditing(){
-    if(this.returnValidEditing()){
+  /**
+   * Checks if the component is in editing mode and initializes the form
+   * with the current `editingContact` data if valid.
+   * Sets the editing state and updates the local contact signal.
+   */
+  checkIsEditing() {
+    if (this.returnValidEditing()) {
       this.contactForm.get('name')?.setValue(this.editingContact.name);
       this.contactForm.get('email')?.setValue(this.editingContact.email);
       this.contactForm.get('phone')?.setValue(this.editingContact.phone_number);
@@ -61,7 +82,13 @@ export class NewContactSlider {
     }
   }
 
-  returnValidEditing(){
+  /**
+   * Determines whether the current `editingContact` has valid data
+   * to enable editing.
+   *
+   * @returns {boolean} True if at least one of name, email, or phone number is not empty.
+   */
+  returnValidEditing() {
     return this.editingContact.name != "" || this.editingContact.email != "" || this.editingContact.phone_number != 0;
   }
 
@@ -72,7 +99,7 @@ export class NewContactSlider {
    */
   onSubmit() {
     if (this.contactForm.valid) {
-      if(!this.isEditing) this.supabaseClient.uploadJSONToTable('users', this.contactData());
+      if (!this.isEditing) this.supabaseClient.uploadJSONToTable('users', this.contactData());
       else this.supabaseClient.updateRow('users', this.contactData(), this.id);
       this.contactCreated.emit();
     } else {
@@ -113,7 +140,7 @@ export class NewContactSlider {
    * @returns {void}
    */
   onCancel() {
-    if(this.isEditing) this.supabaseClient.deleteRow("users", this.id);
+    if (this.isEditing) this.supabaseClient.deleteRow("users", this.id);
     this.contactForm.reset();
     this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
     this.isEditing = false;
@@ -129,23 +156,6 @@ export class NewContactSlider {
     this.isEditing = false;
   }
 
-  colors: string[] = [
-    '#ff7a00',
-    '#ff5eb3',
-    '#6e52ff',
-    '#9327ff',
-    '#00bee8',
-    '#1fd7c1',
-    '#ffa35e',
-    '#fc71ff',
-    '#ffc701',
-    '#0038ff',
-    '#c3ff2b',
-    '#ffe62b',
-    '#ff4646',
-    '#ffbb2b',
-  ];
-
   /**
    * Generates a random hex color string from the predefined colors array.
    * @returns {string} A hex color code (e.g., '#ff7a00').
@@ -155,6 +165,9 @@ export class NewContactSlider {
     return this.colors[randomIndex];
   }
 
+  /**
+   * Emits an event to signal that the dialog should be closed.
+   */
   emitCloseDialog() {
     this.close.emit();
   }
