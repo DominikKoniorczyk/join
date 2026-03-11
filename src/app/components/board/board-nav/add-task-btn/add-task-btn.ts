@@ -9,7 +9,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class AddTaskBtn {
   @Output() openAddTask = new EventEmitter<void>();
 
-  onClickedAddTask(){
+  /**
+   * Emits an event to open the "Add Task" interface.
+   */
+  onClickedAddTask() {
     this.openAddTask.emit();
   }
 }
