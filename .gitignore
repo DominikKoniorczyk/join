@@ -29,7 +29,7 @@ yarn-error.log
 !.vscode/mcp.json
 .history/*
 
-./src/app/environment/supabasekeys.ts
+src/app/environment/supabasekeys.ts
 
 # Miscellaneous
 /.angular/cache
