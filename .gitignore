@@ -29,6 +29,8 @@ yarn-error.log
 !.vscode/mcp.json
 .history/*
 
+./src/app/environment/supabasekeys.ts
+
 # Miscellaneous
 /.angular/cache
 .sass-cache/
@@ -43,4 +45,3 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-./src/app/environment
