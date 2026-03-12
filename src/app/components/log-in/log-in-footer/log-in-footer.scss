@@ -1,17 +1,13 @@
 @use '../../../styles/variables.scss' as *;
 
 .login-footer {
-    position: fixed;
-    left: 50%;
-    bottom: 35px;
-    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 35px;
     width: 246px;
     min-height: 35px;
-    z-index: 20;
+    gap: 35px;
+    margin: 24px auto 0;
 }
 
 .footer-link {
@@ -95,8 +91,8 @@
     }
 }
 
-@media (max-width: 544px) and (max-height: 620px) {
-    .login-footer {
-        display: none;
-    }
-}
+// @media (max-width: 544px) and (max-height: 620px) {
+//     .login-footer {
+//         display: none;
+//     }
+// }

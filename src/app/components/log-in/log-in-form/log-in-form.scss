@@ -1,10 +1,15 @@
 @use '../../../styles/variables.scss' as *;
 
+:host {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
 .login-form-wrap {
-    position: fixed;
-    inset: 0;
     display: grid;
     place-items: center;
+    width: 100%;
     pointer-events: none;
 }
 
@@ -188,7 +193,7 @@ button.icon-slot {
 
 @media (max-width: 544px) {
     .login-form-wrap {
-        padding: 120px 16px 140px;
+        padding: 100px 16px 1px;
         place-items: center;
         box-sizing: border-box;
     }
@@ -226,7 +231,7 @@ button.icon-slot {
 
 @media (max-width: 428px) {
     .login-form-wrap {
-        padding: 110px 12px 130px;
+        padding: 100px 12px 1px;
     }
 
     .login-card {
@@ -254,8 +259,7 @@ button.icon-slot {
 
 @media (max-width: 320px) {
     .login-form-wrap {
-        padding-top: 120px;
-        padding-bottom: 130px;
+        padding: 100px 8px 1px;
     }
 
     .login-card {

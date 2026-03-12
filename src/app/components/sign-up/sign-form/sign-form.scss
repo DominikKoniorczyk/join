@@ -3,8 +3,8 @@
 .sign-form-wrap {
   display: grid;
   place-items: center;
-  min-height: 100dvh;
-  padding: 140px 16px 110px;
+  width: 100%;
+  padding: 140px 16px 1px;
   box-sizing: border-box;
   overflow-x: hidden;
 }
@@ -242,7 +242,7 @@ button.icon-slot {
 
 @media (max-width: 768px) {
   .sign-form-wrap {
-    padding: 24px 16px;
+    padding: 140px 16px 1px;
     align-items: center;
   }
 
@@ -270,7 +270,7 @@ button.icon-slot {
 
 @media (max-width: 544px) {
   .sign-form-wrap {
-    padding: 0 16px;
+    padding: 140px 16px 1px;
     place-items: center;
   }
 
@@ -520,7 +520,7 @@ button.icon-slot {
 
 @media (max-width: 375px) {
   .sign-form-wrap {
-    padding: 0 12px;
+    padding: 20px 16px 1px;
   }
 
   .sign-card {

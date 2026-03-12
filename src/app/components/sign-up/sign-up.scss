@@ -7,6 +7,16 @@
     background: $content-bg;
 }
 
+
+.auth-page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 16px 35px;
+    box-sizing: border-box;
+}
+
 @media (max-height: 766px) and (max-width: 768px) {
     app-log-in-logo {
         display: none;
