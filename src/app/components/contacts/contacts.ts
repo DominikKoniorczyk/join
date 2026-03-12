@@ -19,6 +19,7 @@ import { InitialsPipe } from '../../services/contacts.services';
 import { NewContactSlider } from './contacts-menu/new-contact-slider/new-contact-slider';
 import { AnimationService } from '../../services/animation.service';
 import { feedbackAnimations, feedbackDownToUpAnimations, slideDownAnimations, slideInAnimations, slideOutAnimations, slideUpAnimations } from './animations/feedback.toast.animation';
+import { environment } from '../../environment/supabasekeys';
 
 @Component({
   selector: 'app-contacts',
@@ -72,7 +73,7 @@ export class Contacts {
         this.getDataInitial();
       })
       .subscribe();
-    if (this.restoreDefaultContacts) this.restoreContactsToDefault();
+    if (environment.restoreDefault) this.restoreContactsToDefault();
     this.getDataInitial();
     this.onResize();
   }

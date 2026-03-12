@@ -3,6 +3,7 @@ import { TaskformComponent } from './taskform/taskform';
 import defaultTasks from '../../JSON/defaultTasks.json';
 import { Task } from '../../interfaces/taskmodel.interfaces';
 import { Supabase } from '../../services/supabase';
+import { environment } from '../../environment/supabasekeys';
 
 @Component({
   selector: 'app-add-task',
@@ -56,7 +57,7 @@ export class AddTaskComponent {
         this.isFormValid.set(this.form.taskForm.valid);
       })
     }
-    if (this.shouldRegenerateTasks) this.restoreTasksToDefault();
+    if (environment.restoreDefault) this.restoreTasksToDefault();
   }
 
   /**
