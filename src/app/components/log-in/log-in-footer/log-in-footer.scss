@@ -2,15 +2,16 @@
 
 .login-footer {
     position: fixed;
-    bottom: 35px;
     left: 50%;
+    bottom: 35px;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 246px;
-    height: 35px;
     gap: 35px;
+    width: 246px;
+    min-height: 35px;
+    z-index: 20;
 }
 
 .footer-link {
@@ -22,6 +23,7 @@
     text-decoration: none;
     cursor: pointer;
     transition: color 100ms ease;
+    white-space: nowrap;
 
     &:hover {
         color: $brand-color;
@@ -30,7 +32,12 @@
 
 @media (max-width: 544px) {
     .login-footer {
+        bottom: 24px;
         gap: 24px;
+        width: auto;
+        min-height: 32px;
+        padding: 0 16px;
+        box-sizing: border-box;
     }
 
     .footer-link {
@@ -40,17 +47,56 @@
 
 @media (max-width: 428px) {
     .login-footer {
-        bottom: 24px;
+        bottom: 20px;
+        gap: 20px;
+        width: 100%;
+        max-width: 246px;
+        padding: 0 12px;
+    }
+
+    .footer-link {
+        font-size: 14px;
     }
 }
 
 @media (max-width: 320px) {
     .login-footer {
-        bottom: 18px;
+        bottom: 16px;
         gap: 16px;
+        width: 100%;
+        max-width: 220px;
+        padding: 0 10px;
     }
 
     .footer-link {
         font-size: 13px;
+    }
+}
+
+@media (max-width: 544px) and (max-height: 700px) {
+    .login-footer {
+        bottom: 16px;
+    }
+
+    .footer-link {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 375px) and (max-height: 620px) {
+    .login-footer {
+        bottom: 12px;
+        gap: 12px;
+        max-width: 210px;
+    }
+
+    .footer-link {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 544px) and (max-height: 620px) {
+    .login-footer {
+        display: none;
     }
 }
