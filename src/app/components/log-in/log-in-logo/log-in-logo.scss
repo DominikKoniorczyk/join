@@ -15,40 +15,36 @@
 
 .logo-stage.stable {
   display: block;
+}
 
-  .join-logo {
-    position: fixed;
-    top: 80px;
-    left: 77px;
-    width: 100px;
-    height: 122px;
-  }
+.logo-stage.stable .join-logo {
+  position: fixed;
+  top: 80px;
+  left: 77px;
+  width: 100px;
+  height: auto;
 }
 
 @media (min-width: 429px) and (max-width: 1000px) {
   .logo-stage.stable .join-logo {
     top: 37px;
     left: 38px;
-    width: 64px;
-    height: auto;
+    width: 45px;
   }
 }
 
 @media (max-width: 428px) {
   .logo-stage.stable .join-logo {
-    position: fixed;
-    top: 37px;
-    left: 38px;
-    width: 64px;
-    height: auto;
+    top: 24px;
+    left: 24px;
+    width: 42px;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-height: 780px) and (max-width: 700px) {
   .logo-stage.stable .join-logo {
-    top: 16px;
-    left: 16px;
-    width: 48px;
-    height: auto;
+    top: 24px;
+    left: 24px;
+    width: 42px;
   }
 }

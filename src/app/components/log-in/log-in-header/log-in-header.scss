@@ -3,23 +3,25 @@
 .login-header {
   position: fixed;
   top: 67px;
-  left: 0;
   right: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  box-sizing: border-box;
+  left: 0;
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding-right: 64px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .content {
   display: flex;
   align-items: center;
+  gap: 35px;
   width: 279px;
   height: 49px;
-  gap: 35px;
 }
 
 .login-text {
@@ -28,8 +30,8 @@
 }
 
 .signup-btn {
-  padding: 0 16px;
   height: 49px;
+  padding: 0 16px;
   border: none;
   border-radius: 8px;
   background: $primary-color;
@@ -37,13 +39,18 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 100ms ease;
+}
 
-  &:hover {
-    background: $brand-color;
-  }
+.signup-btn:hover {
+  background: $brand-color;
 }
 
 @media (max-width: 768px) {
+  .login-header {
+    top: 40px;
+    padding-right: 40px;
+  }
+
   .login-text {
     font-size: 18px;
   }
@@ -51,27 +58,27 @@
 
 @media (max-width: 544px) {
   .login-header {
-    position: fixed;
-    bottom: 110px;
+    top: auto;
     right: 0;
     left: 0;
-    top: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
+    bottom: 110px;
     width: 100%;
     max-width: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     transform: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .content {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
     width: auto;
     height: auto;
+    margin: 0 auto;
+    justify-content: center;
     gap: 24px;
   }
 
@@ -83,34 +90,32 @@
 @media (max-width: 428px) {
   .login-header {
     bottom: 100px;
-    gap: 20px;
+  }
 
-    @media (max-height: 780px) {
-      bottom: 55px;
-    }
+  .content {
+    gap: 20px;
   }
 
   .signup-btn {
-    padding: 0 16px;
     height: 45px;
     font-size: 16px;
+    padding: 0 16px;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 320px) {
   .login-header {
     position: fixed;
     top: 24px;
     right: 16px;
     left: auto;
     bottom: auto;
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
     width: auto;
     max-width: none;
+    margin: 0;
+    padding: 0;
     transform: none;
+    justify-content: flex-end;
   }
 
   .content {
@@ -124,8 +129,40 @@
   }
 
   .signup-btn {
-    padding: 0 14px;
     height: 40px;
+    padding: 0 14px;
+    font-size: 15px;
+  }
+}
+
+@media (max-height: 600px) and (max-width: 544px) {
+  .login-header {
+    position: fixed;
+    top: 24px;
+    right: 16px;
+    left: auto;
+    bottom: auto;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    transform: none;
+    justify-content: flex-end;
+  }
+
+  .content {
+    width: auto;
+    height: auto;
+    gap: 0;
+  }
+
+  .login-text {
+    display: none;
+  }
+
+  .signup-btn {
+    height: 40px;
+    padding: 0 14px;
     font-size: 15px;
   }
 }
