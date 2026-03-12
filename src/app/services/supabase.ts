@@ -1,7 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { environment } from '../environment/supabasekeys';
-import { SupabaseContactsInterface } from '../interfaces/supabase.interfaces';
 
 @Injectable({
   providedIn: 'root',
