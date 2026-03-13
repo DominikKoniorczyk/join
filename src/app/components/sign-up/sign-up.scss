@@ -41,11 +41,8 @@ app-log-in-logo {
 }
 
 @media (max-height: 766px) and (max-width: 768px) {
-    app-log-in-logo {
-        display: none;
-    }
-
     .mobile-logo {
         display: block;
+        opacity: 0;
     }
 }
