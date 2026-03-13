@@ -12,6 +12,7 @@
     min-height: 100dvh;
     width: 100%;
     background: $content-bg;
+    position: relative;
 }
 
 .background {
@@ -29,6 +30,21 @@
     padding: 0 16px 35px;
     box-sizing: border-box;
     position: relative;
+}
+
+.fade-in-page {
+    opacity: 0;
+    animation: fadeInPage 700ms ease 200ms forwards;
+}
+
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 app-log-in-logo {

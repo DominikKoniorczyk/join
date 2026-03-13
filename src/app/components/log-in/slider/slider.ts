@@ -15,6 +15,6 @@ export class Slider implements OnInit {
    * or similar UI element to become visible.
    */
   ngOnInit(): void {
-    setTimeout(() => this.done.emit(), 1000); // 1000ms bis Log In Fenster sichtbar wird.
+    setTimeout(() => this.done.emit(), 1100);
   }
 }
