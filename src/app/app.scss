@@ -1,12 +1,17 @@
-.main-container {
-  max-width: calc(1440px - 15rem);
-  width: calc(100% - 15rem);
-  height: 100dvh;
-  margin-left: 15rem;
+:root {
+  --sidebar-width: 15rem;
+}
 
-  @media (max-width: 768px) {
-    margin: 0;
-    width: 100%;
+.main-container {
+  width: 100%;
+  min-height: 100dvh;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .main-container {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
   }
 }
 

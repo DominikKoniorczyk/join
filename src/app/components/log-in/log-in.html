@@ -1,17 +1,19 @@
-<div class="background"></div>
-@if (phase === 'splash') {
-<app-log-in-logo mode="splash" (done)="onSplashDone()"></app-log-in-logo>
-}
+<div class="Main">
+    <div class="background"></div>
+    @if (phase === 'splash') {
+    <app-log-in-logo mode="splash" (done)="onSplashDone()"></app-log-in-logo>
+    }
 
-@if (phase === 'slide') {
-<app-slider (done)="onSlideDone()"></app-slider>
-}
+    @if (phase === 'slide') {
+    <app-slider (done)="onSlideDone()"></app-slider>
+    }
 
-@if (phase === 'stable') {
-<div class="auth-page">
-    <app-log-in-logo mode="stable"></app-log-in-logo>
-    <app-log-in-header></app-log-in-header>
-    <app-log-in-form></app-log-in-form>
-    <app-log-in-footer></app-log-in-footer>
+    @if (phase === 'stable') {
+    <div class="auth-page">
+        <app-log-in-logo mode="stable"></app-log-in-logo>
+        <app-log-in-header></app-log-in-header>
+        <app-log-in-form></app-log-in-form>
+        <app-log-in-footer></app-log-in-footer>
+    </div>
+    }
 </div>
-}

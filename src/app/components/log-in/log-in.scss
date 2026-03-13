@@ -3,27 +3,26 @@
 :host {
     display: block;
     min-height: 100dvh;
-    inset: 0;
+    width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    justify-content: center;
+}
+
+.Main {
+    min-height: 100dvh;
     width: 100%;
+    background: $content-bg;
 }
 
 .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    background: $content-bg;
+    display: none;
 }
 
 .auth-page {
     width: 100%;
     max-width: 1440px;
     min-height: 100dvh;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
