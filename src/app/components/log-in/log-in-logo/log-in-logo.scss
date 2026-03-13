@@ -1,14 +1,16 @@
 :host {
-  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
   inset: 0;
   pointer-events: none;
   z-index: 1000;
 }
 
 .logo-stage {
-  position: absolute;
+  padding-top: 1rem;
+  padding-left: 2rem;
   inset: 0;
-  display: grid;
   place-items: center;
   background: transparent;
   pointer-events: none;
@@ -34,25 +36,18 @@
 
 @media (min-width: 429px) and (max-width: 1000px) {
   .logo-stage.stable .join-logo {
-    top: 37px;
-    left: 38px;
     width: 45px;
   }
 }
 
 @media (max-width: 428px) {
   .logo-stage.stable .join-logo {
-    top: 24px;
-    left: 24px;
     width: 42px;
-    z-index: 1001;
   }
 }
 
 @media (max-height: 780px) and (max-width: 700px) {
   .logo-stage.stable .join-logo {
-    top: 24px;
-    left: 24px;
     width: 42px;
   }
 }
@@ -64,14 +59,11 @@
   }
 
   .logo-stage {
-    position: absolute;
     inset: 0;
   }
 
   .logo-stage.stable .join-logo {
     position: absolute;
-    top: 24px;
-    left: 24px;
     width: 42px;
     height: auto;
   }

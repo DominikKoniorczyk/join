@@ -1,13 +1,11 @@
 @use '../../../styles/variables.scss' as *;
 
 .login-header {
-  position: fixed;
-  top: 67px;
-  right: 0;
-  left: 0;
+  // position: fixed;
+  padding-top: 4rem;
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
+  // margin: 0 auto;
   padding-right: 64px;
   box-sizing: border-box;
 
@@ -58,9 +56,6 @@
 
 @media (max-width: 580px) {
   .login-header {
-    top: auto;
-    right: 0;
-    left: 0;
     bottom: 110px;
     width: 100%;
     max-width: none;
@@ -105,10 +100,6 @@
 
 @media (max-width: 320px) {
   .login-header {
-    position: fixed;
-    top: 24px;
-    right: 16px;
-    left: auto;
     bottom: auto;
     width: auto;
     max-width: none;
@@ -137,11 +128,6 @@
 
 @media (max-width: 900px) and (max-height: 770px) {
   .login-header {
-    position: fixed;
-    top: 24px;
-    right: 16px;
-    left: auto;
-    bottom: auto;
     width: auto;
     max-width: none;
     margin: 0;
@@ -169,9 +155,6 @@
 
 @media (max-width: 544px) and (max-height: 610px) {
   .login-header {
-    position: absolute;
-    top: 24px;
-    right: 16px;
     left: auto;
     bottom: auto;
     width: auto;
