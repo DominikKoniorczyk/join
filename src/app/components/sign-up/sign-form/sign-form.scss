@@ -4,7 +4,6 @@
   display: grid;
   place-items: center;
   width: 100%;
-  padding: 140px 16px 1px;
   box-sizing: border-box;
   overflow-x: hidden;
 }
@@ -242,7 +241,6 @@ button.icon-slot {
 
 @media (max-width: 768px) {
   .sign-form-wrap {
-    padding: 140px 16px 1px;
     align-items: center;
   }
 
@@ -270,7 +268,6 @@ button.icon-slot {
 
 @media (max-width: 544px) {
   .sign-form-wrap {
-    padding: 140px 16px 1px;
     place-items: center;
   }
 
@@ -354,9 +351,7 @@ button.icon-slot {
 }
 
 @media (max-width: 544px) and (max-height: 700px) {
-  .sign-form-wrap {
-    padding: 16px;
-  }
+
 
   .sign-card {
     min-height: auto;
@@ -418,9 +413,7 @@ button.icon-slot {
 }
 
 @media (max-width: 544px) and (max-height: 620px) {
-  .sign-form-wrap {
-    padding: 12px;
-  }
+
 
   .sign-card {
     padding: 20px 14px 16px;
@@ -519,9 +512,7 @@ button.icon-slot {
 }
 
 @media (max-width: 375px) {
-  .sign-form-wrap {
-    padding: 20px 16px 1px;
-  }
+
 
   .sign-card {
     width: calc(100% - 24px);
