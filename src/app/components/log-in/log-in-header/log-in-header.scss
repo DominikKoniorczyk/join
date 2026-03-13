@@ -1,11 +1,9 @@
 @use '../../../styles/variables.scss' as *;
 
 .login-header {
-  // position: fixed;
-  padding-top: 4rem;
   width: 100%;
   max-width: 1440px;
-  // margin: 0 auto;
+  padding-top: 64px;
   padding-right: 64px;
   box-sizing: border-box;
 
@@ -45,7 +43,7 @@
 
 @media (max-width: 768px) {
   .login-header {
-    top: 40px;
+    padding-top: 40px;
     padding-right: 40px;
   }
 
@@ -56,121 +54,62 @@
 
 @media (max-width: 580px) {
   .login-header {
-    bottom: 110px;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transform: none;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-top: 24px;
+    padding-right: 16px;
+    justify-content: flex-end;
   }
 
   .content {
     width: auto;
     height: auto;
-    margin: 0 auto;
-    justify-content: center;
-    gap: 24px;
+    gap: 0;
+    justify-content: flex-end;
   }
 
   .login-text {
-    font-size: 16px;
+    display: none;
+  }
+
+  .signup-btn {
+    height: 40px;
+    padding: 0 14px;
+    font-size: 15px;
   }
 }
 
 @media (max-width: 428px) {
   .login-header {
-    bottom: 100px;
-  }
-
-  .content {
-    gap: 20px;
+    padding-top: 16px;
+    padding-right: 12px;
   }
 
   .signup-btn {
-    height: 45px;
-    font-size: 16px;
-    padding: 0 16px;
+    height: 38px;
+    padding: 0 14px;
+    font-size: 15px;
   }
 }
 
 @media (max-width: 320px) {
   .login-header {
-    bottom: auto;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    transform: none;
-    justify-content: flex-end;
-  }
-
-  .content {
-    width: auto;
-    height: auto;
-    gap: 0;
-  }
-
-  .login-text {
-    display: none;
+    padding-top: 30px;
+    padding-right: 10px;
   }
 
   .signup-btn {
-    height: 40px;
-    padding: 0 14px;
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 900px) and (max-height: 770px) {
-  .login-header {
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    transform: none;
-    justify-content: flex-end;
-  }
-
-  .content {
-    width: auto;
-    height: auto;
-    gap: 0;
-  }
-
-  .login-text {
-    display: none;
-  }
-
-  .signup-btn {
-    height: 40px;
-    padding: 0 14px;
-    font-size: 15px;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 14px;
   }
 }
 
 @media (max-width: 544px) and (max-height: 610px) {
   .login-header {
-    left: auto;
-    bottom: auto;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-    transform: none;
-    box-sizing: border-box;
-    justify-content: flex-end;
+    padding-top: 30px;
+    padding-right: 10px;
   }
 
   .content {
-    width: auto;
-    height: auto;
-    margin: 0;
-    justify-content: flex-end;
     gap: 0;
   }
 
@@ -179,8 +118,8 @@
   }
 
   .signup-btn {
-    height: 40px;
-    padding: 0 14px;
-    font-size: 15px;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 14px;
   }
 }

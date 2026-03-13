@@ -18,7 +18,7 @@
     flex-direction: column;
     align-items: center;
     width: 652px;
-    height: 449px;
+    min-height: 449px;
     padding: 48px 115px;
     gap: 32px;
     border-radius: 30px;
@@ -179,10 +179,42 @@ button.icon-slot {
     outline: 1px solid $error-color-red;
 }
 
+@media (max-width: 1200px) {
+    .login-card {
+        width: min(calc(100% - 64px), 540px);
+        min-height: auto;
+        padding: 44px 56px;
+        gap: 28px;
+    }
+
+    .login-title {
+        font-size: 56px;
+    }
+
+    .login-form {
+        gap: 28px;
+    }
+
+    .input-group {
+        width: 100%;
+        max-width: 420px;
+    }
+}
+
 @media (max-width: 768px) {
     .login-card {
         padding: 40px 48px;
         width: min(calc(100% - 48px), 560px);
+        min-height: auto;
+        gap: 28px;
+    }
+
+    .login-title {
+        font-size: 54px;
+    }
+
+    .login-form {
+        gap: 24px;
     }
 
     .input-group {
@@ -259,7 +291,7 @@ button.icon-slot {
 
 @media (max-width: 320px) {
     .login-form-wrap {
-        padding: 100px 8px 1px;
+        padding: 40px 8px 1px;
     }
 
     .login-card {
