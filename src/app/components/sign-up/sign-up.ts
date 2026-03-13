@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { LogInLogo } from '../log-in/log-in-logo/log-in-logo';
 import { LogInFooter } from '../log-in/log-in-footer/log-in-footer';
 import { SignForm } from './sign-form/sign-form';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [LogInLogo, LogInFooter, SignForm],
+  imports: [ LogInFooter, SignForm],
   templateUrl: './sign-up.html',
   styleUrls: ['./sign-up.scss'],
 })
