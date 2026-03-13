@@ -52,3 +52,31 @@ app-log-in-logo {
     top: 0;
     left: 0;
 }
+
+.signup-btn {
+  width: 6rem;
+  height: 49px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 8px;
+  background: $primary-color;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 100ms ease;
+  font-size: 1.25rem;
+}
+
+
+
+.sign-up-container{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1.25rem;
+  padding: 1rem;
+  @media(max-width:768px){
+    display: flex;
+    gap: 1rem;
+  }
+}

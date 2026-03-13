@@ -225,7 +225,7 @@ button.icon-slot {
 
 @media (max-width: 544px) {
     .login-form-wrap {
-        padding: 100px 16px 1px;
+        // padding: 100px 16px 1px;
         place-items: center;
         box-sizing: border-box;
     }
@@ -262,9 +262,9 @@ button.icon-slot {
 }
 
 @media (max-width: 428px) {
-    .login-form-wrap {
-        padding: 100px 12px 1px;
-    }
+    // .login-form-wrap {
+    //     padding: 100px 12px 1px;
+    // }
 
     .login-card {
         padding: 32px 16px;
@@ -290,9 +290,9 @@ button.icon-slot {
 }
 
 @media (max-width: 320px) {
-    .login-form-wrap {
-        padding: 40px 8px 1px;
-    }
+    // .login-form-wrap {
+    //     padding: 40px 8px 1px;
+    // }
 
     .login-card {
         padding: 24px 12px;

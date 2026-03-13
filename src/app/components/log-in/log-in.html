@@ -1,23 +1,33 @@
 <div class="Main">
     <div class="background"></div>
 
-    @if (phase === 'splash') {
+    <!-- @if (phase === 'splash') {
     <app-log-in-logo mode="splash" (done)="onSplashDone()"></app-log-in-logo>
-    }
+    } -->
 
-    @if (phase === 'slide' || phase === 'stable') {
+    <!-- @if (phase === 'slide' || phase === 'stable') {
     <div class="auth-page" [class.fade-in-page]="phase === 'slide'">
         @if (phase === 'stable') {
-        <app-log-in-logo mode="stable"></app-log-in-logo>
-        }
+        <app-log-in-logo mode="stable"></app-log-in-logo> -->
+    <div class="auth-page" [class.fade-in-page]="phase === 'slide'">
 
         <app-log-in-header></app-log-in-header>
         <app-log-in-form></app-log-in-form>
+
+
+          <div class="sign-up-container">
+          <span class="login-text">Not a Join user?</span>
+           <button type="button" class="signup-btn" routerLink="/sign-up" aria-label="Sign up for Join">
+            Sign up
+           </button>
+          </div>
+
         <app-log-in-footer></app-log-in-footer>
     </div>
-    }
+    </div>
 
-    @if (phase === 'slide') {
+
+    <!-- @if (phase === 'slide') {
     <app-slider (done)="onSlideDone()"></app-slider>
-    }
-</div>
+    } -->
+<!-- </div> -->
