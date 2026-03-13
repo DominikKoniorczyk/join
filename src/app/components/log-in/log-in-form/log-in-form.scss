@@ -126,7 +126,7 @@ button.icon-slot {
 }
 
 .btn-primary {
-    width: 110px;
+    width: 177px;
     border: 1px solid $primary-color;
     background: $primary-color;
     color: #fff;
@@ -225,7 +225,6 @@ button.icon-slot {
 
 @media (max-width: 544px) {
     .login-form-wrap {
-        // padding: 100px 16px 1px;
         place-items: center;
         box-sizing: border-box;
     }

@@ -1,14 +1,6 @@
 <div class="main">
 
-    <!-- @if (phase === 'splash') {
-    <app-log-in-logo mode="splash" (done)="onSplashDone()"></app-log-in-logo>
-    } -->
-
-    <!-- @if (phase === 'slide' || phase === 'stable') {
-    <div class="auth-page" [class.fade-in-page]="phase === 'slide'">
-        @if (phase === 'stable') {
-        <app-log-in-logo mode="stable"></app-log-in-logo> -->
-    <div class="auth-page" [class.fade-in-page]="phase === 'slide'">
+    <div class="auth-page" >
 
         <app-log-in-header></app-log-in-header>
         <app-log-in-form></app-log-in-form>
@@ -25,8 +17,3 @@
     </div>
     </div>
 
-
-    <!-- @if (phase === 'slide') {
-    <app-slider (done)="onSlideDone()"></app-slider>
-    } -->
-<!-- </div> -->

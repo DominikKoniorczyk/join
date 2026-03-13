@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Slider } from './slider/slider';
 import { LogInHeader } from './log-in-header/log-in-header';
 import { LogInForm } from './log-in-form/log-in-form';
 import { LogInFooter } from './log-in-footer/log-in-footer';
@@ -12,7 +11,7 @@ type Phase = 'splash' | 'slide' | 'stable';
 @Component({
   selector: 'app-log-in',
   standalone: true,
-  imports: [ Slider, LogInHeader, LogInForm, LogInFooter, RouterLink],
+  imports: [  LogInHeader, LogInForm, LogInFooter, RouterLink],
   templateUrl: './log-in.html',
   styleUrls: ['./log-in.scss'],
 })
@@ -26,19 +25,4 @@ export class LogIn {
     this.supabase.logOut();
   }
 
-  /**
-   * Called when the splash animation is completed.
-   * Transitions the component phase to the slide animation.
-   */
-  onSplashDone(): void {
-    this.phase = 'slide';
-  }
-
-  /**
-   * Called when the slide animation is completed.
-   * Transitions the component phase to a stable state.
-   */
-  onSlideDone(): void {
-    this.phase = 'stable';
-  }
 }
