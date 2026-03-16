@@ -16,6 +16,6 @@ import { AuthService } from "./auth.service";
   const supaBase = inject(Supabase);
   const guest = inject(AuthService);
   const user = await supaBase.getUser();
-  if(!user && !guest.canAccess()) return router.parseUrl('/login');
+  if (!user && !guest.canAccess()) return router.parseUrl('/login');
   return true;
 }

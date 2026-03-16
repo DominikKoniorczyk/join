@@ -11,7 +11,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   constructor() {}
 
   transform(fullName: string): string {
-    if(!fullName) return "";
+    if (!fullName) return "";
     return fullName
       .trim()
       .split(' ')
