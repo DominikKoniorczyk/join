@@ -1,7 +1,6 @@
 
 <app-footer *ngIf="!isAuthRoute"></app-footer>
-<div class="main-container" [class.shadow]='!isAuthRoute'>
+<div class="main-container" [class.shadow]='!isAuthRoute' [class.background-full]='isAuthRoute'>
   <app-header *ngIf="!isAuthRoute"></app-header>
   <router-outlet></router-outlet>
 </div>
-<!-- <app-footer *ngIf="!isAuthRoute"></app-footer> -->
