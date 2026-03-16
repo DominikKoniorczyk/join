@@ -138,14 +138,8 @@
   color: #000;
 }
 
-@media (max-width: 768px) {
-  .last {
-    padding-bottom: 8rem;
-  }
-}
-
 @media (max-width: 1360px) {
   .back-arrow {
-    padding-right: 4rem;
+    margin-right: 4rem;
   }
 }
