@@ -9,7 +9,8 @@
   width: 100%;
   margin-top: 4rem;
   margin-bottom: 2rem;
-    @media(max-width:768px){
+
+  @media(max-width:768px) {
     margin-top: 2rem;
   }
 }
@@ -27,35 +28,42 @@
   font-size: 1.25rem;
 }
 
-.join-logo{
+.signup-btn:hover {
+  background: $brand-color;
+}
+
+.join-logo {
   width: 100px;
   animation: show 600ms forwards;
-   @media(max-width:768px){
+
+  @media(max-width:768px) {
     width: 64px;
   }
 }
 
-.join-logo-animated{
+.join-logo-animated {
   width: 100px;
-   @media(max-width:768px){
+
+  @media(max-width:768px) {
     width: 64px;
   }
 }
 
-.sign-up-container{
+.sign-up-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
   font-size: 1.25rem;
   animation: show 600ms forwards;
-  @media(max-width:768px){
+
+  @media(max-width:768px) {
     display: none;
   }
 
 }
 
-.animation-logo{
+.animation-logo {
   position: absolute;
   z-index: 3;
   left: 50%;
@@ -64,32 +72,36 @@
   animation: slideToCorner 600ms forwards;
 }
 
-@keyframes slideToCorner{
-  0%{
+@keyframes slideToCorner {
+  0% {
     left: 50%;
     top: 50dvh;
     transform: translate(-50%, -50%) scale(3);
   }
-  98%{
+
+  98% {
     left: 0;
     top: 0;
-    transform: translate(0 ,0) scale(1);
+    transform: translate(0, 0) scale(1);
     opacity: 1;
   }
-  100%{
+
+  100% {
     opacity: 0;
     z-index: -1;
   }
 }
 
-@keyframes show{
-  0%{
+@keyframes show {
+  0% {
     opacity: 0;
   }
-  80%{
+
+  80% {
     opacity: 0;
   }
-  100%{
+
+  100% {
     opacity: 1;
   }
 }
