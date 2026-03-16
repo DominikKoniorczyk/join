@@ -20,9 +20,11 @@ export class LogIn {
 
   constructor(private auth: AuthService, private supabase: Supabase){}
 
-  ngAfterViewInit(){
+  /**
+   * Angular method after view init. Automatically log out on loading.
+   */
+   ngAfterViewInit(){
     this.auth.logout();
     this.supabase.logOut();
   }
-
 }

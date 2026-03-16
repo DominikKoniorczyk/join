@@ -31,7 +31,7 @@ export class BoardCardsComponent {
    *
    * @returns {number} The percentage of completed subtasks (0-100).
    */
-  getPercentage() {
+   getPercentage() {
     if (!this.currentTask?.subtasks || this.currentTask.subtasks.length === 0) return 0;
     const totalAmount = this.currentTask.subtasks.length;
     if (totalAmount == 0) return 0;
@@ -45,7 +45,7 @@ export class BoardCardsComponent {
    *
    * @returns {string} Subtask status in the format "completed/total Subtasks".
    */
-  getSubtaskStatus() {
+   getSubtaskStatus() {
     if (!this.currentTask?.subtasks) return '0/0 Subtasks';
     const totalAmount = this.currentTask.subtasks.length;
     const completed = this.currentTask.subtasks.filter(tasks => tasks.isDone).length;
@@ -55,7 +55,7 @@ export class BoardCardsComponent {
   /**
    * Emits an event indicating that the task card has been opened.
    */
-  openDialog() {
+   openDialog() {
     this.cardOpened.emit();
   }
 
@@ -66,7 +66,7 @@ export class BoardCardsComponent {
    * @param {string} name - The full name of the person.
    * @returns {string} Uppercase initials.
    */
-  getInitials(name: string): string {
+   getInitials(name: string): string {
     if (!name) return '';
     const parts = name.trim().split(' ');
     return (parts.length > 1
@@ -77,7 +77,7 @@ export class BoardCardsComponent {
   /**
    * Toggles the visibility of the dropdown menu for the task.
    */
-  toggleDropdown() {
+   toggleDropdown() {
     this.isDropDownOpen = !this.isDropDownOpen;
   }
 
@@ -87,7 +87,7 @@ export class BoardCardsComponent {
    *
    * @param {boolean} up - True to move the task up, false to move it down.
    */
-  moveTaskMobile(up: boolean) {
+   moveTaskMobile(up: boolean) {
     if (up) {
       this.currentTask.progressStatus = this.moveTaskUp();
     } else {
@@ -101,7 +101,7 @@ export class BoardCardsComponent {
    *
    * @returns {'To do' | 'In progress' | 'Await feedback' | 'Done'} The new status.
    */
-  moveTaskUp(): 'To do' | 'In progress' | 'Await feedback' | 'Done' {
+   moveTaskUp(): 'To do' | 'In progress' | 'Await feedback' | 'Done' {
     switch (this.currentTask.progressStatus) {
       case 'To do': return 'To do';
       case 'In progress': return 'To do';
@@ -115,7 +115,7 @@ export class BoardCardsComponent {
    *
    * @returns {'To do' | 'In progress' | 'Await feedback' | 'Done'} The new status.
    */
-  moveTaskDown(): 'To do' | 'In progress' | 'Await feedback' | 'Done' {
+   moveTaskDown(): 'To do' | 'In progress' | 'Await feedback' | 'Done' {
     switch (this.currentTask.progressStatus) {
       case 'To do': return 'In progress';
       case 'In progress': return 'Await feedback';
@@ -128,7 +128,7 @@ export class BoardCardsComponent {
    * Updates the current task in the database with the latest data
    * after moving its progress status.
    */
-  updateDatabaseAfterMoving() {
+   updateDatabaseAfterMoving() {
     const newData = {
       headline: this.currentTask.headline, desc: this.currentTask.desc, dueDate: this.currentTask.dueDate, priority: this.currentTask.priority,
       category: this.currentTask.category, assignedTo: this.currentTask.assignedTo, subtasks: this.currentTask.subtasks, progressStatus: this.currentTask.progressStatus

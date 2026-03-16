@@ -27,7 +27,7 @@ export class AddTaskComponent {
    * Restores the tasks table to the default contacts.
    * Deletes all current task rows and uploads the default tasks.
    */
-  async restoreTasksToDefault() {
+   async restoreTasksToDefault() {
     await this.getDataInitial();
     for (let i = 0; this.dataTask().length; i++) {
       this.supabaseClientService.deleteRow('tasks', this.dataTask()[i].id);
@@ -38,7 +38,7 @@ export class AddTaskComponent {
   /**
      * Fetches the initial user data from the 'users' table and updates the local state.
      */
-  async getDataInitial() {
+   async getDataInitial() {
     const data = (await this.supabaseClientService.getDataFromTable(
       'tasks',
     )) as Task[];
@@ -51,7 +51,7 @@ export class AddTaskComponent {
    * Subscribes to form status changes to keep the `isFormValid` signal updated.
    * Optionally restores default tasks if `shouldRegenerateTasks` is enabled.
    */
-  ngAfterViewInit() {
+   ngAfterViewInit() {
     if (this.form.taskForm) {
       this.form.taskForm.statusChanges.subscribe(status => {
         this.isFormValid.set(this.form.taskForm.valid);
@@ -63,21 +63,21 @@ export class AddTaskComponent {
   /**
    * Closes the dropdown menu through the form component.
    */
-  closeDropdown() {
+   closeDropdown() {
     this.form.closeDropdown();
   }
 
   /**
    * Resets the task form to its initial state.
    */
-  resetForm() {
+   resetForm() {
     this.form.resetForm();
   }
 
   /**
    * Triggers the task creation process through the form component.
    */
-  createTask() {
+   createTask() {
     this.form.createTask();
   }
 }

@@ -83,14 +83,14 @@ export class ContactsSelectorWithSearch implements OnInit {
    * @param {SupabaseContactsInterface} contact - The contact to check.
    * @returns {boolean} True if the contact is selected, otherwise false.
    */
-  isSelected(contact: SupabaseContactsInterface): boolean {
+   isSelected(contact: SupabaseContactsInterface): boolean {
     return this.selectedContacts.some((c) => c.id === contact.id);
   }
 
   /**
    * Clears all selected contacts.
    */
-  reset() {
+   reset() {
     this.selectedContacts = []
   }
 
@@ -102,7 +102,7 @@ export class ContactsSelectorWithSearch implements OnInit {
    * @param {string} name - The full name.
    * @returns {string} The generated initials in uppercase.
    */
-  getInitials(name: string): string {
+   getInitials(name: string): string {
     if (!name) return '';
     const parts = name.trim().split(' ');
     if (parts.length === 1) return parts[0][0].toUpperCase();

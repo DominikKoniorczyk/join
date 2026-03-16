@@ -24,7 +24,7 @@ export class ContactsMenu {
   * Enables edit mode for the currently selected person
   * and creates a copy of their data for editing.
   */
-  onEdit() {
+   onEdit() {
     if (!this.selectedPerson()) return;
     this.isEditing = true;
     this.editContact.emit(this.selectedPerson()!);
@@ -34,7 +34,7 @@ export class ContactsMenu {
    * Lifecycle hook that runs after the component's view has been initialized.
    * Sets the currently selected person to the component's `person` property.
    */
-  ngAfterViewInit() {
+   ngAfterViewInit() {
     this.selectedPerson.set(this.person!);
   }
 
@@ -42,7 +42,7 @@ export class ContactsMenu {
    * Updates the currently selected person.
    * @param person The person object to set as selected.
    */
-  update(person: SupabaseContactsInterface) {
+   update(person: SupabaseContactsInterface) {
     this.selectedPerson.set(person);
   }
 
@@ -50,7 +50,7 @@ export class ContactsMenu {
    * Deletes the currently selected person after user confirmation.
    * Emits the `deleteContact` event with the person's ID if confirmed.
    */
-  onDelete() {
+   onDelete() {
     if (!this.selectedPerson()) return;
     this.deleteContact.emit(this.selectedPerson()?.id);
   }

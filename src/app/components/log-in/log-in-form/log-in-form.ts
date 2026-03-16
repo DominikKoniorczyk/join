@@ -31,7 +31,7 @@ export class LogInForm {
   /**
    * Toggles the visibility of the password input field.
    */
-  togglePassword() {
+   togglePassword() {
     this.showPassword = !this.showPassword;
   }
 
@@ -41,7 +41,7 @@ export class LogInForm {
    *
    * @returns {string} The path to the password icon.
    */
-  getPasswordIcon() {
+   getPasswordIcon() {
     const passwordValue = this.logInGroup.get('password')?.value;
     if (!passwordValue) return 'assets/img/password-lock-icon.png';
     return this.showPassword
@@ -52,7 +52,7 @@ export class LogInForm {
   /**
    * Logs in as a guest user and navigates to the summary page.
    */
-  loginAsGuest() {
+   loginAsGuest() {
     this.auth.loginAsGuest();
     this.router.navigate(['/summary']);
   }
@@ -64,7 +64,7 @@ export class LogInForm {
    *
    * @returns {Promise<void>}
    */
-  async onSubmit() {
+   async onSubmit() {
     const { data, error } = await this.supaBase.signInUser(this.logInGroup.get('email')?.value, this.logInGroup.get('password')?.value);
     if (!error) {
       this.router.navigateByUrl('/summary');

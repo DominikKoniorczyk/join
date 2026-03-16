@@ -25,7 +25,7 @@ export class AnimationService {
    * @param {Animation | null} currentAnim - Optional reference to the current animation.
    * @returns {Promise<void>} Resolves when the animation finishes.
    */
-  animate(el: HTMLElement | SVGElement, keyframes: Keyframes[], duration: number, forward: boolean, currentAnim: Animation | null = null): Promise<void> {
+   animate(el: HTMLElement | SVGElement, keyframes: Keyframes[], duration: number, forward: boolean, currentAnim: Animation | null = null): Promise<void> {
     const keys = forward ? this.returnKeyframes(keyframes) : this.returnInverseKeyframes(keyframes);
     return new Promise(resolve => {
       const anim = el.animate(keys, { duration, easing: 'ease-in-out', fill: 'forwards' });
@@ -43,7 +43,7 @@ export class AnimationService {
    * @param {Keyframes[]} keyframes - The keyframes to process.
    * @returns {any[]} The keyframes in forward order.
    */
-  private returnKeyframes(keyframes: Keyframes[]): any[] {
+   private returnKeyframes(keyframes: Keyframes[]): any[] {
     const keys: any[] = [];
     keyframes.forEach(currentKey => {
       keys.push(currentKey);
@@ -57,7 +57,7 @@ export class AnimationService {
    * @param {Keyframes[]} keyframes - The keyframes to process.
    * @returns {any[]} The keyframes in reverse order.
    */
-  private returnInverseKeyframes(keyframes: Keyframes[]): any[] {
+   private returnInverseKeyframes(keyframes: Keyframes[]): any[] {
     const keys: any[] = [];
     for (const currentKey of [...keyframes].reverse()) {
       keys.push(currentKey);

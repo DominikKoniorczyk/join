@@ -17,28 +17,28 @@ export class AddTaskDialog {
    * Updates the current progress of the form.
    * @param input The new progress value as a string.
    */
-  setCurrentProgress(input: string) {
+   setCurrentProgress(input: string) {
     this.form.progress = input;
   }
 
   /**
    * Emits an event to close the dialog.
    */
-  closeDialog() {
+   closeDialog() {
     this.closeTriggered.emit();
   }
 
   /**
    * Resets the form to its initial state.
    */
-  resetForm() {
+   resetForm() {
     this.form.resetForm();
   }
 
   /**
    * Creates a new task using the form data.
    */
-  createTask() {
+   createTask() {
     this.form.createTask();
   }
 }

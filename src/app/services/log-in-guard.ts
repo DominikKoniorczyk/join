@@ -11,7 +11,7 @@ import { AuthService } from "./auth.service";
  *
  * @returns {Promise<boolean|UrlTree>} True if access is allowed, otherwise a UrlTree redirecting to '/login'.
  */
-export const LogInGuard: CanActivateFn = async () => {
+ export const LogInGuard: CanActivateFn = async () => {
   const router = inject(Router);
   const supaBase = inject(Supabase);
   const guest = inject(AuthService);

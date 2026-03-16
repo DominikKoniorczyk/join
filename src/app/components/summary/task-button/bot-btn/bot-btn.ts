@@ -23,7 +23,7 @@ export class BotBtn {
    *
    * @returns {Promise<void>}
    */
-  async ngOnInit() {
+   async ngOnInit() {
     const data = await this.supabaseService.getDataFromTable('tasks');
     if (data) this.tasks.set(data);
   }
@@ -31,7 +31,7 @@ export class BotBtn {
   /**
    * Navigates the user to the board page using the Angular router.
    */
-  redirectToBoard() {
+   redirectToBoard() {
     this.router.navigateByUrl('/board');
   }
 }

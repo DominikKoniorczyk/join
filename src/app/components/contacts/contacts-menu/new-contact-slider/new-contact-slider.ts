@@ -111,8 +111,19 @@ export class NewContactSlider {
   }
 
   /**Subscripe the change on input fields. Set the values of the corresponding data in contactData.*
-@returns {void}*/
+   * @returns {void}
+   */
   subscripeAllInputFields() {
+    this.subscripeName();
+    this.subscripeEmail();
+    this.subscripePhone();
+  }
+
+  /**
+   * Subscripe the change on input field "name". Set the values of the name data in contactData.
+   * @return {void}
+   */
+   subscripeName() {
     this.contactForm.get('name')?.valueChanges.subscribe((value) => {
       this.contactData.update((current) => {
         if (!current) return current;
@@ -120,12 +131,26 @@ export class NewContactSlider {
         return { ...current, name: value! };
       });
     });
+  }
+
+  /**
+   * Subscripe the change on input field "email". Set the values of the email data in contactData.
+   * @return {void}
+   */
+   subscripeEmail() {
     this.contactForm.get('email')?.valueChanges.subscribe((value) => {
       this.contactData.update((current) => {
         if (!current) return current;
         return { ...current, email: value! };
       });
     });
+  }
+
+  /**
+   * Subscripe the change on input field "phone-number". Set the values of the phone data in contactData.
+   * @return {void}
+   */
+   subscripePhone() {
     this.contactForm.get('phone')?.valueChanges.subscribe((value) => {
       this.contactData.update((current) => {
         if (!current) return current;
@@ -139,7 +164,7 @@ export class NewContactSlider {
    * Resets the contact form to its initial empty state and clears all validation errors.
    * @returns {void}
    */
-  onCancel() {
+   onCancel() {
     if (this.isEditing) this.supabaseClient.deleteRow("users", this.id);
     this.contactForm.reset();
     this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
@@ -150,7 +175,7 @@ export class NewContactSlider {
    * Resets the contact form to its initial empty state and clears all validation errors.
    * @returns {void}
    */
-  onClose() {
+   onClose() {
     this.contactForm.reset();
     this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
     this.isEditing = false;
@@ -160,7 +185,7 @@ export class NewContactSlider {
    * Generates a random hex color string from the predefined colors array.
    * @returns {string} A hex color code (e.g., '#ff7a00').
    */
-  getRandomeColor(): string {
+   getRandomeColor(): string {
     const randomIndex = Math.floor(Math.random() * this.colors.length);
     return this.colors[randomIndex];
   }
@@ -168,7 +193,7 @@ export class NewContactSlider {
   /**
    * Emits an event to signal that the dialog should be closed.
    */
-  emitCloseDialog() {
+   emitCloseDialog() {
     this.close.emit();
   }
 }

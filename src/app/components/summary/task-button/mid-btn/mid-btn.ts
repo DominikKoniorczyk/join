@@ -47,7 +47,7 @@ export class MidBtn implements OnInit {
    *
    * @returns {Promise<void>}
    */
-  async ngOnInit() {
+   async ngOnInit() {
     const data = await this.supabaseService.getDataFromTable('tasks');
     if (data) {
       this.tasks.set(data);
@@ -57,7 +57,7 @@ export class MidBtn implements OnInit {
   /**
    * Navigates the user to the '/board' route using the Angular router.
    */
-  redirectToBoard() {
+   redirectToBoard() {
     this.router.navigateByUrl('/board');
   }
 }

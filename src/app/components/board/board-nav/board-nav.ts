@@ -22,7 +22,7 @@ export class BoardNav {
    *
    * @param {string} term - The new search term entered by the user.
    */
-  onSearchChange(term: string) {
+   onSearchChange(term: string) {
     this.searchChange.emit(term);
   }
 
@@ -31,7 +31,7 @@ export class BoardNav {
    *
    * @param {boolean} valid - True if search results are valid, false otherwise.
    */
-  onSearchResultChange(valid: boolean) {
+   onSearchResultChange(valid: boolean) {
     this.searchArea.searchResults = valid;
   }
 }

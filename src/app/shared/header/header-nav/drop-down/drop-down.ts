@@ -24,7 +24,7 @@ export class DropDown {
   /**
    * Toggles the visibility of the user dropdown menu.
    */
-  toggleDropdown() {
+   toggleDropdown() {
     this.isDropDownOpen = !this.isDropDownOpen;
   }
 
@@ -34,7 +34,7 @@ export class DropDown {
    *
    * @returns {Promise<void>}
    */
-  async getUserName() {
+   async getUserName() {
     const user = await this.supaBase.getUser();
     const email = user?.email as string;
     if (user) {
@@ -55,7 +55,7 @@ export class DropDown {
    *
    * @returns {Promise<void>}
    */
-  async logOut() {
+   async logOut() {
     await this.supaBase.logOut();
     this.auth.logout();
     this.route.navigateByUrl('/login');

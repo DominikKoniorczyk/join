@@ -12,7 +12,7 @@ export class AuthService {
   /**
    * Logs in the user as a guest and sets a flag in local storage.
    */
-  loginAsGuest() {
+   loginAsGuest() {
     this.isGuest = true;
     localStorage.setItem('isGuest', 'true');
   }
@@ -20,7 +20,7 @@ export class AuthService {
   /**
    * Logs out the guest user and removes the guest flag from local storage.
    */
-  logout() {
+   logout() {
     this.isGuest = false;
     localStorage.removeItem('isGuest');
   }
@@ -30,7 +30,7 @@ export class AuthService {
    *
    * @returns {boolean} True if the user is a guest, otherwise false.
    */
-  checkIfGuest() {
+   checkIfGuest() {
     return localStorage.getItem('isGuest') === 'true';
   }
 
@@ -39,7 +39,7 @@ export class AuthService {
    *
    * @returns {boolean} True if the user is a guest, otherwise false.
    */
-  isGuestUser(): boolean {
+   isGuestUser(): boolean {
     return localStorage.getItem('isGuest') === 'true';
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
    *
    * @returns {boolean} True if access is allowed, otherwise false.
    */
-  canAccess(): boolean {
+   canAccess(): boolean {
     if (!this.guestRestrictionEnabled && this.isGuestUser()) return true;
     if (this.isGuestUser()) return true;
     return false;
@@ -58,7 +58,7 @@ export class AuthService {
    * Handles guest user access restrictions by temporarily showing a message.
    * Message is displayed for 2 seconds when guest restrictions are enabled.
    */
-  handleGuestBlock(): void {
+   handleGuestBlock(): void {
     if (!this.guestRestrictionEnabled) return;
     this.showGuestMessage.set(true);
     setTimeout(() => {

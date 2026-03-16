@@ -9,7 +9,7 @@ export class CurrentDate {
    *
    * @returns {string} The current date as a string in "YYYY-MM-DD" format.
    */
-  getCurrentDate(): string {
+   getCurrentDate(): string {
     return new Date().toISOString().split("T")[0];
   }
 }

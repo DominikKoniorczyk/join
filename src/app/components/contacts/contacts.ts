@@ -67,7 +67,7 @@ export class Contacts {
    * Initializes the component, sets up a Supabase realtime listener for user changes,
    * and optionally restores default contacts after a short delay.
    */
-  ngOnInit() {
+   ngOnInit() {
     this.supabaseChannel
       .on('postgres_changes', { event: '*', schema: 'public', table: 'users' }, (payload) => {
         this.getDataInitial();
@@ -82,7 +82,7 @@ export class Contacts {
    * Restores the user contacts table to the default contacts.
    * Deletes all current user rows and uploads the default contacts.
    */
-  async restoreContactsToDefault() {
+   async restoreContactsToDefault() {
     await this.getDataInitial();
     for (let i = 0; this.dataUsers().length; i++) {
       this.supabaseClientService.deleteRow('users', this.dataUsers()[i].id);
@@ -93,7 +93,7 @@ export class Contacts {
   /**
    * Fetches the initial user data from the 'users' table and updates the local state.
    */
-  async getDataInitial() {
+   async getDataInitial() {
     const data = (await this.supabaseClientService.getDataFromTable(
       'users',
     )) as SupabaseContactsInterface[];
@@ -106,7 +106,7 @@ export class Contacts {
    * Groups user contacts by the first letter of their name.
    * @returns A record where each key is an uppercase letter and the value is an array of contacts starting with that letter.
    */
-  formGroups() {
+   formGroups() {
     const groups: Record<string, SupabaseContactsInterface[]> = {};
     for (const person of this.dataUsers()) {
       const letter = person.name[0].toUpperCase();
@@ -123,7 +123,7 @@ export class Contacts {
    * @param key The field key to update.
    * @param value The new value for the specified field.
    */
-  updateField(key: string, value: any) {
+   updateField(key: string, value: any) {
     this.selectedContact.update((current) => {
       if (!current) return current;
       return { ...current, name: value };
@@ -136,7 +136,7 @@ export class Contacts {
    * @param person The contact to open.
    * @param id The DOM element ID associated with this contact.
    */
-  openContact(person: SupabaseContactsInterface, id: number) {
+   openContact(person: SupabaseContactsInterface, id: number) {
     this.selectedContact.set(person);
     this.contactsDetailOpen.set(this.responsiveDetailsOpen());
     this.removeActiveClass();
@@ -155,7 +155,7 @@ export class Contacts {
    * 3. Calls `update` on `details` and `detailsMobile` (if they exist)
    *    to refresh the UI with the new contact information.
    */
-  updateDetails() {
+   updateDetails() {
     if (this.currentUserID != -1) {
       const newCurrent: SupabaseContactsInterface = this.dataUsers().find(
         (el) => el.id === this.currentUserID,
@@ -169,7 +169,7 @@ export class Contacts {
   /**
    * Removes the active CSS class from all buttons.
    */
-  removeActiveClass() {
+   removeActiveClass() {
     this.allBtn.forEach((el) => {
       el.nativeElement.classList.remove('active_btn');
     });
@@ -178,7 +178,7 @@ export class Contacts {
   /**
    * Opens the "Add Contact" dialog if it exists and is a valid HTMLDialogElement.
    */
-  async openNewContact() {
+   async openNewContact() {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.showModal();
@@ -190,7 +190,7 @@ export class Contacts {
   /**
    * Closes the "Add Contact" dialog if it exists and is a valid HTMLDialogElement.
    */
-  async closeDialog() {
+   async closeDialog() {
     const dialogRef = document.getElementById('addContactModal');
     if (dialogRef instanceof HTMLDialogElement) {
       dialogRef.classList.add('closed');
@@ -205,7 +205,7 @@ export class Contacts {
    * Cleans up resources when the component is destroyed,
    * specifically unsubscribing from the Supabase realtime channel.
    */
-  ngOnDestroy() {
+   ngOnDestroy() {
     this.supabaseChannel.unsubscribe();
   }
 
@@ -214,7 +214,7 @@ export class Contacts {
    *
    * @param contact - The contact object that should be edited.
    */
-  editContact(contact: SupabaseContactsInterface) {
+   editContact(contact: SupabaseContactsInterface) {
     if (contact) {
       this.editingContactId.set(contact.id);
       this.contactsModal.editingContact = contact;
@@ -228,7 +228,7 @@ export class Contacts {
    *
    * @param id - The unique identifier of the user to be deleted.
    */
-  deleteUser(id: number) {
+   deleteUser(id: number) {
     this.supabaseClientService.deleteRow('users', id);
     this.selectedContact.set({
       id: 0,
@@ -246,8 +246,8 @@ export class Contacts {
    * Triggered automatically whenever the window is resized.
    * Sets `responsiveDetailsOpen` to true if window width is <= 1100 pixels.
    */
-  @HostListener('window:resize')
-  onResize() {
+   @HostListener('window:resize')
+   onResize() {
     this.responsiveDetailsOpen.set(window.innerWidth <= 1100);
     this.isMobile.set(window.innerWidth <= 768);
   }
@@ -255,7 +255,7 @@ export class Contacts {
   /**
    * Closes the mobile contact details panel by updating the relevant signal.
    */
-  closeMobileDetails() {
+   closeMobileDetails() {
     this.contactsDetailOpen.set(false);
   }
   /**
@@ -270,7 +270,7 @@ export class Contacts {
    *
    * @returns {Promise<void>}
    */
-  async triggerUxFeedback() {
+   async triggerUxFeedback() {
     const isMobile = this.responsiveDetailsOpen();
     const editId = this.editingContactId();
     await this.closeDialog();
@@ -287,7 +287,7 @@ export class Contacts {
    * @param {number | null} editId - The ID of the contact to edit, or null to select the newest contact.
    * @param {boolean} isMobile - True if the action is performed on a mobile device, false otherwise.
    */
-  handleContactIdSelection(editId: number | null, isMobile: boolean) {
+   handleContactIdSelection(editId: number | null, isMobile: boolean) {
     const users = this.dataUsers();
     if (!users.length) return;
     const editedContact = editId ? users.find(contact => contact.id === editId) : null;
@@ -311,7 +311,7 @@ export class Contacts {
    * and automatically removes the class and closes the dialog
    * after 2.5 seconds.
    */
-  async sendFeedback() {
+   async sendFeedback() {
     const notificationRef = document.getElementById('uxFeedbackNotification');
     if (notificationRef instanceof HTMLDialogElement) {
       notificationRef.show();
@@ -329,7 +329,7 @@ export class Contacts {
    *
    * @param id - The unique identifier of the contact to scroll to.
    */
-  scrollToContact(id: number) {
+   scrollToContact(id: number) {
     const contactElement = this.allBtn.find((el) => el.nativeElement.id === id.toString());
     if (contactElement) {
       contactElement.nativeElement.scrollIntoView({
@@ -344,14 +344,14 @@ export class Contacts {
    *
    * Inverts the current boolean value of `isSlideOutVisible`.
    */
-  toggleSlideOut() {
+   toggleSlideOut() {
     this.isSlideOutVisible = !this.isSlideOutVisible;
   }
 
   /**
    * Closes the slide-out panel by setting its visibility state to false.
    */
-  closeSlideOut() {
+   closeSlideOut() {
     this.isSlideOutVisible = false;
   }
 }

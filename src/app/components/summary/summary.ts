@@ -31,7 +31,7 @@ export class Summary {
    *
    * @returns {Promise<void>}
    */
-  async getUserName() {
+   async getUserName() {
     const user = await this.supaBase.getUser();
     const email = user?.email as string;
     if (user) {

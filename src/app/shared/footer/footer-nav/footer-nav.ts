@@ -31,7 +31,7 @@ export class FooterNav {
    *
    * @returns {Promise<void>}
    */
-  async getIsLoggedIn() {
+   async getIsLoggedIn() {
     const user = await this.supabase.getUser();
     if (user) this.loggedIn.set(true);
   }
@@ -41,7 +41,7 @@ export class FooterNav {
    *
    * @param {string} newUrl - The new URL to set as active.
    */
-  updateActiveURL(newUrl: string) {
+   updateActiveURL(newUrl: string) {
     this.currentURL.set(newUrl);
   }
 
@@ -50,7 +50,7 @@ export class FooterNav {
    *
    * @param {string} route - The route path to navigate to.
    */
-  goTo(route: string) {
+   goTo(route: string) {
     this.router.navigate([route]);
   }
 
@@ -59,7 +59,7 @@ export class FooterNav {
    *
    * @returns {boolean} True if the user has access to all links, false otherwise.
    */
-  getShowAllLinks(): boolean {
+   getShowAllLinks(): boolean {
     if (this.auth.canAccess()) {
       return true;
     }

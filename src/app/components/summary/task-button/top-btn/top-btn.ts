@@ -20,7 +20,7 @@ export class TopBtn implements OnInit {
    *
    * @returns {Promise<void>}
    */
-  async ngOnInit() {
+   async ngOnInit() {
     await this.loadTasks();
   }
 
@@ -29,7 +29,7 @@ export class TopBtn implements OnInit {
    *
    * @returns {Promise<void>}
    */
-  async loadTasks() {
+   async loadTasks() {
     const data = await this.supabaseService.getDataFromTable('tasks');
     if (data) {
       this.tasksSignal.set(data);
@@ -42,14 +42,14 @@ export class TopBtn implements OnInit {
    * @param {string} status - The progress status to filter tasks by.
    * @returns {number} The number of tasks with the given status.
    */
-  getTaskCount(status: string): number {
+   getTaskCount(status: string): number {
     return this.tasksSignal().filter(task => task.progressStatus === status).length;
   }
 
   /**
    * Navigates the user to the board page using the Angular router.
    */
-  redirectToBoard() {
+   redirectToBoard() {
     this.router.navigateByUrl('/board');
   }
 }

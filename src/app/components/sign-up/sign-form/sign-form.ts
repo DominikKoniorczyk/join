@@ -36,7 +36,7 @@ export class SignForm {
   /**
    * Returns whether the user has accepted the policy checkbox.
    */
-  get policyAccepted(): boolean {
+   get policyAccepted(): boolean {
     return this.signUpForm.get('acceptPolicy')?.value;
   }
 
@@ -44,7 +44,7 @@ export class SignForm {
    * Checks whether the password and confirm password fields do not match
    * and if the confirm password field has been touched or modified.
    */
-  get passwordMismatch(): boolean {
+   get passwordMismatch(): boolean {
     const ctrl = this.signUpForm.get('confirmPassword');
     return !!(
       ctrl &&
@@ -56,7 +56,7 @@ export class SignForm {
   /**
    * Toggles the policy acceptance checkbox and marks it as touched.
    */
-  togglePolicy(): void {
+   togglePolicy(): void {
     const ctrl = this.signUpForm.get('acceptPolicy');
     ctrl?.setValue(!ctrl.value);
     ctrl?.markAsTouched();
@@ -65,14 +65,14 @@ export class SignForm {
   /**
    * Toggles visibility of the password field.
    */
-  togglePassword(): void {
+   togglePassword(): void {
     this.showPassword = !this.showPassword;
   }
 
   /**
    * Toggles visibility of the confirm password field.
    */
-  toggleConfirmPassword(): void {
+   toggleConfirmPassword(): void {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 
@@ -82,7 +82,7 @@ export class SignForm {
    *
    * @returns {string} Path to the password icon image.
    */
-  getPasswordIcon(): string {
+   getPasswordIcon(): string {
     const password = this.signUpForm.get('password')?.value;
 
     if (!password) return 'assets/img/password-lock-icon.png';
@@ -98,7 +98,7 @@ export class SignForm {
    *
    * @returns {string} Path to the confirm password icon image.
    */
-  getConfirmPasswordIcon(): string {
+   getConfirmPasswordIcon(): string {
     const confirm = this.signUpForm.get('confirmPassword')?.value;
 
     if (!confirm) return 'assets/img/password-lock-icon.png';
@@ -127,7 +127,7 @@ export class SignForm {
    * @param {string} errorKey - The validation error key to check for.
    * @returns {boolean} True if the error exists, false otherwise.
    */
-  hasError(controlName: string, errorKey: string): boolean {
+   hasError(controlName: string, errorKey: string): boolean {
     const ctrl = this.signUpForm.get(controlName);
     return !!(
       ctrl &&
@@ -141,7 +141,7 @@ export class SignForm {
    * Validates the form, triggers Supabase sign-up, shows success message,
    * and navigates to the login page after a delay.
    */
-  onSubmit(): void {
+   onSubmit(): void {
     if (this.signUpForm.invalid) {
       this.signUpForm.markAllAsTouched();
       return;

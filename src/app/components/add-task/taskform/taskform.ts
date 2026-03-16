@@ -49,7 +49,7 @@ export class TaskformComponent implements OnInit {
    *
    * @returns {Promise<void>}
    */
-  async ngOnInit() {
+   async ngOnInit() {
     const data = await this.supabase.getDataFromTable('users');
     if (data) {
       this.contacts.set(data);
@@ -62,7 +62,7 @@ export class TaskformComponent implements OnInit {
   /**
    * Updates the current task's progress status after the view has been initialized.
    */
-  ngAfterViewInit() {
+   ngAfterViewInit() {
     this.currentTask.update((val) => {
       if (!val) return val;
       return { ...val, progressStatus: this.returnProgress() };
@@ -73,7 +73,7 @@ export class TaskformComponent implements OnInit {
    * Returns the task's progress status based on the current progress selection.
    * @returns A string representing the current progress status.
    */
-  returnProgress(): 'To do' | 'In progress' | 'Await feedback' | 'Done' {
+   returnProgress(): 'To do' | 'In progress' | 'Await feedback' | 'Done' {
     if (this.progress === 'To do') return 'To do';
     else if (this.progress === 'In progress') return 'In progress';
     else if (this.progress === 'Await feedback') return 'Await feedback';
@@ -83,14 +83,14 @@ export class TaskformComponent implements OnInit {
   /**
    * Closes the contacts selector dropdown if it is open.
    */
-  closeDropdown() {
+   closeDropdown() {
     this.contactsSelector?.closeOnOutsideClick();
   }
 
   /**
    * Subscribes to all form input fields to update the current task reactively.
    */
-  subscripeAllInputFields() {
+   subscripeAllInputFields() {
     this.taskForm.get('title')?.valueChanges.subscribe((value) => {
       this.updateTaskTitle(value!);
     });
@@ -109,7 +109,7 @@ export class TaskformComponent implements OnInit {
    * Updates the current task's headline/title.
    * @param value The new title value.
    */
-  updateTaskTitle(value: string) {
+   updateTaskTitle(value: string) {
     this.currentTask.update((val) => {
       if (!val) return val;
       return { ...val, headline: value };
@@ -120,7 +120,7 @@ export class TaskformComponent implements OnInit {
    * Updates the current task's description.
    * @param value The new description value.
    */
-  updateTaskDesc(value: string) {
+   updateTaskDesc(value: string) {
     this.currentTask.update((val) => {
       if (!val) return val;
       return { ...val, desc: value };
@@ -131,7 +131,7 @@ export class TaskformComponent implements OnInit {
    * Updates the current task's due date.
    * @param value The new due date value.
    */
-  updateTaskDate(value: string) {
+   updateTaskDate(value: string) {
     this.currentTask.update((val) => {
       if (!val) return val;
       return { ...val, dueDate: value };
@@ -142,7 +142,7 @@ export class TaskformComponent implements OnInit {
    * Updates the current task's category.
    * @param value The new category value.
    */
-  updateTaskCat(value: string) {
+   updateTaskCat(value: string) {
     this.currentTask.update((val) => {
       if (!val) return val;
       return { ...val, category: value };
@@ -153,7 +153,7 @@ export class TaskformComponent implements OnInit {
    * Sets the priority of the current task and updates the reactive priority state.
    * @param current The new priority value.
    */
-  setPriority(current: number) {
+   setPriority(current: number) {
     this.currentTask.update((val) => {
       if (!val) return val;
       return { ...val, priority: current };
@@ -164,14 +164,14 @@ export class TaskformComponent implements OnInit {
   /**
    * Shows the subtask input field when focused.
    */
-  onFocusSubtask() {
+   onFocusSubtask() {
     this.subtask.nativeElement.classList.remove("d-none");
   }
 
   /**
    * Hides the subtask input field if it is empty when blurred.
    */
-  onBlurSubtask() {
+   onBlurSubtask() {
     if (this.taskForm.get('subtask')?.value == "")
       this.subtask.nativeElement.classList.add("d-none");
   }
@@ -179,7 +179,7 @@ export class TaskformComponent implements OnInit {
   /**
    * Adds a new subtask to the current task if the subtask input is not empty.
    */
-  addSubtask() {
+   addSubtask() {
     if (this.taskForm.get('subtask')?.value != "") {
       let currentSubtask = { id: 0, title: this.taskForm.get('subtask')?.value!, isDone: false };
       this.currentTask.update((val) => {
@@ -195,7 +195,7 @@ export class TaskformComponent implements OnInit {
   /**
    * Clears the subtask input field.
    */
-  clearSubtask() {
+   clearSubtask() {
     this.taskForm.get('subtask')?.setValue("");
   }
 
@@ -203,7 +203,7 @@ export class TaskformComponent implements OnInit {
    * Creates a new task using the current task data and assigned contacts,
    * uploads it to Supabase, resets the form, and closes the dialog.
    */
-  createTask() {
+   createTask() {
     const assignment: SupabaseContactsInterface[] = this.contactsSelector.selectedContacts;
     const uploadData = {
       headline: this.currentTask().headline, desc: this.currentTask().desc, dueDate: this.currentTask().dueDate, priority: this.currentTask().priority,
@@ -218,7 +218,7 @@ export class TaskformComponent implements OnInit {
   /**
    * Resets the form to its initial state.
    */
-  resetForm() {
+   resetForm() {
     this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
     this.contactsSelector.reset();
     this.taskForm.reset();
@@ -229,7 +229,7 @@ export class TaskformComponent implements OnInit {
    * Removes a subtask by its index from the current task.
    * @param index The index of the subtask to remove.
    */
-  removeSubtask(index: number) {
+   removeSubtask(index: number) {
     this.currentTask.update((val) => {
       if (!val) return val;
       const updated = val.subtasks.filter((_, i) => i !== index);
@@ -241,7 +241,7 @@ export class TaskformComponent implements OnInit {
    * Updates the title of a subtask by index.
    * @param event An object containing the subtask index and new title.
    */
-  editSubtask(event: { index: number; title: string }) {
+   editSubtask(event: { index: number; title: string }) {
     this.currentTask.update((val) => {
       if (!val) return val;
       const updated = val.subtasks.map((st, i) => {
@@ -259,7 +259,7 @@ export class TaskformComponent implements OnInit {
    * Enter → adds the subtask, Escape → blurs input and hides it.
    * @param ev The keyboard event.
    */
-  onKeydown(ev: KeyboardEvent) {
+   onKeydown(ev: KeyboardEvent) {
     if (ev.key === 'Enter') {
       ev.preventDefault();
       this.addSubtask();

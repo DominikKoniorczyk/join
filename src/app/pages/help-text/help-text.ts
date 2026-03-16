@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './help-text.html',
   styleUrl: './help-text.scss',
 })
-export class HelpText {
-
-}
+export class HelpText {}

@@ -25,11 +25,27 @@ export class HeaderNav {
       });
   }
 
-  ngAfterViewInit() {
+  /**
+   * Angular lifecycle hook that is called after the component's view
+   * and child views have been fully initialized.
+   *
+   * This hook triggers a login state check to determine whether the user
+   * is currently authenticated or using a guest session.
+   */
+   ngAfterViewInit() {
     this.checkIsLoggedIn();
   }
 
-  async checkIsLoggedIn() {
+  /**
+   * Checks whether a user is currently logged in.
+   *
+   * The method retrieves the authenticated user from Supabase.
+   * If a valid user session exists or a guest user is active,
+   * the reactive `isLoggedIn` state is set to `true`.
+   *
+   * @returns {Promise<void>} Resolves when the authentication check is complete.
+   */
+   async checkIsLoggedIn() {
     const user = await this.supaBase.getUser();
     if (user || this.guest.isGuestUser()) {
       this.isLoggedIn.set(true);

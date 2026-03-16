@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
  * Example:
  *   'John Doe' => 'JD'
  */
-@Pipe({ name: 'initials' })
-export class InitialsPipe implements PipeTransform {
+ @Pipe({ name: 'initials' })
+ export class InitialsPipe implements PipeTransform {
   constructor() {}
 
   transform(fullName: string): string {
@@ -33,8 +33,8 @@ export class InitialsPipe implements PipeTransform {
  * @param {number} [position] - Optional. 1 for first initial, 2 for last initial.
  * @returns {string} The uppercase initial based on the specified position, or empty string if unavailable.
  */
-@Pipe({ name: 'initialsSelector' })
-export class InitialsSelctorPipe implements PipeTransform {
+ @Pipe({ name: 'initialsSelector' })
+ export class InitialsSelctorPipe implements PipeTransform {
   transform(fullName: string, position?: number): string {
     if (!fullName) return "";
     const parts = fullName.trim().split(' ').filter(p => p.length > 0);

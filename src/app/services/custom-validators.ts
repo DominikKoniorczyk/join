@@ -5,7 +5,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
  * each with a minimum of two characters. Supports German umlauts and "ß".
  * * @returns {ValidatorFn} A validator function that returns 'invalidContactName' if the pattern doesn't match.
  */
-export function contactNameValidator(): ValidatorFn {
+ export function contactNameValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const name: string = control.value;
     if (name) {
@@ -23,7 +23,7 @@ export function contactNameValidator(): ValidatorFn {
  * * @returns {ValidatorFn} A validator function that returns 'email: true' if the domain suffix is too short
  * or an empty 'email: {}' object if the format is fundamentally incorrect.
  */
-export function contactEmailValidator(): ValidatorFn {
+ export function contactEmailValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const email: string = control.value;
 
@@ -44,7 +44,7 @@ export function contactEmailValidator(): ValidatorFn {
  * Ensures the value is not zero and has a length of more than 5 characters.
  * * @returns {ValidatorFn} A validator function that returns 'invalidPhoneNumber' if the requirements are not met.
  */
-export function contactPhoneValidator(): ValidatorFn {
+ export function contactPhoneValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const phoneNumber: number = control.value;
     if (phoneNumber) {
@@ -74,7 +74,7 @@ export function contactPhoneValidator(): ValidatorFn {
  * `ValidationErrors` object with `{ pastDate: true }` if the date
  * is in the past, otherwise `null`.
  */
-export function noPastDateValidator(): ValidatorFn {
+ export function noPastDateValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!control.value) return null;
     const inputDate = new Date(control.value);
@@ -92,7 +92,7 @@ export function noPastDateValidator(): ValidatorFn {
  *
  * @returns {ValidatorFn} A validator function returning a passwordMismatch error if passwords differ.
  */
-export function passwordMatchValidator(): ValidatorFn {
+ export function passwordMatchValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;

@@ -41,7 +41,7 @@ export class Board {
    * Updates the current search term and applies it to the task lists.
    * @param term The search term entered by the user.
    */
-  onSearchChange(term: string) {
+   onSearchChange(term: string) {
     this.nav.onSearchResultChange(this.actualBoard.noSearchResults);
     this.searchTerm = term;
     this.applySearch();
@@ -51,7 +51,7 @@ export class Board {
    * Filters all task lists based on the current search term.
    * If the search term is empty, all tasks are restored.
    */
-  applySearch() {
+   applySearch() {
     const term = (this.searchTerm || '').toLowerCase().trim();
     if (!term) {
       this.resetSearchResult();
@@ -67,7 +67,7 @@ export class Board {
    * Resets all task lists to their original state,
    * restoring all tasks without any filtering.
    */
-  resetSearchResult() {
+   resetSearchResult() {
     this.todo = [...this.allTodo];
     this.inprogress = [...this.allInprogress];
     this.await = [...this.allAwait];
@@ -78,7 +78,7 @@ export class Board {
    * Applies a search filter to all task lists.
    * @param matches A callback function used to determine if a task should be included.
    */
-  applySearchResult(matches: any) {
+   applySearchResult(matches: any) {
     this.todo = this.allTodo.filter(matches);
     this.inprogress = this.allInprogress.filter(matches);
     this.await = this.allAwait.filter(matches);
@@ -89,7 +89,7 @@ export class Board {
    * Opens the "Add Task" dialog for the specified board type.
    * @param type The type of task list (e.g., 'To do').
    */
-  async openAddTask(type: string) {
+   async openAddTask(type: string) {
     this.actualBoard.openAddTask('To do');
   }
 }

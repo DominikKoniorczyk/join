@@ -8,17 +8,17 @@ import { Pipe, PipeTransform } from '@angular/core';
  *   '1234567890' => '+123 456 789 0'
  *   987654321 => '+987 654 321'
  */
-@Pipe({
+ @Pipe({
   name: 'phoneFormat',
 })
 export class PhonePipe implements PipeTransform {
   /**
-  * Transforms a phone number (string or number) into a formatted string.
-  * Non-digit characters are removed, and digits are grouped in sets of three.
-  * @param value The phone number to format.
-  * @returns A string representing the formatted phone number with a leading '+'.
-  */
-  transform(value: string | number): string {
+   * Transforms a phone number (string or number) into a formatted string.
+   * Non-digit characters are removed, and digits are grouped in sets of three.
+   * @param value The phone number to format.
+   * @returns A string representing the formatted phone number with a leading '+'.
+   */
+    transform(value: string | number): string {
     if (!value) return '';
     let str = value.toString();
     str = str.replace(/\D/g, '');
@@ -41,7 +41,7 @@ export class PhonePipe implements PipeTransform {
    * @param {string} value - The phone number to check.
    * @returns {boolean} True if the number likely has a country code, false otherwise.
    */
-  getHasCountryCode(value: string): boolean {
+    getHasCountryCode(value: string): boolean {
     if (value.slice(0, 1) != "0") {
       return true;
     }

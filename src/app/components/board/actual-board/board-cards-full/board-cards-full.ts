@@ -34,7 +34,7 @@ export class BoardCardsFull {
    * Closes the modal and exits edit mode.
    * Emits the `closeTriggered` event.
    */
-  onClose() {
+   onClose() {
     this.isEditing = false;
     this.closeTriggered.emit();
   }
@@ -44,14 +44,14 @@ export class BoardCardsFull {
    *
    * @param {Task} data - The task data to load into the modal.
    */
-  initModal(data: Task) {
+   initModal(data: Task) {
     this.currentTask.set(data);
   }
 
   /**
    * Maps priority levels to labels and icons.
    */
-  priorityMap: { [key: number]: { label: string, icon: string } } = {
+   priorityMap: { [key: number]: { label: string, icon: string } } = {
     0: { label: 'Low', icon: 'urgency-low-icon.png' },
     1: { label: 'Medium', icon: 'urgency-medium-icon.png' },
     2: { label: 'Urgent', icon: 'urgency-urgent-icon.png' },
@@ -62,7 +62,7 @@ export class BoardCardsFull {
    *
    * @param {Subtask} subtask - The subtask to toggle.
    */
-  toggleSubtask(subtask: Subtask) {
+   toggleSubtask(subtask: Subtask) {
     subtask.isDone = !subtask.isDone;
     const task = { headline: this.currentTask().headline, desc: this.currentTask().desc, dueDate: this.currentTask().dueDate, priority: this.currentTask().priority, category: this.currentTask().category, assignedTo: this.currentTask().assignedTo, subtasks: this.currentTask().subtasks, progressStatus: this.currentTask().progressStatus };
     task.subtasks.forEach(el => {
@@ -76,7 +76,7 @@ export class BoardCardsFull {
   /**
    * Enables editing mode for the task and stores the temporary priority.
    */
-  startEditing() {
+   startEditing() {
     this.isEditing = true;
     this.tempPriority = this.currentTask().priority;
     this.currentTask.set({ ...this.currentTask(), subtasks: [...this.currentTask().subtasks] });
@@ -85,7 +85,7 @@ export class BoardCardsFull {
   /**
    * Saves changes made to the task fields and updates Supabase.
    */
-  saveChanges() {
+   saveChanges() {
     this.currentTask().headline = this.headlineInput.nativeElement.value;
     this.currentTask().desc = this.descInput.nativeElement.value;
     this.currentTask().dueDate = this.dateInput.nativeElement.value;
@@ -98,7 +98,7 @@ export class BoardCardsFull {
   /**
    * Deletes the current task from Supabase and triggers modal close.
    */
-  deleteTask() {
+   deleteTask() {
     this.supabase.deleteRow('tasks', this.currentTask().id);
     this.closeTriggered.emit();
   }
@@ -106,7 +106,7 @@ export class BoardCardsFull {
   /**
    * Pushes the current task data to Supabase.
    */
-  pushDataToSupabase() {
+   pushDataToSupabase() {
     this.supabase.updateRow('tasks', this.currentTask(), this.currentTask().id);
   }
 
@@ -115,7 +115,7 @@ export class BoardCardsFull {
    *
    * @param {number} prio - Priority value to set.
    */
-  setPriority(prio: number) {
+   setPriority(prio: number) {
     this.tempPriority = prio;
   }
 
@@ -125,7 +125,7 @@ export class BoardCardsFull {
    * @param {string} name - Full name of the user.
    * @returns {string} Uppercase initials.
    */
-  getInitials(name: string): string {
+   getInitials(name: string): string {
     if (!name) return '';
     const parts = name.trim().split(' ');
     return (parts.length > 1
@@ -138,7 +138,7 @@ export class BoardCardsFull {
    *
    * @param {HTMLInputElement} inputElement - The input element to clear.
    */
-  clearSubtaskInput(inputElement: HTMLInputElement) {
+   clearSubtaskInput(inputElement: HTMLInputElement) {
     inputElement.value = '';
     inputElement.focus();
   }
@@ -148,7 +148,7 @@ export class BoardCardsFull {
    *
    * @param {HTMLInputElement} inputElement - The input element containing the subtask title.
    */
-  addSubtask(inputElement: HTMLInputElement) {
+   addSubtask(inputElement: HTMLInputElement) {
     const value = inputElement.value.trim();
     if (value !== '') {
       const newSubtask = {
@@ -167,7 +167,7 @@ export class BoardCardsFull {
    *
    * @param {number} index - Index of the subtask to remove.
    */
-  removeSubtask(index: number) {
+   removeSubtask(index: number) {
     this.currentTask.update(task => ({
       ...task,
       subtasks: task.subtasks.filter((_, i) => i !== index)
@@ -179,7 +179,7 @@ export class BoardCardsFull {
    *
    * @param {{ index: number; title: string }} event - Object containing the subtask index and new title.
    */
-  editSubtask(event: { index: number; title: string }) {
+   editSubtask(event: { index: number; title: string }) {
     this.currentTask.update(task => {
       const updatedSubtasks = [...task.subtasks];
       if (updatedSubtasks[event.index]) {
@@ -195,7 +195,7 @@ export class BoardCardsFull {
   /**
    * Closes the dropdown selector using the component's close handler.
    */
-  closeDropdown() {
+   closeDropdown() {
     this.selector?.closeOnOutsideClick();
   }
 }

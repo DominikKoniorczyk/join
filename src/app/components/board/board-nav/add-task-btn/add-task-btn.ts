@@ -12,7 +12,7 @@ export class AddTaskBtn {
   /**
    * Emits an event to open the "Add Task" interface.
    */
-  onClickedAddTask() {
+   onClickedAddTask() {
     this.openAddTask.emit();
   }
 }

@@ -58,7 +58,7 @@ export class ActualBoard {
    * Angular lifecycle hook that runs after the component's view has been initialized.
    * Subscribes to changes in all draggable elements and sets initial inner width.
    */
-  ngAfterViewInit() {
+   ngAfterViewInit() {
     this.allDrags.changes.subscribe(() => {
       this.updateDragStatus();
     });
@@ -68,7 +68,7 @@ export class ActualBoard {
   /**
    * Sets the initial inner width and updates drag status based on screen size.
    */
-  setInnerWidthOnInit() {
+   setInnerWidthOnInit() {
     this.notMobile.set(window.innerWidth > 768);
     this.updateDragStatus();
   }
@@ -76,7 +76,7 @@ export class ActualBoard {
   /**
    * Enables or disables all draggable elements based on the `notMobile` flag.
    */
-  updateDragStatus() {
+   updateDragStatus() {
     this.allDrags?.forEach(drag => {
       drag.disabled = !this.notMobile();
     });
@@ -87,7 +87,7 @@ export class ActualBoard {
    *
    * @param {any} event - The resize event containing the new width.
    */
-  resizeHandler(event: any) {
+   resizeHandler(event: any) {
     this.notMobile.set(event.target.width > 768);
     this.updateDragStatus();
   }
@@ -96,7 +96,7 @@ export class ActualBoard {
    * Angular lifecycle hook that runs after component initialization.
    * Subscribes to Supabase channel for task changes and fetches initial tasks.
    */
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.supabaseChannel
       .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks' }, (payload) => {
         this.getTasksData();
@@ -109,14 +109,14 @@ export class ActualBoard {
    * Angular lifecycle hook that runs when the component is destroyed.
    * Unsubscribes from the Supabase channel.
    */
-  ngOnDestroy() {
+   ngOnDestroy() {
     this.supabaseChannel.unsubscribe();
   }
 
   /**
    * Fetches tasks from Supabase, updates local state, resets and orders tasks.
    */
-  async getTasksData() {
+   async getTasksData() {
     const data = (await this.supabaseClientService.getDataFromTable(
       'tasks',
     )) as Task[];
@@ -129,7 +129,7 @@ export class ActualBoard {
   /**
    * Clears all task columns.
    */
-  resetTasks() {
+   resetTasks() {
     this.toDoTasksColumn.set([]);
     this.inProgressTasksColumn.set([]);
     this.awaitFeedbackTasksColumn.set([]);
@@ -139,7 +139,7 @@ export class ActualBoard {
   /**
    * Orders tasks into their respective columns based on progress status.
    */
-  orderTasks() {
+   orderTasks() {
     this.dataTasks().forEach(el => {
       if (el.progressStatus === 'To do') this.orderTasksIntoTodo(el);
       else if (el.progressStatus === 'In progress') this.orderTasksIntoInProgress(el);
@@ -153,7 +153,7 @@ export class ActualBoard {
    *
    * @param {Task} newElement - Task to be added.
    */
-  orderTasksIntoTodo(newElement: Task) {
+   orderTasksIntoTodo(newElement: Task) {
     this.toDoTasksColumn.update((el) => {
       if (!el) return el;
       return [...el, newElement];
@@ -165,7 +165,7 @@ export class ActualBoard {
    *
    * @param {Task} newElement - Task to be added.
    */
-  orderTasksIntoInProgress(newElement: Task) {
+   orderTasksIntoInProgress(newElement: Task) {
     this.inProgressTasksColumn.update((el) => {
       if (!el) return el;
       return [...el, newElement];
@@ -177,7 +177,7 @@ export class ActualBoard {
    *
    * @param {Task} newElement - Task to be added.
    */
-  orderTasksIntoAwaitFeedback(newElement: Task) {
+   orderTasksIntoAwaitFeedback(newElement: Task) {
     this.awaitFeedbackTasksColumn.update((el) => {
       if (!el) return el;
       return [...el, newElement];
@@ -189,7 +189,7 @@ export class ActualBoard {
    *
    * @param {Task} newElement - Task to be added.
    */
-  orderTasksIntoDone(newElement: Task) {
+   orderTasksIntoDone(newElement: Task) {
     this.doneTasksColumn.update((el) => {
       if (!el) return el;
       return [...el, newElement];
@@ -203,7 +203,7 @@ export class ActualBoard {
    * @param {string} term - The search term.
    * @returns {boolean} True if title or description includes the term.
    */
-  private matches(task: Task, term: string): boolean {
+   private matches(task: Task, term: string): boolean {
     const title = (task.headline || '').toLowerCase();
     const desc = (task.desc || '').toLowerCase();
     return title.includes(term) || desc.includes(term);
@@ -212,7 +212,7 @@ export class ActualBoard {
   /**
    * Returns filtered "To do" tasks based on search term.
    */
-  get filteredTodo(): Task[] {
+   get filteredTodo(): Task[] {
     const term = (this.searchTerm || '').toLowerCase().trim();
     const list = this.toDoTasksColumn();
     if (!term) return list;
@@ -222,7 +222,7 @@ export class ActualBoard {
   /**
    * Returns filtered "In progress" tasks based on search term.
    */
-  get filteredInProgress(): Task[] {
+   get filteredInProgress(): Task[] {
     const term = (this.searchTerm || '').toLowerCase().trim();
     const list = this.inProgressTasksColumn();
     if (!term) return list;
@@ -232,7 +232,7 @@ export class ActualBoard {
   /**
    * Returns filtered "Await feedback" tasks based on search term.
    */
-  get filteredAwaitFeedback(): Task[] {
+   get filteredAwaitFeedback(): Task[] {
     const term = (this.searchTerm || '').toLowerCase().trim();
     const list = this.awaitFeedbackTasksColumn();
     if (!term) return list;
@@ -242,7 +242,7 @@ export class ActualBoard {
   /**
    * Returns filtered "Done" tasks based on search term.
    */
-  get filteredDone(): Task[] {
+   get filteredDone(): Task[] {
     const term = (this.searchTerm || '').toLowerCase().trim();
     const list = this.doneTasksColumn();
     if (!term) return list;
@@ -252,7 +252,7 @@ export class ActualBoard {
   /**
    * Returns true if no tasks match the current search term across all columns.
    */
-  get noSearchResults(): boolean {
+   get noSearchResults(): boolean {
     const term = (this.searchTerm || '').trim();
     if (!term || this.searchTerm == "") return false;
     return (
@@ -268,7 +268,7 @@ export class ActualBoard {
    *
    * @param {Task} task - The task to display in the modal.
    */
-  async openDialog(task: Task) {
+   async openDialog(task: Task) {
     this.selectedTask = task;
     const dialogRef = this.cardDetails.nativeElement;
     this.cardData.initModal(task);
@@ -279,7 +279,7 @@ export class ActualBoard {
   /**
    * Closes the task details modal dialog with animation.
    */
-  async closeDialog() {
+   async closeDialog() {
     const dialogRef = this.cardDetails.nativeElement;
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
     dialogRef.close();
@@ -290,7 +290,7 @@ export class ActualBoard {
    *
    * @param {string} type - The progress type for the new task.
    */
-  async openAddTask(type: string) {
+   async openAddTask(type: string) {
     const dialogRef = this.addTask.nativeElement;
     this.cardTaskData.setCurrentProgress(type);
     dialogRef.showModal();
@@ -300,7 +300,7 @@ export class ActualBoard {
   /**
    * Closes the "Add Task" modal dialog with animation.
    */
-  async closeAddTaskDialog() {
+   async closeAddTaskDialog() {
     const dialogRef = this.addTask.nativeElement;
     await this.animService.animate(dialogRef, slideOutAnimations, 300, true);
     dialogRef.close();
@@ -311,7 +311,7 @@ export class ActualBoard {
    *
    * @param {CdkDragDrop<any[]>} event - The drag-and-drop event.
    */
-  async drop(event: CdkDragDrop<any[]>) {
+   async drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     }
