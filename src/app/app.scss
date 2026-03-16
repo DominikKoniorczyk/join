@@ -9,7 +9,7 @@
 }
 
 .main-container {
-  width: 100%;
+  width: calc(100% - 240px);
   max-width: calc(1440px - 240px);
   min-height: 100dvh;
   box-sizing: border-box;
@@ -23,6 +23,7 @@
 
 .background-full{
   max-width: unset;
+  width: 100%;
 }
 
 .shadow {

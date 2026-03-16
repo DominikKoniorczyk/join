@@ -6,6 +6,10 @@
   height: 100%;
 
   @media (max-width: 1170px) {
+    height: calc(100% - 96px);
+  }
+
+  @media (max-width: 768px) {
     height: calc(100% - 176px);
   }
 }
