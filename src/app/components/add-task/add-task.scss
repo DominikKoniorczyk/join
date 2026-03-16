@@ -18,6 +18,9 @@
   bottom: 0;
   left: 0;
   background-color: #f6f7f8;
+  @media (max-width: 768px){
+    position: fixed;
+  }
 }
 
 .button-area {
@@ -110,7 +113,7 @@ button[disabled] {
 @media (max-width: 768px) {
   .main {
     height: 100%;
-    max-height: 80%;
+    max-height: 72%;
     overflow: auto;
   }
 
