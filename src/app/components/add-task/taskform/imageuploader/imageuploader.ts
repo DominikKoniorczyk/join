@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, signal } from '@angular/core';
 import { TaskFile } from '../../../../interfaces/taskmodel.interfaces';
 
 @Component({
@@ -12,7 +12,9 @@ export class Imageuploader {
   @ViewChild('uploadArea') uploadArea!: ElementRef<HTMLDivElement>;
 
   allEventsForDrop: string[] = ['dragenter', 'dragover', 'dragleave', 'drop'];
-  allImages!: TaskFile[];
+  allImages: TaskFile[] = [];
+
+  images = signal<TaskFile[]>([]);
 
   triggerFilePicker() {
     this.fileInput.nativeElement.click();
@@ -33,42 +35,35 @@ export class Imageuploader {
     this.preventDefaults(event);
   }
 
-  handleDrop(event: DragEvent) {
+  async handleDrop(event: DragEvent) {
     this.handleDragLeave(event);
     const data = event.dataTransfer;
     const files = data!.files;
-    const dataTransfer = new DataTransfer();
     if (files.length > 0) {
-      this.getCurrentFiles(dataTransfer);
-      this.getNewFiles(dataTransfer, files);
-      this.fileInput.nativeElement.files = dataTransfer.files;
-    }
-  }
-
-  getCurrentFiles(dataTransfer: DataTransfer) {
-    const currentFiles = this.fileInput.nativeElement.files;
-    if (currentFiles) {
-      for (let i = 0; i < currentFiles.length; i++) {
-        dataTransfer.items.add(currentFiles[i]);
-      }
-    }
-  }
-
-  getNewFiles(dataTransfer: DataTransfer, files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      if (files[i].type.endsWith('.jpeg') || files[i].type.endsWith('.png')) {
-        dataTransfer.items.add(files[i]);
-      }
+      this.createBlob(files);
     }
   }
 
   onFilesChanged(event: Event) {
     const currentFiles = this.fileInput.nativeElement.files;
+    if(currentFiles) {
+      Array.from(currentFiles).forEach(file =>{
+        this.allImages
+      })
+      this.createBlob(currentFiles);
+    }
+  }
+
+  createBlob(currentFiles: FileList){
+    console.log(currentFiles);
+
     if (currentFiles) {
       Array.from(currentFiles).forEach(async file => {
         if (!file.type.endsWith('.jpeg') && !file.type.endsWith('.png')) return;
-        const blob = new Blob([file], { type: file.type });
-        const compressedBase64 = await this.compressImage(file, 800, 800, 0.8);
+          const blob = new Blob([file], { type: file.type });
+          const compressedBase64 = await this.compressImage(file, 800, 800, 0.8);
+          this.allImages.push({filename: file.name, filetype: file.type, base64: compressedBase64});
+          this.images.set(this.allImages);
       });
     }
   }

@@ -4,11 +4,13 @@
     <input #fileInput type="file" accept=".jpeg, .png" multiple style="display: none;" (change)="onFilesChanged($event)">
     <div class="visible_input" #uploadArea (click)="triggerFilePicker()">
       <p>Drag a file or browse</p>
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M15 7.5V22.5" stroke="#A8A8A8" stroke-width="2" stroke-linecap="round" />
         <path d="M22.5 15.1416L7.5 15.1416" stroke="#A8A8A8" stroke-width="2" stroke-linecap="round" />
       </svg>
     </div>
   </div>
+  @for (task of images(); track images; let i = $index) {
+    <img src="{{images()[i].base64}}" alt="" style="width: 80px; height: 80px;">
+  }
 </div>

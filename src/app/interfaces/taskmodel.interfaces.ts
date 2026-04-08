@@ -27,5 +27,5 @@ import { SupabaseContactsInterface } from "./supabase.interfaces";
 export interface TaskFile {
   filename: string,
   filetype: string,
-  base64: string,
+  base64: unknown,
 }
