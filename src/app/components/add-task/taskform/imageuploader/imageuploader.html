@@ -1,8 +1,14 @@
 <div class="image_selector_outer">
-  <div class="file-upload-container" #dropArea (drop)="handleDrop($event)" (dragover)="handleDragOver($event)" (dragleave)="handleDragLeave($event)">
-    <input #fileInput type="file" accept=".jpeg, .png" multiple >
+  <div class="file-upload-container" #dropArea (drop)="handleDrop($event)" (dragover)="handleDragOver($event)"
+    (dragleave)="handleDragLeave($event)">
+    <input #fileInput type="file" accept=".jpeg, .png" multiple style="display: none;">
     <div class="visible_input" #uploadArea (click)="triggerFilePicker()">
       <p>Drag a file or browse</p>
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 7.5V22.5" stroke="#A8A8A8" stroke-width="2" stroke-linecap="round" />
+        <path d="M22.5 15.1416L7.5 15.1416" stroke="#A8A8A8" stroke-width="2" stroke-linecap="round" />
+      </svg>
     </div>
   </div>
 </div>
