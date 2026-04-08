@@ -23,3 +23,9 @@ import { SupabaseContactsInterface } from "./supabase.interfaces";
   assignedTo: SupabaseContactsInterface[];
   subtasks: Subtask[];
 }
+
+export interface TaskFile {
+  filename: string,
+  filetype: string,
+  base64: string,
+}

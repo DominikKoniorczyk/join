@@ -1,7 +1,7 @@
 <div class="image_selector_outer">
   <div class="file-upload-container" #dropArea (drop)="handleDrop($event)" (dragover)="handleDragOver($event)"
     (dragleave)="handleDragLeave($event)">
-    <input #fileInput type="file" accept=".jpeg, .png" multiple style="display: none;">
+    <input #fileInput type="file" accept=".jpeg, .png" multiple style="display: none;" (change)="onFilesChanged($event)">
     <div class="visible_input" #uploadArea (click)="triggerFilePicker()">
       <p>Drag a file or browse</p>
       <svg width="30" height="30" viewBox="0 0 30 30" fill="none"

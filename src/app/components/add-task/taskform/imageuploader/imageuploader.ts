@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { TaskFile } from '../../../../interfaces/taskmodel.interfaces';
 
 @Component({
   selector: 'app-imageuploader',
@@ -11,6 +12,7 @@ export class Imageuploader {
   @ViewChild('uploadArea') uploadArea!: ElementRef<HTMLDivElement>;
 
   allEventsForDrop: string[] = ['dragenter', 'dragover', 'dragleave', 'drop'];
+  allImages!: TaskFile[];
 
   triggerFilePicker() {
     this.fileInput.nativeElement.click();
@@ -54,7 +56,69 @@ export class Imageuploader {
 
   getNewFiles(dataTransfer: DataTransfer, files: FileList) {
     for (let i = 0; i < files.length; i++) {
-      dataTransfer.items.add(files[i]);
+      if (files[i].type.endsWith('.jpeg') || files[i].type.endsWith('.png')) {
+        dataTransfer.items.add(files[i]);
+      }
     }
+  }
+
+  onFilesChanged(event: Event) {
+    const currentFiles = this.fileInput.nativeElement.files;
+    if (currentFiles) {
+      Array.from(currentFiles).forEach(async file => {
+        if (!file.type.endsWith('.jpeg') && !file.type.endsWith('.png')) return;
+        const blob = new Blob([file], { type: file.type });
+        const compressedBase64 = await this.compressImage(file, 800, 800, 0.8);
+      });
+    }
+  }
+
+  /**
+   * Komprimiert ein Bild auf eine Zielgröße oder -qualität
+   * @param {File} file - Die Bilddatei, die komprimiert werden soll
+   * @param {number} maxWidth - Die maximale Breite des Bildes
+   * @param {number} maxHeight - Die maximale Höhe des Bildes
+   * @param {number} quality - Qualität des komprimierten Bildes (zwischen 0 und 1)
+   * @returns {Promise<string>} - Base64-String des komprimierten Bildes
+   */
+   compressImage(file: File, maxWidth = 800, maxHeight = 800, quality = 0.8) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const result = event.target?.result;
+        if (typeof result === 'string') {
+          const img = new Image();
+          img.onload = () => {
+            const compressedBase64 = this.createCanvasForCompressing(img, maxWidth, maxHeight, quality);
+            resolve(compressedBase64);
+          };
+          img.onerror = () => reject('Error on loading the image.');
+          img.src = result;
+        } else reject('Unknown result.');
+      };
+      reader.onerror = () => reject('Error while reading the data.');
+      reader.readAsDataURL(file);
+    });
+  }
+
+  createCanvasForCompressing(img: HTMLImageElement, maxWidth: number, maxHeight: number, quality: number){
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    let dimensions = this.getDimensionsForCompression(img.width, maxWidth, img.height, maxHeight);
+    canvas.width = dimensions.width;
+    canvas.height = dimensions.height;
+    ctx!.drawImage(img, 0, 0, dimensions.width, dimensions.height);
+    return canvas.toDataURL('image/jpeg', quality);
+  }
+
+  getDimensionsForCompression(width: number, maxWidth: number, height: number, maxHeight: number) {
+    if (width > maxWidth || height > maxHeight) {
+      if (width > height) {
+        return { height : (height * maxWidth) / width, width : maxWidth };
+      } else {
+        return { width : (width * maxHeight) / height, height: maxHeight };
+      }
+    }
+    else return { width: width, height: height};
   }
 }
