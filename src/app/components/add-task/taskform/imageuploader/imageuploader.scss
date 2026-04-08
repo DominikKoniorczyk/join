@@ -1,0 +1,21 @@
+
+.image_selector_outer{
+  max-height: 80px;
+  height: 100%;
+}
+
+.visible_input{
+  width: 100%;
+  height: 40px;
+  border: 1px dotted gray;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: gray;
+  cursor: pointer;
+}
+
+.dragover{
+  background-color: black;
+}

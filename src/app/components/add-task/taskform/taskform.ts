@@ -11,11 +11,12 @@ import { PriorityButton } from '../../../shared/priority-button/priority-button'
 import { SubtaskButtonComponent } from './subtask-button/subtask-button';
 import { noPastDateValidator } from '../../../services/custom-validators';
 import { Router } from '@angular/router';
+import { Imageuploader } from './imageuploader/imageuploader';
 
 @Component({
   selector: 'app-taskform',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ContactsSelectorWithSearch, PriorityButton, SubtaskButtonComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ContactsSelectorWithSearch, PriorityButton, SubtaskButtonComponent, Imageuploader],
   templateUrl: './taskform.html',
   styleUrls: ['./taskform.scss']
 })

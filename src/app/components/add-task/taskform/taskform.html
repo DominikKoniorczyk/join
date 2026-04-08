@@ -19,7 +19,8 @@
           <p class="d-none" [class.invalid-text]="taskForm.get('date')?.invalid && taskForm.get('date')?.touched">This field is required, only futured dates</p>
         </div>
         <div class="form-inner">
-
+          <p>Attachments</p>
+          <app-imageuploader></app-imageuploader>
         </div>
       </section>
       <div class="vertical-line"></div>
