@@ -1,0 +1,29 @@
+.outer_container{
+  width: 160px;
+  height: 120px;
+  border-radius: 8px;
+  border: 1.5px solid gray;
+  display: flex;
+  flex-direction: column;
+  object-fit: cover;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+img{
+  height: 100%;
+  width: 100%;
+}
+
+.name_container{
+  position: absolute;
+  bottom: 0;
+  background-color: #F6F7F8;
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

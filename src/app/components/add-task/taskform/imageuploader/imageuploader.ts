@@ -1,9 +1,10 @@
 import { Component, ElementRef, ViewChild, signal } from '@angular/core';
 import { TaskFile } from '../../../../interfaces/taskmodel.interfaces';
+import { UploadedImages } from '../uploaded-images/uploaded-images';
 
 @Component({
   selector: 'app-imageuploader',
-  imports: [],
+  imports: [UploadedImages],
   templateUrl: './imageuploader.html',
   styleUrl: './imageuploader.scss',
 })

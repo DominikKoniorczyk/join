@@ -12,6 +12,6 @@
     </div>
   </div>
   @for (img of images(); track img.filename; let i = $index) {
-  <img [src]="img.base64" alt="" style="width: 80px; height: 80px;">
+    <app-uploaded-images [imageData]=img></app-uploaded-images>
   }
 </div>
