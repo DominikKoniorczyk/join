@@ -13,6 +13,7 @@ export class Imageuploader {
 
   allEventsForDrop: string[] = ['dragenter', 'dragover', 'dragleave', 'drop'];
   allImages: TaskFile[] = [];
+  imagesInInputField!: FileList;
 
   images = signal<TaskFile[]>([]);
 
@@ -40,32 +41,44 @@ export class Imageuploader {
     const data = event.dataTransfer;
     const files = data!.files;
     if (files.length > 0) {
-      this.createBlob(files);
+      this.addNewFilesToList(files);
     }
+  }
+
+  addNewFilesToList(newFiles: FileList) {
+    const dataTransfer = new DataTransfer();
+    if (this.imagesInInputField) {
+      for (let i = 0; i < this.imagesInInputField.length; i++) {
+        dataTransfer.items.add(this.imagesInInputField[i]);
+      }
+    }
+    for (let i = 0; i < newFiles.length; i++) {
+      dataTransfer.items.add(newFiles[i]);
+    }
+    this.imagesInInputField = dataTransfer.files;
+    this.createBlob(this.imagesInInputField);
   }
 
   onFilesChanged(event: Event) {
     const currentFiles = this.fileInput.nativeElement.files;
-    if(currentFiles) {
-      Array.from(currentFiles).forEach(file =>{
-        this.allImages
-      })
-      this.createBlob(currentFiles);
+    if (currentFiles) {
+      this.addNewFilesToList(currentFiles);
     }
   }
 
-  createBlob(currentFiles: FileList){
-    console.log(currentFiles);
-
-    if (currentFiles) {
-      Array.from(currentFiles).forEach(async file => {
-        if (!file.type.endsWith('.jpeg') && !file.type.endsWith('.png')) return;
-          const blob = new Blob([file], { type: file.type });
-          const compressedBase64 = await this.compressImage(file, 800, 800, 0.8);
-          this.allImages.push({filename: file.name, filetype: file.type, base64: compressedBase64});
-          this.images.set(this.allImages);
-      });
+  async createBlob(currentFiles: FileList) {
+    if (!currentFiles) return;
+    const files = Array.from(currentFiles);
+    const validFiles = files.filter(file =>
+      file.type === 'image/jpeg' || file.type === 'image/png'
+    );
+    const results = [];
+    for (const file of validFiles) {
+      const compressedBase64 = await this.compressImage(file, 800, 800, 0.8);
+      results.push({ filename: file.name, filetype: file.type, base64: compressedBase64 });
     }
+    this.allImages = results;
+    this.images.set([...results]);
   }
 
   /**
@@ -76,7 +89,7 @@ export class Imageuploader {
    * @param {number} quality - Qualität des komprimierten Bildes (zwischen 0 und 1)
    * @returns {Promise<string>} - Base64-String des komprimierten Bildes
    */
-   compressImage(file: File, maxWidth = 800, maxHeight = 800, quality = 0.8) {
+  compressImage(file: File, maxWidth = 800, maxHeight = 800, quality = 0.8) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -96,7 +109,7 @@ export class Imageuploader {
     });
   }
 
-  createCanvasForCompressing(img: HTMLImageElement, maxWidth: number, maxHeight: number, quality: number){
+  createCanvasForCompressing(img: HTMLImageElement, maxWidth: number, maxHeight: number, quality: number) {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     let dimensions = this.getDimensionsForCompression(img.width, maxWidth, img.height, maxHeight);
@@ -109,11 +122,11 @@ export class Imageuploader {
   getDimensionsForCompression(width: number, maxWidth: number, height: number, maxHeight: number) {
     if (width > maxWidth || height > maxHeight) {
       if (width > height) {
-        return { height : (height * maxWidth) / width, width : maxWidth };
+        return { height: (height * maxWidth) / width, width: maxWidth };
       } else {
-        return { width : (width * maxHeight) / height, height: maxHeight };
+        return { width: (width * maxHeight) / height, height: maxHeight };
       }
     }
-    else return { width: width, height: height};
+    else return { width: width, height: height };
   }
 }
