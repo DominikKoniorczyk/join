@@ -28,6 +28,7 @@ export class TaskformComponent implements OnInit {
   @ViewChild('contactsSelector') contactsSelector!: ContactsSelectorWithSearch;
   @ViewChild('subtaskBtnContainer') subtask!: ElementRef<HTMLDivElement>;
   @ViewChild('subtaskInput') subtaskInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('fileuploader') fileuploader!: Imageuploader;
 
   contacts = signal<SupabaseContactsInterface[]>([]);
   currentDate = signal<string>("2026-02-01");
@@ -208,7 +209,7 @@ export class TaskformComponent implements OnInit {
     const assignment: SupabaseContactsInterface[] = this.contactsSelector.selectedContacts;
     const uploadData = {
       headline: this.currentTask().headline, desc: this.currentTask().desc, dueDate: this.currentTask().dueDate, priority: this.currentTask().priority,
-      category: this.currentTask().category, assignedTo: assignment, subtasks: this.currentTask().subtasks, progressStatus: this.progress
+      category: this.currentTask().category, assignedTo: assignment, subtasks: this.currentTask().subtasks, progressStatus: this.progress, files: this.fileuploader.allImages
     }
     this.supabase.uploadJSONToTable('tasks', uploadData);
     this.resetForm();
