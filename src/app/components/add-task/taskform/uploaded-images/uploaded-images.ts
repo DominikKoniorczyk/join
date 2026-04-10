@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TaskFile } from '../../../../interfaces/taskmodel.interfaces';
+import { FilenamePipe } from '../../../../pipes/filenamepipe';
 
 @Component({
   selector: 'app-uploaded-images',
-  imports: [],
+  imports: [FilenamePipe],
   templateUrl: './uploaded-images.html',
   styleUrl: './uploaded-images.scss',
 })
