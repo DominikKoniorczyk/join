@@ -11,7 +11,9 @@
       </svg>
     </div>
   </div>
-  @for (img of images(); track img.filename; let i = $index) {
-    <app-uploaded-images [imageData]=img></app-uploaded-images>
-  }
+  <div class="image_container">
+    @for (img of images(); track img.filename; let i = $index) {
+      <app-uploaded-images [imageData]=img (delete)="findAndDeleteFile($event)"></app-uploaded-images>
+    }
+  </div>
 </div>

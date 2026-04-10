@@ -1,7 +1,19 @@
 
 .image_selector_outer{
-  max-height: 180px;
+  max-height: 190px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.image_container{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .visible_input{

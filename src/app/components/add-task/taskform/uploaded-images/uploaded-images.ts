@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TaskFile } from '../../../../interfaces/taskmodel.interfaces';
 
 @Component({
@@ -9,4 +9,11 @@ import { TaskFile } from '../../../../interfaces/taskmodel.interfaces';
 })
 export class UploadedImages {
   @Input() imageData!: TaskFile;
+  @Output() delete = new EventEmitter<TaskFile>();
+
+  deleteImage(event: Event){
+    event.preventDefault();
+    event.stopPropagation();
+    this.delete.emit(this.imageData);
+  }
 }

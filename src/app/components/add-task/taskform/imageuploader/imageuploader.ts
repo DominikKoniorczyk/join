@@ -1,5 +1,5 @@
+import { TaskFile } from './../../../../interfaces/taskmodel.interfaces';
 import { Component, ElementRef, ViewChild, signal } from '@angular/core';
-import { TaskFile } from '../../../../interfaces/taskmodel.interfaces';
 import { UploadedImages } from '../uploaded-images/uploaded-images';
 
 @Component({
@@ -129,5 +129,20 @@ export class Imageuploader {
       }
     }
     else return { width: width, height: height };
+  }
+
+  findAndDeleteFile(file: TaskFile) {
+    const index = this.allImages.findIndex(img => img.filename === file.filename);
+    if (index !== -1) {
+      this.allImages.splice(index, 1);
+      this.images.set(this.allImages);
+      const dataTransfer = new DataTransfer();
+      for (let i = 0; i < this.imagesInInputField.length; i++) {
+        if (this.imagesInInputField[i].name !== file.filename) {
+          dataTransfer.items.add(this.imagesInInputField[i]);
+        }
+      }
+      this.imagesInInputField = dataTransfer.files;
+    }
   }
 }
