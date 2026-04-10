@@ -15,29 +15,55 @@ export class Imageuploader {
   allEventsForDrop: string[] = ['dragenter', 'dragover', 'dragleave', 'drop'];
   allImages: TaskFile[] = [];
   imagesInInputField!: FileList;
-
   images = signal<TaskFile[]>([]);
 
-  triggerFilePicker() {
+  /**
+   * Triggers the hidden file input element to open the native file picker dialog.
+   */
+   triggerFilePicker() {
     this.fileInput.nativeElement.click();
   }
 
-  preventDefaults(event: Event) {
+  /**
+   * Prevents default browser behavior and stops event propagation.
+   *
+   * @param {Event} event - The DOM event to prevent.
+   */
+   preventDefaults(event: Event) {
     event.preventDefault();
     event.stopPropagation();
   }
 
-  handleDragOver(event: DragEvent) {
+  /**
+   * Handles the dragover event for the upload area.
+   * Adds visual feedback and prevents default browser behavior.
+   *
+   * @param {DragEvent} event - The drag event.
+   */
+   handleDragOver(event: DragEvent) {
     this.uploadArea.nativeElement.classList.add("dragover");
     this.preventDefaults(event);
   }
 
-  handleDragLeave(event: DragEvent) {
+  /**
+   * Handles the dragleave event for the upload area.
+   * Removes visual feedback and prevents default browser behavior.
+   *
+   * @param {DragEvent} event - The drag event.
+   */
+   handleDragLeave(event: DragEvent) {
     this.uploadArea.nativeElement.classList.remove("dragover");
     this.preventDefaults(event);
   }
 
-  async handleDrop(event: DragEvent) {
+  /**
+   * Handles dropped files from a drag & drop interaction.
+   * Extracts files from the DataTransfer object and adds them to the file list.
+   *
+   * @param {DragEvent} event - The drop event.
+   * @returns {Promise<void>}
+   */
+   async handleDrop(event: DragEvent) {
     this.handleDragLeave(event);
     const data = event.dataTransfer;
     const files = data!.files;
@@ -46,7 +72,13 @@ export class Imageuploader {
     }
   }
 
-  addNewFilesToList(newFiles: FileList) {
+  /**
+   * Merges newly selected files with existing ones and updates the internal file list.
+   * Also triggers image processing for the updated file set.
+   *
+   * @param {FileList} newFiles - Newly selected or dropped files.
+   */
+   addNewFilesToList(newFiles: FileList) {
     const dataTransfer = new DataTransfer();
     if (this.imagesInInputField) {
       for (let i = 0; i < this.imagesInInputField.length; i++) {
@@ -60,14 +92,26 @@ export class Imageuploader {
     this.createBlob(this.imagesInInputField);
   }
 
-  onFilesChanged(event: Event) {
+  /**
+   * Handles file input change events and adds selected files to the list.
+   *
+   * @param {Event} event - The input change event.
+   */
+   onFilesChanged(event: Event) {
     const currentFiles = this.fileInput.nativeElement.files;
     if (currentFiles) {
       this.addNewFilesToList(currentFiles);
     }
   }
 
-  async createBlob(currentFiles: FileList) {
+  /**
+   * Converts valid image files (JPEG/PNG) into compressed Base64 objects
+   * and stores them in the component state.
+   *
+   * @param {FileList} currentFiles - The list of selected files.
+   * @returns {Promise<void>}
+   */
+   async createBlob(currentFiles: FileList) {
     if (!currentFiles) return;
     const files = Array.from(currentFiles);
     const validFiles = files.filter(file =>
@@ -83,12 +127,12 @@ export class Imageuploader {
   }
 
   /**
-   * Komprimiert ein Bild auf eine Zielgröße oder -qualität
-   * @param {File} file - Die Bilddatei, die komprimiert werden soll
-   * @param {number} maxWidth - Die maximale Breite des Bildes
-   * @param {number} maxHeight - Die maximale Höhe des Bildes
-   * @param {number} quality - Qualität des komprimierten Bildes (zwischen 0 und 1)
-   * @returns {Promise<string>} - Base64-String des komprimierten Bildes
+   * Compressing an image to the target size or quality
+   * @param {File} file - Files which have to be compressed
+   * @param {number} maxWidth - The maximum width of the final picture
+   * @param {number} maxHeight - The maximum height of the final picture
+   * @param {number} quality - Quality of the compressed picture (value between 0 and 1)
+   * @returns {Promise<string>} - Base64-String of the final picture
    */
   compressImage(file: File, maxWidth = 800, maxHeight = 800, quality = 0.8) {
     return new Promise((resolve, reject) => {
@@ -110,7 +154,18 @@ export class Imageuploader {
     });
   }
 
-  createCanvasForCompressing(img: HTMLImageElement, maxWidth: number, maxHeight: number, quality: number) {
+  /**
+   * Creates a compressed image using a canvas element.
+   * The image is resized to fit within the given max width and height
+   * while maintaining its aspect ratio, then exported as a JPEG data URL.
+   *
+   * @param {HTMLImageElement} img - The source image element.
+   * @param {number} maxWidth - Maximum allowed width for compression.
+   * @param {number} maxHeight - Maximum allowed height for compression.
+   * @param {number} quality - JPEG quality factor (0 to 1).
+   * @returns {string} A base64-encoded JPEG image string.
+   */
+   createCanvasForCompressing(img: HTMLImageElement, maxWidth: number, maxHeight: number, quality: number) {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     let dimensions = this.getDimensionsForCompression(img.width, maxWidth, img.height, maxHeight);
@@ -120,7 +175,17 @@ export class Imageuploader {
     return canvas.toDataURL('image/jpeg', quality);
   }
 
-  getDimensionsForCompression(width: number, maxWidth: number, height: number, maxHeight: number) {
+  /**
+   * Calculates scaled dimensions for image compression while preserving aspect ratio.
+   * Ensures the image fits within the provided maximum width and height constraints.
+   *
+   * @param {number} width - Original image width.
+   * @param {number} maxWidth - Maximum allowed width.
+   * @param {number} height - Original image height.
+   * @param {number} maxHeight - Maximum allowed height.
+   * @returns {{ width: number, height: number }} The calculated dimensions.
+   */
+   getDimensionsForCompression(width: number, maxWidth: number, height: number, maxHeight: number) {
     if (width > maxWidth || height > maxHeight) {
       if (width > height) {
         return { height: (height * maxWidth) / width, width: maxWidth };
@@ -131,7 +196,13 @@ export class Imageuploader {
     else return { width: width, height: height };
   }
 
-  findAndDeleteFile(file: TaskFile) {
+  /**
+   * Removes a file from the internal image list and synchronizes it with the file input state.
+   * Updates both the stored image array and the DataTransfer-backed input field.
+   *
+   * @param {TaskFile} file - The file to be removed.
+   */
+   findAndDeleteFile(file: TaskFile) {
     const index = this.allImages.findIndex(img => img.filename === file.filename);
     if (index !== -1) {
       this.allImages.splice(index, 1);
