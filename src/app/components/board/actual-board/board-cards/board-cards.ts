@@ -15,7 +15,7 @@ export class BoardCardsComponent {
 
   isDropDownOpen = false;
 
-  @Input() currentTask: Task = { id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do', attachments: [] };
+  @Input() currentTask: Task = { id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do', files: [] };
   @Output() cardOpened = new EventEmitter<void>();
 
   priorityMap: { [key: number]: { label: string, icon: string } } = {

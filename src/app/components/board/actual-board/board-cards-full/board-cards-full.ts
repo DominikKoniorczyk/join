@@ -5,11 +5,12 @@ import { CurrentDate } from '../../../../services/current-date';
 import { PriorityButton } from '../../../../shared/priority-button/priority-button';
 import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-button/subtask-button';
 import { Supabase } from '../../../../services/supabase';
+import { Imageuploader } from '../../../add-task/taskform/imageuploader/imageuploader';
 
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent],
+  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent, Imageuploader],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })
@@ -21,7 +22,7 @@ export class BoardCardsFull {
   tempPriority: number = 0;
   dataService = inject(CurrentDate);
   currentDate = signal<string>(this.dataService.getCurrentDate());
-  currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' , attachments: []});
+  currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' , files: []});
 
   @ViewChild('headlineInput') headlineInput!: ElementRef<HTMLInputElement>;
   @ViewChild('descInput') descInput!: ElementRef<HTMLInputElement>;
@@ -46,6 +47,8 @@ export class BoardCardsFull {
    */
    initModal(data: Task) {
     this.currentTask.set(data);
+    console.log(data);
+
   }
 
   /**
