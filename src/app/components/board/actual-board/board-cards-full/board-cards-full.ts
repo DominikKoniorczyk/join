@@ -6,11 +6,12 @@ import { PriorityButton } from '../../../../shared/priority-button/priority-butt
 import { SubtaskButtonComponent } from '../../../add-task/taskform/subtask-button/subtask-button';
 import { Supabase } from '../../../../services/supabase';
 import { Imageuploader } from '../../../add-task/taskform/imageuploader/imageuploader';
+import { UploadedImages } from '../../../add-task/taskform/uploaded-images/uploaded-images';
 
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent, Imageuploader],
+  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent, UploadedImages],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })
