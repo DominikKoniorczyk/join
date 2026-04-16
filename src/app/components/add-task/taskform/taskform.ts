@@ -32,7 +32,7 @@ export class TaskformComponent implements OnInit {
 
   contacts = signal<SupabaseContactsInterface[]>([]);
   currentDate = signal<string>("2026-02-01");
-  currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
+  currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do', attachments: [] });
   currentPrio = signal<number>(1);
   taskForm = new FormGroup({
     title: new FormControl('', { validators: [Validators.required, Validators.minLength(1)] }),
@@ -221,7 +221,7 @@ export class TaskformComponent implements OnInit {
    * Resets the form to its initial state.
    */
    resetForm() {
-    this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
+    this.currentTask.set({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do', attachments: [] });
     this.contactsSelector.reset();
     this.taskForm.reset();
     this.setPriority(1);

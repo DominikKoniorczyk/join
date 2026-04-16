@@ -2,107 +2,120 @@
 
   @if(!isEditing){
   <div class="header">
-    <div [class.deepblue]="currentTask().category == 'User Story' " [class.turkise]="currentTask().category == 'Technical Task'"   class="category">{{currentTask().category}}</div>
+    <div [class.deepblue]="currentTask().category == 'User Story' "
+      [class.turkise]="currentTask().category == 'Technical Task'" class="category">{{currentTask().category}}</div>
     <button class="close-btn" (click)="onClose()"> <img src="./assets/img/close-cross.png" alt=""></button>
   </div>
   <div class="outer-container">
-  <div class="inner-container">
-    <div class="headline">{{currentTask().headline}}</div>
-     <p class="description">{{currentTask().desc}}</p>
-       <div class="duedate-container">
-    <span class="rows">Due date:</span>
-    <span class="info">{{currentTask().dueDate}}</span>
-  </div>
-    <div class="priority-container">
-    <span class="rows">Priority:</span>
-    <span class="info">
-      {{ priorityMap[currentTask().priority]?.label }}
+    <div class="inner-container">
+      <div class="headline">{{currentTask().headline}}</div>
+      <p class="description">{{currentTask().desc}}</p>
+      <div class="duedate-container">
+        <span class="rows">Due date:</span>
+        <span class="info">{{currentTask().dueDate}}</span>
+      </div>
+      <div class="priority-container">
+        <span class="rows">Priority:</span>
+        <span class="info">
+          {{ priorityMap[currentTask().priority]?.label }}
 
-      @if (priorityMap[currentTask().priority]) {
-      <img [src]="'./assets/img/' + priorityMap[currentTask().priority]?.icon" alt="">
-      }
-    </span>
-  </div>
-   <div class="assigned-container">
-    <span class="rows">Assigned To:</span>
-    <div class="info">
-      <div class="assigned-list">
-        @for (contact of currentTask().assignedTo; track contact){
-        <div class="assigned-item">
-          <div class="avatar-circle" [style.background-color]="contact.color">
-            {{getInitials(contact.name)}}
+          @if (priorityMap[currentTask().priority]) {
+          <img [src]="'./assets/img/' + priorityMap[currentTask().priority]?.icon" alt="">
+          }
+        </span>
+      </div>
+      <div class="assigned-container">
+        <span class="rows">Assigned To:</span>
+        <div class="info">
+          <div class="assigned-list">
+            @for (contact of currentTask().assignedTo; track contact){
+            <div class="assigned-item">
+              <div class="avatar-circle" [style.background-color]="contact.color">
+                {{getInitials(contact.name)}}
+              </div>
+              <span class="contact-name">{{contact.name}}</span>
+            </div>
+            }
           </div>
-          <span class="contact-name">{{contact.name}}</span>
         </div>
-        }
+      </div>
+
+      <div class="attachment-container">
+        <span class="rows">Attachments</span>
+        <div class="attachments-wrapper">
+          @for (attachments of currentTask().attachments; track attachments){
+
+          }
+        </div>
+      </div>
+
+      <div class="subtask-container">
+        <span class="rows">Subtask:</span>
+        <div class="subtask-list-wrapper">
+          @for (subtask of currentTask().subtasks; track subtask) {
+          <div class="subtask-target-container"><button class="subtask-btn" (click)="toggleSubtask(subtask)">
+              <img
+                [src]="subtask.isDone ? './assets/img/checkmarkbox-checked.png' : './assets/img/checkmarkbox-empty.png'"
+                alt="">
+            </button> <span> {{subtask.title}}</span></div>}
+        </div>
       </div>
     </div>
   </div>
-   <div class="subtask-container">
-    <span class="rows">Subtask:</span>
-    <div class="subtask-list-wrapper">
-    @for (subtask of currentTask().subtasks; track subtask) {
-    <div class="subtask-target-container"><button class="subtask-btn" (click)="toggleSubtask(subtask)">
-        <img [src]="subtask.isDone ? './assets/img/checkmarkbox-checked.png' : './assets/img/checkmarkbox-empty.png'"
-          alt="">
-      </button> <span> {{subtask.title}}</span></div>}
-  </div>
-  </div>
-  </div>
-  </div>
   } @else {
-    <div class="edit-header">
+  <div class="edit-header">
     <button class="close-btn-edit" (click)="onClose()"> <img src="./assets/img/close-cross.png" alt=""></button>
   </div>
   <div class="outer-container">
     <div class="inner-container">
 
-     <div class="title-edit-container">
-  <label class="input-title" for="Title">Title</label>
-  <input class="edit-input" #headlineInput type="text" [value]="currentTask().headline">
-  </div>
+      <div class="title-edit-container">
+        <label class="input-title" for="Title">Title</label>
+        <input class="edit-input" #headlineInput type="text" [value]="currentTask().headline">
+      </div>
       <div class="description-edit-container">
-  <label class="input-title" for="Description">Description</label>
-  <textarea class="edit-input-textarea" rows="5" #descInput type="text" [value]="currentTask().desc"></textarea>
-    </div>
+        <label class="input-title" for="Description">Description</label>
+        <textarea class="edit-input-textarea" rows="5" #descInput type="text" [value]="currentTask().desc"></textarea>
+      </div>
       <div class="duedate-edit-container">
-    <span class="rows">Due date</span>
-    <input class="edit-input" #dateInput type="date" [value]="currentTask().dueDate" [min]="currentDate()">
-  </div>
-    <div class="priority-edit-container">
-    <span class="rows">Priority</span>
-    <div class="priority-edit-row">
-      <app-priority-button [type]=0 [active]="tempPriority === 0" (click)="setPriority(0)"></app-priority-button>
-      <app-priority-button [type]=1 [active]="tempPriority === 1" (click)="setPriority(1)"></app-priority-button>
-      <app-priority-button [type]=2 [active]="tempPriority === 2" (click)="setPriority(2)"></app-priority-button>
-    </div>
-  </div>
-    <div class="assigned-edit-container">
-    <span class="rows">Assigned To</span>
-    <app-contacts-selector-with-search (click)="$event.stopPropagation()" #selector [(selectedContacts)]="currentTask().assignedTo">
-    </app-contacts-selector-with-search>
-  </div>
-   <div class="subtask-edit-container">
-    <span class="rows">Subtask</span>
-    <div class="input-subtask-wrapper">
-      <input #subtaskInput class="edit-input-subtask" type="text" placeholder="Add new subtask"
-        (keyup.enter)="addSubtask(subtaskInput)" (keyup.escape)="clearSubtaskInput(subtaskInput)">
-      <div class="subtask-edit-btn-container">
-        <button class="subtask-edit-btn" (click)="clearSubtaskInput(subtaskInput)"><img
-            src="./assets/img/close-cross.png" alt=""></button>
-        <div class="seperator"></div>
-        <button class="subtask-edit-btn" (click)="addSubtask(subtaskInput)"><img src="./assets/img/check-icon.png"
-            alt=""></button>
+        <span class="rows">Due date</span>
+        <input class="edit-input" #dateInput type="date" [value]="currentTask().dueDate" [min]="currentDate()">
+      </div>
+      <div class="priority-edit-container">
+        <span class="rows">Priority</span>
+        <div class="priority-edit-row">
+          <app-priority-button [type]=0 [active]="tempPriority === 0" (click)="setPriority(0)"></app-priority-button>
+          <app-priority-button [type]=1 [active]="tempPriority === 1" (click)="setPriority(1)"></app-priority-button>
+          <app-priority-button [type]=2 [active]="tempPriority === 2" (click)="setPriority(2)"></app-priority-button>
+        </div>
+      </div>
+      <div class="assigned-edit-container">
+        <span class="rows">Assigned To</span>
+        <app-contacts-selector-with-search (click)="$event.stopPropagation()" #selector
+          [(selectedContacts)]="currentTask().assignedTo">
+        </app-contacts-selector-with-search>
+      </div>
+      <div class="subtask-edit-container">
+        <span class="rows">Subtask</span>
+        <div class="input-subtask-wrapper">
+          <input #subtaskInput class="edit-input-subtask" type="text" placeholder="Add new subtask"
+            (keyup.enter)="addSubtask(subtaskInput)" (keyup.escape)="clearSubtaskInput(subtaskInput)">
+          <div class="subtask-edit-btn-container">
+            <button class="subtask-edit-btn" (click)="clearSubtaskInput(subtaskInput)"><img
+                src="./assets/img/close-cross.png" alt=""></button>
+            <div class="seperator"></div>
+            <button class="subtask-edit-btn" (click)="addSubtask(subtaskInput)"><img src="./assets/img/check-icon.png"
+                alt=""></button>
+          </div>
+        </div>
+        <div class="subtask-edit-list-container">
+          @for (subtask of currentTask().subtasks; track subtask.id; let i = $index){
+          <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)"
+            (updateSubtask)="editSubtask($event)"></app-subtask-button>
+          }
+        </div>
       </div>
     </div>
-    <div class="subtask-edit-list-container">
-      @for (subtask of currentTask().subtasks; track subtask.id; let i = $index){
-      <app-subtask-button [title]="subtask.title" [index]="i" (deleteSubtask)="removeSubtask($event)"
-        (updateSubtask)="editSubtask($event)"></app-subtask-button>
-      }
-    </div>
-  </div>
-  </div>
   </div>
   }
 

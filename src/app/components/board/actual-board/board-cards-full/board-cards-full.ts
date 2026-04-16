@@ -21,7 +21,7 @@ export class BoardCardsFull {
   tempPriority: number = 0;
   dataService = inject(CurrentDate);
   currentDate = signal<string>(this.dataService.getCurrentDate());
-  currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' });
+  currentTask = signal<Task>({ id: 0, headline: "", desc: "", dueDate: "", priority: 1, category: "", assignedTo: [], subtasks: [], progressStatus: 'To do' , attachments: []});
 
   @ViewChild('headlineInput') headlineInput!: ElementRef<HTMLInputElement>;
   @ViewChild('descInput') descInput!: ElementRef<HTMLInputElement>;

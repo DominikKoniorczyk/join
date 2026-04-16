@@ -22,6 +22,7 @@ import { SupabaseContactsInterface } from "./supabase.interfaces";
   priority: number;
   assignedTo: SupabaseContactsInterface[];
   subtasks: Subtask[];
+  attachments: TaskFile[];
 }
 
 export interface TaskFile {
