@@ -4,11 +4,12 @@ import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Header } from './shared/header/header';
 import { Footer } from './shared/footer/footer';
+import { ImageDetails } from './components/add-task/taskform/image-details/image-details';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, Header, Footer],
+  imports: [CommonModule, RouterOutlet, Header, Footer, ImageDetails],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

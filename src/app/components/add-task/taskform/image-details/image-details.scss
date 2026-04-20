@@ -1,0 +1,25 @@
+.outer{
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(0%, -50%);
+  height: 70%;
+  width: 80%;
+  max-width: calc(1400px / 100 * 80);
+  background-color: black;
+}
+
+.open{
+  animation: open 1s linear;
+}
+
+@keyframes open {
+    0% {
+      top: 100%;
+      transform: translateY(0%);
+    }
+    100% {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }

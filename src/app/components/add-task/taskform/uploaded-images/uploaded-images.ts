@@ -21,7 +21,6 @@ export class UploadedImages {
 
   openFullImage(){
     if(this.Download){
-      console.log("Download");
 
     }
   }
