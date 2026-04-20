@@ -1,5 +1,5 @@
 import { TaskFile } from './../../../../interfaces/taskmodel.interfaces';
-import { Component, ElementRef, ViewChild, signal } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, signal } from '@angular/core';
 import { UploadedImages } from '../uploaded-images/uploaded-images';
 
 @Component({
@@ -11,6 +11,7 @@ import { UploadedImages } from '../uploaded-images/uploaded-images';
 export class Imageuploader {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   @ViewChild('uploadArea') uploadArea!: ElementRef<HTMLDivElement>;
+  @Input() Download : boolean = false;
 
   allEventsForDrop: string[] = ['dragenter', 'dragover', 'dragleave', 'drop'];
   allImages: TaskFile[] = [];

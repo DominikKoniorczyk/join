@@ -25,6 +25,10 @@
     align-items: center;
   }
 
+  .download{
+    cursor: pointer;
+  }
+
   &:hover{
     .hover_container{
       opacity: 1;

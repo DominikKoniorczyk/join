@@ -10,11 +10,19 @@ import { FilenamePipe } from '../../../../pipes/filenamepipe';
 })
 export class UploadedImages {
   @Input() imageData!: TaskFile;
+  @Input() Download: boolean = false;
   @Output() delete = new EventEmitter<TaskFile>();
 
   deleteImage(event: Event){
     event.preventDefault();
     event.stopPropagation();
     this.delete.emit(this.imageData);
+  }
+
+  openFullImage(){
+    if(this.Download){
+      console.log("Download");
+
+    }
   }
 }

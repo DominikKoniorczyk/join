@@ -13,7 +13,7 @@
   </div>
   <div class="image_container">
     @for (img of images(); track img.filename; let i = $index) {
-      <app-uploaded-images [imageData]=img (delete)="findAndDeleteFile($event)"></app-uploaded-images>
+      <app-uploaded-images [Download]="Download" [imageData]=img (delete)="findAndDeleteFile($event)"></app-uploaded-images>
     }
   </div>
 </div>
