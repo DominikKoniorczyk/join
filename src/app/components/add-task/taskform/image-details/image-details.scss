@@ -8,6 +8,17 @@
   max-width: calc(1400px / 100 * 80);
   background-color: transparent;
   border: none;
+  z-index: 50;
+}
+
+.d_none{
+  display: none;
+}
+
+.image_info{
+  color: white;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .image {
@@ -125,6 +136,7 @@
 
 .open {
   animation: open 1s linear;
+  display: block;
 }
 
 @keyframes open {
@@ -136,5 +148,21 @@
   100% {
     top: 50%;
     transform: translateY(-50%);
+  }
+}
+
+.close {
+  animation: open 1s linear;
+}
+
+@keyframes open {
+  0% {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  100% {
+    top: 100%;
+    transform: translateY(0%);
   }
 }

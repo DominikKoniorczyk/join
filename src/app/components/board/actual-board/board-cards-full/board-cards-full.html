@@ -44,7 +44,7 @@
         <span class="rows">Attachments</span>
         <div class="attachments-wrapper">
           @for (attachments of currentTask().files; track attachments){
-            <app-uploaded-images [Download]="true" [imageData]=attachments ></app-uploaded-images>
+            <app-uploaded-images [Download]="true" [imageData]=attachments [taskData]=currentTask()></app-uploaded-images>
           }
         </div>
       </div>

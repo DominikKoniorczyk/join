@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TaskFile } from '../../../../interfaces/taskmodel.interfaces';
+import { OpenFullimage } from './../../../../services/open-fullimage';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Task, TaskFile } from '../../../../interfaces/taskmodel.interfaces';
 import { FilenamePipe } from '../../../../pipes/filenamepipe';
 
 @Component({
@@ -9,9 +10,12 @@ import { FilenamePipe } from '../../../../pipes/filenamepipe';
   styleUrl: './uploaded-images.scss',
 })
 export class UploadedImages {
+  @Input() taskData!: Task;
   @Input() imageData!: TaskFile;
   @Input() Download: boolean = false;
   @Output() delete = new EventEmitter<TaskFile>();
+
+  imageService = inject(OpenFullimage);
 
   deleteImage(event: Event) {
     event.preventDefault();
@@ -30,7 +34,17 @@ export class UploadedImages {
 
   openFullImage() {
     if (this.Download) {
-
+      this.imageService.openDialog(this.taskData.files, this.findImageIndex());
     }
+  }
+
+  findImageIndex(): number{
+    let index = 0;
+    for(let i = 0; i < this.taskData.files.length; i++){
+      if(this.taskData.files[i].base64 === this.imageData.base64){
+        index = i;
+      }
+    }
+    return index;
   }
 }

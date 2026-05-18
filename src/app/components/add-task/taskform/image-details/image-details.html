@@ -1,9 +1,9 @@
-<div class="outer open">
+<dialog class="outer" [class.d_none]="!dialogService.open()" #dialog>
   <img class="image" src="{{Image}}" alt="">
 
   <header class="header">
     <div class="header_inner">
-      <p class="image_info">Image sasdfasdfasdfasdf asdfasdf asdf asdf</p>
+      <p class="image_info">{{FileData}}</p>
       <div class="controlls">
         <button class="controll_btn" (click)="zoomOut()">
           <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,4 +57,4 @@
     </div>
   </div>
 
-</div>
+</dialog>
