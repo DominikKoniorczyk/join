@@ -21,10 +21,8 @@ export class UploadedImages {
 
   downloadImage(event: Event): void {
     const link = document.createElement('a');
-
     link.href = this.imageData.base64 as string;
     link.download = this.imageData.filename;
-
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

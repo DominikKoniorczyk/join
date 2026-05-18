@@ -66,7 +66,12 @@ export class ImageDetails {
   }
 
   downloadCurrentImage(){
-
+    const link = document.createElement('a');
+    link.href = this.ImagesData.files[this.currentIndex].base64 as string;
+    link.download = this.ImagesData.files[this.currentIndex].filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   zoomOut(){
