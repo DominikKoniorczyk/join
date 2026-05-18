@@ -1,4 +1,4 @@
-.outer{
+.outer {
   position: absolute;
   top: 50%;
   left: 10%;
@@ -6,20 +6,135 @@
   height: 70%;
   width: 80%;
   max-width: calc(1400px / 100 * 80);
-  background-color: black;
+  background-color: transparent;
+  border: none;
 }
 
-.open{
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  border: none;
+}
+
+.header {
+  position: relative;
+  top: 0;
+  max-width: 95dvw;
+  width: 100%;
+  height: 4rem;
+  background-color: #2A3647B2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header_inner {
+  display: grid;
+  grid-template-areas:
+    "header header2 header3";
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3px;
+  width: 95%;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  z-index: 3;
+}
+
+.image_info {
+  grid-area: header;
+}
+
+.controlls {
+  grid-area: header2;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.dialog_controlls {
+  grid-area: header3;
+  display: flex;
+  justify-content: end;
+  gap: 2rem;
+}
+
+.main_controlls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controlls_inner {
+  width: 97%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.switch_btn {
+  background-color: white;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.controll_btn,
+.close_download_btn {
+  background-color: transparent;
+  border: none;
+  transition: all 0.1s;
+
+  #zoomOut,
+  #zoomIn,
+  #donwload,
+  #close {
+    fill: white;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+
+    #zoomOut,
+    #zoomIn,
+    #donwload,
+    #close {
+      fill: #29ABE2;
+    }
+  }
+}
+
+.open {
   animation: open 1s linear;
 }
 
 @keyframes open {
-    0% {
-      top: 100%;
-      transform: translateY(0%);
-    }
-    100% {
-      top: 50%;
-      transform: translateY(-50%);
-    }
+  0% {
+    top: 100%;
+    transform: translateY(0%);
   }
+
+  100% {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

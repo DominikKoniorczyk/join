@@ -13,14 +13,25 @@ export class UploadedImages {
   @Input() Download: boolean = false;
   @Output() delete = new EventEmitter<TaskFile>();
 
-  deleteImage(event: Event){
+  deleteImage(event: Event) {
     event.preventDefault();
     event.stopPropagation();
     this.delete.emit(this.imageData);
   }
 
-  openFullImage(){
-    if(this.Download){
+  downloadImage(event: Event): void {
+    const link = document.createElement('a');
+
+    link.href = this.imageData.base64 as string;
+    link.download = this.imageData.filename;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  openFullImage() {
+    if (this.Download) {
 
     }
   }
