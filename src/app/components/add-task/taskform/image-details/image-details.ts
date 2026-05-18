@@ -1,7 +1,9 @@
 import { Subscription } from 'rxjs';
 import { OpenFullimage } from '../../../../services/open-fullimage';
-import { Task, TaskFile } from './../../../../interfaces/taskmodel.interfaces';
+import { TaskFile } from './../../../../interfaces/taskmodel.interfaces';
 import { Component, ElementRef, inject, Input, ViewChild } from '@angular/core';
+import { AnimationService } from '../../../../services/animation.service';
+import { imageSlideInAnimations, imageSlideOutAnimations } from '../../../board/animations-board/dialog.animation';
 
 @Component({
   selector: 'app-image-details',
@@ -18,6 +20,12 @@ export class ImageDetails {
   FileData: string = "";
   Image: string = "";
   currentIndex: number = 0;
+  zoom = 1;
+  translateX = 0;
+  translateY = 0;
+  transform = '';
+
+  constructor(private animService: AnimationService) { }
 
   ngOnInit(): void {
     this.subscription =
@@ -30,8 +38,8 @@ export class ImageDetails {
   open() {
     this.ImagesData = this.dialogService.files();
     this.openDialog(this.dialogService.currentIndex());
-    this.dialogRef.nativeElement.classList.add("open");
     this.dialogRef.nativeElement.showModal();
+    this.animService.animate(this.dialogRef.nativeElement, imageSlideInAnimations, 300, true);
   }
 
   openDialog(index: number) {
@@ -81,12 +89,11 @@ export class ImageDetails {
   }
 
   closeDialog() {
-    this.dialogRef.nativeElement.classList.remove("open");
-    this.dialogRef.nativeElement.classList.add("close");
+    this.animService.animate(this.dialogRef.nativeElement, imageSlideOutAnimations, 300, true);
     setTimeout(() => {
       this.dialogService.closeDialog();
       this.dialogRef.nativeElement.close();
-    }, 1000);
+    }, 300);
   }
 
   downloadCurrentImage() {
@@ -99,10 +106,23 @@ export class ImageDetails {
   }
 
   zoomOut() {
-
+    this.zoom = Math.max(
+      this.zoom - 0.5,
+      1
+    );
   }
 
   zoomIn() {
+    this.zoom = Math.min(
+      this.zoom + 0.5,
+      3
+    );
+  }
 
+  updateTransform(): void {
+    this.transform =
+      `translate(-50%, -50%)
+     translate(${this.translateX}px, ${this.translateY}px)
+     scale(${this.zoom})`;
   }
 }

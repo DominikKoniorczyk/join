@@ -1,5 +1,5 @@
 <dialog class="outer" [class.d_none]="!dialogService.open()" #dialog>
-  <img class="image" src="{{Image}}" alt="">
+  <img class="image" src="{{Image}}" alt="" [style.transform]="'scale(' + zoom + ')'">
 
   <header class="header">
     <div class="header_inner">
