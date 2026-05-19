@@ -44,7 +44,7 @@
         <span class="rows">Attachments</span>
         <div class="attachments-wrapper">
           @for (attachments of currentTask().files; track attachments){
-            <app-uploaded-images [Download]="true" [imageData]=attachments [taskData]=currentTask()></app-uploaded-images>
+          <app-uploaded-images [Download]="true" [imageData]=attachments [taskData]=currentTask()></app-uploaded-images>
           }
         </div>
       </div>
@@ -94,6 +94,11 @@
         <app-contacts-selector-with-search (click)="$event.stopPropagation()" #selector
           [(selectedContacts)]="currentTask().assignedTo">
         </app-contacts-selector-with-search>
+      </div>
+      <div class="form-inner">
+        <p>Attachments</p>
+        <p class="subheadline">Allowed file types are JPEG and PNG</p>
+        <app-imageuploader #files [files]=currentTask().files></app-imageuploader>
       </div>
       <div class="subtask-edit-container">
         <span class="rows">Subtask</span>

@@ -1,6 +1,8 @@
 import { TaskFile } from './../../../../interfaces/taskmodel.interfaces';
-import { Component, ElementRef, Input, ViewChild, signal } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, inject, signal } from '@angular/core';
 import { UploadedImages } from '../uploaded-images/uploaded-images';
+import { Supabase } from '../../../../services/supabase';
+import { Base64Service } from '../../../../services/base64-service';
 
 @Component({
   selector: 'app-imageuploader',
@@ -11,12 +13,48 @@ import { UploadedImages } from '../uploaded-images/uploaded-images';
 export class Imageuploader {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   @ViewChild('uploadArea') uploadArea!: ElementRef<HTMLDivElement>;
-  @Input() Download : boolean = false;
+  @Input() Download: boolean = false;
+  @Input() files!: TaskFile[];
 
   allEventsForDrop: string[] = ['dragenter', 'dragover', 'dragleave', 'drop'];
   allImages: TaskFile[] = [];
   imagesInInputField!: FileList;
   images = signal<TaskFile[]>([]);
+  supabase = inject<Supabase>;
+
+  constructor(private fileService: Base64Service) { }
+
+  /**
+   * Angular lifecycle hook that initializes the component state.
+   *
+   * Sets the internal image signal with the provided file list,
+   * stores a backup reference of all images, and populates the
+   * internal input file collection with the initial files.
+   *
+   * @returns {void}
+   */
+   ngOnInit() {
+    this.images.set(this.files);
+    this.allImages = this.files;
+    this.addFilesInitialy();
+  }
+
+  /**
+   * Creates a new {@link DataTransfer} object and fills it with
+   * the currently available files converted from Base64 strings.
+   *
+   * The generated {@link FileList} is assigned to the internal
+   * input field representation to simulate initially selected files.
+   *
+   * @returns {void}
+   */
+   addFilesInitialy() {
+    const dataTransfer = new DataTransfer();
+    for (let i = 0; i < this.files.length; i++) {
+      dataTransfer.items.add(this.fileService.base64ToFile(this.files[i].base64 as string, this.files[i].filename));
+    }
+    this.imagesInInputField = dataTransfer.files;
+  }
 
   /**
    * Triggers the hidden file input element to open the native file picker dialog.
@@ -135,7 +173,7 @@ export class Imageuploader {
    * @param {number} quality - Quality of the compressed picture (value between 0 and 1)
    * @returns {Promise<string>} - Base64-String of the final picture
    */
-  compressImage(file: File, maxWidth = 800, maxHeight = 800, quality = 0.8) {
+   compressImage(file: File, maxWidth = 800, maxHeight = 800, quality = 0.8) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (event) => {

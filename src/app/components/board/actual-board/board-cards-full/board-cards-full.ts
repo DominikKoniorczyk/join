@@ -11,7 +11,7 @@ import { UploadedImages } from '../../../add-task/taskform/uploaded-images/uploa
 
 @Component({
   selector: 'app-board-cards-full',
-  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent, UploadedImages],
+  imports: [PriorityButton, ContactsSelectorWithSearch, SubtaskButtonComponent, UploadedImages, Imageuploader],
   templateUrl: './board-cards-full.html',
   styleUrl: './board-cards-full.scss',
 })
@@ -29,6 +29,7 @@ export class BoardCardsFull {
   @ViewChild('descInput') descInput!: ElementRef<HTMLInputElement>;
   @ViewChild('dateInput') dateInput!: ElementRef<HTMLInputElement>;
   @ViewChild('selector') selector!: ContactsSelectorWithSearch;
+  @ViewChild('files') fileField!: Imageuploader;
 
   constructor(private supabase: Supabase) { }
 
@@ -48,8 +49,6 @@ export class BoardCardsFull {
    */
    initModal(data: Task) {
     this.currentTask.set(data);
-    console.log(data);
-
   }
 
   /**
@@ -95,6 +94,7 @@ export class BoardCardsFull {
     this.currentTask().dueDate = this.dateInput.nativeElement.value;
     this.currentTask().priority = this.tempPriority;
     this.currentTask().subtasks = [...this.currentTask().subtasks];
+    this.currentTask().files = this.fileField.allImages;
     this.isEditing = false;
     this.pushDataToSupabase();
   }
