@@ -8,6 +8,16 @@
   phone_number: number;
   email: string;
   color: string;
+  image: ContactImage | null;
+}
+
+/**
+ * Represents a new contact image.
+ */
+export interface ContactImage {
+  filename: string,
+  filetype: string,
+  base64: unknown,
 }
 
 /**
@@ -18,4 +28,5 @@
   phone_number: number;
   email: string;
   color: string;
+  image: ContactImage | null;
 }

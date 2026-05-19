@@ -12,7 +12,7 @@ import { contactEmailValidator, contactNameValidator, contactPhoneValidator } fr
   styleUrl: './new-contact-slider.scss',
 })
 export class NewContactSlider {
-  @Input() editingContact: SupabaseContactsInterface = { id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" };
+  @Input() editingContact: SupabaseContactsInterface = { id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "", image: null };
   @Output('closeDialog') close = new EventEmitter<void>();
   @Output() contactCreated = new EventEmitter<void>();
 
@@ -42,12 +42,7 @@ export class NewContactSlider {
 
   supabaseClient = inject(Supabase);
 
-  contactData = signal<NewContactsInterface>({
-    name: '',
-    phone_number: 0,
-    email: '',
-    color: '',
-  });
+  contactData = signal<NewContactsInterface>({ name: '', phone_number: 0, email: '', color: '', image: null});
 
   /**
    * Initializes the contact form group with validators.
@@ -106,7 +101,7 @@ export class NewContactSlider {
       this.contactForm.markAllAsTouched();
     }
     this.contactForm.reset();
-    this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
+    this.contactData.set({ name: '', phone_number: 0, email: '', color: '', image: null });
     this.contactCreated.emit();
   }
 
@@ -167,7 +162,7 @@ export class NewContactSlider {
    onCancel() {
     if (this.isEditing) this.supabaseClient.deleteRow("users", this.id);
     this.contactForm.reset();
-    this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
+    this.contactData.set({ name: '', phone_number: 0, email: '', color: '', image: null });
     this.isEditing = false;
   }
 
@@ -177,7 +172,7 @@ export class NewContactSlider {
    */
    onClose() {
     this.contactForm.reset();
-    this.contactData.set({ name: '', phone_number: 0, email: '', color: '' });
+    this.contactData.set({ name: '', phone_number: 0, email: '', color: '', image: null });
     this.isEditing = false;
   }
 

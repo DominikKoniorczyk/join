@@ -1,4 +1,4 @@
-import { SupabaseContactsInterface } from './../../../interfaces/supabase.interfaces';
+import { SupabaseContactsInterface, ContactImage } from './../../../interfaces/supabase.interfaces';
 import { Component, Input, Output, EventEmitter, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,7 +17,7 @@ export class ContactsMenu {
   @Output() deleteContact = new EventEmitter<number>();
   @Output() editContact = new EventEmitter<SupabaseContactsInterface>();
 
-  selectedPerson = signal<SupabaseContactsInterface>({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "" });
+  selectedPerson = signal<SupabaseContactsInterface>({ id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "", image: null});
   isEditing = false;
 
   /**

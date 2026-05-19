@@ -41,7 +41,7 @@ export class Contacts {
   supabaseChannel: RealtimeChannel;
   dataUsers = signal<SupabaseContactsInterface[]>([]);
   isLoading = signal(true);
-  selectedContact = signal<SupabaseContactsInterface>({ id: 0, created_at: '', name: '', email: '', phone_number: 0, color: '' });
+  selectedContact = signal<SupabaseContactsInterface>({ id: 0, created_at: '', name: '', email: '', phone_number: 0, color: '', image: null });
   currentUserID: number = -1;
   defaultContacts = defaultContacts;
   restoreDefaultContacts: boolean = false;
@@ -230,14 +230,7 @@ export class Contacts {
    */
    deleteUser(id: number) {
     this.supabaseClientService.deleteRow('users', id);
-    this.selectedContact.set({
-      id: 0,
-      created_at: '',
-      name: '',
-      email: '',
-      phone_number: 0,
-      color: '',
-    });
+    this.selectedContact.set({id: 0, created_at: '', name: '', email: '', phone_number: 0, color: '', image: null });
   }
 
   /**
