@@ -255,4 +255,18 @@ export class Imageuploader {
       this.imagesInInputField = dataTransfer.files;
     }
   }
+
+  /**
+   * Removes all currently stored files and resets the internal state.
+   * Clears the complete image collection, updates the image signal,
+   * and resets the internal input file list by assigning an empty
+   *
+   * @returns {void}
+   */
+   deleteAllFiles(){
+    const dataTransfer = new DataTransfer();
+    this.allImages = [];
+    this.images.set([]);
+    this.imagesInInputField = dataTransfer.files;
+  }
 }

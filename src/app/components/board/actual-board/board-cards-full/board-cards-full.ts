@@ -202,4 +202,11 @@ export class BoardCardsFull {
    closeDropdown() {
     this.selector?.closeOnOutsideClick();
   }
+
+  /**
+   * Delete all images in the image input field.
+   */
+   deleteAllImages(){
+    this.fileField.deleteAllFiles();
+  }
 }
