@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Supabase } from '../../../../services/supabase';
 import { AuthService } from '../../../../services/auth.service';
-import { SupabaseContactsInterface } from '../../../../interfaces/supabase.interfaces';
+import { ContactImage, SupabaseContactsInterface } from '../../../../interfaces/supabase.interfaces';
 import { InitialsSelctorPipe } from '../../../../services/contacts.services';
 
 
@@ -14,6 +14,7 @@ import { InitialsSelctorPipe } from '../../../../services/contacts.services';
 })
 export class DropDown {
   currentUserName = signal<string>("");
+  currentUserImage = signal<ContactImage | null>(null);
   isDropDownOpen = false;
   loggedIn: boolean = false;
 
@@ -40,6 +41,7 @@ export class DropDown {
     if (user) {
       const loggedInUser = await this.supaBase.getLoggedInUser(email) as SupabaseContactsInterface[];
       this.currentUserName.set(loggedInUser[0].name);
+      this.currentUserImage.set(loggedInUser[0].image);
       this.loggedIn = true;
     }
     else if(this.auth.isGuest){

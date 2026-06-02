@@ -31,7 +31,12 @@
             @for (contact of currentTask().assignedTo; track contact){
             <div class="assigned-item">
               <div class="avatar-circle" [style.background-color]="contact.color">
-                {{getInitials(contact.name)}}
+                @if( contact.image == null){
+                {{ getInitials(contact.name) }}
+                }
+                @else{
+                  <img class="photo" src="{{ contact.image.base64}}" alt="">
+                }
               </div>
               <span class="contact-name">{{contact.name}}</span>
             </div>

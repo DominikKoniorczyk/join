@@ -1,8 +1,14 @@
 <div class="circle" (click)="toggleDropdown()">
-  <p class="initial-firstname">{{ currentUserName() | initialsSelector:1 }}</p>
-  <p class="initial-lastname">{{ currentUserName() | initialsSelector:2 }}</p>
+  @if(currentUserImage() == null){
+    <p class="initial-firstname">{{ currentUserName() | initialsSelector:1 }}</p>
+    <p class="initial-lastname">{{ currentUserName() | initialsSelector:2 }}</p>
+  }
+  @else{
+    <img src="{{ currentUserImage()?.base64 }}" class="photo">
+  }
   <div class="dropdown" [class.show]="isDropDownOpen">
-    <a routerLink="/legal-notice">Legal Notice</a><a routerLink="/privacy-policy">Privacy Policy</a>
+    <a routerLink="/legal-notice">Legal Notice</a>
+    <a routerLink="/privacy-policy">Privacy Policy</a>
     @if(loggedIn){
       <a (click)="logOut()">Log Out</a>
     }

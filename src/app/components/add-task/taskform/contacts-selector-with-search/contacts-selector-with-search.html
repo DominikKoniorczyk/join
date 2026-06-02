@@ -25,7 +25,12 @@
         @for (contact of filteredContacts(); track contact.id) {
         <li class="contact-item" [class.selected]="isSelected(contact)" (click)="toggleContact(contact)">
           <div class="contact-avatar" [style.background-color]="contact.color">
+            @if(contact.image == null){
             {{ getInitials(contact.name) }}
+            }
+            @else{
+            <img src="{{contact.image.base64}}" class="photo">
+            }
           </div>
           <span class="contact-name">{{ contact.name }}</span>
           <img [src]="isSelected(contact)
@@ -34,35 +39,28 @@
         </li>
         }
       </ul>
-
-    </div>
-    }
-
-  </div>
-
-  <!-- @if (selectedContacts.length > 0) {
-  <div class="selected-avatars">
-    @for (contact of selectedContacts; track contact.id) {
-    <div class="contact-avatar" [style.background-color]="contact.color" [title]="contact.name">
-      {{ getInitials(contact.name) }}
     </div>
     }
   </div>
-  } -->
   @if (selectedContacts.length > 0) {
   <div class="selected-avatars">
     @for (contact of selectedContacts.slice(0, 3); track contact.id) {
-      <div class="contact-avatar" [style.background-color]="contact.color" [title]="contact.name">
-        {{ getInitials(contact.name) }}
-      </div>
+    <div class="contact-avatar" [style.background-color]="contact.color" [title]="contact.name">
+      @if(contact.image == null){
+      {{ getInitials(contact.name) }}
+      }
+      @else{
+      <img src="{{contact.image.base64}}" class="photo">
+      }
+    </div>
     }
 
     @if (selectedContacts.length > 3) {
-      <div class="extra-count">
-        +{{ selectedContacts.length - 3 }}
-      </div>
+    <div class="extra-count">
+      +{{ selectedContacts.length - 3 }}
+    </div>
     }
   </div>
-}
+  }
 
 </div>

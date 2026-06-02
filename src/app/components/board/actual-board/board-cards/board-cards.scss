@@ -37,6 +37,12 @@
   background-color: vars.$color-turkise;
 }
 
+.photo{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
 .headline {
   max-width: 100%;
   font-weight: bold;
