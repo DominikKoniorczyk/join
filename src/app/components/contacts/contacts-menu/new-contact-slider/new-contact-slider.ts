@@ -1,4 +1,5 @@
-import { NewContactsInterface, SupabaseContactsInterface } from './../../../../interfaces/supabase.interfaces';
+import { Base64Service } from './../../../../services/base64-service';
+import { ContactImage, NewContactsInterface, SupabaseContactsInterface } from './../../../../interfaces/supabase.interfaces';
 import { Component, ElementRef, EventEmitter, inject, Input, Output, signal, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { Supabase } from '../../../../services/supabase';
@@ -41,10 +42,9 @@ export class NewContactSlider {
    * @type {FormGroup}
    */
   contactForm!: FormGroup;
-
   supabaseClient = inject(Supabase);
-
-  contactData = signal<NewContactsInterface>({ name: '', phone_number: 0, email: '', color: '', image: null});
+  Base64Service = inject(Base64Service);
+  contactData = signal<NewContactsInterface>({ name: '', phone_number: 0, email: '', color: '', image: null });
 
   /**
    * Initializes the contact form group with validators.
@@ -54,7 +54,7 @@ export class NewContactSlider {
    * - **phone**: Required, must be a valid number string with more than 5 characters.
    * * @returns {void}
    */
-  ngOnInit() {
+   ngOnInit() {
     this.contactForm = new FormGroup({
       name: new FormControl('', { validators: [Validators.required, contactNameValidator()] }),
       email: new FormControl('', { validators: [Validators.required, Validators.email, contactEmailValidator()] }),
@@ -68,7 +68,7 @@ export class NewContactSlider {
    * with the current `editingContact` data if valid.
    * Sets the editing state and updates the local contact signal.
    */
-  checkIsEditing() {
+   checkIsEditing() {
     if (this.returnValidEditing()) {
       this.contactForm.get('name')?.setValue(this.editingContact.name);
       this.contactForm.get('email')?.setValue(this.editingContact.email);
@@ -85,7 +85,7 @@ export class NewContactSlider {
    *
    * @returns {boolean} True if at least one of name, email, or phone number is not empty.
    */
-  returnValidEditing() {
+   returnValidEditing() {
     return this.editingContact.name != "" || this.editingContact.email != "" || this.editingContact.phone_number != 0;
   }
 
@@ -94,7 +94,7 @@ export class NewContactSlider {
    * Logs the form data to the console if valid, otherwise marks all fields as touched to trigger error messages.
    * @returns {void}
    */
-  onSubmit() {
+   onSubmit() {
     if (this.contactForm.valid) {
       if (!this.isEditing) this.supabaseClient.uploadJSONToTable('users', this.contactData());
       else this.supabaseClient.updateRow('users', this.contactData(), this.id);
@@ -110,7 +110,7 @@ export class NewContactSlider {
   /**Subscripe the change on input fields. Set the values of the corresponding data in contactData.*
    * @returns {void}
    */
-  subscripeAllInputFields() {
+   subscripeAllInputFields() {
     this.subscripeName();
     this.subscripeEmail();
     this.subscripePhone();
@@ -194,19 +194,42 @@ export class NewContactSlider {
     this.close.emit();
   }
 
-  openFileDialog(): void {
+  /**
+   * Open the dialog for uploading images.
+   */
+   openFileDialog(): void {
     this.fileInput.nativeElement.click();
   }
 
-  onFileSelected(event: Event): void {
+  /**
+   * Handles the file selection event from the file input element.
+   *
+   * Takes the first selected file, adds it to a temporary {@link DataTransfer}
+   * instance, converts the file collection into a {@link Blob} using the
+   * {@link Base64Service}, and forwards the resulting blob for further processing.
+   *
+   * @param event - The file input change event containing the selected file.
+   * @returns A promise that resolves when the selected file has been converted
+   * and processed.
+   */
+   async onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
-
+    const dataTransfer = new DataTransfer();
     if (input.files?.length) {
-      const file = input.files[0];
-
-      console.log('Datei:', file.name);
-      console.log('Größe:', file.size);
-      console.log('Typ:', file.type);
+      dataTransfer.items.add(input.files[0]);
+      const blob = await this.Base64Service.createBlob(dataTransfer.files);
+      this.subscripeFiles({filename: blob![0].filename, filetype: blob![0].filetype, base64: blob![0].base64});
     }
+  }
+
+  /**
+   * Subscripe the change on input field "phone-number". Set the values of the phone data in contactData.
+   * @return {void}
+   */
+   subscripeFiles(value :ContactImage) {
+    this.contactData.update((current) => {
+      if (!current) return current;
+      return { ...current, image: value! };
+    });
   }
 }

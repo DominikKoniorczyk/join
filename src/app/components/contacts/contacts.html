@@ -25,7 +25,12 @@
                   [style.background-color]="person.color"
                   [attr.aria-label]="person.name"
                 >
-                  <p>{{ person.name | initials }}</p>
+                  @if(person.image == null){
+                    <p>{{ person.name | initials }}</p>
+                  }
+                  @else{
+                    <img class="profile-photo" src="{{person.image!.base64}}" alt="" srcset="">
+                  }
                 </div>
                 <div class="details">
                   <h3>{{ person.name }}</h3>
