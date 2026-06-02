@@ -1,5 +1,5 @@
 import { NewContactsInterface, SupabaseContactsInterface } from './../../../../interfaces/supabase.interfaces';
-import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, Output, signal, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { Supabase } from '../../../../services/supabase';
 import { InitialsPipe } from '../../../../services/contacts.services';
@@ -15,6 +15,8 @@ export class NewContactSlider {
   @Input() editingContact: SupabaseContactsInterface = { id: 0, created_at: "", name: "", email: "", phone_number: 0, color: "", image: null };
   @Output('closeDialog') close = new EventEmitter<void>();
   @Output() contactCreated = new EventEmitter<void>();
+
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   id: number = 0;
   isEditing: boolean = false;
@@ -190,5 +192,21 @@ export class NewContactSlider {
    */
    emitCloseDialog() {
     this.close.emit();
+  }
+
+  openFileDialog(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files?.length) {
+      const file = input.files[0];
+
+      console.log('Datei:', file.name);
+      console.log('Größe:', file.size);
+      console.log('Typ:', file.type);
+    }
   }
 }
