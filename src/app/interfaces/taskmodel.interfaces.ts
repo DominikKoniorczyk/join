@@ -29,4 +29,5 @@ export interface TaskFile {
   filename: string,
   filetype: string,
   base64: unknown,
+  size: number,
 }

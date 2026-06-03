@@ -19,6 +19,7 @@ export class Imageuploader {
   allEventsForDrop: string[] = ['dragenter', 'dragover', 'dragleave', 'drop'];
   allImages: TaskFile[] = [];
   imagesInInputField!: FileList;
+  error = signal<boolean>(false);
   images = signal<TaskFile[]>([]);
   supabase = inject<Supabase>;
 
@@ -40,6 +41,16 @@ export class Imageuploader {
   }
 
   /**
+   * Handles onkey down for aria.
+   */
+    onKeyDown(event: KeyboardEvent){
+      if(event.key === 'Enter' || event.key === ' '){
+        this.preventDefaults(event);
+        this.triggerFilePicker();
+      }
+  }
+
+  /**
    * Creates a new {@link DataTransfer} object and fills it with
    * the currently available files converted from Base64 strings.
    *
@@ -50,7 +61,7 @@ export class Imageuploader {
    */
    addFilesInitialy() {
     const dataTransfer = new DataTransfer();
-    for (let i = 0; i < this.files.length; i++) {
+    for (let i = 0; i < this.files?.length; i++) {
       dataTransfer.items.add(this.fileService.base64ToFile(this.files[i].base64 as string, this.files[i].filename));
     }
     this.imagesInInputField = dataTransfer.files;
@@ -119,9 +130,10 @@ export class Imageuploader {
    */
    addNewFilesToList(newFiles: FileList) {
     const dataTransfer = new DataTransfer();
+    this.error.set(false);
     if (this.imagesInInputField) {
       for (let i = 0; i < this.imagesInInputField.length; i++) {
-        dataTransfer.items.add(this.imagesInInputField[i]);
+        if(this.checkFileSize(i)) dataTransfer.items.add(this.imagesInInputField[i]);
       }
     }
     for (let i = 0; i < newFiles.length; i++) {
@@ -129,6 +141,22 @@ export class Imageuploader {
     }
     this.imagesInInputField = dataTransfer.files;
     this.createBlob(this.imagesInInputField);
+  }
+
+  /**
+   * Checks the size of an to add picture.
+   * @param index array index of the to checking image
+   * @returns true if the size is less or equal to 5MB
+   */
+   checkFileSize(index: number){
+    const maxSize = 5 * 1024 * 1024;
+    if(this.imagesInInputField[index].size <= maxSize){
+      return true;
+    }
+    else {
+      this.error.set(true);
+      return false;
+    }
   }
 
   /**
@@ -159,7 +187,7 @@ export class Imageuploader {
     const results = [];
     for (const file of validFiles) {
       const compressedBase64 = await this.compressImage(file, 800, 800, 0.8);
-      results.push({ filename: file.name, filetype: file.type, base64: compressedBase64 });
+      results.push({ filename: file.name, filetype: file.type, base64: compressedBase64, size: file.size });
     }
     this.allImages = results;
     this.images.set([...results]);
