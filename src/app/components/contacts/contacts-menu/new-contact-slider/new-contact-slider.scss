@@ -80,7 +80,7 @@ input::-webkit-inner-spin-button {
 
   @media (max-width: 768px) {
     position: absolute;
-    top: 240px;
+    top: -106px;
     width: 100px;
     height: 100px;
   }
@@ -359,6 +359,10 @@ p {
     #path2 {
       fill: #FFFFFF;
     }
+  }
+
+  @media (max-width: 768px){
+    right: -67px;
   }
 }
 
