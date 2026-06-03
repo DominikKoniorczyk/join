@@ -181,7 +181,7 @@ export class Imageuploader {
         if (typeof result === 'string') {
           const img = new Image();
           img.onload = () => {
-            const compressedBase64 = this.createCanvasForCompressing(img, maxWidth, maxHeight, quality);
+            const compressedBase64 = this.createCanvasForCompressing(img, maxWidth, maxHeight, quality, file.type);
             resolve(compressedBase64);
           };
           img.onerror = () => reject('Error on loading the image.');
@@ -204,14 +204,14 @@ export class Imageuploader {
    * @param {number} quality - JPEG quality factor (0 to 1).
    * @returns {string} A base64-encoded JPEG image string.
    */
-   createCanvasForCompressing(img: HTMLImageElement, maxWidth: number, maxHeight: number, quality: number) {
+   createCanvasForCompressing(img: HTMLImageElement, maxWidth: number, maxHeight: number, quality: number, type: string) {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     let dimensions = this.getDimensionsForCompression(img.width, maxWidth, img.height, maxHeight);
     canvas.width = dimensions.width;
     canvas.height = dimensions.height;
     ctx!.drawImage(img, 0, 0, dimensions.width, dimensions.height);
-    return canvas.toDataURL('image/jpeg', quality);
+    return canvas.toDataURL('image/$type', quality);
   }
 
   /**
