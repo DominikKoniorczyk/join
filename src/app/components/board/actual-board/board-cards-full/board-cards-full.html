@@ -35,7 +35,7 @@
                 {{ getInitials(contact.name) }}
                 }
                 @else{
-                  <img class="photo" src="{{ contact.image.base64}}" alt="">
+                <img class="photo" src="{{ contact.image.base64}}" alt="">
                 }
               </div>
               <span class="contact-name">{{contact.name}}</span>
@@ -46,7 +46,9 @@
       </div>
 
       <div class="attachment-container">
-        <span class="rows">Attachments</span>
+        @if(currentTask().files!){
+          <span class="rows">Attachments</span>
+        }
         <div class="attachments-wrapper">
           @for (attachments of currentTask().files; track attachments){
           <app-uploaded-images [Download]="true" [imageData]=attachments [taskData]=currentTask()></app-uploaded-images>
@@ -55,7 +57,9 @@
       </div>
 
       <div class="subtask-container">
-        <span class="rows">Subtask:</span>
+        @if(currentTask().subtasks!.length > 0){
+          <span class="rows">Subtask:</span>
+        }
         <div class="subtask-list-wrapper">
           @for (subtask of currentTask().subtasks; track subtask) {
           <div class="subtask-target-container"><button class="subtask-btn" (click)="toggleSubtask(subtask)">

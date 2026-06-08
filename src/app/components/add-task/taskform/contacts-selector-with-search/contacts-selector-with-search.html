@@ -1,13 +1,12 @@
 <div class="contacts-selector">
   <div class="dropdown-wrapper">
 
-    <div class="dropdown-trigger" (click)="toggleDropdown()">
+    <div class="dropdown-trigger" (click)="toggleDropdown()" >
       <span class="placeholder-text">
         {{ selectedContacts.length > 0 ? selectedContacts.length + ' contact(s) selected' : 'Select contacts to assign'
         }}
       </span>
-      <img [src]="isOpen ? 'assets/img/arrow_drop_up.png' : 'assets/img/arrow_drop_down.png'" alt="arrow"
-        class="arrow-icon" />
+      <span class="icon" [class.open]="isOpen"></span>
     </div>
 
     @if (isOpen) {

@@ -9,7 +9,6 @@
   overflow: hidden;
 
   @media (max-width: 768px) {
-    height: calc(100% - 176px);
     overflow: auto;
   }
 }
@@ -296,14 +295,12 @@ h3 {
 }
 
 .slider-modal {
-  position: absolute;
-  top: 30%;
-  left: 21%;
+  margin: auto;
+  left: 23%;
   width: calc(100% - 40px);
   max-width: 900px;
   border: none;
   border-radius: 25px;
-  transform: translate(-20%, 0);
 
   &[open] {
     z-index: 0;

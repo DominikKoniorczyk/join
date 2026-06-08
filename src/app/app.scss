@@ -8,11 +8,17 @@
   display: flex;
 }
 
-.main-container {
-  width: calc(100% - 240px);
-  max-width: calc(1440px - 240px);
-  min-height: 100dvh;
+.outer{
+  box-sizing: border-box;
+  width: 100%;
+  // overflow: hidden;
   height: 100dvh;
+}
+
+.main-container {
+  max-width: calc(1440px - 240px);
+  height: 100%;
+  max-height: calc(100dvh - 96px);
   box-sizing: border-box;
 
   @media (max-width: 768px) {
@@ -25,11 +31,12 @@
 .background-full{
   max-width: unset;
   width: 100%;
+  max-height: unset;
 }
 
-.shadow {
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
-}
+// .shadow {
+//   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+// }
 
 app-footer{
   width: 15rem;

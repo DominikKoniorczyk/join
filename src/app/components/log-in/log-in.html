@@ -1,19 +1,17 @@
 <div class="main">
 
-    <div class="auth-page" >
+  <div class="auth-page">
 
-        <app-log-in-header></app-log-in-header>
-        <app-log-in-form></app-log-in-form>
+    <header class="login-header">
+      <app-log-in-header></app-log-in-header>
+      <div class="sign-up-container">
+        <button type="button" class="signup-btn" routerLink="/sign-up" aria-label="Sign up for Join">
+          Sign up
+        </button>
+      </div>
+    </header>
+    <app-log-in-form class="login-dialog"></app-log-in-form>
 
-
-          <div class="sign-up-container">
-          <span class="login-text">Not a Join user?</span>
-           <button type="button" class="signup-btn" routerLink="/sign-up" aria-label="Sign up for Join">
-            Sign up
-           </button>
-          </div>
-
-        <app-log-in-footer></app-log-in-footer>
-    </div>
-    </div>
-
+    <app-log-in-footer></app-log-in-footer>
+  </div>
+</div>

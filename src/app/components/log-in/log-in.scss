@@ -1,31 +1,53 @@
 @use '../../styles/variables.scss' as *;
 
 :host {
-    display: block;
-    min-height: 100dvh;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
+  display: block;
+  min-height: 100dvh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+app-log-in-header{
+  width: 100%;
 }
 
 .main {
-    min-height: 100dvh;
-    width: 100%;
-    background: $content-bg;
-    position: relative;
+  height: 100%;
+  width: 100%;
+  background: $content-bg;
+  position: relative;
+}
+
+.login-header{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .auth-page {
-    width: 100%;
-    max-width: 1440px;
-    min-height: 100dvh;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 0 16px 35px;
-    box-sizing: border-box;
-    position: relative;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 16px 35px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.login-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 90%;
+
+  @media (max-height: 640px){
+    top: 53%;
+  }
 }
 
 .signup-btn {
@@ -39,12 +61,13 @@
   cursor: pointer;
   transition: background-color 100ms ease;
   font-size: 1.25rem;
-  @media(max-width:350px){
+
+  @media(max-width:350px) {
     font-size: 1rem;
   }
 }
 
-.sign-up-container{
+.sign-up-container {
   display: none;
   justify-content: center;
   align-items: center;
@@ -52,31 +75,35 @@
   font-size: 1.25rem;
   padding: 1rem;
   animation: show 600ms forwards;
-  @media(max-width:768px){
+
+  @media(max-width:768px) {
     display: flex;
     gap: 1rem;
   }
-    @media(max-width:350px){
+
+  @media(max-width:350px) {
     font-size: 1rem;
   }
 }
 
-app-log-in-form{
-animation: show 600ms forwards;
-}
-
-app-log-in-footer{
+app-log-in-form {
   animation: show 600ms forwards;
 }
 
-@keyframes show{
-  0%{
+app-log-in-footer {
+  animation: show 600ms forwards;
+}
+
+@keyframes show {
+  0% {
     opacity: 0;
   }
-  80%{
+
+  80% {
     opacity: 0;
   }
-  100%{
+
+  100% {
     opacity: 1;
   }
 }

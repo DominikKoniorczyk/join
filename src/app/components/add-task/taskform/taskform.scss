@@ -17,8 +17,8 @@ h1 {
   font-size: 3.8rem;
 }
 
-.subheadline{
-  color: rgb(161,161,161);
+.subheadline {
+  color: rgb(161, 161, 161);
 }
 
 .outer {
@@ -26,12 +26,13 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  padding-right: 2rem;
 }
 
 .form {
   display: flex;
   width: 100%;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .left,
@@ -261,6 +262,10 @@ textarea {
   width: 100%;
 }
 
+.validation{
+  height: 96px;
+}
+
 button[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
@@ -282,6 +287,7 @@ select {
   border: 1px solid #D1D1D1;
   background: white;
   transition: 0.4s;
+  position: relative;
 
   &:hover,
   &:focus {
@@ -289,8 +295,20 @@ select {
   }
 
   &::picker-icon {
-    color: #999999;
-    transition: 0.4s rotate;
+    color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23999999' d='M5 7l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: -4px center;
+    background-size: 18px;
+    transition: all 0.3s;
+  }
+
+  .icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
   }
 
   &:open::picker-icon {
@@ -326,6 +344,7 @@ option {
   border: none;
   background: white;
   transition: 0.4s;
+  cursor: pointer;
 
   &:first-of-type {
     display: none;

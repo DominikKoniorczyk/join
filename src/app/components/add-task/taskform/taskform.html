@@ -3,7 +3,7 @@
     <h1>Add Task</h1>
     <div class="form">
       <section class="left">
-        <div class="form-inner">
+        <div class="form-inner validation">
           <label for="title">Title<span class="red">*</span></label>
           <input [class.invalid]="taskForm.get('title')?.invalid && taskForm.get('title')?.touched" name="title" id="title" formControlName="title" placeholder="Enter a title" />
           <p class="d-none" [class.invalid-text]="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">This field is required</p>
@@ -13,7 +13,7 @@
           <textarea name="description" id="description" formControlName="desc"
             placeholder="Enter a description"></textarea>
         </div>
-        <div class="form-inner">
+        <div class="form-inner validation">
           <label for="date">Due date<span class="red">*</span></label>
           <input [class.invalid]="taskForm.get('date')?.invalid && taskForm.get('date')?.touched" formControlName="date" id="date" type="date" min="{{currentDate()}}" />
           <p class="d-none" [class.invalid-text]="taskForm.get('date')?.invalid && taskForm.get('date')?.touched">This field is required, only futured dates</p>
@@ -42,9 +42,9 @@
         <div class="form-inner">
           <label for="category">Category<span class="red">*</span></label>
           <select [class.invalid]="taskForm.get('cat')?.invalid && taskForm.get('cat')?.touched" formControlName="cat" name="category" id="category">
-            <button>
+            <!-- <button class="selector-btn">
               <selectedcontent></selectedcontent>
-            </button>
+            </button> -->
             <option value="">Please select a category</option>
             <option value="Technical Task">Technical Task</option>
             <option value="User Story">User Story</option>

@@ -14,8 +14,8 @@
       </div>
 
       <div class="task-column" cdkDropList id="To do" [cdkDropListData]="filteredTodo" (cdkDropListDropped)="drop($event)" >
-        @for (task of filteredTodo; track task.id) {
-        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
+        @for (task of filteredTodo; track task.id; let isLast = $last) {
+        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)" [class.last-el]="isLast"></app-board-cards>
         } @empty {
         <div class="no-task-placeholder">No tasks To do</div>
         }
@@ -36,8 +36,8 @@
       </div>
 
       <div class="task-column" cdkDropList id="In progress" [cdkDropListData]="filteredInProgress" (cdkDropListDropped)="drop($event)">
-        @for (task of filteredInProgress; track task.id) {
-        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
+        @for (task of filteredInProgress; track task.id; let isLast = $last) {
+        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)" [class.last-el]="isLast"></app-board-cards>
         } @empty {
         <div class="no-task-placeholder">No tasks in progress</div>
         }
@@ -58,8 +58,8 @@
       </div>
 
       <div class="task-column" cdkDropList id="Await feedback" [cdkDropListData]="filteredAwaitFeedback" (cdkDropListDropped)="drop($event)">
-        @for (task of filteredAwaitFeedback; track task.id) {
-        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)"></app-board-cards>
+        @for (task of filteredAwaitFeedback; track task.id; let isLast = $last) {
+        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)" [class.last-el]="isLast"></app-board-cards>
         } @empty {
         <div class="no-task-placeholder">No tasks awaiting feedback</div>
         }
@@ -74,8 +74,8 @@
       </div>
 
       <div class="task-column" cdkDropList id="Done" [cdkDropListData]="filteredDone" (cdkDropListDropped)="drop($event)">
-        @for (task of filteredDone; track task.id) {
-        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)" ></app-board-cards>
+        @for (task of filteredDone; track task.id; let isLast = $last) {
+        <app-board-cards cdkDrag [currentTask]="task" (cardOpened)="openDialog(task)" [class.last-el]="isLast"></app-board-cards>
         } @empty {
         <div class="no-task-placeholder">No tasks done</div>
         }
