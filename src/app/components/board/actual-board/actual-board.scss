@@ -93,6 +93,10 @@ h3 {
       background: #f1f1f1;
     }
   }
+
+  @media (max-width: 410px){
+    width: 98%;
+  }
 }
 
 app-board-cards {
@@ -162,13 +166,14 @@ dialog {
   border: none;
   border-radius: 25px;
   overflow-y: auto;
+  left: 25%;
 
-  @media(min-width: 1440px) {
-    left: -20%;
+  @media (max-width: 490px){
+    left: 23%;
   }
 
-  @media (max-width: 1170px) {
-    left: 25%;
+  @media (max-width: 400px){
+    left: 21%;
   }
 
   @media (max-width: 600px) {
@@ -192,9 +197,10 @@ dialog {
   left: 25%;
   max-width: 1200px;
   max-height: unset;
+  height: 867px;
 
   @media (max-height: 930px) {
-    max-height: 80dvh;
+    max-height: 98dvh;
   }
 }
 

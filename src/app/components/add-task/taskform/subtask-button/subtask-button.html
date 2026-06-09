@@ -1,4 +1,4 @@
-<div class="subtask-row" [class.editing]="isEditing">
+<div class="subtask-row" [class.editing]="isEditing" [class.error]="hasError">
 
   <ng-container *ngIf="!isEditing; else editTpl">
     <div class="left">
@@ -21,7 +21,7 @@
 
   <ng-template #editTpl>
     <div class="left">
-      <input #editInput class="edit-input" type="text" [(ngModel)]="editValue" (keydown)="onKeydown($event)" />
+      <input #editInput class="edit-input" type="text" [(ngModel)]="editValue" (keydown)="onKeydown($event)" (blur)="onBlur()" (focus)="onFocus()"/>
     </div>
 
     <div class="actions edit-actions">

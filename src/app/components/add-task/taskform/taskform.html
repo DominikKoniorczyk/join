@@ -15,7 +15,7 @@
         </div>
         <div class="form-inner validation">
           <label for="date">Due date<span class="red">*</span></label>
-          <input [class.invalid]="taskForm.get('date')?.invalid && taskForm.get('date')?.touched" formControlName="date" id="date" type="date" min="{{currentDate()}}" />
+          <input class="date-input" [class.invalid]="taskForm.get('date')?.invalid && taskForm.get('date')?.touched" formControlName="date" id="date" type="date" min="{{currentDate()}}" />
           <p class="d-none" [class.invalid-text]="taskForm.get('date')?.invalid && taskForm.get('date')?.touched">This field is required, only futured dates</p>
         </div>
         <div class="form-inner">

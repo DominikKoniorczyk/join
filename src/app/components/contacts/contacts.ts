@@ -267,7 +267,7 @@ export class Contacts {
     const isMobile = this.responsiveDetailsOpen();
     const editId = this.editingContactId();
     await this.closeDialog();
-    this.handleContactIdSelection(editId, isMobile);
+    setTimeout(() => this.handleContactIdSelection(editId, isMobile), 500);
     this.sendFeedback();
     this.editingContactId.set(null);
   }
@@ -286,6 +286,9 @@ export class Contacts {
     const editedContact = editId ? users.find(contact => contact.id === editId) : null;
     const newest = [...users].sort((a, b) => b.id - a.id)[0];
     const target = editedContact || newest;
+
+    console.log("newest: " + newest.id + " ; edited: " + editId);
+
     if (target) {
       this.openContact(target, target.id);
       if (isMobile) {

@@ -20,6 +20,7 @@ export class SubtaskButtonComponent {
   @ViewChild('editInput') editInput?: ElementRef<HTMLInputElement>;
   isEditing: boolean = false;
   editValue: string = '';
+  hasError: boolean = false;
 
   /**
    * Enables edit mode for the subtask and focuses the input field.
@@ -43,6 +44,7 @@ export class SubtaskButtonComponent {
     if (cleaned === '') return;
     this.updateSubtask.emit({ index: this.index, title: cleaned });
     this.isEditing = false;
+    this.hasError = false;
   }
 
   /**
@@ -59,7 +61,7 @@ export class SubtaskButtonComponent {
    *
    * @param {KeyboardEvent} ev - The keyboard event triggered by the user.
    */
-   onKeydown(ev: KeyboardEvent) {
+    onKeydown(ev: KeyboardEvent) {
     if (ev.key === 'Enter') {
       ev.preventDefault();
       this.confirmEdit();
@@ -69,4 +71,18 @@ export class SubtaskButtonComponent {
       this.isEditing = false;
     }
   }
+
+  /**
+   * Handles blur on editing mode to show an error.
+   */
+   onBlur(){
+    this.hasError = true;
+  }
+
+  /**
+   * Handles focus on editing mode to remove error.
+   */
+   onFocus(){
+    this.hasError = false;
+   }
 }

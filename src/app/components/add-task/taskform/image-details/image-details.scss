@@ -9,6 +9,10 @@
   border: none;
   z-index: 50;
   overflow: hidden;
+
+  @media (min-width: 1440px){
+    left: 25%;
+  }
 }
 
 .d_none{
