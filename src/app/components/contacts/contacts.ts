@@ -229,6 +229,7 @@ export class Contacts {
    * @param id - The unique identifier of the user to be deleted.
    */
    deleteUser(id: number) {
+    this.closeMobileDetails();
     this.supabaseClientService.deleteRow('users', id);
     this.selectedContact.set({id: 0, created_at: '', name: '', email: '', phone_number: 0, color: '', image: null });
   }
@@ -286,9 +287,6 @@ export class Contacts {
     const editedContact = editId ? users.find(contact => contact.id === editId) : null;
     const newest = [...users].sort((a, b) => b.id - a.id)[0];
     const target = editedContact || newest;
-
-    console.log("newest: " + newest.id + " ; edited: " + editId);
-
     if (target) {
       this.openContact(target, target.id);
       if (isMobile) {
