@@ -4,7 +4,7 @@
       <button class="add_btn" (click)="openNewContact()">
         Add new contact <img src="./assets/img/add-contact-icon.png" alt="add-contact-icon" />
       </button>
-      <div class="contacts_scroll_container">
+      <ul class="contacts_scroll_container">
         @if (isLoading()) {
           <p>Loading contacts...</p>
         } @else if (groupedUsers().length === 0) {
@@ -14,7 +14,7 @@
             <h2>{{ group.key }}</h2>
             <div class="line_under_letter"></div>
             @for (person of group.value; track person.id) {
-              <div
+              <li
                 #contactBtn
                 id="{{ person.id }}"
                 class="contact_inner_card"
@@ -38,11 +38,11 @@
                     {{ person.email }}
                   </p>
                 </div>
-              </div>
+              </li>
             }
           }
         }
-      </div>
+      </ul>
     </section>
     <section class="contacts_detail_area">
       <div class="content_background"></div>

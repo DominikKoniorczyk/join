@@ -9,6 +9,8 @@ import { Task } from '../../../interfaces/taskmodel.interfaces';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { CdkDrag, CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AddTaskDialog } from '../../add-task/taskform/add-task-dialog/add-task-dialog';
+import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/signals';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,7 +46,7 @@ export class ActualBoard {
   awaitFeedbackTasksColumn = signal<Task[]>([]);
   doneTasksColumn = signal<Task[]>([]);
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, private router: Router) {
     this.supabaseChannel = this.supabaseClientService.supabaseClient.channel('custom-all-channel');
     if (window.visualViewport) {
       window.visualViewport.addEventListener(
@@ -286,11 +288,19 @@ export class ActualBoard {
   }
 
   /**
+   * Checks breakpoints for mobile.
+   */
+   checkIsMobileDevice():boolean{
+    return window.innerWidth <= 768;
+   }
+
+  /**
    * Opens the "Add Task" modal dialog and sets the current progress type.
    *
    * @param {string} type - The progress type for the new task.
    */
    async openAddTask(type: string) {
+    if(this.checkIsMobileDevice()) this.router.navigateByUrl('add-task');
     const dialogRef = this.addTask.nativeElement;
     this.cardTaskData.setCurrentProgress(type);
     dialogRef.showModal();
