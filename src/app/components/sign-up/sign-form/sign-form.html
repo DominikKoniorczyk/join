@@ -1,120 +1,140 @@
 <section class="sign-form-wrap">
-    <div class="sign-card">
-        <a class="back-arrow" routerLink="/login" aria-label="Back to login">
-            <img src="assets/img/arrow-left-long.png" alt="Back" />
-        </a>
+  <div class="sign-card">
+    <a class="back-arrow" routerLink="/login" aria-label="Back to login">
+      <img src="assets/img/arrow-left-long.png" alt="Back" />
+    </a>
 
-        <h1 class="title">Sign up</h1>
-        <div class="title-underline"></div>
+    <h1 class="title">Sign up</h1>
+    <div class="title-underline"></div>
 
-        @if (showSuccess) {
-        <div class="toast" role="status" aria-live="polite">
-            You signed up successfully
-        </div>
-        }
-
-        <form class="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-            <div class="input-group" [class.input-error]="isInvalid('name')">
-                <input type="text" formControlName="name" placeholder="Name" aria-label="Name" />
-                <div class="icon-slot">
-                    <img src="assets/img/person-icon.png" alt="Name icon" />
-                </div>
-            </div>
-
-            @if (hasError('name', 'required')) {
-            <p class="error-text">
-                Name is required.
-            </p>
-            }
-
-            @if (hasError('name', 'pattern')) {
-            <p class="error-text">
-                Please enter first and last name (no numbers).
-            </p>
-            }
-
-            <div class="input-group" [class.input-error]="isInvalid('email')">
-                <input type="text" formControlName="email" placeholder="Email" autocomplete="email" />
-                <div class="icon-slot">
-                    <img src="assets/img/mail-icon.png" alt="Email Icon" />
-                </div>
-            </div>
-
-            @if (hasError('email', 'required')) {
-            <p class="error-text">
-                Email is required.
-            </p>
-            }
-
-            @if (hasError('email', 'email') || hasError('email', 'pattern')) {
-            <p class="error-text">
-                Please enter a valid email address.
-            </p>
-            }
-
-            <div class="input-group" [class.input-error]="isInvalid('password')">
-                <input formControlName="password" placeholder="Password" autocomplete="new-password"
-                    [type]="showPassword ? 'text' : 'password'" (input)="showPassword = false" aria-label="Password" />
-
-                <button type="button" class="icon-slot" (click)="togglePassword()" aria-label="Toggle password visibility">
-                    <img [src]="getPasswordIcon()" alt="Eye icon for password visibility" />
-                </button>
-            </div>
-
-            @if (hasError('password', 'required')) {
-            <p class="error-text">
-                Password is required.
-            </p>
-            }
-
-            @if (hasError('password', 'minlength')) {
-            <p class="error-text">
-                Password must be at least 6 characters.
-            </p>
-            }
-
-            <div class="input-group" [class.input-error]="isInvalid('confirmPassword') || passwordMismatch">
-                <input formControlName="confirmPassword" placeholder="Confirm Password" autocomplete="new-password"
-                    [type]="showConfirmPassword ? 'text' : 'password'" (input)="showConfirmPassword = false" aria-label="Confirm Password" />
-
-                <button type="button" class="icon-slot" (click)="toggleConfirmPassword()">
-                    <img [src]="getConfirmPasswordIcon()" alt="Eye icon for confirm password visibility" />
-                </button>
-            </div>
-
-            @if (hasError('confirmPassword', 'required')) {
-            <p class="error-text">
-                Please confirm your password.
-            </p>
-            }
-
-            @if (passwordMismatch) {
-            <p class="error-text">
-                Your passwords don't match. Please try again.
-            </p>
-            }
-
-            <div class="policy-row" (click)="togglePolicy()" role="checkbox" [attr.aria-checked]="policyAccepted">
-                <img class="policy-box" [src]="policyAccepted
-            ? 'assets/img/checkmarkbox-checked.png'
-            : 'assets/img/checkmarkbox-empty.png'" alt="Privacy policy agreement checkbox" />
-                <span class="policy-text">
-                    I accept the
-                    <a class="policy-link" routerLink="/privacy-policy" (click)="$event.stopPropagation()">
-                        Privacy policy
-                    </a>
-                </span>
-            </div>
-
-            @if (hasError('acceptPolicy', 'required')) {
-            <p class="error-text">
-                You must accept the privacy policy.
-            </p>
-            }
-
-            <button class="submit-btn" type="submit" [disabled]="signUpForm.invalid">
-                Sign up
-            </button>
-        </form>
+    @if (showSuccess) {
+    <div class="toast" role="status" aria-live="polite">
+      You signed up successfully
     </div>
+    }
+
+    <form class="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <div class="input-group" [class.input-error]="isInvalid('name')">
+        <input type="text" formControlName="name" placeholder="Name" aria-label="Name" />
+        <div class="icon-slot">
+          <img src="assets/img/person-icon.png" alt="Name icon" />
+        </div>
+      </div>
+
+      @if (hasError('name', 'required')) {
+      <p class="error-text">
+        Name is required.
+      </p>
+      }
+
+      @if (hasError('name', 'pattern')) {
+      <p class="error-text">
+        Please enter first and last name (no numbers).
+      </p>
+      }
+
+      <div class="input-group" [class.input-error]="isInvalid('email')">
+        <input type="text" formControlName="email" placeholder="Email" autocomplete="email" />
+        <div class="icon-slot">
+          <img src="assets/img/mail-icon.png" alt="Email Icon" />
+        </div>
+      </div>
+
+      @if (hasError('email', 'required') && !doubleEmail) {
+      <p class="error-text">
+        Email is required.
+      </p>
+      }
+
+      @if (hasError('email', 'email') || hasError('email', 'pattern') && !doubleEmail) {
+      <p class="error-text">
+        Please enter a valid email address.
+      </p>
+      }
+
+      @if(doubleEmail){
+      <p class="error-text">
+        This email is already registered.
+      </p>
+      }
+
+      <div class="input-group" [class.input-error]="isInvalid('password')">
+        <input formControlName="password" placeholder="Password" autocomplete="new-password"
+          [type]="showPassword ? 'text' : 'password'" (input)="showPassword = false" aria-label="Password" />
+
+        <button type="button" class="icon-slot" (click)="togglePassword()" aria-label="Toggle password visibility">
+          <img [src]="getPasswordIcon()" alt="Eye icon for password visibility" />
+        </button>
+      </div>
+
+      @if (hasError('password', 'required')) {
+      <p class="error-text">
+        Password is required.
+      </p>
+      }
+
+      @if (hasError('password', 'minlength')) {
+      <p class="error-text">
+        Password must be at least 6 characters.
+      </p>
+      }
+
+      <div class="input-group" [class.input-error]="isInvalid('confirmPassword') || passwordMismatch">
+        <input formControlName="confirmPassword" placeholder="Confirm Password" autocomplete="new-password"
+          [type]="showConfirmPassword ? 'text' : 'password'" (input)="showConfirmPassword = false"
+          aria-label="Confirm Password" />
+
+        <button type="button" class="icon-slot" (click)="toggleConfirmPassword()">
+          <img [src]="getConfirmPasswordIcon()" alt="Eye icon for confirm password visibility" />
+        </button>
+      </div>
+
+      @if (hasError('confirmPassword', 'required')) {
+      <p class="error-text">
+        Please confirm your password.
+      </p>
+      }
+
+      @if (passwordMismatch) {
+      <p class="error-text">
+        Your passwords don't match. Please try again.
+      </p>
+      }
+
+      <div class="policy-row">
+        <button class="policy-btn" (click)="togglePolicy()" role="checkbox" [attr.aria-checked]="policyAccepted">
+          @if(policyAccepted){
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12"
+              stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+            <path d="M5 9L9 13L17 1.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          }
+          @else{
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2" />
+          </svg>
+          }
+        </button>
+
+        <span class="policy-text">
+          I accept the
+          <a class="policy-link" routerLink="/privacy-policy" (click)="$event.stopPropagation()">
+            Privacy policy
+          </a>
+        </span>
+      </div>
+
+      @if (hasError('acceptPolicy', 'required')) {
+      <p class="error-text">
+        You must accept the privacy policy.
+      </p>
+      }
+
+      <button class="submit-btn" type="submit" [disabled]="signUpForm.invalid">
+        Sign up
+      </button>
+    </form>
+  </div>
 </section>

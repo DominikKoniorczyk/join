@@ -4,7 +4,7 @@
   box-shadow:
     0 0 4px 0 rgba(0, 0, 0, 0.08),
     0 2px 4px 0 rgba(0, 0, 0, 0.12);
-  font-size: clamp(0.78rem, 1vw, 1rem);
+  font-size: 1rem;
 
   @media (max-width: 1170px){
     max-width: calc(1440px - 15rem);

@@ -35,7 +35,7 @@ export class Supabase {
    * Generates a random hex color string from the predefined colors array.
    * @returns {string} A hex color code (e.g., '#ff7a00').
    */
-   getRandomeColor(): string {
+  getRandomeColor(): string {
     const randomIndex = Math.floor(Math.random() * this.colors.length);
     return this.colors[randomIndex];
   }
@@ -62,7 +62,7 @@ export class Supabase {
    * @example
    * const userNames = await getDataFromTable('users', 'id, name');
    */
-   async getDataFromTable(tableName: string, selector: string = '*') {
+  async getDataFromTable(tableName: string, selector: string = '*') {
     const { data, error } = await this.supabaseClient
       .from(tableName)
       .select(selector) as unknown as { data: any, error: any };
@@ -98,7 +98,7 @@ export class Supabase {
    *   { name: 'Jane Doe', email: 'jane@example.com' }
    * ]);
    */
-   async uploadJSONToTable(tableName: string, jsonData: any) {
+  async uploadJSONToTable(tableName: string, jsonData: any) {
     const { data, error } = await this.supabaseClient
       .from(tableName)
       .insert(jsonData)
@@ -115,7 +115,7 @@ export class Supabase {
    *
    * @throws Will throw an error if the delete operation fails.
    */
-   async deleteRow(tableName: string, id: number) {
+  async deleteRow(tableName: string, id: number) {
     const { data, error } = await this.supabaseClient
       .from(tableName)
       .delete()
@@ -135,7 +135,7 @@ export class Supabase {
    *
    * @returns {Promise<void>} Resolves when the update operation completes successfully.
    */
-   async updateRow(tableName: string, newData: any, id: number) {
+  async updateRow(tableName: string, newData: any, id: number) {
     const { error } = await this.supabaseClient
       .from(tableName)
       .update(newData)
@@ -151,9 +151,21 @@ export class Supabase {
    * @returns {Promise<import('@supabase/supabase-js').AuthResponse>}
    * A promise resolving to the Supabase authentication response containing user and session information.
    */
-   async signUpUser(name: string, email: string, password: string) {
+  async signUpUser(name: string, email: string, password: string) {
     this.uploadJSONToTable("users", { name: name, email: email, color: this.getRandomeColor() });
     return await this.supabaseClient.auth.signUp({ email: email, password: password });
+  }
+
+  /**
+   * Returns a registered email adress.
+   */
+  async returnEmailExists(email: string) {
+    const { data, error } = await this.supabaseClient
+      .from('users')
+      .select('id')
+      .eq('email', email)
+      .maybeSingle();
+    return !!data;
   }
 
   /**
@@ -164,7 +176,7 @@ export class Supabase {
    * @returns {Promise<import('@supabase/supabase-js').AuthTokenResponsePassword>}
    * A promise resolving to the Supabase authentication response containing the session and user data.
    */
-   async signInUser(email: string, password: string) {
+  async signInUser(email: string, password: string) {
     return await this.supabaseClient.auth.signInWithPassword({ email: email, password: password });
   }
 
@@ -173,7 +185,7 @@ export class Supabase {
    *
    * @returns {Promise<User | null>} A promise resolving to the user object, or null if no user is logged in.
    */
-   async getUser(): Promise<User | null> {
+  async getUser(): Promise<User | null> {
     const { data } = await this.supabaseClient.auth.getUser();
     return data.user ?? null;
   }
@@ -183,7 +195,7 @@ export class Supabase {
    *
    * @returns {Promise<import('@supabase/supabase-js').ApiResponse>} A promise resolving to the sign-out response.
    */
-   async logOut() {
+  async logOut() {
     return await this.supabaseClient.auth.signOut();
   }
 
@@ -193,7 +205,7 @@ export class Supabase {
    * @param {string} email - The email address of the user to retrieve.
    * @returns {Promise<any[] | null>} A promise resolving to an array of user records, or null if an error occurs.
    */
-   async getLoggedInUser(email: string) {
+  async getLoggedInUser(email: string) {
     const { data, error } = await this.supabaseClient
       .from("users")
       .select("*")

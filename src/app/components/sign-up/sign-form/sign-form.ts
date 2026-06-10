@@ -19,6 +19,7 @@ export class SignForm {
   showSuccess = false;
   namePattern = '^[A-Za-zÄÖÜäöüß]+\\s+[A-Za-zÄÖÜäöüß]+(\\s*[A-Za-zÄÖÜäöüß]*)*$';
   emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$';
+  doubleEmail = false;
 
   constructor(private fb: FormBuilder, private router: Router, private supabase: Supabase) {
     this.signUpForm = this.fb.group(
@@ -141,9 +142,10 @@ export class SignForm {
    * Validates the form, triggers Supabase sign-up, shows success message,
    * and navigates to the login page after a delay.
    */
-   onSubmit(): void {
-    if (this.signUpForm.invalid) {
+   async onSubmit() {
+    if (this.signUpForm.invalid || !await this.supabase.returnEmailExists(this.signUpForm.get('email')?.value)) {
       this.signUpForm.markAllAsTouched();
+      this.doubleEmail = !await this.supabase.returnEmailExists(this.signUpForm.get('email')?.value);
       return;
     }
     this.showSuccess = true;
