@@ -47,6 +47,18 @@ a {
   position: relative;
 }
 
+.backarrow {
+  display: none;
+
+  @media (max-width: 768px) {
+    position: absolute;
+    display: block;
+    top: 60px;
+    right: 16px;
+    cursor: pointer;
+  }
+}
+
 .background {
   position: absolute;
   top: 0;

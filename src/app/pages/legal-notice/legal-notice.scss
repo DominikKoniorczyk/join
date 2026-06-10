@@ -18,6 +18,18 @@
   z-index: -1;
 }
 
+.backarrow {
+  display: none;
+
+  @media (max-width: 768px) {
+    position: absolute;
+    display: block;
+    top: 60px;
+    right: 16px;
+    cursor: pointer;
+  }
+}
+
 .inner {
   width: 90%;
   display: flex;
