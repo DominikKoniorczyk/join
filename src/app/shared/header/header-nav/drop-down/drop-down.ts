@@ -22,6 +22,10 @@ export class DropDown {
     this.getUserName();
   }
 
+  ngAfterViewInit() {
+    this.getUserName();
+  }
+
   /**
    * Toggles the visibility of the user dropdown menu.
    */
@@ -44,7 +48,7 @@ export class DropDown {
       this.currentUserImage.set(loggedInUser[0].image);
       this.loggedIn = true;
     }
-    else if(this.auth.isGuest){
+    else if(this.auth.isGuestUser()){
       this.currentUserName.set("Guest");
       this.loggedIn = true;
     }
