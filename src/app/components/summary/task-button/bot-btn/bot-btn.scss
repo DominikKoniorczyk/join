@@ -1,89 +1,93 @@
 @use '../../../../styles/variables.scss' as vars;
 
 .content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .inner-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
 
-    @media(max-width: 800px) {
-        gap: 0;
-    }
+  @media(max-width: 800px) {
+    gap: 0;
+  }
 }
 
 button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 200px;
-    border: none;
-    border-radius: 25px;
-    background-color: white;
-    color: vars.$primary-color;
-    font-size: 1rem;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border: none;
+  border-radius: 25px;
+  background-color: white;
+  color: vars.$primary-color;
+  font-size: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
 
-    &:hover {
-        background-color: vars.$primary-color;
-        color: white;
-        transform: scale(1.03);
+  &:hover {
+    background-color: vars.$primary-color;
+    color: white;
+    transform: scale(1.03);
 
-        .amount {
-            color: white;
-        }
-
-        span {
-            color: white;
-        }
+    .amount {
+      color: white;
     }
 
-    @media(max-width: 1000px) {
-        width: 150px;
-        height: 150px;
+    span {
+      color: white;
     }
+  }
 
-    @media(max-width: 500px) {
-        width: 110px;
-        height: 110px;
-    }
+  @media(max-width: 1000px) {
+    width: 150px;
+    height: 150px;
+  }
 
-    @media(max-width: 380px) {
-        width: 95px;
-        height: 95px;
-    }
+  @media(max-width: 500px) {
+    width: 110px;
+    height: 110px;
+  }
+
+  @media(max-width: 380px) {
+    width: 95px;
+    height: 95px;
+  }
 }
 
 .amount {
-    color: black;
-    font-size: 4rem;
-    font-weight: bold;
+  color: black;
+  font-size: 4rem;
+  font-weight: bold;
 
-    @media(max-width: 1000px) {
-        font-size: 3rem;
-    }
+  @media(max-width: 1000px) {
+    font-size: 3rem;
+  }
 }
 
 span {
-    color: vars.$primary-color;
-    font-size: 1.25rem;
+  color: vars.$primary-color;
+  font-size: 1.25rem;
 
-    @media(max-width: 1000px) {
-        font-size: 1rem;
-    }
+  @media (max-width: 500px) {
+    padding: 0 8px;
+  }
 
-    @media(max-width: 380px) {
-        font-size: 0.85rem;
-    }
+  @media(max-width: 1000px) {
+    font-size: 1rem;
+  }
+
+  @media(max-width: 380px) {
+    font-size: 0.85rem;
+  }
 }
