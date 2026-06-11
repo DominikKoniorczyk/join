@@ -1,90 +1,81 @@
-<div class="contacts-wrapper">
+<div class="contacts-wrapper" (click)="closeSlideOut()">
   @if (!contactsDetailOpen()) {
-    <section class="contacts_outer">
-      <button class="add_btn" (click)="openNewContact()">
-        Add new contact <img src="./assets/img/add-contact-icon.png" alt="add-contact-icon" />
-      </button>
-      <ul class="contacts_scroll_container">
-        @if (isLoading()) {
-          <p>Loading contacts...</p>
-        } @else if (groupedUsers().length === 0) {
-          <p>No persons found.</p>
-        } @else {
-          @for (group of groupedUsers(); track group.key) {
-            <h2>{{ group.key }}</h2>
-            <div class="line_under_letter"></div>
-            @for (person of group.value; track person.id) {
-              <li
-                #contactBtn
-                id="{{ person.id }}"
-                class="contact_inner_card"
-                (click)="openContact(person, person.id)"
-              >
-                <div
-                  class="contact_initials"
-                  [style.background-color]="person.color"
-                  [attr.aria-label]="person.name"
-                >
-                  @if(person.image == null){
-                    <p>{{ person.name | initials }}</p>
-                  }
-                  @else{
-                    <img class="profile-photo" src="{{person.image!.base64}}" alt="" srcset="">
-                  }
-                </div>
-                <div class="details">
-                  <h3>{{ person.name }}</h3>
-                  <p class="mail">
-                    {{ person.email }}
-                  </p>
-                </div>
-              </li>
-            }
+  <section class="contacts_outer">
+    <button class="add_btn" (click)="openNewContact()">
+      Add new contact <svg width="30" height="21" viewBox="0 0 30 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M23.9961 12.9111C23.6802 12.9111 23.4167 12.8046 23.2056 12.5917C22.9945 12.3787 22.8889 12.1148 22.8889 11.8V8.68887H19.7778C19.463 8.68887 19.1991 8.58201 18.9861 8.3683C18.7731 8.15459 18.6667 7.88978 18.6667 7.57387C18.6667 7.25796 18.7731 6.99444 18.9861 6.78333C19.1991 6.57222 19.463 6.46667 19.7778 6.46667H22.8889V3.35553C22.8889 3.04073 22.9958 2.77684 23.2095 2.56387C23.4232 2.35091 23.688 2.24443 24.0039 2.24443C24.3198 2.24443 24.5833 2.35091 24.7944 2.56387C25.0055 2.77684 25.1111 3.04073 25.1111 3.35553V6.46667H28.2222C28.537 6.46667 28.8009 6.57352 29.0139 6.78723C29.2269 7.00095 29.3333 7.26576 29.3333 7.58167C29.3333 7.89758 29.2269 8.16109 29.0139 8.3722C28.8009 8.58331 28.537 8.68887 28.2222 8.68887H25.1111V11.8C25.1111 12.1148 25.0042 12.3787 24.7905 12.5917C24.5768 12.8046 24.312 12.9111 23.9961 12.9111ZM10.6667 10.2222C9.2 10.2222 7.98148 9.73702 7.0111 8.76667C6.04074 7.79629 5.55557 6.57777 5.55557 5.1111C5.55557 3.64443 6.04074 2.42592 7.0111 1.45557C7.98148 0.485189 9.2 0 10.6667 0C12.1333 0 13.3519 0.485189 14.3222 1.45557C15.2926 2.42592 15.7778 3.64443 15.7778 5.1111C15.7778 6.57777 15.2926 7.79629 14.3222 8.76667C13.3519 9.73702 12.1333 10.2222 10.6667 10.2222ZM1.1111 20.9111C0.7963 20.9111 0.532411 20.8046 0.319433 20.5917C0.106478 20.3787 0 20.1148 0 19.8V17.5778C0 16.8074 0.198144 16.1056 0.594433 15.4722C0.990745 14.8389 1.53334 14.363 2.22223 14.0444C3.79261 13.3259 5.24697 12.8093 6.5853 12.4944C7.92366 12.1796 9.28291 12.0222 10.6631 12.0222C12.0432 12.0222 13.4037 12.1796 14.7444 12.4944C16.0852 12.8093 17.5333 13.3259 19.0889 14.0444C19.7778 14.3778 20.3241 14.8574 20.7278 15.4833C21.1315 16.1093 21.3333 16.8074 21.3333 17.5778V19.8C21.3333 20.1148 21.2269 20.3787 21.0139 20.5917C20.8009 20.8046 20.537 20.9111 20.2222 20.9111H1.1111ZM2.2222 18.6889H19.1111V17.5778C19.1111 17.2593 19.0315 16.9593 18.8722 16.6778C18.713 16.3963 18.4741 16.1852 18.1556 16.0444C16.7185 15.3407 15.4296 14.8648 14.2889 14.6167C13.1481 14.3685 11.9407 14.2444 10.6667 14.2444C9.3926 14.2444 8.18519 14.3722 7.04443 14.6278C5.9037 14.8833 4.60741 15.3555 3.15557 16.0444C2.86666 16.1852 2.63887 16.3963 2.4722 16.6778C2.30553 16.9593 2.2222 17.2593 2.2222 17.5778V18.6889ZM10.6667 8C11.4889 8 12.1759 7.72408 12.7278 7.17223C13.2796 6.62037 13.5556 5.93332 13.5556 5.1111C13.5556 4.28888 13.2796 3.60184 12.7278 3.05C12.1759 2.49813 11.4889 2.2222 10.6667 2.2222C9.84445 2.2222 9.15741 2.49813 8.60557 3.05C8.0537 3.60184 7.77777 4.28888 7.77777 5.1111C7.77777 5.93332 8.0537 6.62037 8.60557 7.17223C9.15741 7.72408 9.84445 8 10.6667 8Z"
+          fill="white" />
+      </svg>
+    </button>
+    <ul class="contacts_scroll_container">
+      @if (isLoading()) {
+      <p>Loading contacts...</p>
+      } @else if (groupedUsers().length === 0) {
+      <p>No persons found.</p>
+      } @else {
+      @for (group of groupedUsers(); track group.key) {
+      <h2>{{ group.key }}</h2>
+      <div class="line_under_letter"></div>
+      @for (person of group.value; track person.id) {
+      <li #contactBtn id="{{ person.id }}" class="contact_inner_card" (click)="openContact(person, person.id)">
+        <div class="contact_initials" [style.background-color]="person.color" [attr.aria-label]="person.name">
+          @if(person.image == null){
+          <p>{{ person.name | initials }}</p>
           }
-        }
-      </ul>
-    </section>
-    <section class="contacts_detail_area">
-      <div class="content_background"></div>
-      <div class="content_detail_inner">
-        <div class="contacts_detail_headline">
-          <h1>Contacts</h1>
-          <div class="blue_vertical_line"></div>
-          <p class="subheadline">Better with a team</p>
+          @else{
+          <img class="profile-photo" src="{{person.image!.base64}}" alt="" srcset="">
+          }
         </div>
-        @if (selectedContact()) {
-          <app-contacts-menu
-            #details
-            [person]="selectedContact()"
-            (deleteContact)="deleteUser($event)"
-            (editContact)="editContact($event)"
-          >
-          </app-contacts-menu>
-        }
+        <div class="details">
+          <h3>{{ person.name }}</h3>
+          <p class="mail">
+            {{ person.email }}
+          </p>
+        </div>
+      </li>
+      }
+      }
+      }
+    </ul>
+  </section>
+  <section class="contacts_detail_area">
+    <div class="content_background"></div>
+    <div class="content_detail_inner">
+      <div class="contacts_detail_headline">
+        <h1>Contacts</h1>
+        <div class="blue_vertical_line"></div>
+        <p class="subheadline">Better with a team</p>
       </div>
-    </section>
+      @if (selectedContact()) {
+      <app-contacts-menu #details [person]="selectedContact()" (deleteContact)="deleteUser($event)"
+        (editContact)="editContact($event)">
+      </app-contacts-menu>
+      }
+    </div>
+  </section>
   } @else {
-    <section (click)="closeSlideOut()" class="details_mobile">
-      <div class="content_detail_inner">
-        <div class="contacts_detail_headline">
-          <h1>Contacts</h1>
-          <p class="subheadline">Better with a team</p>
-          <div class="blue_vertical_line"></div>
-        </div>
-        <button (click)="closeMobileDetails()" class="back_btn" aria-label="Go back">
-          <img src="./assets/img/arrow-left-long.png" alt="arrow left image" />
-        </button>
+  <section (click)="closeSlideOut()" class="details_mobile">
+    <div class="content_detail_inner">
+      <div class="contacts_detail_headline">
+        <h1>Contacts</h1>
+        <p class="subheadline">Better with a team</p>
+        <div class="blue_vertical_line"></div>
       </div>
-      <div class="content_detail_inner">
-        <app-contacts-menu
-          #detailsMobil
-          [person]="selectedContact()"
-          (deleteContact)="deleteUser($event)"
-          (editContact)="editContact($event)"
-        >
-        </app-contacts-menu>
-      </div>
-    </section>
+      <button (click)="closeMobileDetails()" class="back_btn" aria-label="Go back">
+        <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12.0361 16.9129H29.2135C30.0626 16.9129 30.751 17.6013 30.751 18.4504C30.751 19.2996 30.0626 19.988 29.2135 19.988H12.0361L19.1964 27.1483C19.7968 27.7486 19.7968 28.722 19.1964 29.3223C18.596 29.9227 17.6227 29.9227 17.0223 29.3223L7.5646 19.8646C6.78356 19.0836 6.78356 17.8173 7.5646 17.0362L17.0223 7.57849C17.6227 6.97814 18.596 6.97814 19.1964 7.57849C19.7968 8.17885 19.7968 9.15222 19.1964 9.75257L12.0361 16.9129Z"
+            fill="#29ABE2" />
+        </svg>
+      </button>
+    </div>
+    <div class="content_detail_inner">
+      <app-contacts-menu #detailsMobil [person]="selectedContact()" (deleteContact)="deleteUser($event)"
+        (editContact)="editContact($event)">
+      </app-contacts-menu>
+    </div>
+  </section>
   }
 
   <dialog id="uxFeedbackNotification" class="feedback-notification">
@@ -94,35 +85,45 @@
   </dialog>
 
   @if (!contactsDetailOpen()) {
-    <div class="mobile-btn-container">
-      <button class="mobile-add-contact-btn" (click)="openNewContact()">
-        <img src="./assets/img/add-contact-icon.png" alt="" />
-      </button>
-    </div>
+  <div class="mobile-btn-container">
+    <button class="mobile-add-contact-btn" (click)="openNewContact()">
+      <svg width="30" height="21" viewBox="0 0 30 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M23.9961 12.9111C23.6802 12.9111 23.4167 12.8046 23.2056 12.5917C22.9945 12.3787 22.8889 12.1148 22.8889 11.8V8.68887H19.7778C19.463 8.68887 19.1991 8.58201 18.9861 8.3683C18.7731 8.15459 18.6667 7.88978 18.6667 7.57387C18.6667 7.25796 18.7731 6.99444 18.9861 6.78333C19.1991 6.57222 19.463 6.46667 19.7778 6.46667H22.8889V3.35553C22.8889 3.04073 22.9958 2.77684 23.2095 2.56387C23.4232 2.35091 23.688 2.24443 24.0039 2.24443C24.3198 2.24443 24.5833 2.35091 24.7944 2.56387C25.0055 2.77684 25.1111 3.04073 25.1111 3.35553V6.46667H28.2222C28.537 6.46667 28.8009 6.57352 29.0139 6.78723C29.2269 7.00095 29.3333 7.26576 29.3333 7.58167C29.3333 7.89758 29.2269 8.16109 29.0139 8.3722C28.8009 8.58331 28.537 8.68887 28.2222 8.68887H25.1111V11.8C25.1111 12.1148 25.0042 12.3787 24.7905 12.5917C24.5768 12.8046 24.312 12.9111 23.9961 12.9111ZM10.6667 10.2222C9.2 10.2222 7.98148 9.73702 7.0111 8.76667C6.04074 7.79629 5.55557 6.57777 5.55557 5.1111C5.55557 3.64443 6.04074 2.42592 7.0111 1.45557C7.98148 0.485189 9.2 0 10.6667 0C12.1333 0 13.3519 0.485189 14.3222 1.45557C15.2926 2.42592 15.7778 3.64443 15.7778 5.1111C15.7778 6.57777 15.2926 7.79629 14.3222 8.76667C13.3519 9.73702 12.1333 10.2222 10.6667 10.2222ZM1.1111 20.9111C0.7963 20.9111 0.532411 20.8046 0.319433 20.5917C0.106478 20.3787 0 20.1148 0 19.8V17.5778C0 16.8074 0.198144 16.1056 0.594433 15.4722C0.990745 14.8389 1.53334 14.363 2.22223 14.0444C3.79261 13.3259 5.24697 12.8093 6.5853 12.4944C7.92366 12.1796 9.28291 12.0222 10.6631 12.0222C12.0432 12.0222 13.4037 12.1796 14.7444 12.4944C16.0852 12.8093 17.5333 13.3259 19.0889 14.0444C19.7778 14.3778 20.3241 14.8574 20.7278 15.4833C21.1315 16.1093 21.3333 16.8074 21.3333 17.5778V19.8C21.3333 20.1148 21.2269 20.3787 21.0139 20.5917C20.8009 20.8046 20.537 20.9111 20.2222 20.9111H1.1111ZM2.2222 18.6889H19.1111V17.5778C19.1111 17.2593 19.0315 16.9593 18.8722 16.6778C18.713 16.3963 18.4741 16.1852 18.1556 16.0444C16.7185 15.3407 15.4296 14.8648 14.2889 14.6167C13.1481 14.3685 11.9407 14.2444 10.6667 14.2444C9.3926 14.2444 8.18519 14.3722 7.04443 14.6278C5.9037 14.8833 4.60741 15.3555 3.15557 16.0444C2.86666 16.1852 2.63887 16.3963 2.4722 16.6778C2.30553 16.9593 2.2222 17.2593 2.2222 17.5778V18.6889ZM10.6667 8C11.4889 8 12.1759 7.72408 12.7278 7.17223C13.2796 6.62037 13.5556 5.93332 13.5556 5.1111C13.5556 4.28888 13.2796 3.60184 12.7278 3.05C12.1759 2.49813 11.4889 2.2222 10.6667 2.2222C9.84445 2.2222 9.15741 2.49813 8.60557 3.05C8.0537 3.60184 7.77777 4.28888 7.77777 5.1111C7.77777 5.93332 8.0537 6.62037 8.60557 7.17223C9.15741 7.72408 9.84445 8 10.6667 8Z"
+          fill="white" />
+      </svg>
+    </button>
+  </div>
   } @else {
-    <div class="mobile-btn-container">
-      <button class="mobile-edit-contact-btn" (click)="toggleSlideOut()">
-        <img src="./assets/img/edit-mobile-btn-icon.png" alt="" />
+  <div class="mobile-btn-container">
+    <button class="mobile-edit-contact-btn" (click)="toggleSlideOut($event)">
+      <svg width="6" height="22" viewBox="0 0 6 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M2.66667 21.3333C1.93333 21.3333 1.30556 21.0722 0.783333 20.55C0.261111 20.0278 0 19.4 0 18.6667C0 17.9333 0.261111 17.3056 0.783333 16.7833C1.30556 16.2611 1.93333 16 2.66667 16C3.4 16 4.02778 16.2611 4.55 16.7833C5.07222 17.3056 5.33333 17.9333 5.33333 18.6667C5.33333 19.4 5.07222 20.0278 4.55 20.55C4.02778 21.0722 3.4 21.3333 2.66667 21.3333ZM2.66667 13.3333C1.93333 13.3333 1.30556 13.0722 0.783333 12.55C0.261111 12.0278 0 11.4 0 10.6667C0 9.93333 0.261111 9.30556 0.783333 8.78333C1.30556 8.26111 1.93333 8 2.66667 8C3.4 8 4.02778 8.26111 4.55 8.78333C5.07222 9.30556 5.33333 9.93333 5.33333 10.6667C5.33333 11.4 5.07222 12.0278 4.55 12.55C4.02778 13.0722 3.4 13.3333 2.66667 13.3333ZM2.66667 5.33333C1.93333 5.33333 1.30556 5.07222 0.783333 4.55C0.261111 4.02778 0 3.4 0 2.66667C0 1.93333 0.261111 1.30556 0.783333 0.783333C1.30556 0.261111 1.93333 0 2.66667 0C3.4 0 4.02778 0.261111 4.55 0.783333C5.07222 1.30556 5.33333 1.93333 5.33333 2.66667C5.33333 3.4 5.07222 4.02778 4.55 4.55C4.02778 5.07222 3.4 5.33333 2.66667 5.33333Z"
+          fill="white" />
+      </svg>
+    </button>
+    <div class="slide-out" [class.show]="isSlideOutVisible">
+      <button (click)="editContact(selectedContact()); toggleSlideOut($event)" class="slide-out-btn">
+        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M2 16.25H3.4L12.025 7.625L10.625 6.225L2 14.85V16.25ZM16.3 6.175L12.05 1.975L13.45 0.575C13.8333 0.191667 14.3042 0 14.8625 0C15.4208 0 15.8917 0.191667 16.275 0.575L17.675 1.975C18.0583 2.35833 18.2583 2.82083 18.275 3.3625C18.2917 3.90417 18.1083 4.36667 17.725 4.75L16.3 6.175ZM14.85 7.65L4.25 18.25H0V14L10.6 3.4L14.85 7.65Z"
+            fill="currentColor" />
+        </svg>Edit
       </button>
-      <div class="slide-out" [class.show]="isSlideOutVisible">
-        <button (click)="editContact(selectedContact()); toggleSlideOut()" class="slide-out-btn">
-          <img src="./assets/img/edit-icon.png" alt="" />Edit
-        </button>
-        <button
-          (click)="deleteUser(selectedContact().id); toggleSlideOut(); closeMobileDetails()"
-          class="slide-out-btn"
-        >
-          <img src="./assets/img/delete-icon.png" alt="" />Delete
-        </button>
-      </div>
+      <button (click)="deleteUser(selectedContact().id); toggleSlideOut($event); closeMobileDetails()" class="slide-out-btn">
+        <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M3 18C2.45 18 1.97917 17.8042 1.5875 17.4125C1.19583 17.0208 1 16.55 1 16V3C0.716667 3 0.479167 2.90417 0.2875 2.7125C0.0958333 2.52083 0 2.28333 0 2C0 1.71667 0.0958333 1.47917 0.2875 1.2875C0.479167 1.09583 0.716667 1 1 1H5C5 0.716667 5.09583 0.479167 5.2875 0.2875C5.47917 0.0958333 5.71667 0 6 0H10C10.2833 0 10.5208 0.0958333 10.7125 0.2875C10.9042 0.479167 11 0.716667 11 1H15C15.2833 1 15.5208 1.09583 15.7125 1.2875C15.9042 1.47917 16 1.71667 16 2C16 2.28333 15.9042 2.52083 15.7125 2.7125C15.5208 2.90417 15.2833 3 15 3V16C15 16.55 14.8042 17.0208 14.4125 17.4125C14.0208 17.8042 13.55 18 13 18H3ZM3 3V16H13V3H3ZM5 13C5 13.2833 5.09583 13.5208 5.2875 13.7125C5.47917 13.9042 5.71667 14 6 14C6.28333 14 6.52083 13.9042 6.7125 13.7125C6.90417 13.5208 7 13.2833 7 13V6C7 5.71667 6.90417 5.47917 6.7125 5.2875C6.52083 5.09583 6.28333 5 6 5C5.71667 5 5.47917 5.09583 5.2875 5.2875C5.09583 5.47917 5 5.71667 5 6V13ZM9 13C9 13.2833 9.09583 13.5208 9.2875 13.7125C9.47917 13.9042 9.71667 14 10 14C10.2833 14 10.5208 13.9042 10.7125 13.7125C10.9042 13.5208 11 13.2833 11 13V6C11 5.71667 10.9042 5.47917 10.7125 5.2875C10.5208 5.09583 10.2833 5 10 5C9.71667 5 9.47917 5.09583 9.2875 5.2875C9.09583 5.47917 9 5.71667 9 6V13Z"
+            fill="currentColor" />
+        </svg>Delete
+      </button>
     </div>
+  </div>
   }
 
   <dialog id="addContactModal" class="slider-modal">
-    <app-new-contact-slider
-      #contactModal
-      (contactCreated)="triggerUxFeedback()"
-      (closeDialog)="closeDialog()"
-    ></app-new-contact-slider>
+    <app-new-contact-slider #contactModal (contactCreated)="triggerUxFeedback()"
+      (closeDialog)="closeDialog()"></app-new-contact-slider>
   </dialog>
 </div>

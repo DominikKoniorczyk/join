@@ -338,7 +338,9 @@ export class Contacts {
    *
    * Inverts the current boolean value of `isSlideOutVisible`.
    */
-   toggleSlideOut() {
+   toggleSlideOut(event: Event) {
+    event.stopPropagation();
+    event.preventDefault();
     this.isSlideOutVisible = !this.isSlideOutVisible;
   }
 
