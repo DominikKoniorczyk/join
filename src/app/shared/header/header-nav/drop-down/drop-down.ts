@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Supabase } from '../../../../services/supabase';
 import { AuthService } from '../../../../services/auth.service';
 import { ContactImage, SupabaseContactsInterface } from '../../../../interfaces/supabase.interfaces';
 import { InitialsSelctorPipe } from '../../../../services/contacts.services';
+import { setPostProducerCreatedFn } from '@angular/core/primitives/signals';
 
 
 @Component({
@@ -29,7 +30,9 @@ export class DropDown {
   /**
    * Toggles the visibility of the user dropdown menu.
    */
-   toggleDropdown() {
+   toggleDropdown(ev: Event) {
+    ev.preventDefault;
+    ev.stopPropagation;
     this.isDropDownOpen = !this.isDropDownOpen;
   }
 

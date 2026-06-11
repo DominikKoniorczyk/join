@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, ViewChild, ElementRef } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Header } from './shared/header/header';
@@ -17,6 +17,7 @@ import { ImageDetails } from './components/add-task/taskform/image-details/image
 export class App {
   protected readonly title = signal('join');
   router = inject(Router);
+  @ViewChild('header') header!:Header;
 
   isAuthRoute = false;
 

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, signal, ViewChild } from '@angular/core';
 import { Help } from './help/help';
 import { DropDown } from './drop-down/drop-down';
 import { AuthService } from '../../../services/auth.service';
@@ -16,6 +16,8 @@ export class HeaderNav {
   isLoggedIn = signal<boolean>(false);
   supaBase = inject(Supabase);
   guest = inject(AuthService);
+  @ViewChild('dropdown') dropdown!: DropDown;
+  @ViewChild('dropdownEl', { read: ElementRef }) dropdownEl?: ElementRef<HTMLElement>;
 
   constructor(private router: Router) {
     this.router.events
@@ -23,6 +25,23 @@ export class HeaderNav {
       .subscribe(() => {
         this.checkIsLoggedIn();
       });
+  }
+
+  /**
+   * Handles clicks anywhere in the document and closes the dropdown
+   * when the user clicks outside of the dropdown element.
+   *
+   * @param {MouseEvent} event - The click event triggered on the document.
+   * @returns {void}
+   */
+   @HostListener('document:click', ['$event'])
+   onDocumentClick(event: MouseEvent) {
+    if (!this.dropdownEl?.nativeElement) {
+      return;
+    }
+    if (!this.dropdownEl.nativeElement.contains(event.target as Node)) {
+      this.dropdown.isDropDownOpen = false;
+    }
   }
 
   /**
