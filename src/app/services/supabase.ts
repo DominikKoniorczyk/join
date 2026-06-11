@@ -49,18 +49,11 @@ export class Supabase {
    *
    * @param {string} tableName - The name of the database table to query.
    * @param {string} [selector='*'] - The column selector string (e.g. '*', 'id,name').
-   *                                   Defaults to '*' which selects all columns.
    *
    * @returns {Promise<any[] | null>}
    * A promise that resolves to:
    * - An array of records if the query is successful (empty array if no data is found).
    * - `null` if an error occurs during the query.
-   *
-   * @example
-   * const users = await getDataFromTable('users');
-   *
-   * @example
-   * const userNames = await getDataFromTable('users', 'id, name');
    */
   async getDataFromTable(tableName: string, selector: string = '*') {
     const { data, error } = await this.supabaseClient
