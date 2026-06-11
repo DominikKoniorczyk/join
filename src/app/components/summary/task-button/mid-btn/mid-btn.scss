@@ -40,7 +40,6 @@ button {
 
     @media(max-width: 380px) {
         height: 95px;
-        font-size: 0.85rem;
     }
 }
 
@@ -114,6 +113,10 @@ button {
 
     @media(max-width: 1000px) {
         font-size: 3rem;
+    }
+
+    @media(max-width: 380px) {
+        font-size: 2rem;
     }
 }
 
