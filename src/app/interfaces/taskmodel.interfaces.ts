@@ -25,7 +25,10 @@ import { SupabaseContactsInterface } from "./supabase.interfaces";
   files: TaskFile[];
 }
 
-export interface TaskFile {
+/**
+ * Represents a taskfile with its filename, filetype, size and the file as bas64.
+ */
+ export interface TaskFile {
   filename: string,
   filetype: string,
   base64: unknown,
